@@ -1,0 +1,1 @@
+Use `shiny.ui.row` and `shiny.ui.column` for flexible layouts

@@ -1,0 +1,1 @@
+Create a select input with multiple choices

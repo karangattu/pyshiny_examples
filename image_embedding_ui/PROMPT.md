@@ -1,0 +1,1 @@
+Embed an image in the UI

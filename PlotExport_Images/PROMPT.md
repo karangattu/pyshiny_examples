@@ -1,0 +1,1 @@
+Save a plot as an image file

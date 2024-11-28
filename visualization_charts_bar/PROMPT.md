@@ -1,0 +1,1 @@
+Create a bar chart using `matplotlib`

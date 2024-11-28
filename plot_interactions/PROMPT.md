@@ -1,0 +1,1 @@
+Zoom and pan on an interactive plot

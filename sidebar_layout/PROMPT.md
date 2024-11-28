@@ -1,0 +1,1 @@
+Organize inputs and outputs in a sidebar layout

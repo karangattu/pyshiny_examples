@@ -1,0 +1,1 @@
+Create a tabbed interface for multiple panels

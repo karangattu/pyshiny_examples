@@ -1,0 +1,1 @@
+Display the selected choice from the dropdown

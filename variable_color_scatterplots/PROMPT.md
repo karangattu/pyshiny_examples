@@ -1,0 +1,1 @@
+Create a scatter plot with different point colors based on a variable

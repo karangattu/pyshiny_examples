@@ -1,0 +1,1 @@
+Create a collapsible section to hide/show content

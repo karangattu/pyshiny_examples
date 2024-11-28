@@ -1,0 +1,1 @@
+Apply basic CSS styling to UI elements

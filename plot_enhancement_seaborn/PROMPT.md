@@ -1,0 +1,1 @@
+Use `seaborn` to create a more visually appealing plot
