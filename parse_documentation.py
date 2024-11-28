@@ -1,7 +1,8 @@
-import pandas as pd
-import re
 import json
+import re
 import sys
+
+import pandas as pd
 
 
 def extract_documentation(filename):
