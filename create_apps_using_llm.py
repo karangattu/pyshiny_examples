@@ -34,6 +34,31 @@ else:
 
 client = Anthropic()
 
+total_cache_creation_input_tokens = 0
+total_cache_read_input_tokens = 0
+total_input_tokens = 0
+total_output_tokens = 0
+
+
+def calculate_total_cost(
+    cache_creation_input_tokens, cache_read_input_tokens, input_tokens, output_tokens
+):
+    """
+    Calculate the total cost of the API call based on the usage of tokens.
+    """
+    # pricing based on Haiku 3 model - https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching#tracking-cache-performance:~:text=Claude%203%20Haiku,%241.25%20/%20MTok
+    cost_per_cache_creation_input_token = 0.0000003
+    cost_per_cache_read_input_token = 0.00000003
+    cost_per_input_token = 0.00000025
+    cost_per_output_token = 0.00000125
+    total_cost = (
+        cache_creation_input_tokens * cost_per_cache_creation_input_token
+        + cache_read_input_tokens * cost_per_cache_read_input_token
+        + output_tokens * cost_per_input_token
+        + input_tokens * cost_per_output_token
+    )
+    return total_cost
+
 
 def run_pyright(file_path):
     try:
@@ -269,6 +294,17 @@ Technical Constraints:
 4. Visualization and Interactivity
    - Create responsive, accessible interfaces
    - Use Plotly or Altair for advanced visualizations
+   - Use font Awesome for icons
+   To use Font Awesome icons, ensure you've added the Font Awesome CSS file to your HTML head:
+```Python
+app_ui = ui.page_fluid(
+    ui.head_content(
+        ui.HTML('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">')
+    ),
+    ...
+)
+```
+   - Use https://picsum.photos/200/300 for placeholder images
 
 5. Performance Considerations
    - Implement efficient reactive programming patterns
@@ -353,6 +389,15 @@ Leverage Shiny for Python function reference documentation and make a Shiny for 
                 logging.info(f"Output tokens used: {messages.usage.output_tokens}")
                 logging.info(f"Input tokens used: {messages.usage.input_tokens}")
                 logging.info("==========")
+                total_cache_creation_input_tokens += (
+                    messages.usage.cache_creation_input_tokens
+                )
+                total_cache_read_input_tokens += messages.usage.cache_read_input_tokens
+                total_input_tokens += messages.usage.input_tokens
+                total_output_tokens += messages.usage.output_tokens
+                print(
+                    f"Incurred costs till now: ${calculate_total_cost(total_cache_creation_input_tokens, total_cache_read_input_tokens, total_input_tokens, total_output_tokens)}"
+                )
                 response = messages.content[0].text
                 code, description = extract_code_and_description(response)
                 create_app_files(directory, code, description)
@@ -364,7 +409,7 @@ Leverage Shiny for Python function reference documentation and make a Shiny for 
                     logging.info(
                         f"App did not run hence prompting the LLM to fix it for {directory}"
                     )
-                    # if app resulted in an error, prompt the LLM to fix it
+                    # if app resulted in an error during startup, prompt the LLM to fix it
                     user_prompt_error = f"Running this code for Shiny for Python: \n {code} \n resulted in an error: {error_message}. Please fix it to make it work. Provide complete code for the same"
                     messages = client.beta.prompt_caching.messages.create(
                         model=claude_model_used,
@@ -389,6 +434,17 @@ Leverage Shiny for Python function reference documentation and make a Shiny for 
                     logging.info(f"Output tokens used: {messages.usage.output_tokens}")
                     logging.info(f"Input tokens used: {messages.usage.input_tokens}")
                     logging.info("==========")
+                    total_cache_creation_input_tokens += (
+                        messages.usage.cache_creation_input_tokens
+                    )
+                    total_cache_read_input_tokens += (
+                        messages.usage.cache_read_input_tokens
+                    )
+                    total_input_tokens += messages.usage.input_tokens
+                    total_output_tokens += messages.usage.output_tokens
+                    print(
+                        f"Incurred costs till now: ${calculate_total_cost(total_cache_creation_input_tokens, total_cache_read_input_tokens, total_input_tokens, total_output_tokens)}"
+                    )
                     response = messages.content[0].text
                     # save the modified app code now
                     code, description2 = extract_code_and_description(response)
