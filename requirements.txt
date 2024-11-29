@@ -1,6 +1,12 @@
+anthropic
 faker
 matplotlib
 numpy
+openai
 pandas
+playwright
+python-dotenv
+pyright
+requests
 seaborn
 shiny
