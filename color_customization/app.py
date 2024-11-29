@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from shiny import App, Inputs, Outputs, Session, render, ui
 
 # Generate some sample data

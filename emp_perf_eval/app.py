@@ -2,7 +2,7 @@ import random
 from datetime import datetime
 
 import pandas as pd
-from shiny import App, render, ui, reactive, req
+from shiny import App, reactive, render, req, ui
 
 # Generate some sample data
 employees = ["John Doe", "Jane Smith", "Bob Johnson", "Sarah Lee", "Tom Wilson"]

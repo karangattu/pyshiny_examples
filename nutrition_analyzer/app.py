@@ -1,7 +1,8 @@
-from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 import random
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 
 # --- UI Configuration ---
 FONT_AWESOME_LINK = (

@@ -1,5 +1,6 @@
-from shiny import App, Inputs, Outputs, Session, reactive, render, req, ui
 import random
+
+from shiny import App, Inputs, Outputs, Session, reactive, render, req, ui
 
 # Made-up data
 data = {
