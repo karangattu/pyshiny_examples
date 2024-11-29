@@ -1,1 +1,0 @@
-Create a simple Shiny app with a title and text output
