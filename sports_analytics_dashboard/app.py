@@ -60,7 +60,7 @@ app_ui = ui.page_fluid(
             theme="bg-gradient-purple-pink",
             showcase=ui.HTML('<i class="fas fa-chart-line"></i>'),
             width="100%",
-        )
+        ),
     ),
     ui.layout_column_wrap(
         ui.card(
@@ -72,7 +72,7 @@ app_ui = ui.page_fluid(
             ui.card_header("Points For vs Points Against"),
             ui.output_plot("points_plot"),
             width="100%",
-        )
+        ),
     ),
 )
 

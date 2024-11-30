@@ -21,7 +21,10 @@ HOTELS = [
 
 app_ui = ui.page_fluid(
     ui.tags.head(
-        ui.tags.link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"),
+        ui.tags.link(
+            rel="stylesheet",
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css",
+        ),
         ui.tags.style(
             """
             body {
@@ -87,7 +90,7 @@ app_ui = ui.page_fluid(
                 white-space: pre-wrap;
             }
             """
-        )
+        ),
     ),
     ui.div(
         {"class": "panel-title"},
@@ -105,24 +108,31 @@ app_ui = ui.page_fluid(
             ui.input_date("depart_date", "Depart Date"),
             ui.input_date("return_date", "Return Date"),
             ui.output_text_verbatim("flight_summary"),
-            ui.download_button("book_flight", ui.tags.span(ui.tags.i(class_="fas fa-check-circle"), "Book Flight")),
+            ui.download_button(
+                "book_flight",
+                ui.tags.span(ui.tags.i(class_="fas fa-check-circle"), "Book Flight"),
+            ),
         ),
         ui.card(
             ui.card_header("Hotel Booking"),
             ui.input_select("hotel_city", "City", [city for city, _, _, _ in HOTELS]),
             ui.input_numeric("nights", "Nights", min=1, max=30, value=1),
             ui.output_text_verbatim("hotel_summary"),
-            ui.download_button("book_hotel", ui.tags.span(ui.tags.i(class_="fas fa-check-circle"), "Book Hotel")),
+            ui.download_button(
+                "book_hotel",
+                ui.tags.span(ui.tags.i(class_="fas fa-check-circle"), "Book Hotel"),
+            ),
         ),
         width=1 / 2,
     ),
 )
 
+
 def server(input: Inputs, output: Outputs, session: Session):
     @reactive.calc
     def nights():
         return input.nights()
-    
+
     @reactive.calc
     def available_flights() -> List[Tuple[str, str, str, str, float]]:
         from_city = input.from_city()
@@ -177,5 +187,6 @@ def server(input: Inputs, output: Outputs, session: Session):
         hotels = available_hotels()
         req(hotels)
         return f"Booking {hotels[0][1]} in {hotels[0][0]} for {input.nights()} nights"
+
 
 app = App(app_ui, server)

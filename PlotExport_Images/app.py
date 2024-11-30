@@ -1,9 +1,9 @@
-import random
 import asyncio
 import io
+import random
 
 import matplotlib.pyplot as plt
-from shiny import App, Inputs, Outputs, Session, render, ui, reactive
+from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 
 app_ui = ui.page_fluid(
     ui.input_slider("n", "Number of points", min=10, max=100, value=50),

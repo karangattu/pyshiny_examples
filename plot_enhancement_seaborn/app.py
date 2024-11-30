@@ -1,7 +1,7 @@
 import numpy as np
 import seaborn as sns
-from shiny import App, Inputs, Outputs, Session, render, ui
 from matplotlib import pyplot as plt
+from shiny import App, Inputs, Outputs, Session, render, ui
 
 # Generate some sample data
 x = np.random.normal(0, 1, 500)

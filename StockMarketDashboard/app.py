@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 
 import numpy as np
 import pandas as pd
-from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 from matplotlib import pyplot as plt
+from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 
 
 # Generate some sample stock data

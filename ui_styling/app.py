@@ -1,12 +1,13 @@
 import random
 
 import pandas as pd
-from shiny import App, Inputs, Outputs, Session, render, ui, reactive
 from faker import Faker
+from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 
 fake = Faker()
 
 # Generate some sample data
+
 
 def generate_data():
     num_rows = random.randint(5, 10)
@@ -21,6 +22,7 @@ def generate_data():
         }
     )
     return mock_data
+
 
 app_ui = ui.page_fluid(
     ui.tags.style(
@@ -62,7 +64,9 @@ app_ui = ui.page_fluid(
     ui.card(
         ui.card_header("Data Summary"),
         ui.head_content(
-            ui.HTML('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">')
+            ui.HTML(
+                '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">'
+            )
         ),
         ui.layout_column_wrap(
             ui.value_box(
