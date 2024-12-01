@@ -295,7 +295,7 @@ Technical Constraints:
    - Create responsive, accessible interfaces
    - Use Plotly or Altair for advanced visualizations
    - Use font Awesome for icons
-   To use Font Awesome icons, ensure you've added the Font Awesome CSS file to your HTML head:
+   To use Font Awesome icons, ensure you've added the Font Awesome CSS file to your shiny app in the HTML head section:
 ```Python
 app_ui = ui.page_fluid(
     ui.head_content(
@@ -308,7 +308,6 @@ app_ui = ui.page_fluid(
 
 5. Performance Considerations
    - Implement efficient reactive programming patterns
-   - Use lazy loading and caching where applicable
 
 Deliverable Specification:
 - Include concise comments explaining complex logic
@@ -317,9 +316,7 @@ Deliverable Specification:
 Prohibited Practices:
 - No placeholder or stub code
 - Avoid speculative or hypothetical implementations
-- Do not include unimplemented features
 - No external API calls without explicit request
-- No hardcoded credentials or sensitive information
 - No unnessary imports or dependencies
 - Do not use external files for accessing data, make up some data for use in the app
 
