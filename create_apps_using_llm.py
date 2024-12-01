@@ -13,49 +13,116 @@ import requests
 from anthropic import Anthropic
 from dotenv import load_dotenv
 
-load_dotenv()
 
-logging.basicConfig(
-    filename="anthropic.log",
-    level=logging.DEBUG,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
+def setup_logging():
+    load_dotenv()
+    logging.basicConfig(
+        filename="anthropic.log",
+        level=logging.DEBUG,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+    )
 
-# get argument to python script
-if len(sys.argv) < 2:
-    print("Usage: python create_apps_using_llm.py app_type")
-    sys.exit(1)
-else:
-    app_type = sys.argv[1]
-    if app_type not in ["express", "core"]:
-        print("Invalid app type. Use 'express' or 'core'.")
+
+def parse_command_line_args():
+    if len(sys.argv) < 2 or sys.argv[1] not in ["express", "core"]:
+        print(
+            "Usage: python create_apps_using_llm.py [express|core] [haiku3|haiku3.5|sonnet]"
+        )
         sys.exit(1)
 
+    # Map user-friendly names to actual model names
+    model_mapping = {
+        "haiku3": "claude-3-haiku-20240307",
+        "haiku3.5": "claude-3-5-haiku-20241022",
+        "sonnet": "claude-3-5-sonnet-20241022",
+    }
 
-client = Anthropic()
+    if len(sys.argv) == 3:
+        user_model = sys.argv[2].lower()
+        if user_model in model_mapping:
+            model_type = model_mapping[user_model]
+        else:
+            print(f"Invalid model type. Choose from: {', '.join(model_mapping.keys())}")
+            sys.exit(1)
 
-total_cache_creation_input_tokens = 0
-total_cache_read_input_tokens = 0
-total_input_tokens = 0
-total_output_tokens = 0
+    return sys.argv[1], model_type
+
+
+def load_documentation(app_type):
+    with open(f"documentation_{app_type}.json", "r") as f:
+        documentation = f.read()
+    return documentation
+
+
+def read_system_prompt(app_type):
+    with open("SYSTEM_PROMPT.md", "r") as f:
+        system_prompt_file_contents = f.read()
+
+    documentation = load_documentation(app_type)
+    system_prompt = [
+        {
+            "type": "text",
+            "text": system_prompt_file_contents,
+        },
+        {
+            "type": "text",
+            "text": f"Here is the function reference documentation for Shiny for Python: {documentation}",
+            "cache_control": {"type": "ephemeral"},
+        },
+    ]
+    return system_prompt
 
 
 def calculate_total_cost(
-    cache_creation_input_tokens, cache_read_input_tokens, input_tokens, output_tokens
+    cache_creation_input_tokens,
+    cache_read_input_tokens,
+    input_tokens,
+    output_tokens,
+    model="claude-3-haiku-20240307",
 ):
     """
-    Calculate the total cost of the API call based on the usage of tokens.
+    Calculate the total cost of the API call based on the usage of tokens and model.
+
+    Args:
+        cache_creation_input_tokens: Number of tokens used for cache creation
+        cache_read_input_tokens: Number of tokens read from cache
+        input_tokens: Number of input tokens
+        output_tokens: Number of output tokens
+        model: Model name (default: claude-3-haiku-20240307)
     """
-    # pricing based on Haiku 3 model - https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching#tracking-cache-performance:~:text=Claude%203%20Haiku,%241.25%20/%20MTok
-    cost_per_cache_creation_input_token = 0.0000003
-    cost_per_cache_read_input_token = 0.00000003
-    cost_per_input_token = 0.00000025
-    cost_per_output_token = 0.00000125
+    # Pricing per model from https://docs.anthropic.com/en/docs/about-claude/models
+    model_prices = {
+        "claude-3-5-haiku-20241022": {
+            "cache_creation_input": 0.00000125,
+            "cache_read_input": 0.00000010,
+            "input": 0.00000100,
+            "output": 0.00000500,
+        },
+        "claude-3-5-sonnet-20241022": {
+            "cache_creation_input": 0.00000375,
+            "cache_read_input": 0.00000030,
+            "input": 0.00000300,
+            "output": 0.00001500,
+        },
+        "claude-3-haiku-20240307": {
+            "cache_creation_input": 0.0000003,
+            "cache_read_input": 0.00000003,
+            "input": 0.00000025,
+            "output": 0.00000125,
+        },
+    }
+
+    if model not in model_prices:
+        raise ValueError(
+            f"Unknown model: {model}. Available models: {list(model_prices.keys())}"
+        )
+
+    prices = model_prices[model]
     total_cost = (
-        cache_creation_input_tokens * cost_per_cache_creation_input_token
-        + cache_read_input_tokens * cost_per_cache_read_input_token
-        + output_tokens * cost_per_input_token
-        + input_tokens * cost_per_output_token
+        cache_creation_input_tokens * prices["cache_creation_input"]
+        + cache_read_input_tokens * prices["cache_read_input"]
+        + input_tokens * prices["input"]
+        + output_tokens * prices["output"]
     )
     return total_cost
 
@@ -102,13 +169,13 @@ def run_shiny_app(
 ):
     if is_port_in_use(port):
         if verbose:
-            print(f"Error: Port {port} is already in use.")
+            logging.info(f"Error: Port {port} is already in use.")
         return False, f"Port {port} is already in use."
 
     process, process_created = start_shiny_app(script_path, port)
     if not process_created:
         if verbose:
-            print("Failed to start Shiny app process.")
+            logging.info("Failed to start Shiny app process.")
         return False, "Failed to start Shiny app process."
 
     return monitor_app_logs(process, timeout, success_timeout, verbose)
@@ -129,7 +196,7 @@ def start_shiny_app(script_path, port=8000):
         )
         return process, True
     except Exception as e:
-        print(f"Error starting Shiny app: {e}")
+        logging.info(f"Error starting Shiny app: {e}")
         return None, False
 
 
@@ -150,14 +217,14 @@ def monitor_app_logs(process, timeout, success_timeout, verbose):
                 if line:
                     lines_list.append(line.strip())
                     if verbose:
-                        print(f"STREAM: {line.strip()}")
+                        logging.info(f"STREAM: {line.strip()}")
                 else:
                     time.sleep(0.1)
             except ValueError:
                 break
             except Exception as e:
                 if verbose:
-                    print(f"Exception in read_output thread: {e}")
+                    logging.info(f"Exception in read_output thread: {e}")
                 break
 
     stdout_thread = threading.Thread(
@@ -179,12 +246,12 @@ def monitor_app_logs(process, timeout, success_timeout, verbose):
             response = requests.get(f"http://localhost:{8000}", timeout=5)
             if response.status_code == 200:
                 if verbose:
-                    print("Shiny app started successfully within timeout.")
+                    logging.info("Shiny app started successfully within timeout.")
                 startup_successful = True
 
                 time.sleep(success_timeout)
                 if verbose:
-                    print("Terminating app after successful startup...")
+                    logging.info("Terminating app after successful startup...")
                 process.terminate()
                 process.wait(timeout=2)
                 break
@@ -197,13 +264,13 @@ def monitor_app_logs(process, timeout, success_timeout, verbose):
 
     if process.poll() is None:
         if verbose:
-            print("Terminating app after timeout...")
+            logging.info("Terminating app after timeout...")
         try:
             process.terminate()
             process.wait(timeout=2)
         except subprocess.TimeoutExpired:
             if verbose:
-                print("App did not terminate gracefully, killing...")
+                logging.info("App did not terminate gracefully, killing...")
             process.kill()
             process.wait()
 
@@ -212,20 +279,20 @@ def monitor_app_logs(process, timeout, success_timeout, verbose):
         for line in stderr_lines:
             error_message += line + "\n"
         if verbose:
-            print("Error starting Shiny app:")
-            print(error_message)
+            logging.info("Error starting Shiny app:")
+            logging.info(error_message)
     else:
         error_message = ""
 
     if verbose:
-        print("\n--- App Termination Summary ---")
-        print("Exit Code:", process.returncode)
-        print("--- Captured STDOUT ---")
+        logging.info("\n--- App Termination Summary ---")
+        logging.info(f"Exit Code: {process.returncode}")
+        logging.info("--- Captured STDOUT ---")
         for line in stdout_lines:
-            print(line)
-        print("--- Captured STDERR ---")
+            logging.info(line)
+        logging.info("--- Captured STDERR ---")
         for line in stderr_lines:
-            print(line)
+            logging.info(line)
 
     return (startup_successful, error_message)
 
@@ -239,7 +306,7 @@ def analyze_pyright_results(results):
             )
         return error_list
 
-    print("\nNo type errors found!")
+    logging.info("\nNo type errors found!")
     return error_list
 
 
@@ -266,183 +333,103 @@ def create_app_files(file_dir, code, description):
         f.write(description)
 
 
-# read the contents of documentation_core.json
-with open(f"documentation_{app_type}.json", "r") as f:
-    documentation = f.read()
+def process_directory(directory, system_prompt, model):
+    """Process a single directory to create and validate a Shiny app."""
+    prompt_file = Path(f"{directory}/PROMPT.md")
+    if not (os.path.isdir(directory) and prompt_file.is_file()):
+        return
 
-system_prompt = """
-You are an expert Python developer specializing in Shiny for Python application development. Your primary objective is to generate high-quality, production-ready Shiny for Python applications with the following comprehensive guidelines:
+    if os.path.exists(f"{directory}/app.py"):
+        return
 
-Purpose and Scope:
-- Generate production-ready Shiny for Python applications
-- Demonstrate deep understanding of Shiny for Python's capabilities and best practices
+    logging.info(f"Processing directory: {directory}")
+    with open(prompt_file, "r") as f:
+        prompt = f.read()
 
-Technical Constraints:
-1. Library Adherence
-   - Use ONLY official Shiny for Python library functions
-   - Validate all code against current function reference documentation
-   - Avoid R-to-Python direct translations
+    # Generate initial app
+    code, description = generate_shiny_app(prompt, system_prompt, model)
+    create_app_files(directory, code, description)
 
-2. Code Generation Principles
-   - Generate complete, runnable applications
-   - Include comprehensive error handling
-   - Optimize for readability and maintainability
+    # Test and fix if needed
+    success, error_message = run_shiny_app(
+        f"{directory}/app.py", port=8000, timeout=5, success_timeout=5
+    )
+    if not success:
+        logging.info(f"App failed to run in {directory}, attempting fix")
+        code, description_2 = fix_shiny_app(code, error_message, system_prompt, model)
+        create_app_files(directory, code, description)
 
-3. Data Handling
-   - Generate realistic synthetic datasets using faker or make random datasets matching application context
 
-4. Visualization and Interactivity
-   - Create responsive, accessible interfaces
-   - Use Plotly or Altair for advanced visualizations
-   - Use font Awesome for icons
-   To use Font Awesome icons, ensure you've added the Font Awesome CSS file to your shiny app in the HTML head section:
-```Python
-app_ui = ui.page_fluid(
-    ui.head_content(
-        ui.HTML('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">')
-    ),
-    ...
-)
-```
-   - Use https://picsum.photos/200/300 for placeholder images
+def generate_shiny_app(prompt, system_prompt, model):
+    """Generate a Shiny app using the LLM."""
+    user_prompt = f"""
+    Leverage Shiny for Python function reference documentation and make a Shiny for Python app for the following requirements: {prompt}. 
+    Please do not use external files for accessing data, make up some data for use in the app.
+    """
 
-5. Performance Considerations
-   - Implement efficient reactive programming patterns
+    messages = get_llm_response(user_prompt, system_prompt, model)
+    update_token_counts(messages.usage, model)
+    return extract_code_and_description(messages.content[0].text)
 
-Deliverable Specification:
-- Include concise comments explaining complex logic
-- List all required package dependencies
 
-Prohibited Practices:
-- No placeholder or stub code
-- Avoid speculative or hypothetical implementations
-- No external API calls without explicit request
-- No unnessary imports or dependencies
-- Do not use external files for accessing data, make up some data for use in the app
+def fix_shiny_app(code, error_message, system_prompt, model):
+    """Fix a failing Shiny app using the LLM."""
+    user_prompt = f"Running this code for Shiny for Python: \n {code} \n resulted in an error: {error_message}. Please fix it to make it work. Provide complete code for the same"
 
-Verification Criteria:
-- Code must be syntactically correct
-- All dependencies must be pip-installable
-- User interface should be intuitive and self-explanatory
+    messages = get_llm_response(user_prompt, system_prompt, model)
+    update_token_counts(messages.usage, model)
+    return extract_code_and_description(messages.content[0].text)
 
-Response Format:
-1. Comprehensive code artifact
-2. Brief technical description
-3. Installation and execution instructions
-4. Package dependencies list
 
-Context Awareness:
-- Adapt implementation to specific user requirements
-- Infer unstated but logical application needs
-- Provide pragmatic, real-world solutions
+def get_llm_response(prompt, system_prompt, model):
+    """Get response from the LLM."""
+    # start script here
+    client = Anthropic()
 
-Output Quality Metrics:
-- 100% functional code
-- Clean, PEP 8 compliant implementation
-- Minimal external dependencies
-"""
+    messages = client.beta.prompt_caching.messages.create(
+        model=model,
+        max_tokens=4096,
+        system=system_prompt,
+        temperature=0.5,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    return messages
+
+
+def update_token_counts(usage, model):
+    """Update global token counts and log usage."""
+    global total_cache_creation_input_tokens, total_cache_read_input_tokens, total_input_tokens, total_output_tokens
+
+    total_cache_creation_input_tokens += usage.cache_creation_input_tokens
+    total_cache_read_input_tokens += usage.cache_read_input_tokens
+    total_input_tokens += usage.input_tokens
+    total_output_tokens += usage.output_tokens
+
+    logging.info("==========")
+    logging.info(f"Cache creation input tokens: {usage.cache_creation_input_tokens}")
+    logging.info(f"Cache read input tokens: {usage.cache_read_input_tokens}")
+    logging.info(f"Output tokens: {usage.output_tokens}")
+    logging.info(f"Input tokens: {usage.input_tokens}")
+    logging.info("==========")
+
+    cost = calculate_total_cost(
+        total_cache_creation_input_tokens,
+        total_cache_read_input_tokens,
+        total_input_tokens,
+        total_output_tokens,
+        model=model,
+    )
+    print(f"Incurred costs till now: ${cost}")
+
+
+total_cache_creation_input_tokens = 0
+total_cache_read_input_tokens = 0
+total_input_tokens = 0
+total_output_tokens = 0
+
+setup_logging()
+app_type, model = parse_command_line_args()
+system_prompt = read_system_prompt(app_type=app_type)
 
 for directory in os.listdir():
-    if os.path.isdir(directory):
-        prompt_file = Path(f"{directory}/PROMPT.md")
-        if prompt_file.is_file():
-            with open(prompt_file, "r") as f:
-                prompt = f.read()
-            if not os.path.exists(f"{directory}/app.py"):
-                print(f"Directory: {directory}")
-                system_prompt = [
-                    {
-                        "type": "text",
-                        "text": f"Here is the function reference documentation for Shiny for Python: {documentation}",
-                        "cache_control": {"type": "ephemeral"},
-                    },
-                ]
-                maximum_tokens = 4096
-                moderate_temperature = 0.2
-                claude_model_used = "claude-3-haiku-20240307"
-                user_prompt = f"""
-Leverage Shiny for Python function reference documentation and make a Shiny for Python app for the following requirements: {prompt}. Please do not use external files for accessing data, make up some data for use in the app.
-"""
-                messages = client.beta.prompt_caching.messages.create(
-                    model=claude_model_used,
-                    max_tokens=maximum_tokens,
-                    system=system_prompt,
-                    temperature=moderate_temperature,
-                    messages=[
-                        {
-                            "role": "user",
-                            "content": user_prompt,
-                        }
-                    ],
-                )
-                logging.info("==========")
-                logging.info(f"Directory: {directory}")
-                logging.info(
-                    f"Cache creation input tokens used: {messages.usage.cache_creation_input_tokens}"
-                )
-                logging.info(
-                    f"Cache read input tokens used: {messages.usage.cache_read_input_tokens}"
-                )
-                logging.info(f"Output tokens used: {messages.usage.output_tokens}")
-                logging.info(f"Input tokens used: {messages.usage.input_tokens}")
-                logging.info("==========")
-                total_cache_creation_input_tokens += (
-                    messages.usage.cache_creation_input_tokens
-                )
-                total_cache_read_input_tokens += messages.usage.cache_read_input_tokens
-                total_input_tokens += messages.usage.input_tokens
-                total_output_tokens += messages.usage.output_tokens
-                print(
-                    f"Incurred costs till now: ${calculate_total_cost(total_cache_creation_input_tokens, total_cache_read_input_tokens, total_input_tokens, total_output_tokens)}"
-                )
-                response = messages.content[0].text
-                code, description = extract_code_and_description(response)
-                create_app_files(directory, code, description)
-
-                success, error_message = run_shiny_app(
-                    f"{directory}/app.py", port=8000, timeout=5, success_timeout=5
-                )
-                if not success:
-                    logging.info(
-                        f"App did not run hence prompting the LLM to fix it for {directory}"
-                    )
-                    # if app resulted in an error during startup, prompt the LLM to fix it
-                    user_prompt_error = f"Running this code for Shiny for Python: \n {code} \n resulted in an error: {error_message}. Please fix it to make it work. Provide complete code for the same"
-                    messages = client.beta.prompt_caching.messages.create(
-                        model=claude_model_used,
-                        max_tokens=maximum_tokens,
-                        system=system_prompt,
-                        temperature=moderate_temperature,
-                        messages=[
-                            {
-                                "role": "user",
-                                "content": user_prompt_error,
-                            }
-                        ],
-                    )
-                    logging.info("==========")
-                    logging.info(f"Directory when debugging error: {directory}")
-                    logging.info(
-                        f"Cache creation input tokens used: {messages.usage.cache_creation_input_tokens}"
-                    )
-                    logging.info(
-                        f"Cache read input tokens used: {messages.usage.cache_read_input_tokens}"
-                    )
-                    logging.info(f"Output tokens used: {messages.usage.output_tokens}")
-                    logging.info(f"Input tokens used: {messages.usage.input_tokens}")
-                    logging.info("==========")
-                    total_cache_creation_input_tokens += (
-                        messages.usage.cache_creation_input_tokens
-                    )
-                    total_cache_read_input_tokens += (
-                        messages.usage.cache_read_input_tokens
-                    )
-                    total_input_tokens += messages.usage.input_tokens
-                    total_output_tokens += messages.usage.output_tokens
-                    print(
-                        f"Incurred costs till now: ${calculate_total_cost(total_cache_creation_input_tokens, total_cache_read_input_tokens, total_input_tokens, total_output_tokens)}"
-                    )
-                    response = messages.content[0].text
-                    # save the modified app code now
-                    code, description2 = extract_code_and_description(response)
-                    create_app_files(directory, code, description)
+    process_directory(directory, system_prompt, model)
