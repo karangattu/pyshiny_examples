@@ -1,0 +1,1 @@
+An interactive dashboard to display election results, voter turnout, and demographic analysis

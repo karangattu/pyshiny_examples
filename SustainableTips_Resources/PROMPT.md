@@ -1,0 +1,1 @@
+An app to provide tips and resources for sustainable living

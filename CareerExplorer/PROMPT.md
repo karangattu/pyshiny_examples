@@ -1,0 +1,1 @@
+An app to explore career paths, job requirements, and salary ranges

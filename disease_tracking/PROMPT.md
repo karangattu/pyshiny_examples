@@ -1,0 +1,1 @@
+An app to track disease outbreaks, cases, and vaccination rates with maps

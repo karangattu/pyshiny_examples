@@ -1,0 +1,1 @@
+An app to find and track events, including concerts, festivals, and sports games

@@ -4,6 +4,7 @@ faker
 folium
 matplotlib
 numpy
+ollama
 openai
 pandas
 playwright
@@ -15,4 +16,3 @@ requests
 seaborn
 shiny
 shinywidgets
-

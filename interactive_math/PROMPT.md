@@ -1,0 +1,1 @@
+An app to provide interactive math lessons, quizzes, and exercises

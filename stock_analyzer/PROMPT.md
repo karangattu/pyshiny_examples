@@ -1,0 +1,1 @@
+An app to analyze stock performance, trends, and predictions using historical data

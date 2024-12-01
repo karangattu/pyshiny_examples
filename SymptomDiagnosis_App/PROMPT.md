@@ -1,0 +1,1 @@
+An app to diagnose potential health issues based on user-inputted symptoms

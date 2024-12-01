@@ -1,0 +1,1 @@
+An app to discover new music, including personalized recommendations
