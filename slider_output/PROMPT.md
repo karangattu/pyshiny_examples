@@ -1,1 +1,0 @@
-Display the slider's value in a text output

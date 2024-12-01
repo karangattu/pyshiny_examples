@@ -1,1 +1,0 @@
-Fan engagement and loyalty app

@@ -1,1 +1,0 @@
-Highlight rows based on user interaction

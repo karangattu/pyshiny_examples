@@ -1,1 +1,0 @@
-Telemedicine platform app

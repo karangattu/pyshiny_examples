@@ -1,1 +1,0 @@
-Show a message based on the checkbox status

@@ -1,1 +1,0 @@
-Clinical trial management app

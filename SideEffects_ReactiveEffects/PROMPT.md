@@ -1,1 +1,0 @@
-Use `reactive.Effect` to trigger side effects
