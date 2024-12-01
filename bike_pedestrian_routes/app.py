@@ -1,7 +1,3 @@
-import random
-from datetime import datetime
-from typing import Tuple
-
 import folium
 import pandas as pd
 from folium.plugins import MarkerCluster
