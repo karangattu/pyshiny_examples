@@ -1,1 +1,0 @@
-Create a line plot using `matplotlib`

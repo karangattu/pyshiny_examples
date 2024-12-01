@@ -1,1 +1,0 @@
-Health risk assessment app

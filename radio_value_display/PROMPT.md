@@ -1,1 +1,0 @@
-Display the selected radio button's value

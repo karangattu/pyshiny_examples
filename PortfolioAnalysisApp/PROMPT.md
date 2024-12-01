@@ -1,1 +1,0 @@
-Financial portfolio analysis app

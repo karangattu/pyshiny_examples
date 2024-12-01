@@ -1,1 +1,0 @@
-Add a checkbox to toggle a feature on or off

@@ -1,1 +1,0 @@
-Player development tracking app

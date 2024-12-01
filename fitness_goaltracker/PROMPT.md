@@ -1,1 +1,0 @@
-Fitness tracking and goal setting app

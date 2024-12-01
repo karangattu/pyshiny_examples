@@ -1,1 +1,0 @@
-Coffee shop and cafe management app

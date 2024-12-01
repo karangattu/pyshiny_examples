@@ -1,1 +1,0 @@
-Add a slider input to control a numeric value

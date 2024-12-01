@@ -1,1 +1,0 @@
-Travel recommendation and review app

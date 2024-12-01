@@ -1,1 +1,0 @@
-Render a plot in the app

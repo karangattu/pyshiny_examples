@@ -1,1 +1,0 @@
-Trip planning and itinerary app
