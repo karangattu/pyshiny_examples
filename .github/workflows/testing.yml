@@ -1,0 +1,41 @@
+name: Process Input and Create PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      userInput:
+        description: "Enter your input"
+        required: true
+
+jobs:
+  process-input:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Run Python script
+        env:
+          INPUT: ${{ github.event.inputs.userInput }}
+        run: |
+          python process_input.py
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7.0.5
+            
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "Processed output"
+          body: "Automatically generated pull request"
+          labels: "automated"
+          branch: "processed-output-${{ github.run_id }}"
+          commit-message: "Add processed output"
