@@ -48,7 +48,7 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
           title: 'Generated Py-shiny examples using: ${{ github.event.inputs.syntaxType }} syntax leveraging ${{ github.event.inputs.modelType }} models'
           body: 'All empty py-examples directories with a `PROMPT.md` have been filled with app.py by leveraging AI models.'
           labels: 'automated'
