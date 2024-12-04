@@ -59,6 +59,44 @@ and use the `fa-solid` version of the icons as an example `<i class="fa-solid fa
 - Include concise comments explaining complex logic
 - List all required package dependencies
 
+## Useful advice
+1. Pair `ui.output_ui` with `@render.ui`: Treat these as inseparable partners.
+In the `UI` (app_ui): Whenever you want dynamic content, use `ui.output_ui("some_output_id")`. Think of this as creating an empty box where the content will go.
+In the `Server` (server): Immediately create a corresponding `@render.ui` function:
+
+```python
+@render.ui
+def some_output_id():
+    # ... your logic to generate UI content ...
+    return ui.HTML(some_content)
+```
+This function is responsible for filling that empty box with the correct content. The `some_output_id` must match in both places.
+
+2. Don't forget to import `from matplotlib import pyplot as plt` for using `matplotlib` in the app like this:
+```python
+    @render.plot
+    def inventory_plot():
+        df = filtered_inventory()
+        fig, ax = plt.subplots(figsize=(12, 6))
+        for product in df["Product"].unique():
+            product_df = df[df["Product"] == product]
+            for inventory_type in product_df["Inventory Type"].unique():
+                type_df = product_df[product_df["Inventory Type"] == inventory_type]
+                ax.plot(type_df["Date"], type_df["Inventory Level"], label=f"{product} - {inventory_type}")
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Inventory Level")
+        ax.set_title("Inventory Levels Over Time")
+        ax.legend()
+        return fig
+```
+
+3. Be aware of types when doing type comparisons
+The error "Invalid comparison between dtype=datetime64[ns] and date" arises because you're trying to directly compare pandas Timestamp objects (which are datetime64[ns]) with Python date objects. Pandas prefers working with its own time-based types.
+
+Here's how you can fix the issue:
+- Explicitly convert to pandas Timestamp using pd.to_datetime(). This ensures that the comparisons within the DataFrame filtering are done using consistent types.
+- The initial values provided to `ui.date_range` in the ui are converted to python dates using `.to_pydatetime.date()`
+
 ## Prohibited Practices:
 - Do not use `ui.input_switch("dark_mode", "Dark Mode")` since it is not a valid Shiny for Python component. Instead, use `ui.input_dark_mode(id="dark_mode)`
 - Do not use external files for accessing data, make up some data for use in the app

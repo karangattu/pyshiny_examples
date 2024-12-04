@@ -497,4 +497,4 @@ for directory in os.listdir():
     
 
 timer_end = time.perf_counter()
-print(f"Total time taken: {timer_end - timer_start:.2f} seconds")
+print(f"Total time taken: {divmod(timer_end - timer_start, 60)[0]} minutes and {divmod(timer_end - timer_start, 60)[1]} seconds")
