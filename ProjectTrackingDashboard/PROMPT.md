@@ -1,1 +1,0 @@
-An interactive dashboard to track project progress, tasks, and team performance

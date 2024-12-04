@@ -1,1 +1,0 @@
-Use a navigation bar to switch between pages

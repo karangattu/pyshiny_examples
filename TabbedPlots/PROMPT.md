@@ -1,1 +1,0 @@
-Display multiple plots in a tabbed layout

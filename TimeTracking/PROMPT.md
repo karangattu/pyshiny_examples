@@ -1,1 +1,0 @@
-An app to track time spent on tasks, projects, and activities

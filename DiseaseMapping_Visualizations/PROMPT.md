@@ -1,0 +1,1 @@
+An app with interactive maps visualizing disease outbreaks, cases and vaccination rates.

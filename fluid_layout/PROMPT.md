@@ -1,1 +1,0 @@
-Use a fluid page layout for flexible content arrangement

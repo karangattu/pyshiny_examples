@@ -1,1 +1,0 @@
-Sports analytics dashboard app

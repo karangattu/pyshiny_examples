@@ -1,1 +1,0 @@
-Virtual scavenger hunt app

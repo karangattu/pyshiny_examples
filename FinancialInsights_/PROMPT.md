@@ -1,1 +1,0 @@
-An app to track expenses, income, and budgets, providing visualizations and insights for financial planning

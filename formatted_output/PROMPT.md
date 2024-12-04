@@ -1,1 +1,0 @@
-Show the entered text in a formatted output

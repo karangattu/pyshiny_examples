@@ -1,0 +1,1 @@
+Develop a comprehensive restaurant management app enabling owners to create, manage and update menus, track inventory, monitor sales and optimize customer experiences.

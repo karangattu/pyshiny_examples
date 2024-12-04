@@ -1,1 +1,0 @@
-Restaurant and menu management app

@@ -1,1 +1,0 @@
-Brewery and winery management app

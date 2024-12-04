@@ -1,1 +1,0 @@
-Flight and hotel booking app

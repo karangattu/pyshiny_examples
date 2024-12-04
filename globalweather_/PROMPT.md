@@ -1,0 +1,1 @@
+Create a comprehensive weather app offering real-time forecasts, current weather conditions, and alerts for temperature, humidity, wind speed, and precipitation across global locations.

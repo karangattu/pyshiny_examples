@@ -1,1 +1,0 @@
-Use alerts to display messages to the user

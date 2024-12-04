@@ -1,0 +1,1 @@
+Develop an interactive dashboard to visualize real-time stock prices, track portfolio performance, and analyze market trends. Utilize charts, heatmaps, and alerts to provide actionable insights on stocks, ETFs, and indices.

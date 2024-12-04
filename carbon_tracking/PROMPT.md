@@ -1,1 +1,0 @@
-An app to calculate and track carbon footprint

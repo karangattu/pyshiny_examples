@@ -1,1 +1,0 @@
-Bike and pedestrian route planning app

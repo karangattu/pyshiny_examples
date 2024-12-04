@@ -1,1 +1,0 @@
-Food safety and inspection app

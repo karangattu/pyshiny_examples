@@ -1,1 +1,0 @@
-An app to recommend movies based on user preferences

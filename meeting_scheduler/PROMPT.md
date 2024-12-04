@@ -1,1 +1,0 @@
-An app to schedule meetings, including attendee availability and reminders

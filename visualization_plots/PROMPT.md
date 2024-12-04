@@ -1,1 +1,0 @@
-Create a scatter plot using `matplotlib`

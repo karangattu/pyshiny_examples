@@ -1,1 +1,1 @@
-An app to explore career paths, job requirements, and salary ranges
+Create an interactive tool to explore career paths, including required skills, education, and experience, as well as potential career progression and salary growth.

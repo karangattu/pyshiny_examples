@@ -1,1 +1,0 @@
-An app to simulate science experiments, allowing users to explore and learn

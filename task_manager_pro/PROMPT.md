@@ -1,1 +1,0 @@
-An app to manage tasks, deadlines, and reminders

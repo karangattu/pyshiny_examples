@@ -1,1 +1,0 @@
-Use radio buttons for mutually exclusive selections

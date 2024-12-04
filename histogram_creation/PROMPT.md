@@ -1,1 +1,0 @@
-Create a histogram using `matplotlib`

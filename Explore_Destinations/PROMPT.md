@@ -1,1 +1,0 @@
-An app to explore destinations, including attractions, restaurants, and activities

@@ -1,1 +1,0 @@
-Catering and event planning app

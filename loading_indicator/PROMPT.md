@@ -1,1 +1,0 @@
-Add a progress bar to indicate loading status

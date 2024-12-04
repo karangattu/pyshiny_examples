@@ -1,1 +1,0 @@
-An interactive dashboard to track natural disasters, response efforts, and relief resources

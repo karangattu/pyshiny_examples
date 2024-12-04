@@ -1,1 +1,0 @@
-Nutrition analysis and labeling app

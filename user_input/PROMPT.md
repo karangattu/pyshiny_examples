@@ -1,1 +1,0 @@
-Use a text input to get user-entered text

@@ -1,1 +1,0 @@
-An app to set and track fitness goals, including workout plans and progress tracking

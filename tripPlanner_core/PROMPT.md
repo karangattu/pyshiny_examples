@@ -1,1 +1,0 @@
-An app to plan trips, including itinerary, flights, and accommodation booking
