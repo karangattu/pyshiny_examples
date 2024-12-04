@@ -1,4 +1,4 @@
-name: Process Input and Create PR
+name: Generate Py-Shiny Examples
 
 on:
   workflow_dispatch:
@@ -17,16 +17,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Validate syntaxType
+      - name: Validate syntax type
         if: github.event.inputs.syntaxType != 'core' || github.event.inputs.syntaxType != 'express'
         run: |
-            echo "Invalid syntaxType. Please enter one of: core, or express"
+            echo "Invalid syntax type. Please enter one of: core, or express"
             exit 1
 
-      - name: Validate userInput2
+      - name: Validate model type
         if: github.event.inputs.modelType not in 'haiku3' || github.event.inputs.modelType != 'haiku3.5' || github.event.inputs.modelType != 'sonnet'
         run: |
-            echo "Invalid modelType. Please enter one of: haiku3, haiku3.5, or sonnet"
+            echo "Invalid model type. Please enter one of: haiku3, haiku3.5, or sonnet"
             exit 1
 
       - name: Setup Python
@@ -43,14 +43,14 @@ jobs:
         env:
             ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          python process_input.py
+          python create_apps_using_llm.py ${{ github.event.inputs.syntaxType }} ${{ github.event.inputs.modelType }}
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          title: 'Processed output: ${{ github.event.inputs.syntaxType }} and ${{ github.event.inputs.modelType }}'
-          body: 'Automatically generated pull request'
+          title: 'Generated Py-shiny examples using: ${{ github.event.inputs.syntaxType }} syntax leveraging ${{ github.event.inputs.modelType }} models'
+          body: 'All empty py-examples directories with a `PROMPT.md` have been filled with app.py by leveraging AI models.'
           labels: 'automated'
           branch: 'processed-output-${{ github.run_id }}'
-          commit-message: 'Add processed output: ${{ github.event.inputs.syntaxType }} and ${{ github.event.inputs.modelType }}'
+          commit-message: 'Automatically add py-shiny examples: ${{ github.event.inputs.syntaxType }} and ${{ github.event.inputs.modelType }}'

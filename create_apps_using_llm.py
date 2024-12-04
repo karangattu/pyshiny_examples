@@ -482,10 +482,19 @@ total_cache_creation_input_tokens = 0
 total_cache_read_input_tokens = 0
 total_input_tokens = 0
 total_output_tokens = 0
-
+# start timer
 setup_logging()
 app_type, model = parse_command_line_args()
 system_prompt = read_system_prompt(app_type=app_type)
 
+timer_start = time.perf_counter()
 for directory in os.listdir():
     process_directory(directory, system_prompt, model)
+    
+    # print time taken for each directory
+    timer_end = time.perf_counter()
+    logging.info(f"Time taken for directory {directory}: {timer_end - timer_start:.2f} seconds")
+    
+
+timer_end = time.perf_counter()
+print(f"Total time taken: {timer_end - timer_start:.2f} seconds")
