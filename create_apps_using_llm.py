@@ -336,6 +336,7 @@ numpy
 pandas
 plotly
 seaborn
+shinywidgets
 
             """,
         },
