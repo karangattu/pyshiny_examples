@@ -3,8 +3,11 @@ name: Process Input and Create PR
 on:
   workflow_dispatch:
     inputs:
-      userInput:
-        description: "Enter your input"
+      syntaxType:
+        description: 'Enter the syntax for the apps (core or express)'
+        required: true
+      modelType:
+        description: 'Enter the model you want to use (haiku3, haiku3.5 or sonnet)'
         required: true
 
 jobs:
@@ -14,28 +17,40 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Validate syntaxType
+        if: github.event.inputs.syntaxType != 'core' || github.event.inputs.syntaxType != 'express'
+        run: |
+            echo "Invalid syntaxType. Please enter one of: core, or express"
+            exit 1
+
+      - name: Validate userInput2
+        if: github.event.inputs.modelType not in 'haiku3' || github.event.inputs.modelType != 'haiku3.5' || github.event.inputs.modelType != 'sonnet'
+        run: |
+            echo "Invalid modelType. Please enter one of: haiku3, haiku3.5, or sonnet"
+            exit 1
+
       - name: Setup Python
         uses: actions/setup-python@v3
         with:
-          python-version: "3.x"
+          python-version: '3.x'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run Python script
         env:
-          INPUT: ${{ github.event.inputs.userInput }}
+            ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           python process_input.py
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7.0.5
-            
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          title: "Processed output"
-          body: "Automatically generated pull request"
-          labels: "automated"
-          branch: "processed-output-${{ github.run_id }}"
-          commit-message: "Add processed output"
+          title: 'Processed output: ${{ github.event.inputs.syntaxType }} and ${{ github.event.inputs.modelType }}'
+          body: 'Automatically generated pull request'
+          labels: 'automated'
+          branch: 'processed-output-${{ github.run_id }}'
+          commit-message: 'Add processed output: ${{ github.event.inputs.syntaxType }} and ${{ github.event.inputs.modelType }}'

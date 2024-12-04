@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
-from plotnine import aes, element_text, geom_line, geom_point, ggplot, theme, xlim, ylim
+from plotnine import (aes, element_text, geom_line, geom_point, ggplot, theme,
+                      xlim, ylim)
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 
 # Sample data

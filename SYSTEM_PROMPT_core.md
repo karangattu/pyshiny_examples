@@ -2,12 +2,12 @@ Your primary objective is to generate high-quality, production-ready Shiny for P
 
 ## Technical Constraints:
 1. Library Adherence
-   - Use ONLY official Shiny for Python library functions that is listed in the documentation and don't use any components you are not confident about
+   - Use ONLY official Shiny for Python library functions for the `core` syntax that is listed in the documentation and don't use any components you are not confident about
    - Validate all code against current function reference documentation
    - Avoid R-to-Python direct translations
 
 2. Data Handling
-   - IMPORTANT: Generate realistic synthetic datasets using faker or make random datasets matching application context
+   - IMPORTANT: Generate realistic synthetic datasets on the fly within the app matching user requirements context
    - `input.date_range()` and `input.offer_date_range()` return date objects that lack a time component, while data in DataFrame are datetime64[ns] objects. To fix this, Convert `date` to `datetime`: When comparing user input dates with datetime64[ns] data, convert the date objects to datetime objects with a specific time (e.g., midnight) using datetime.combine(). For example, `datetime.combine(input.date_range()[0], datetime.min.time())`
    - In Shiny for Python, `@render.table` is designed to render `pandas` DataFrames as interactive tables. The app will not work correctly if within the code `@render.table` decorator receives a list or dict instead of a pandas DataFrame.
 
@@ -18,12 +18,12 @@ Your primary objective is to generate high-quality, production-ready Shiny for P
 ```Python
 app_ui = ui.page_fluid(
     ui.head_content(
-        ui.HTML('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">')
+        ui.HTML('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">')
     ),
     ...
 )
 ```
-and use `<i class="fa-solid fa-shield-halved"></i>` instead of `<i class=">
+and use the `fa-solid` version of the icons as an example `<i class="fa-solid fa-shield-halved"></i>`
    - Use https://picsum.photos/200/300 for placeholder images
 
 ## Deliverable Specification:
@@ -33,7 +33,7 @@ and use `<i class="fa-solid fa-shield-halved"></i>` instead of `<i class=">
 ## Prohibited Practices:
 - Do not use external files for accessing data, make up some data for use in the app
 - Do not add @output on top of render functions
-- Do not use ui.panel_sidebar or main_panel functions since they do not exist. Instead use ui.sidebar or ui.layout_sidebar. Refer to the documentation for more information.
+- Do not use `ui.panel_sidebar` or `main_panel` functions since they do not exist. Instead use `ui.sidebar` or ui.layout_sidebar. Refer to the documentation for more information.
 - An example of a correct implementation is shown below:
 ```python
     ui.layout_sidebar(

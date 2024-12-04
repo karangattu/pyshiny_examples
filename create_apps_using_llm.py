@@ -12,6 +12,7 @@ from pathlib import Path
 import requests
 from anthropic import Anthropic
 from dotenv import load_dotenv
+from lzstring import LZString
 
 
 def setup_logging():
@@ -55,7 +56,7 @@ def load_documentation(app_type):
 
 
 def read_system_prompt(app_type):
-    with open("SYSTEM_PROMPT.md", "r") as f:
+    with open(f"SYSTEM_PROMPT_{app_type}.md", "r") as f:
         system_prompt_file_contents = f.read()
 
     documentation = load_documentation(app_type)
@@ -320,6 +321,35 @@ def extract_code_and_description(response):
     return code, description
 
 
+def python_app_to_shinylive_url(app_text: str) -> str:
+    # Create a JSON object with the application details
+    app_data = [
+        {
+            "name": "app.py",
+            "content": app_text,
+        },
+        {
+            "name": "requirements.txt",
+            "content": """
+matplotlib
+numpy
+pandas
+plotly
+seaborn
+
+            """,
+        },
+    ]
+
+    json_string = json.dumps(app_data)
+    compressed_app = LZString.compressToEncodedURIComponent(json_string)
+
+    # Construct the final URL
+    url = f"https://shinylive.io/py/app/#h=0&code={compressed_app}"
+
+    return url
+
+
 def create_app_files(file_dir, code, description):
     """
     Creates app.py and DESCRIPTION.md files with the extracted code and description.
@@ -328,9 +358,34 @@ def create_app_files(file_dir, code, description):
     with open(f"{file_dir}/app.py", "w") as f:
         f.write(code)
 
+    # create a requirements.txt file in file_dir
+    with open(f"{file_dir}/requirements.txt", "w") as f:
+        f.write(
+            """
+altair
+folium
+matplotlib
+numpy
+pandas
+plotly
+plotnine
+requests
+seaborn
+shinywidgets
+"""
+        )
+
     # Create or overwrite DESCRIPTION.md
     with open(f"{file_dir}/DESCRIPTION.md", "w") as f:
         f.write(description)
+
+    # append a line to the DESCRIPTION.md file
+    with open(f"{file_dir}/DESCRIPTION.md", "a") as f:
+        f.write(
+            f"""
+## Preview the app on [Shinylive]({python_app_to_shinylive_url(code)})
+"""
+        )
 
 
 def process_directory(directory, system_prompt, model):

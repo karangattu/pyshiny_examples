@@ -1,5 +1,4 @@
 import numpy as np
-
 # Generate some sample data
 import pandas as pd
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
