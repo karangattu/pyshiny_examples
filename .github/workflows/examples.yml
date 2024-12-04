@@ -18,13 +18,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Validate syntax type
-        if: github.event.inputs.syntaxType != 'core' || github.event.inputs.syntaxType != 'express'
+        if: github.event.inputs.syntaxType != 'core' && github.event.inputs.syntaxType != 'express'
         run: |
             echo "Invalid syntax type. Please enter one of the following options only: core, or express"
             exit 1
 
       - name: Validate model type
-        if: github.event.inputs.modelType != 'haiku3' || github.event.inputs.modelType != 'haiku3.5' || github.event.inputs.modelType != 'sonnet'
+        if: github.event.inputs.modelType != 'haiku3' && github.event.inputs.modelType != 'haiku3.5' && github.event.inputs.modelType != 'sonnet'
         run: |
             echo "Invalid model type. Please enter one of following options only: haiku3, haiku3.5, or sonnet"
             exit 1
