@@ -11,7 +11,7 @@ on:
         required: true
 
 jobs:
-  process-input:
+  create-py-shiny-examples:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
