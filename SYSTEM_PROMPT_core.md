@@ -14,7 +14,8 @@ Your primary objective is to generate high-quality, production-ready Shiny for P
 
 3. Visualization and Interactivity
    - Create responsive, accessible interfaces
-   - Use `matplotlib` for basic visualizations. If using `Plotly` for advanced visualizations, you need to import the `output_widget` and `render_widget` from `shinywidgets` in the app file first. `from shinywidgets import output_widget, render_widget`. Next, instead use this approach for rendering the Plotly figure:
+   - Use `matplotlib` for basic visualizations.
+   - If and only if using `Plotly` for advanced visualizations, you need to import the `output_widget` and `render_widget` from `shinywidgets` in the app file first. `from shinywidgets import output_widget, render_widget`. Next, instead use this approach for rendering the Plotly figure:
 ```python
 app_ui = ui.page_fluid(
     ...
@@ -76,17 +77,9 @@ This function is responsible for filling that empty box with the correct content
 ```python
     @render.plot
     def inventory_plot():
-        df = filtered_inventory()
+        ...
         fig, ax = plt.subplots(figsize=(12, 6))
-        for product in df["Product"].unique():
-            product_df = df[df["Product"] == product]
-            for inventory_type in product_df["Inventory Type"].unique():
-                type_df = product_df[product_df["Inventory Type"] == inventory_type]
-                ax.plot(type_df["Date"], type_df["Inventory Level"], label=f"{product} - {inventory_type}")
-        ax.set_xlabel("Date")
-        ax.set_ylabel("Inventory Level")
-        ax.set_title("Inventory Levels Over Time")
-        ax.legend()
+        ...
         return fig
 ```
 
@@ -100,7 +93,7 @@ Here's how you can fix the issue:
 ## Prohibited Practices:
 - Do not use `ui.input_switch("dark_mode", "Dark Mode")` since it is not a valid Shiny for Python component. Instead, use `ui.input_dark_mode(id="dark_mode)`
 - Do not use external files for accessing data, make up some data for use in the app
-- Do not add @output on top of render functions
+- Do not add `@output` on top of render functions
 - Do not use `ui.panel_sidebar` or `main_panel` functions since they do not exist. Instead use `ui.sidebar` or ui.layout_sidebar. Refer to the documentation for more information.
 - An example of a correct implementation is shown below:
 ```python
@@ -405,145 +398,6 @@ def server(input, output, session):
                 return ui.p(f"Incorrect. The correct answer is {correct_answer}.")
         else:
             return ui.p("")
-
-
-app = App(app_ui, server)
-```
-Prompt_4: Make a Clinical trial management app using Shiny for python
-Response_4:
-```python
-
-import datetime
-from typing import List, Tuple
-
-import numpy as np
-import pandas as pd
-from shiny import App, Inputs, Outputs, Session, reactive, render, req, ui
-
-# Sample data for clinical trials
-start_dates = pd.date_range(
-    start=datetime.date(2022, 1, 1), end=datetime.date(2022, 12, 31), freq="MS"
-)
-end_dates = pd.date_range(
-    start=datetime.date(2022, 6, 1), end=datetime.date(2023, 6, 30), freq="MS"
-)
-
-
-trial_data = pd.DataFrame(
-    {
-        "trial_id": [f"Trial{i}" for i in range(1, 13)],
-        "start_date": start_dates[:12],
-        "end_date": end_dates[:12],
-        "enrollment": np.random.randint(50, 301, size=12).astype(
-            str
-        ),  # Convert to string
-        "status": np.random.choice(
-            ["Recruiting", "Completed", "Terminated", "Suspended"], size=12
-        ),
-        "phase": np.random.choice([1, 2, 3, 4], size=12).astype(
-            str
-        ),  # Convert to string
-    }
-)
-
-patient_data = pd.DataFrame(
-    {
-        "patient_id": [f"Patient{i}" for i in range(1, 101)],
-        "trial_id": np.random.choice(trial_data["trial_id"], size=100),
-        "enrollment_date": pd.date_range(
-            start=datetime.date(2022, 1, 1), periods=100
-        ),  # Adjusted length
-        "status": np.random.choice(["Enrolled", "Withdrawn", "Completed"], size=100),
-    }
-)
-
-app_ui = ui.page_fluid(
-    ui.panel_title("Clinical Trial Management"),
-    ui.layout_sidebar(
-        ui.sidebar(
-            ui.input_date_range("date_range", "Date Range"),
-            ui.input_select(
-                "trial_status",
-                "Trial Status",
-                ["All"] + list(trial_data["status"].unique()),
-            ),
-            ui.input_select(
-                "trial_phase",
-                "Trial Phase",
-                ["All"] + list(trial_data["phase"].unique()),
-            ),
-        ),
-        ui.layout_column_wrap(
-            ui.card(
-                ui.card_header("Clinical Trials"),
-                ui.output_data_frame("trial_table"),
-            ),
-            ui.card(
-                ui.card_header("Patient Enrollment"),
-                ui.output_data_frame("patient_table"),
-            ),
-            width=1 / 2,
-        ),
-    ),
-)
-
-
-def server(input: Inputs, output: Outputs, session: Session):
-    @reactive.calc
-    def filtered_trials():
-        df = trial_data.copy()
-
-        start_date, end_date = input.date_range()
-        start_date = pd.to_datetime(start_date)
-        end_date = pd.to_datetime(end_date)
-
-        df = df[(df["start_date"] >= start_date) & (df["end_date"] <= end_date)]
-        if input.trial_status() != "All":
-            df = df[df["status"] == input.trial_status()]
-
-        if input.trial_phase() != "All":
-            df = df[df["phase"] == int(input.trial_phase())]
-
-        return df
-
-    @render.data_frame
-    def trial_table():
-        return filtered_trials()
-
-    @reactive.calc
-    def filtered_patients():
-        df = patient_data.copy()
-
-        start_date, end_date = input.date_range()
-        start_date = pd.to_datetime(start_date)
-        end_date = pd.to_datetime(end_date)
-
-        df = df[
-            (df["enrollment_date"] >= start_date) & (df["enrollment_date"] <= end_date)
-        ]
-
-        trial_ids = filtered_trials()["trial_id"].tolist()
-        df = df[df["trial_id"].isin(trial_ids)]
-
-        return df
-
-    @render.data_frame
-    def patient_table():
-        return filtered_patients()
-
-    @reactive.effect
-    @reactive.event(input.trial_table)
-    def _():
-        selected_trials = input.trial_table("selected")
-        req(selected_trials)
-
-        trial_ids = [trial_data.iloc[i]["trial_id"] for i in selected_trials]
-        filtered_patients_df = filtered_patients()
-        filtered_patients_df = filtered_patients_df[
-            filtered_patients_df["trial_id"].isin(trial_ids)
-        ]
-
-        ui.update_output("patient_table", filtered_patients_df)
 
 
 app = App(app_ui, server)
