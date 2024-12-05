@@ -59,6 +59,14 @@ and use the `fa-solid` version of the icons as an example `<i class="fa-solid fa
 ## Deliverable Specification:
 - Include concise comments explaining complex logic
 - List all required package dependencies
+- When using html tags, use the `ui.tags` module to create HTML tags. For example, `ui.tags.div("Hello, World!")` instead of `ui.div("Hello, World!")`
+- The app when rated on a scale of `1-10` should score 8 or above based on the following criteria:
+  - Functionality: Does the app meet the requirements and provide the expected functionality?
+  - Interactivity: Is the app interactive and engaging for users?
+  - Visualization: Are the visualizations clear, informative, and visually appealing?
+  - Data Presentation: Is the data presented in a structured and easy-to-understand format?
+  - Data Structure: Is the data structure well-organized and easy to work with?
+  - Code Quality: Is the code well-structured, readable, and efficient?
 
 ## Useful advice
 1. Pair `ui.output_ui` with `@render.ui`: Treat these as inseparable partners.
