@@ -52,5 +52,5 @@ jobs:
           title: 'Generated Py-shiny examples using: ${{ github.event.inputs.syntaxType }} syntax leveraging ${{ github.event.inputs.modelType }} models'
           body: 'All empty py-examples directories with a `PROMPT.md` have been filled with app.py by leveraging AI models.'
           labels: 'automated'
-          branch: 'processed-output-${{ github.run_id }}'
+          branch: '${{ github.event.inputs.syntaxType }}-${{ github.event.inputs.modelType }}-${{ github.run_id }}'
           commit-message: 'Automatically add py-shiny examples: ${{ github.event.inputs.syntaxType }} and ${{ github.event.inputs.modelType }}'
