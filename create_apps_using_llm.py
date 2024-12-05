@@ -337,6 +337,7 @@ pandas
 plotly
 seaborn
 shinywidgets
+folium
 
             """,
         },
