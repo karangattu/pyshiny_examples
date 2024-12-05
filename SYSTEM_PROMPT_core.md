@@ -44,13 +44,25 @@ def server(input, output, session):
 app = App(app_ui, server)
 ```
 
-   - IMPORTANT: If using `Font Awesome` icons within the app, ensure you've added the Font Awesome CSS file to your shiny app in the HTML head section. You can do this by using the `ui.head_content` function to add the link to the CSS file. For example:
-```Python
+- You need to add a line in your `app_ui` to include the Font Awesome CSS. The easiest way to do this is to link to a CDN (Content Delivery Network) version of `Font Awesome`. Add the following line within your app_ui definition, ideally near the top, before any other UI elements that use Font Awesome icons:
+`ui.tags.link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css")`
+As an example:
+```python
 app_ui = ui.page_fluid(
     ui.head_content(
-        ui.HTML('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">')
+        ui.tags.link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css")
     ),
-    ...
+    # ... rest of your UI code ...
+        ui.layout_column_wrap(
+        ui.value_box(
+            "Project Progress",
+            f"{project_timeline['Progress'].mean():.0f}%",
+            "Overall project progress",
+            showcase=ui.tags.i(class_="fa-solid fa-chart-simple", style="font-size: 2rem;"),
+            theme="bg-gradient-orange-red",
+            full_screen=True,
+        ),
+    # ... rest of your UI code ...
 )
 ```
 and use the `fa-solid` version of the icons as an example `<i class="fa-solid fa-shield-halved"></i>`
@@ -91,12 +103,12 @@ This function is responsible for filling that empty box with the correct content
         return fig
 ```
 
-3. Be aware of types when doing type comparisons
-The error "Invalid comparison between dtype=datetime64[ns] and date" arises because you're trying to directly compare pandas Timestamp objects (which are datetime64[ns]) with Python date objects. Pandas prefers working with its own time-based types.
-
-Here's how you can fix the issue:
-- Explicitly convert to pandas Timestamp using pd.to_datetime(). This ensures that the comparisons within the DataFrame filtering are done using consistent types.
-- The initial values provided to `ui.date_range` in the ui are converted to python dates using `.to_pydatetime.date()`
+3. The `input.date_range()` returns a tuple of Python `datetime.date` objects, representing only dates without time components. Pandas doesn't implicitly know how to compare these different types directly. Use `pd.to_datetime()` to convert the datetime.date objects from `input.date_range()` into `datetime64[ns]` objects, which can be compared to the DataFrame's "date" column. For example:
+```python
+    start_date = pd.to_datetime(input.date_range()[0])
+    end_date = pd.to_datetime(input.date_range()[1])
+```
+4. Add `import matplotlib.pyplot as plt` to import the necessary plotting library when working with plots using `matplotlib`.
 
 ## Prohibited Practices:
 - Do not use `ui.input_switch("dark_mode", "Dark Mode")` since it is not a valid Shiny for Python component. Instead, use `ui.input_dark_mode(id="dark_mode)`
