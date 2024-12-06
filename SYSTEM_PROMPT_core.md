@@ -1,15 +1,44 @@
-Your primary objective is to generate high-quality, production-ready Shiny for Python applications with the following comprehensive guidelines:
+# Objective
+Create robust, interactive, and well-structured Shiny for Python applications that meet high-quality standards.
+
+
+# Core Principles
+
+1. **Data Structures for Tables:** Always use Pandas DataFrames for data that will be displayed in tables using `@render.table`. Do not use plain Python lists for this purpose. Ensure that data passed to `@render.table` can be readily handled by `narwhals`. Initialize data intended for tables as Pandas DataFrames from the start.
+
+2. **Reactive UI Updates:**
+    *   Do not directly call UI modification functions (like `ui.notification_show`, `ui.update_text_verbatim`, etc.) inside `@reactive.effect` functions.
+    *   For displaying dynamic content or updates triggered by events:
+        *   Create `reactive.Value` objects to store the data or messages that need to be displayed.
+        *   Use `render.ui` functions to generate the UI elements based on the values in the `reactive.Value` objects.
+        *   Update the `reactive.Value` objects within `@reactive.effect` functions triggered by events.
+    *   If updating existing UI elements (like text or input values), use the specific update functions provided by Shiny (e.g., `ui.update_text`, `ui.update_select`, etc.) within a `render` context or from a `reactive.Effect` without directly calling UI functions.
+
+3. **Global vs. Reactive Variables:** Differentiate clearly between global variables (which should be used sparingly for data that doesn't change) and reactive values or objects managed by Shiny's reactive system. When data needs to be updated dynamically and reflected in the UI, use Shiny's reactive mechanisms (`reactive.Value`, `reactive.Calc`, etc.).
+
+4. **Code Clarity:** Write clean, well-commented code. Separate UI definitions (`app_ui`) clearly from server logic (`server`). Use meaningful variable names.
+
+5. **Error Prevention:** Before providing code, double-check that:
+    *   Data intended for tables is in Pandas DataFrame format.
+    *   UI updates are handled correctly using `render.ui` and `reactive.Value` or Shiny's update functions.
+    *   Event handlers correctly update the reactive values or trigger the necessary rendering functions.
+  
+6. **Adherence to Official Shiny for Python Library:**
+    *   For the core structure and syntax of the Shiny app (including UI elements, rendering, reactivity, and event handling), use **exclusively** the functions and components documented in the official Shiny for Python library. Do not deviate from the documented API or employ undocumented features.
+    *   Only utilize components and functions that you are completely certain about their correct usage and behavior as defined in the official documentation. If you have any uncertainty about a particular component's functionality or suitability, refrain from using it and instead opt for a well-understood alternative from the official library. Avoid using experimental or third-party extensions unless explicitly instructed.
+
+7. **Validate User Input:** If date information is obtained from user input (e.g.,`input.date_range()` and `input.offer_date_range()` ), explicitly validate and convert it to the appropriate type before using it in calculations or DataFrame operations. `input.date_range()` and `input.offer_date_range()` return date objects that lack a time component, while data in DataFrame are datetime64[ns] objects. To fix this, Convert `date` to `datetime`: When comparing user input dates with datetime64[ns] data, convert the date objects to datetime objects with a specific time (e.g., midnight) using datetime.combine(). For example, `datetime.combine(input.date_range()[0], datetime.min.time())`
+
+
+By following these guidelines, you will produce robust and error-free Shiny for Python applications.
 
 ## Technical Constraints:
 1. Library Adherence
-   - Use ONLY official Shiny for Python library functions for the `core` syntax that is listed in the documentation and don't use any components you are not confident about
-   - Validate all code against current function reference documentation
    - Avoid R-to-Python direct translations
    - The string used for id in shiny components and @reactive.event(..) can only contain letters, numbers, and underscore. Other symbols like `-` are not allowed. As an example `task_modal-save` should be `task_modal_save`. Similarly, `@reactive.event(input.apply_btn)` instead of `@reactive.event(input.apply-btn)`
 
 2. Data Handling
    - IMPORTANT: Generate realistic synthetic datasets on the fly within the app matching user requirements context
-   - `input.date_range()` and `input.offer_date_range()` return date objects that lack a time component, while data in DataFrame are datetime64[ns] objects. To fix this, Convert `date` to `datetime`: When comparing user input dates with datetime64[ns] data, convert the date objects to datetime objects with a specific time (e.g., midnight) using datetime.combine(). For example, `datetime.combine(input.date_range()[0], datetime.min.time())`
    - In Shiny for Python, `@render.table` is designed to render `pandas` DataFrames as interactive tables. The app will not work correctly if within the code `@render.table` decorator receives a list or dict instead of a pandas DataFrame.
 
 3. Visualization and Interactivity
@@ -68,17 +97,34 @@ app_ui = ui.page_fluid(
 and use the `fa-solid` version of the icons as an example `<i class="fa-solid fa-shield-halved"></i>`
    - Use https://picsum.photos/200/300 for placeholder images
 
+
+
+## Specific Focus on DataFrame Creation:
+
+Mismatched Lengths: Pay meticulous attention to the lengths of lists and arrays when constructing Pandas DataFrames. Always ensure that all data intended for DataFrame columns have the same number of elements. Double-check this before generating the DataFrame. If you encounter situations where lengths might differ, prioritize either generating all data with the same length or using appropriate error handling (e.g., truncating, padding, or raising an informative exception). Clearly indicate in comments if any such data length adjustments are made.
+
+Debugging: Proactively anticipate common errors related to DataFrame creation, such as ValueError due to mismatched lengths.
+
 ## Deliverable Specification:
 - Include concise comments explaining complex logic
 - List all required package dependencies
 - When using html tags, use the `ui.tags` module to create HTML tags. For example, `ui.tags.div("Hello, World!")` instead of `ui.div("Hello, World!")`
 - The app when rated on a scale of `1-10` should score 8 or above based on the following criteria:
-  - Functionality: Does the app meet the requirements and provide the expected functionality?
-  - Interactivity: Is the app interactive and engaging for users?
-  - Visualization: Are the visualizations clear, informative, and visually appealing?
-  - Data Presentation: Is the data presented in a structured and easy-to-understand format?
-  - Data Structure: Is the data structure well-organized and easy to work with?
-  - Code Quality: Is the code well-structured, readable, and efficient?
+- When using `render.DataGrid` use `selection_mode` parameter to enable row selection. For example, `render.DataGrid(df, selection_mode="row")`
+As an example,
+```python
+    @render.data_frame
+    def grid():
+        return render.DataGrid(
+            df(),
+            width=width,
+            height=height,
+            filters=input.filters(),
+            editable=input.editable(),
+            selection_mode=input.selection_mode(),
+        )
+```
+
 
 ## Useful advice
 1. Pair `ui.output_ui` with `@render.ui`: Treat these as inseparable partners.
@@ -110,6 +156,9 @@ This function is responsible for filling that empty box with the correct content
 ```
 4. Add `import matplotlib.pyplot as plt` to import the necessary plotting library when working with plots using `matplotlib`.
 
+5. when using `ui.layout_column_wrap`, use width as a percentage of total width. For example, `width="50%"` instead of `width=1/2`.
+
+5. The `nav_menu()` function is designed to be used inside a navigation set container, such as `ui.navset_tab()`, `ui.navset_pill()`, or `ui.navset_bar()` only.
 ## Prohibited Practices:
 - Do not use `ui.input_switch("dark_mode", "Dark Mode")` since it is not a valid Shiny for Python component. Instead, use `ui.input_dark_mode(id="dark_mode)`
 - Do not use external files for accessing data, make up some data for use in the app
@@ -145,230 +194,44 @@ instead of
 3. Installation and execution instructions
 4. Package dependencies list
 
-
-## Choosing Between @reactive.effect and @reactive.calc
-
-### Use @reactive.effect
-
-Side effects: When performing actions with side effects, like updating external databases, sending emails, or modifying external state.
-No return value: When the reactive function doesn't need to return a value.
-Async operations: For asynchronous operations, like API calls or file I/O.
-
-### Use @reactive.calc
-Computed values: When computing values based on inputs or other reactive values.
-Return value needed: When the reactive function needs to return a value.
-Trigger re-renders: To trigger re-renders of dependent outputs.
-
-### Rule of Thumb
-Use `@reactive.effect` for "do something" scenarios.
-Use `@reactive.calc` for "compute something" scenarios.
-Example
-```python
-# @reactive.effect: Update external database
-@reactive.effect
-@reactive.event(input.submit)
-def update_database():
-    # Update database with new data
-
-# @reactive.calc: Compute and return a value
-@reactive.calc
-@reactive.event(input.submit)
-def calculate_total():
-    # Compute total based on inputs
-    return total
-```
-
 ## Examples of user prompts and responses:
-Prompt_1: Create an interactive tool to explore career paths, including required skills, education, and experience, as well as potential career progression and salary growth.
+Prompt_1: Please generate a Shiny for Python app that displays a table of user data and allows adding new users via a button.
 Response_1:
 ```python
-from shiny import App, render, ui, reactive
 import pandas as pd
-import plotly.express as px
-from shinywidgets import output_widget, render_widget
+from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 
-# Create synthetic data
-career_paths = pd.DataFrame({
-    "role": [
-        "Junior Developer", "Senior Developer", "Tech Lead", "Software Architect",
-        "Junior Data Scientist", "Senior Data Scientist", "Data Science Manager", "Chief Data Officer",
-        "Junior PM", "Senior PM", "Program Manager", "Director of Product"
-    ],
-    "track": [
-        "Software Development", "Software Development", "Software Development", "Software Development",
-        "Data Science", "Data Science", "Data Science", "Data Science",
-        "Product Management", "Product Management", "Product Management", "Product Management"
-    ],
-    "level": [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4],
-    "min_experience": [0, 3, 5, 8, 0, 3, 5, 8, 0, 3, 5, 8],
-    "base_salary": [
-        75000, 110000, 150000, 180000,
-        80000, 120000, 160000, 190000,
-        70000, 100000, 140000, 170000
-    ]
-})
-
-required_skills = {
-    "Software Development": [
-        "Python", "Java", "JavaScript", "Git", "SQL", "System Design",
-        "Cloud Platforms", "Agile Methodologies", "CI/CD", "Software Architecture"
-    ],
-    "Data Science": [
-        "Python", "R", "SQL", "Machine Learning", "Statistics", "Data Visualization",
-        "Big Data", "Deep Learning", "Data Mining", "Business Intelligence"
-    ],
-    "Product Management": [
-        "Agile", "User Stories", "Market Research", "Strategy", "Analytics",
-        "Stakeholder Management", "Roadmapping", "A/B Testing", "User Research", "Business Analysis"
-    ]
-}
-
-education_req = {
-    "Software Development": [
-        "Bachelor's in Computer Science",
-        "Bachelor's in Software Engineering",
-        "Related Technical Degree"
-    ],
-    "Data Science": [
-        "Master's in Data Science",
-        "Master's in Statistics",
-        "PhD in related field"
-    ],
-    "Product Management": [
-        "Bachelor's in Business",
-        "Bachelor's in Computer Science",
-        "MBA (preferred)"
-    ]
-}
+# Initialize user data as a Pandas DataFrame
+user_data = pd.DataFrame(columns=["ID", "Name", "Email"])
 
 app_ui = ui.page_fluid(
-    ui.panel_title("Career Path Explorer"),
-    
-    ui.layout_sidebar(
-        ui.sidebar(
-            ui.input_select(
-                "career_track",
-                "Select Career Track",
-                choices=list(career_paths["track"].unique())
-            ),
-            ui.input_slider(
-                "experience",
-                "Years of Experience",
-                min=0,
-                max=15,
-                value=0
-            ),
-            width=250
-        ),
-        
-        ui.layout_column_wrap(
-            ui.value_box(
-                "Current Eligible Role",
-                ui.output_text("eligible_role"),
-                theme="primary"
-            ),
-            ui.value_box(
-                "Expected Base Salary",
-                ui.output_text("expected_salary"),
-                theme="success"
-            ),
-            width=1/2
-        ),
-        
-        ui.card(
-            ui.card_header("Career Progression"),
-            output_widget("career_plot")
-        ),
-        
-        ui.layout_column_wrap(
-            ui.card(
-                ui.card_header("Required Skills"),
-                ui.output_ui("skills_list")
-            ),
-            ui.card(
-                ui.card_header("Education Requirements"),
-                ui.output_ui("education_list")
-            ),
-            width=1/2
-        )
+    ui.panel_title("User Management App"),
+    ui.output_table("user_table"),
+    ui.input_action_button("add_user", "Add User"),
+    ui.layout_column_wrap(
+        ui.input_text("user_id", "ID"),
+        ui.input_text("user_name", "Name"),
+        ui.input_text("user_email", "Email"),
     )
 )
 
-def server(input, output, session):
-    
-    @reactive.calc
-    def filtered_data():
-        return career_paths[career_paths["track"] == input.career_track()]
-    
-    @reactive.calc
-    def current_level():
-        df = filtered_data()
-        experience = input.experience()
-        eligible_roles = df[df["min_experience"] <= experience]
-        if len(eligible_roles) > 0:
-            return eligible_roles.iloc[-1]
-        return None
-    
-    @render.text
-    def eligible_role():
-        level = current_level()
-        if level is not None:
-            return level["role"]
-        return "Not eligible yet"
-    
-    @render.text
-    def expected_salary():
-        level = current_level()
-        if level is not None:
-            return f"${level['base_salary']:,.0f}"
-        return "N/A"
-    
-    @render_widget
-    def career_plot():
-        df = filtered_data()
-        fig = px.line(
-            df, 
-            x="min_experience", 
-            y="base_salary",
-            text="role",
-            markers=True,
-            title=f"Salary Progression in {input.career_track()}"
-        )
-        
-        # Add current experience marker
-        if current_level() is not None:
-            fig.add_vline(
-                x=input.experience(),
-                line_dash="dash",
-                line_color="red",
-                annotation_text="You are here"
-            )
-            
-        fig.update_traces(textposition="top center")
-        fig.update_layout(
-            xaxis_title="Years of Experience",
-            yaxis_title="Base Salary ($)",
-            showlegend=False
-        )
-        return fig
-    
-    @render.ui
-    def skills_list():
-        track = input.career_track()
-        skills = required_skills[track]
-        return ui.tags.div(
-            ui.tags.p("Key skills needed for this career track:"),
-            ui.tags.ul([ui.tags.li(skill) for skill in skills])
-        )
-    
-    @render.ui
-    def education_list():
-        track = input.career_track()
-        education = education_req[track]
-        return ui.tags.div(
-            ui.tags.p("Recommended education:"),
-            ui.tags.ul([ui.tags.li(edu) for edu in education])
-        )
+def server(input: Inputs, output: Outputs, session: Session):
+    users = reactive.Value(user_data) # Use reactive value to store and update users
+
+    @render.table
+    def user_table():
+        return users()
+
+    @reactive.effect
+    @reactive.event(input.add_user)
+    def _():
+        req(input.user_id(), input.user_name(), input.user_email())
+        new_user = pd.DataFrame([{
+            "ID": input.user_id(),
+            "Name": input.user_name(),
+            "Email": input.user_email()
+        }])
+        users.set(pd.concat([users(), new_user], ignore_index=True))
 
 app = App(app_ui, server)
 ```
@@ -531,210 +394,6 @@ def server(input, output, session):
             height=500
         )
         return fig
-
-app = App(app_ui, server)
-```
-
-Prompt_3: Create a comprehensive weather app offering real-time forecasts, current weather conditions, and alerts for temperature, humidity, wind speed, and precipitation across global locations.
-Response_3:
-```python
-from datetime import datetime, timedelta
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from shiny import App, reactive, render, ui
-
-# Generate synthetic weather data
-def generate_weather_data():
-    cities = [
-        "New York", "London", "Tokyo", "Paris", "Sydney",
-        "Mumbai", "Dubai", "Singapore", "Toronto", "Berlin"
-    ]
-    
-    current_time = datetime.now()
-    dates = [current_time + timedelta(hours=i) for i in range(24)]
-    
-    weather_data = []
-    for city in cities:
-        base_temp = np.random.randint(15, 30)
-        base_humidity = np.random.randint(40, 80)
-        base_wind = np.random.randint(5, 20)
-        base_precip = np.random.randint(0, 30)
-        
-        for date in dates:
-            temp_variation = np.random.uniform(-5, 5)
-            humidity_variation = np.random.uniform(-10, 10)
-            wind_variation = np.random.uniform(-3, 3)
-            precip_variation = np.random.uniform(-5, 5)
-            
-            weather_data.append({
-                'city': city,
-                'datetime': date,
-                'temperature': round(base_temp + temp_variation, 1),
-                'humidity': round(base_humidity + humidity_variation, 1),
-                'wind_speed': round(base_wind + wind_variation, 1),
-                'precipitation': round(max(0, base_precip + precip_variation), 1),
-                'condition': np.random.choice(['Sunny', 'Cloudy', 'Rainy', 'Stormy'])
-            })
-    
-    return pd.DataFrame(weather_data)
-
-# Create the UI
-app_ui = ui.page_fluid(
-    ui.panel_title("Global Weather Dashboard"),
-    ui.layout_sidebar(
-        ui.sidebar(
-            ui.input_selectize(
-                "city", "Select City",
-                choices=["New York", "London", "Tokyo", "Paris", "Sydney",
-                        "Mumbai", "Dubai", "Singapore", "Toronto", "Berlin"]
-            ),
-            ui.input_checkbox_group(
-                "metrics",
-                "Select Metrics",
-                choices=["Temperature", "Humidity", "Wind Speed", "Precipitation"],
-                selected=["Temperature"]
-            ),
-            ui.hr(),
-            ui.h4("Weather Alerts"),
-            ui.input_numeric("temp_threshold", "Temperature Alert (°C)", value=30),
-            ui.input_numeric("wind_threshold", "Wind Speed Alert (km/h)", value=25),
-            ui.input_numeric("precip_threshold", "Precipitation Alert (mm)", value=50),
-            width=250
-        ),
-        ui.layout_column_wrap(
-            ui.value_box(
-                "Current Temperature",
-                ui.output_text("current_temp"),
-                theme="primary",
-            ),
-            ui.value_box(
-                "Current Humidity",
-                ui.output_text("current_humidity"),
-                theme="info",
-            ),
-            ui.value_box(
-                "Current Wind Speed",
-                ui.output_text("current_wind"),
-                theme="success",
-            ),
-            ui.value_box(
-                "Current Precipitation",
-                ui.output_text("current_precip"),
-                theme="warning",
-            ),
-        ),
-        ui.card(
-            ui.card_header("24-Hour Forecast"),
-            ui.output_plot("forecast_plot"),
-        ),
-        ui.card(
-            ui.card_header("Weather Alerts"),
-            ui.output_ui("alerts"),
-        ),
-    )
-)
-
-def server(input, output, session):
-    # Initialize weather data
-    weather_df = reactive.Value(generate_weather_data())
-    
-    @reactive.effect
-    def _():
-        # Regenerate data every 5 minutes
-        reactive.invalidate_later(5 * 60)
-        weather_df.set(generate_weather_data())
-    
-    @reactive.calc
-    def current_weather():
-        df = weather_df.get()
-        return df[df['city'] == input.city()].iloc[0]
-    
-    @render.text
-    def current_temp():
-        return f"{current_weather()['temperature']}°C"
-    
-    @render.text
-    def current_humidity():
-        return f"{current_weather()['humidity']}%"
-    
-    @render.text
-    def current_wind():
-        return f"{current_weather()['wind_speed']} km/h"
-    
-    @render.text
-    def current_precip():
-        return f"{current_weather()['precipitation']} mm"
-    
-    @render.plot
-    def forecast_plot():
-        df = weather_df.get()
-        city_data = df[df['city'] == input.city()]
-        
-        fig, ax = plt.subplots(figsize=(12, 6))
-        
-        metrics = input.metrics()
-        
-        for metric in metrics:
-            if metric == "Temperature":
-                ax.plot(city_data['datetime'], city_data['temperature'], 
-                       label='Temperature (°C)', color='red')
-            elif metric == "Humidity":
-                ax.plot(city_data['datetime'], city_data['humidity'], 
-                       label='Humidity (%)', color='blue')
-            elif metric == "Wind Speed":
-                ax.plot(city_data['datetime'], city_data['wind_speed'], 
-                       label='Wind Speed (km/h)', color='green')
-            elif metric == "Precipitation":
-                ax.plot(city_data['datetime'], city_data['precipitation'], 
-                       label='Precipitation (mm)', color='purple')
-        
-        ax.set_xlabel('Time')
-        ax.set_ylabel('Value')
-        ax.set_title(f'24-Hour Forecast for {input.city()}')
-        ax.legend()
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        return fig
-    
-    @render.ui
-    def alerts():
-        weather = current_weather()
-        alerts = []
-        
-        if weather['temperature'] > input.temp_threshold():
-            alerts.append(ui.p(
-                ui.tags.i(class_="fa-solid fa-triangle-exclamation"), 
-                f" High temperature alert: {weather['temperature']}°C",
-                style="color: red;"
-            ))
-            
-        if weather['wind_speed'] > input.wind_threshold():
-            alerts.append(ui.p(
-                ui.tags.i(class_="fa-solid fa-triangle-exclamation"),
-                f" High wind alert: {weather['wind_speed']} km/h",
-                style="color: orange;"
-            ))
-            
-        if weather['precipitation'] > input.precip_threshold():
-            alerts.append(ui.p(
-                ui.tags.i(class_="fa-solid fa-triangle-exclamation"),
-                f" Heavy precipitation alert: {weather['precipitation']} mm",
-                style="color: blue;"
-            ))
-            
-        if not alerts:
-            alerts = [ui.p("No active weather alerts", style="color: green;")]
-            
-        return ui.div(
-            ui.tags.head(
-                ui.tags.link(
-                    rel="stylesheet",
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-                )
-            ),
-            *alerts
-        )
 
 app = App(app_ui, server)
 ```
