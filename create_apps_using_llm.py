@@ -25,6 +25,28 @@ def setup_logging():
 
 
 def parse_command_line_args():
+    """Parse and validate command line arguments for the application.
+
+    This function processes command line arguments to determine the application type
+    ('express' or 'core') and the Claude model to use. It validates the inputs and
+    maps user-friendly model names to their corresponding official model identifiers.
+
+    Args:
+        None (uses sys.argv directly)
+
+    Returns:
+        tuple: A tuple containing:
+            - str: The application type ('express' or 'core')
+            - str: The selected Claude model identifier
+
+    Raises:
+        SystemExit: If invalid arguments are provided, exits with status code 1
+
+    Example:
+        app_type, model = parse_command_line_args()
+        # When called as: python script.py express haiku3
+        # Returns: ('express', 'claude-3-haiku-20240307')
+    """
     if len(sys.argv) < 2 or sys.argv[1] not in ["express", "core"]:
         print(
             "Usage: python create_apps_using_llm.py [express|core] [haiku3|haiku3.5|sonnet]"
@@ -168,6 +190,30 @@ def run_shiny_app(
     success_timeout=5,
     verbose=True,
 ):
+    """Runs a Shiny app in a subprocess and monitors its startup.
+
+    This function launches a Shiny app from a script file, checks if the port is available,
+    starts the app process, and monitors its logs for successful startup.
+
+    Args:
+        script_path (str): Path to the Shiny app script file to run
+        port (int, optional): Port number to run the Shiny app on. Defaults to 8000.
+        timeout (int, optional): Maximum time in seconds to wait for app startup. Defaults to 8.
+        success_timeout (int, optional): Time in seconds to wait after successful startup. Defaults to 5.
+        verbose (bool, optional): Whether to print detailed log messages. Defaults to True.
+
+    Returns:
+        tuple: A tuple containing:
+            - bool: True if app started successfully, False otherwise
+            - str: Status message indicating success or failure reason
+
+    Example:
+        >>> success, msg = run_shiny_app("app.py", port=8000)
+        >>> if success:
+        ...     print("App started successfully")
+        ... else:
+        ...     print(f"Failed to start app: {msg}")
+    """
     if is_port_in_use(port):
         if verbose:
             logging.info(f"Error: Port {port} is already in use.")
@@ -431,7 +477,7 @@ def generate_shiny_app(prompt, system_prompt, model):
 
 def fix_shiny_app(code, error_message, system_prompt, model):
     """Fix a failing Shiny app using the LLM."""
-    user_prompt = f"Running this code for Shiny for Python: \n {code} \n resulted in an error: {error_message}. Please fix it to make it work. Provide complete code for the same"
+    user_prompt = f"Running this code for Shiny for Python: \n {code} \n resulted in an error: {error_message}. Please fix it to make it work. Please provide complete code for the same"
 
     messages = get_llm_response(user_prompt, system_prompt, model)
     update_token_counts(messages.usage, model)
@@ -463,10 +509,10 @@ def update_token_counts(usage, model):
     total_output_tokens += usage.output_tokens
 
     logging.info("==========")
-    logging.info(f"Cache creation input tokens: {usage.cache_creation_input_tokens}")
-    logging.info(f"Cache read input tokens: {usage.cache_read_input_tokens}")
-    logging.info(f"Output tokens: {usage.output_tokens}")
-    logging.info(f"Input tokens: {usage.input_tokens}")
+    logging.info(f"Cache creation input tokens ✎: {usage.cache_creation_input_tokens}")
+    logging.info(f"Cache read input tokens 🗒: {usage.cache_read_input_tokens}")
+    logging.info(f"Output tokens ⇣: {usage.output_tokens}")
+    logging.info(f"Input tokens ⇡: {usage.input_tokens}")
     logging.info("==========")
 
     cost = calculate_total_cost(
@@ -491,11 +537,15 @@ system_prompt = read_system_prompt(app_type=app_type)
 timer_start = time.perf_counter()
 for directory in os.listdir():
     process_directory(directory, system_prompt, model)
-    
+
     # print time taken for each directory
     timer_end = time.perf_counter()
-    logging.info(f"Time taken for directory {directory}: {timer_end - timer_start:.2f} seconds")
-    
+    logging.info(
+        f"Time taken for directory {directory}: {timer_end - timer_start:.2f} seconds"
+    )
+
 
 timer_end = time.perf_counter()
-print(f"Total time taken: {divmod(timer_end - timer_start, 60)[0]} minutes and {divmod(timer_end - timer_start, 60)[1]} seconds")
+print(
+    f"Total time taken: {divmod(timer_end - timer_start, 60)[0]} minutes and {divmod(timer_end - timer_start, 60)[1]} seconds"
+)

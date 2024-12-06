@@ -1,3 +1,12 @@
+"""
+Script to generate feature-specific folders with prompts for a Shiny app project.
+
+This script takes a list of feature descriptions for Shiny applications and:
+1. Uses Ollama AI to generate appropriate directory names from feature descriptions
+2. Creates folders with sanitized names (removing spaces and special characters)
+3. Creates a PROMPT.md file in each folder containing the original feature description
+"""
+
 import os
 
 import ollama
@@ -20,7 +29,6 @@ shiny_app_features = [
     "Create a comprehensive weather app offering real-time forecasts, current weather conditions, and alerts for temperature, humidity, wind speed, and precipitation across global locations.",
 ]
 
-# iterate through shiny_app_features and create a folder for each item with a markdown file called "prompt.md"
 for feature in shiny_app_features:
     response = ollama.chat(
         model="gemma2:9b",
