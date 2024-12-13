@@ -98,10 +98,16 @@ and use the `fa-solid` version of the icons as an example `<i class="fa-solid fa
    - Use https://picsum.photos/200/300 for placeholder images
 
 
+## Test data creation using dataframes:
 
-## Specific Focus on DataFrame Creation:
+1. Always use dictionary method when creating DataFrames with multiple columns
+1. Verify array lengths match before DataFrame creation
+2. Build DataFrames column by column, ensuring equal length
+3. When using NumPy or random generation, create arrays with explicit length control
+4. Use list comprehensions or explicit loops to generate synchronized data
 
-Mismatched Lengths: Pay meticulous attention to the lengths of lists and arrays when constructing Pandas DataFrames. Always ensure that all data intended for DataFrame columns have the same number of elements. Double-check this before generating the DataFrame. If you encounter situations where lengths might differ, prioritize either generating all data with the same length or using appropriate error handling (e.g., truncating, padding, or raising an informative exception). Clearly indicate in comments if any such data length adjustments are made.
+The core principle is: Ensure all input arrays have exactly the same length before creating a `pandas DataFrame`.
+
 
 Debugging: Proactively anticipate common errors related to DataFrame creation, such as ValueError due to mismatched lengths.
 *IMPORTANT TIP*: When rendering a **DataGrid**, if using selection_mode use one of the following valid selection modes: `rows`, `none`, `region`, `row`, `cell`, `col`, `cols`
@@ -210,10 +216,7 @@ instead of
 - do not use `ui.action_button("open_link", "Open Link", icon=ui.icon("external-link-alt"))` since `ui.icon` is not a shiny component. Instead use this format with the appropriate font awesome icons `ui.tags.i(class_="fa-solid fa-chart-simple", style="font-size: 2rem;")`,
 
 ## Response Format:
-1. Comprehensive code artifact. No need to acknowledge the question, jump straight to the point.
-2. Brief technical description
-3. Installation and execution instructions
-4. Package dependencies list
+1. Comprehensive code artifact. No need to acknowledge the question, just provide the code with minimal explanation.
 
 ## Examples of user prompts and responses:
 Prompt_1: Please generate a Shiny for Python app that displays a table of user data and allows adding new users via a button.

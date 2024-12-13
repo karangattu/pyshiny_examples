@@ -9,6 +9,7 @@ import threading
 import time
 from pathlib import Path
 
+import black
 import requests
 from anthropic import Anthropic
 from dotenv import load_dotenv
@@ -468,17 +469,36 @@ def process_directory(directory, system_prompt, model):
         prompt = f.read()
 
     # Generate initial app
-    code, description = generate_shiny_app(prompt, system_prompt, model)
-    create_app_files(directory, code, description)
+    original_code, description = generate_shiny_app(prompt, system_prompt, model)
 
-    # Test and fix if needed
+    # write original code to a file
+    with open(f"{directory}/app_original_code.py", "w") as f:
+        f.write(original_code)
+
+    # Add a 2 step validation process
+    validated_code, _ = spot_check_app(original_code, system_prompt, model)
+
+    # make the app pretty
+    styled_app_code, _ = make_app_pretty(validated_code, system_prompt, model)
+
+    description = split_and_strip(description)
+
+    # Create app files
+    create_app_files(directory, styled_app_code, description)
+
+    subprocess.run(["black", "."])
+
+    # Test and fix if needed (one time only)
     success, error_message = run_shiny_app(
         f"{directory}/app.py", port=8000, timeout=5, success_timeout=5
     )
     if not success:
         logging.info(f"App failed to run in {directory}, attempting fix")
-        code, description_2 = fix_shiny_app(code, error_message, system_prompt, model)
-        create_app_files(directory, code, description)
+        original_code, _ = fix_shiny_app(
+            original_code, error_message, system_prompt, model
+        )
+        create_app_files(directory, original_code, description)
+        subprocess.run(["black", "."])
 
 
 def generate_shiny_app(prompt, system_prompt, model):
@@ -496,6 +516,51 @@ def generate_shiny_app(prompt, system_prompt, model):
 def fix_shiny_app(code, error_message, system_prompt, model):
     """Fix a failing Shiny app using the LLM."""
     user_prompt = f"Running this code for Shiny for Python: \n {code} \n resulted in an error: {error_message}. Please fix it to make it work. Please provide complete code for the same"
+
+    messages = get_llm_response(user_prompt, system_prompt, model)
+    update_token_counts(messages.usage, model)
+    return extract_code_and_description(messages.content[0].text)
+
+
+def split_and_strip(text):
+    # Split text by two or more continuous newlines
+    parts = re.split(r"\n{2,}", text)
+
+    # Strip the first part and return the remaining parts
+    return "\n\n".join(parts[1:])
+
+
+def make_app_pretty(code, system_prompt, model):
+    """Make a Shiny app pretty using the LLM."""
+    user_prompt = f"""
+    Given this app code:
+
+    ```python
+    {code}
+    ```
+    Transform this Shiny for Python app into a visually stunning and user-friendly experience. Please create a stylish design, possibly using custom CSS and HTML, that not only looks great but also enhances usability and intuitiveness. Strive for an award-winning design that prioritizes both aesthetics and user experience.
+    Please provide complete app code with the updated design in your response. When using custom css, include in the app using this format `ui.tags.style(custom_css)`. Please provide complete code for the same.
+    """
+
+    messages = get_llm_response(user_prompt, system_prompt, model)
+    update_token_counts(messages.usage, model)
+    return extract_code_and_description(messages.content[0].text)
+
+
+def spot_check_app(code, system_prompt, model):
+    """Analyze errors in a Shiny app using the LLM."""
+    user_prompt = f"""
+    Given this app code:
+
+    ```python
+    {code}
+    ```
+    Please review the following code and identify any potential errors that could prevent the application from running correctly.
+
+If you find any suspected errors, Fix it and please provide complete code for the same. Repeating all the previous code is desired
+
+If you don't find any errors, please provide the complete original code for the same. Repeating all the previous code is desired.
+    """
 
     messages = get_llm_response(user_prompt, system_prompt, model)
     update_token_counts(messages.usage, model)
@@ -555,7 +620,10 @@ system_prompt = read_system_prompt(app_type=app_type)
 timer_start = time.perf_counter()
 for directory in os.listdir():
     if app_type == "testing":
-        if os.path.exists(f"{directory}/app.py") and not any(file.startswith("test_") and file.endswith(".py") for file in os.listdir(directory)):
+        if os.path.exists(f"{directory}/app.py") and not any(
+            file.startswith("test_") and file.endswith(".py")
+            for file in os.listdir(directory)
+        ):
             with open(f"{directory}/app.py", "r") as f:
                 app_text = f.read()
                 user_prompt = f"""

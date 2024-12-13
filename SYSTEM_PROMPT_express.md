@@ -87,6 +87,18 @@ As an example,
         )
 ```
 
+## Test data creation using dataframes:
+
+1. Always use dictionary method when creating DataFrames with multiple columns
+1. Verify array lengths match before DataFrame creation
+1. Use `len()` to check consistency of lists/arrays
+1. Build DataFrames column by column, ensuring equal length
+1. When using NumPy or random generation, create arrays with explicit length control
+1. Use list comprehensions or explicit loops to generate synchronized data
+1. Print out lengths of arrays before DataFrame creation as a debugging step
+
+The core principle is: Ensure all input arrays have exactly the same length before creating a `pandas DataFrame`.
+
 
 ## Prohibited Practices:
 - Do not use `ui.input_switch("dark_mode", "Dark Mode")` since it is not a valid Shiny for Python component. Instead, use `ui.input_dark_mode(id="dark_mode)`
