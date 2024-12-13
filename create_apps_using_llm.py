@@ -555,7 +555,7 @@ system_prompt = read_system_prompt(app_type=app_type)
 timer_start = time.perf_counter()
 for directory in os.listdir():
     if app_type == "testing":
-        if os.path.exists(f"{directory}/app.py"):
+        if os.path.exists(f"{directory}/app.py") and not any(file.startswith("test_") and file.endswith(".py") for file in os.listdir(directory)):
             with open(f"{directory}/app.py", "r") as f:
                 app_text = f.read()
                 user_prompt = f"""

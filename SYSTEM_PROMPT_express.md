@@ -138,6 +138,28 @@ Convert datetime.date to datetime: The easiest fix is to convert the datetime.da
 
 Convert the DataFrame column to dates: Alternatively, if you prefer to work with dates only, you can convert the 'date' column of your DataFrame to datetime.date before filtering.
 
+*IMPORTANT TIP*: When rendering a **DataGrid**, if using selection_mode use one of the following valid selection modes: `rows`, `none`, `region`, `row`, `cell`, `col`, `cols`
+
+### Invalid code example:
+
+```python
+    return render.DataGrid(
+        df,
+        selection_mode="multiple",
+        filters=True
+    )
+```
+
+### Valid code example:
+
+```python
+    return render.DataGrid(
+        df,
+        selection_mode="row",
+        filters=True
+    )
+```
+
 ## Examples of user prompts and responses:
 Prompt_1: Make a Bike and pedestrian route planning app using Shiny for python
 Response_1:

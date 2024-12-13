@@ -104,6 +104,27 @@ and use the `fa-solid` version of the icons as an example `<i class="fa-solid fa
 Mismatched Lengths: Pay meticulous attention to the lengths of lists and arrays when constructing Pandas DataFrames. Always ensure that all data intended for DataFrame columns have the same number of elements. Double-check this before generating the DataFrame. If you encounter situations where lengths might differ, prioritize either generating all data with the same length or using appropriate error handling (e.g., truncating, padding, or raising an informative exception). Clearly indicate in comments if any such data length adjustments are made.
 
 Debugging: Proactively anticipate common errors related to DataFrame creation, such as ValueError due to mismatched lengths.
+*IMPORTANT TIP*: When rendering a **DataGrid**, if using selection_mode use one of the following valid selection modes: `rows`, `none`, `region`, `row`, `cell`, `col`, `cols`
+
+### Invalid code example:
+
+```python
+    return render.DataGrid(
+        df,
+        selection_mode="multiple",
+        filters=True
+    )
+```
+
+### Valid code example:
+
+```python
+    return render.DataGrid(
+        df,
+        selection_mode="row",
+        filters=True
+    )
+```
 
 ## Deliverable Specification:
 - Include concise comments explaining complex logic
