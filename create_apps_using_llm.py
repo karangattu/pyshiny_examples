@@ -47,9 +47,9 @@ def parse_command_line_args():
         # When called as: python script.py express haiku3
         # Returns: ('express', 'claude-3-haiku-20240307')
     """
-    if len(sys.argv) < 2 or sys.argv[1] not in ["express", "core"]:
+    if len(sys.argv) < 2 or sys.argv[1] not in ["express", "core", "testing"]:
         print(
-            "Usage: python create_apps_using_llm.py [express|core] [haiku3|haiku3.5|sonnet]"
+            "Usage: python create_apps_using_llm.py [express|core|testing] [haiku3|haiku3.5|sonnet]"
         )
         sys.exit(1)
 
@@ -357,6 +357,15 @@ def analyze_pyright_results(results):
     return error_list
 
 
+def extract_test(response):
+    """
+    Extracts the Python code block and the description from the response string.
+    """
+    code_match = re.search(r"```python(.*?)```", response, re.DOTALL)
+    code = code_match.group(1).strip() if code_match else ""
+    return code
+
+
 def extract_code_and_description(response):
     """
     Extracts the Python code block and the description from the response string.
@@ -396,6 +405,15 @@ folium
     url = f"https://shinylive.io/py/app/#h=0&code={compressed_app}"
 
     return url
+
+
+def create_test_files(file_dir, code):
+    """
+    Creates TEST.md files with the extracted code.
+    """
+    # Create or overwrite TEST.md
+    with open(f"{file_dir}/test_{file_dir}.py", "w") as f:
+        f.write(code)
 
 
 def create_app_files(file_dir, code, description):
@@ -536,7 +554,19 @@ system_prompt = read_system_prompt(app_type=app_type)
 
 timer_start = time.perf_counter()
 for directory in os.listdir():
-    process_directory(directory, system_prompt, model)
+    if app_type == "testing":
+        if os.path.exists(f"{directory}/app.py"):
+            with open(f"{directory}/app.py", "r") as f:
+                app_text = f.read()
+                user_prompt = f"""
+            Given this shiny app code: {app_text}, please provide a test using controllers for this app based on the reference testing documentation.
+            """
+                messages = get_llm_response(user_prompt, system_prompt, model)
+                code = extract_test(messages.content[0].text)
+                create_test_files(directory, code)
+                update_token_counts(messages.usage, model)
+    else:
+        process_directory(directory, system_prompt, model)
 
     # print time taken for each directory
     timer_end = time.perf_counter()

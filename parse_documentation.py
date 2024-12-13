@@ -5,6 +5,23 @@ import sys
 import pandas as pd
 
 
+def extract_sections(text):
+    sections = re.split(r"={16}", text)
+    return [section.strip() for section in sections if section.strip()]
+
+
+# Function to extract controller name, attributes, and methods
+def extract_details(section):
+    controller_name = re.search(r"# (.+?) {", section).group(1)
+    attributes = (
+        re.search(r"## Attributes\n\n(.+?)\n\n## Methods", section, re.DOTALL)
+        .group(1)
+        .strip()
+    )
+    methods = re.search(r"## Methods\n\n(.+)", section, re.DOTALL).group(1).strip()
+    return controller_name, attributes, methods
+
+
 def extract_documentation(filename):
     """
     Extracts documentation from a text file, parses it, and saves it as a JSON file.
@@ -21,71 +38,20 @@ def extract_documentation(filename):
         text = f.read()
 
     if filename == "testing":
-        sections = re.split(r"================\nFile: (.*)\n================\n", text)
-        parsed_data = {}
+        sections = extract_sections(text)
 
-        for i in range(1, len(sections), 2):
-            filename = sections[i].strip()
-            # Remove ".qmd" extension from filename
-            if filename.endswith(".qmd"):
-                filename = filename[:-4]
-            content = sections[i + 1]
-            parsed_data[filename] = {"attributes": {}, "methods": {}}
+# Extract details and create DataFrame
+        data = []
+        for section in sections:
+            if "## Attributes" in section and "## Methods" in section:
+                controller_name, attributes, methods = extract_details(section)
+                data.append([controller_name, attributes, methods])
 
-            # Split content into preamble and the rest
-            parts = content.split("## Attributes", 1)
-            if len(parts) == 2:
-                preamble, rest = parts
-                parsed_data[filename]["preamble"] = preamble.strip()
-                content = rest
-            else:
-                content = parts[0]
+                df = pd.DataFrame(data, columns=["controller_name", "attributes", "methods"])
 
-            # Split by H2 headers for Attributes and Methods
-            parts = re.split(r"^(## (Attributes|Methods))", content, flags=re.MULTILINE)
-
-            current_section = None
-            for part in parts:
-                part = part.strip()
-                if part == "## Attributes":
-                    current_section = "attributes"
-                elif part == "## Methods":
-                    current_section = "methods"
-                elif current_section and part:
-                    # Split by H3 or H4 headers within Attributes/Methods
-                    sub_parts = re.split(
-                        r"^(### |#### )(.+?{.+?})", part, flags=re.MULTILINE
-                    )
-
-                    # Handle potential preamble within a section if no sub-headers found
-                    if len(sub_parts) == 1:
-                        if current_section:  # Ensure there's a current section
-                            parsed_data[filename][current_section][""] = {
-                                "content": sub_parts[0]
-                            }
-                        continue
-
-                    # Check for preamble before any subheader
-                    if sub_parts[0].strip():
-                        parsed_data[filename][current_section]["preamble"] = sub_parts[
-                            0
-                        ].strip()
-
-                    for k in range(2, len(sub_parts), 3):
-                        header = sub_parts[k].strip()
-                        # Extract name from header
-                        match = re.match(r"([\w\.]+)", header)
-                        if match:
-                            name = match.group(1).strip()
-                        else:
-                            name = f"unnamed_{current_section}_{k}"  # Fallback name
-                        content = sub_parts[k + 1].strip()
-                        parsed_data[filename][current_section][name] = {
-                            "header": header,
-                            "content": content,
-                        }
-            with open(output_filename, "w") as outfile:
-                json.dump(parsed_data, outfile, indent=4)
+                data_dict = df.to_dict(orient="records")
+                with open(output_filename, "w") as outfile:
+                    json.dump(data_dict, outfile, indent=4)
     else:
         # Split text into chunks for each file
         files = re.split(r"(?=File:)", text)[1:]  # Split by "File:"

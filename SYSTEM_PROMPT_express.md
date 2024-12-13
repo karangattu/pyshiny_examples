@@ -129,37 +129,14 @@ instead of
 4. Package dependencies list
 
 
-## Choosing Between @reactive.effect and @reactive.calc
+## Comparison between dtype=datetime64[ns] and input.date_range()
+The error "Invalid comparison between dtype=datetime64[ns] and date" arises because you're trying to compare a pandas Timestamp object (which is based on NumPy's datetime64[ns]) with a Python datetime.date object directly. The input.date_range() returns a tuple of Python datetime.date objects, but your DataFrame 'date' column is composed of Timestamp objects.
 
-### Use @reactive.effect
+Here's how you can resolve this issue:
 
-Side effects: When performing actions with side effects, like updating external databases, sending emails, or modifying external state.
-No return value: When the reactive function doesn't need to return a value.
-Async operations: For asynchronous operations, like API calls or file I/O.
+Convert datetime.date to datetime: The easiest fix is to convert the datetime.date objects from the input.date_range() to datetime objects at the start of the day (midnight).
 
-### Use @reactive.calc
-Computed values: When computing values based on inputs or other reactive values.
-Return value needed: When the reactive function needs to return a value.
-Trigger re-renders: To trigger re-renders of dependent outputs.
-
-### Rule of Thumb
-Use `@reactive.effect` for "do something" scenarios.
-Use `@reactive.calc` for "compute something" scenarios.
-Example
-```python
-# @reactive.effect: Update external database
-@reactive.effect
-@reactive.event(input.submit)
-def update_database():
-    # Update database with new data
-
-# @reactive.calc: Compute and return a value
-@reactive.calc
-@reactive.event(input.submit)
-def calculate_total():
-    # Compute total based on inputs
-    return total
-```
+Convert the DataFrame column to dates: Alternatively, if you prefer to work with dates only, you can convert the 'date' column of your DataFrame to datetime.date before filtering.
 
 ## Examples of user prompts and responses:
 Prompt_1: Make a Bike and pedestrian route planning app using Shiny for python
