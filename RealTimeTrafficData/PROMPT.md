@@ -1,1 +1,0 @@
-An app to visualize traffic congestion, accidents, and road closures in real-time

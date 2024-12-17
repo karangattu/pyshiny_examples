@@ -1,0 +1,1 @@
+write a really simple shiny for python app that shows the use of update_accordion_panel using express mode

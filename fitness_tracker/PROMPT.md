@@ -1,1 +1,0 @@
-An app to track and visualize personal fitness goals, progress, and achievements

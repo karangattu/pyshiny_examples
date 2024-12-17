@@ -1,0 +1,40 @@
+This app demonstrates several key features of `navset_tab`:
+
+1. `id`: Creates an input value to track the selected tab
+2. `selected`: Sets a default selected tab
+3. `header`: Adds a header to the navigation set
+4. `footer`: Adds a footer to the navigation set
+
+The app includes:
+- Three main nav panels: "Sales Overview", "Profit Analysis"
+- A nav menu "More Insights" with two additional panels
+- Plots and tables for different data views
+- A section showing the currently selected tab
+
+Key Shiny for Python express mode features used:
+- `@render.plot`
+- `@render.table`
+- `@render.data_frame`
+- `@render.text`
+- Reactive calculations
+- Synthetic data generation
+
+### Installation and Execution
+```bash
+# Install required packages
+pip install shiny matplotlib pandas numpy
+```
+
+To run the app, save the script and execute:
+```bash
+shiny run app.py
+```
+
+### Package Dependencies
+- shiny
+- matplotlib
+- pandas
+- numpy
+
+This implementation showcases a comprehensive use of `navset_tab` with various parameters and interactive data visualization techniques.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=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)

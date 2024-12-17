@@ -1,0 +1,38 @@
+### Technical Description
+This Shiny for Python app demonstrates:
+1. Synthetic data generation with `numpy` and `pandas`
+2. Asynchronous long-running computation using `@reactive.extended_task`
+3. Interactive UI with task button, numeric input, and slider
+4. Rendering of processed data and visualization
+5. Simulated processing time with `asyncio.sleep()`
+
+### Installation and Execution
+Ensure you have the following dependencies:
+```bash
+pip install shiny numpy pandas matplotlib
+```
+
+Run the app:
+```bash
+shiny run app.py
+```
+
+### Package Dependencies
+- shiny
+- numpy
+- pandas
+- matplotlib
+
+### Key Features
+- `input_task_button` to trigger long-running async tasks
+- Dynamic dataset generation
+- Interactive processing time control
+- Visualization of processed data
+
+The app allows users to:
+- Adjust the number of samples
+- Control the simulated processing time
+- Trigger a long-running computation
+- View processed dataset
+- See a scatter plot of transformed data
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5KAZ1wmLtIB0IDJq2TMoEACakYg4SzYQAro1zsOyCOjmMFydBMmd1+yTpFsYUCugA2pCrboAjHLjsOTdioMEAzZhlkDgALOgg1eVFmOChiCjoANzh-QJhgsIisOAAPdBiODSi2cPQlCiIlOiIYqThmXwgAYmQAZW4KELgE4mQjCihkAHNqeus+CGQ-JR4E8kFJOD9h0fEqAH1+zm6ACgh1jlg7OA4ASkRBZCvkfjBb24BxVes4dmCOrp6+6222PxY+nAYOQOBQ1hMsPc7ndJtctFhxFIZFgOHA4JIdgAWABMp0u1y2yAAvMgQPjrtcAOQ5SkoeFOCAcAzEOA7AAMRAAjBzNAcjrYTqcCOSKchKbhaZpsIjpDAsBAWFZbDt7MQiQBWIgcYhQAVE7FaugALzgRP2h0YArOwthorFOqoQxYErp0sMyOIIVIdBZO2AlIAgpSiJSAELBsUAYUpAF1DSazXzLYKRQBfEUxChKZiTdCSLAAER+ADFxPAdls8RBBC0A1weMgBhwANaN0jBBhKWwvN72CBDAC0zBmQn7yDIjHK43mEAAAjE4glktkclQ6pJ1k3m4JONxeotln2husJ2UBnMIBWfqiKvpAizCuFjwl4OcRVDbq1O92qL3yIPhwgUchm+AY71IB8OCfRtOGbSFoXuW12AAdygOg2F3Hg+BRAU4HQHZ8ggk4oP7TcGDgU4rhaL8YC7HtCMg6CXxSJCRRaAAFep-mYdIOBkV5CTBCQOG4qwLw4EUthvf0GOI9F1glGNiVA35-UU5AACopQRd05RmOhRPZLAAA4uSwA1kAFS8pO6U4qwpGyKH9exj3Ukl6VIIY9mwKBnA4K8m26GT7zkjdFMogBqZBOXs64M26bNJkcxoWgAVQASXYKQ2nqZJmGQAAZTyfUEKocCgEZ1lIdAKH8hJHFNW4ABVYOQUNygochkALIEBDAKtBGQ9CQmQMru1wUhygOOhFmcKBmB2N8kKGzpRroFEZrgOaFqWu0rjK0opuUeBmB9HZbnNfkTluIhbgAORUZx6mQUhllaK6JMIZBEl1JRTW5HkYHCIluSIKwchBtkodiu0Dq0KaOCcRYFtuWTH1I5ibpuMB2JC9GQKa8jkB2VEyCkM4sZFPbqdFIGIBBsGoAh0Hvt+00AGYtSodAQZh0U4bPTdYPWZwOvIc6wFPcoUi+25IxkM9XiLQKfH6xoKRWkayp1ZgMV2vbtfmjcuigZGJeV35kFxoj8duPmKSp6552oZGsC2dYAlgFjqYPcDIPkrZFouJDqZaJrTqGEZ8ql88JmQZCukmLdkFFihOsmOgNGIJxiGbdFHbtAouzYEkjxPBWpwvc6Q5pq4RggMYNkcnZDooeUk2Ofy7Numva9bnA8ZI59yMWgvRXtvbM0SsQTmL9W9udupmBwewfF7wFliL2wKHWDwKCDseKTDiOo-0VeZ6X6CE+oGCW2QTPxwVgUqEPglllL-9y8nWPyARWft9HuvB2QDrjeCwH4OgQxsysggUMKCCYdimWQJiOyr8rjcXHC8J0zBIhJT8P6B0cBsGKSwPpAAjn9A+IC7QcCUH5boylJD4KYQQrBzpYzEhJIQ4hMY0GijAdqawVAFq0PoU5aksYtR0OkpSFyClJGWV8nAWwRJuHOiILqdAIQoBEjZFgAA7BPO0fCwH1QFBLa2-tJDdWvAwgAapnJQupjTTmrGrahZ8245G7E9ZUtwAAadsTHbywLgHxyiJZFQJoiESip0TIAAJpBI8WAgU9c9Z8KnjmTxWAhjED8ItMAqYiDgGgPAWgYAYgULoDEeAlAOBYAoKuL6ktyBrgoBUwQYk95OGcIIY6eBBAGCkJweetcikxiAA)

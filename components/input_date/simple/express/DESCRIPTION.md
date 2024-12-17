@@ -1,0 +1,26 @@
+This app demonstrates several key features of `input_date`:
+
+1. Setting a default date
+2. Specifying minimum and maximum allowed dates
+3. Customizing date format
+4. Setting language
+5. Controlling the initial view of the date picker
+
+The app includes two reactive outputs:
+- A text output showing sales for the selected date
+- A plot showing sales around the selected date
+
+Key points from the function reference documentation implemented:
+- Used `value` to set a default date
+- Used `min` and `max` to limit date selection
+- Used `format` to change date display format
+- Used `language` to set date picker language
+- Used `startview` to control initial date picker view
+
+The synthetic data is generated within the script, avoiding external file dependencies.
+
+Unique aspects:
+- Dynamic sales data visualization
+- Interactive date selection
+- Responsive plot and text outputs
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5dKCAEygGdk+7LgB0IDJq2QQAro1wD+EdKIBmzUjGQ8qFBnGTiWbbXCK74XOABsKUUavWbeACzoR5hyczhRiugG5wDhrILm64WHAAHujevPyebG7o0hRE0nRE3txwzPYQAMTIAOLUuVBUobiUznC6xFoVdhBKWMycXBpYvHBwXAAUACwATACUory2rAD6JsgAvI1U-cMADMMAzEQAjDvj3BVw-IvAk1AzcwDUyOZ91rb9PLi883SjyCosBgYQyO0QAHM4P0NgA2ACsowAuhMoFYjgspNh-p0YG0Om4KP1tqtVjtcXjQnQAF5webwiCPQ68Ub7URcFSI9BcLAAESaADF2vB+iBRMgBcgAOQmIUoEy8Ij8wVC3hwo5i0Ly3iiAC+dMKyAAyq53MgAIKYUQZHBQIHTUjoCi8fq6Cjw+bCMDsyoASSUqWQrLgMFITo1AHc6BRnMgTVYoLhSKlprw6JYAEbnfqjRDSgVBkNhujdeNwJPMFNp36C0tFb2+iCTdqVfznOjRhIeiizQ4fHwUaRxdOl7NYZIxkz9Hu9wVOnrwvx9VtUJ1Skuj0tOrXWOB+ARew5z5Ajxd1qzSMlDtabIignaQojIctwFRQaQ2UKrqdcJZBBeLgUwNzzY-rLbILsgGjFegpFAAsm4DCyAIVhWKQAZ9G+u6jjAUBRL+hwrP+OzDEQGzbCBYHIOB6HQZocLwYhr4mChvafMwaEUI6YAwDAAD0XBcOxuC4Nui5FAAwtIkwhHMDFMXRpYRoC0hmmSTrUPxn4CkUAAynAAnJQIfF8czoHQxAANa5FJgpnKw-h0HAAYsZWIZOipRRalMbBWTZyCkIyIb6PphkmXkH6lhqZbIAAStQljMJ5qQpNayBJj0r7kE+k5UDRW4fpmoYmsQ5wDKmdG5fl0y1FAUXDmAWrKsg7oSRUDYQP6dF0QAAtkUVYFQUQUHRliMnK8K8NM3VYoVQWLhOa7pTO+iLAOFDdM+M1DvsKmCkxxC6gC0zqAGiIMsAh0iocQpQgsixTS+s0whNo5mQKdCMhApBsJt227QhkSMBQuDFuto7eJ2zC-Coy41SlIBXSthyqigAAkIDvW4O17cAsrKmdWD7oevDAKsUKIAQqpOg9yDWD0-0A6WQNdr8ToAHKkEqQ1LFAunRSGdD8LRYD5J+7WRbkODwb1d1aLeLNHNM6Ci0WZPQ9Oczzc2S1pUrWFrQDZNCd4bbs0G3AIZ5jISgI6jSNwNy1Kl01IbR4ulobnQBrGrmIorXCzcgAC0Nx6JYNhQFSzzzBsqxa+tzsIdMkUe8tGuVNctyBw8TwvOHkcqWT0euwyB0qMAjyFydVBncgAB8iy5275wUO8ABkyDF+jornQAPNXbgu7H3DQmTZOy4tKh0Fp3j9CPAJxqS8zYoSgy0oPNgi69-Q18dbdEOvJeDQqUJEGhzABfMQqkEKWefkPXXBvCE-g6z+oW1bUMJ17Jgk2AF+LlfUQRgm1iVRdEET+S9Fq4D-gA++RxmqO0FD-eoRkbTqFsLocg8xBiQlAdfAEzgWwRijKkFMZNaYg3YMvAExAVApjAKqIg4BoDwFoGAbwABHDI3h4CUF4F1HqhASDkCoDQFAfMIBMVlq9KwdAEyiBkHIUQHADgqiarAgUNCoRAA)

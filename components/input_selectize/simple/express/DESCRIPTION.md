@@ -1,0 +1,20 @@
+This app demonstrates three different ways to use `input_selectize`:
+
+1. A basic selectize input with predefined state options organized by region
+2. A multi-select version of the selectize input
+3. A custom selectize input with additional options like a placeholder and maximum selection limit
+
+Key features:
+- Uses synthetic data (a nested dictionary of states)
+- Demonstrates different configurations of `input_selectize`
+- Shows how to render the selected values using `@render.text`
+- Uses optgroups to organize the state selections
+- Provides multiple selection and single selection examples
+
+When you run this app, you'll be able to:
+- Select a single state from grouped options
+- Select multiple states 
+- Use a custom selectize input with a placeholder and selection limit
+
+The app showcases the flexibility of the `input_selectize` component in Shiny for Python's express mode.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkTEQAJnAZETnBQoDEyAOLVbUKm1yV2cFLEyFbeUAqsFN5wegC8yCAKyMnIcmAAolCRyADCpFkUaSiJECllqWAAcgCaRRWVcADuyNVCANZpREnlyWmVAFJ1fU3I-bascLidqaU9FTkAKkNgeRAQcJKcxGZp3ckAvgR7FQDqMSJ5BXUlc-MAgss5UAA2nHRCEJzhhDO3aQDyACVlv8xABzcjTY5lNInB60WFZVRgiiQsDHQ7HNIAWU4Vka52u0JSaQAkgAZZak56vCCkTisKGzHo40nLXHELhgqAQJl-MD-AASIK4pF2zOQ+wUUt5EFcAAUoGC4MhSOgpORGRAHDglXAAPpqiisAAUUgozzgsTSAGU4JbNgAvFWkiCmEQAETgME1FAY3k4aIAlE45cgbXi4AAjKAMZCNTgUdhse0bKTOvhusxahNJ5A61iRmMME1BxDHVwAISyWxTDvTKuMZnjieTRrBTBM6C1ZR1TYo+om9c4zpNxN6YEi0T5czSOXYpFIE2QUDYUSo5Z+47X0VYRwlZRgJmeUnQltiADEXhNjiGJRXw6mnY2syJc8mjyfOGeVUO04GID0F5nlIAkrGOPtX0HJ8GzHA8STAT8pEHdd5C3eCJ3nRdlyQ79LR3KhWE3LoMIImJ91uXCf1iBYGBMeQJTvGEJVcO1hwzfsWzzbZImUI0AJ7FJIPdaD2LgOD+R41EYBQ6d0P5Nj-wzd9kCkvj1QE4jtynQiKLmKjz1o+i9J6fjNViG5bgQs8JDgBdnhsBhlkUyQyNYLAPM6bcYUQqANFJKgYEZWgAGZklccl+ETZBUWQMK-02TVtxlMo7xcZBsSgbhVPIKhKBXMRV1iqwGRs3gEo1QCFBUnVnigXBSDMfUyGeEwYEA0tyxY5APVKuryu4MF8J038YIA44AAFLEcrAqA0QoJRsOg2EGy1ZKoQ0zHdTrtzECgTAYUo6DSVoTDrNM4CsYp+ywEbS1VOMAHJKlIMjzskS7HqldF7263rWDK5ADN-VD3sqwTkim6gZrmhayiWoHj2QkbNoobay20mDLuQeIbtw9bxKYuY9oOo6TsasHLuKCrsaEZBnteka9BpqwvvFZiylcf7AbUlgKpHUbhySiUoesWxZs0OGUgR3mCdR9GutuFmcczd0sFlu6iZ6EnDuQY6wFOymroSZW6YZtyjbZsAwEOBJIFgBAUDAMQAEcHDEeBKHcih5p+MAyEoagKFoH6YG8M9SAtTgowUbUBCmN0eVCLVvJSG2AF0gA)

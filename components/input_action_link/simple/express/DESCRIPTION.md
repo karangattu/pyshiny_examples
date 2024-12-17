@@ -1,0 +1,20 @@
+This app demonstrates several key features:
+
+1. Uses `input_action_link` in the sidebar
+2. Generates synthetic data using random generation
+3. Dynamically renders different views of the data based on link clicks
+4. Uses express mode Shiny for Python syntax
+5. Includes a simple, clean UI with a title and description
+
+Key points from the function reference documentation:
+- `input_action_link` creates a link whose value increments each time it's clicked
+- It's similar to `input_action_button` but appears as a text link
+- The link's value can be used to trigger reactive events
+
+When you run this app, you'll see:
+- A sidebar with four action links
+- Clicking each link will display a different view of the employee data
+- The data is randomly generated each time the app is run
+
+To run the app, save the script and execute it with Python. The app will launch in your default web browser.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5ZqCAE1JgB0IDJq2TpOXKAGdkU0VwEAzZr2SSAFnQi5kQlm2ZwoxCnQBucRcpiqNWrHAAe6A5Om6Rm9AFcKRA9zhmIi86AQEAYmQAcWpAqCpVXEo1OBNiZAkKKAFoeGkAXmRgPjAAQQAbOmILQmQSgCFSACMSohKAYTUoZkqatrAAEShTOnlakoBRc1a6sAAxDggAaxmSqI5q1bAACWpmXBKAXQFiOhM4AqKSgDk4AHdkAE0WFfGwAGVOZAXOU8kyLadKpQADmpC2jUkFHIW3ehgoFHKfVmAFk6LBQm8BtRzMwtqUvFDNEcBAArZqXYpgCYQEGaOCBLbYyR0EEQRlvFGcUEc-rvU7UExQrYAFUMxBSeKxpGMLHxrDowreACULoZmBKOccIBFkO0DPE4DJEslUlVkEMsj94AIuApkIV0FwsJaoNa4AAKEACZC+2bXWA1FC5C4EH1+jpnA60U7nSRhiB+2YAKWaJRQ5Ka8fDvpKpRBQaKix4MCwxc0FA9ACYAKxEGs1gCUyAULGQAH0dInFgWPUiIB6Q5JG43DgmkyVPuVutGUMBi7wy+IKx6awAGDdrogARnXm+breYHa77E4vf7g8Dw9HAgAvo2whBIgAFHnIEyIo3iDIXYjMOjoCYMIQCEOA8u2pCAZIHofki+R5sYdDkMgAAymhLBacAwOCYAPiBdBYGoVYeiUACSlBxIh5jIBMjDlKQuAMha8RQDRTj0QYUp4aBMDdEsPB3AOJQAFTtJUxAYRQKQyIhyGVMs0jQsgjjoBxRpcHQCgKIEgrICM9zSKQ9pSepLHCSUeG6u8oxwE03TIHcZxqDJQGJvJSySAIjlScgoEslwtndB6jaIDmvkEZ4PjtkYrntu5JFgOopB3O2Q6wmoyXIAGeQWWFoGRRQ0WyRAcXoQlSUpbGdAXOlmXtGc1WebheURRA3iFTFSElfFJQVe2mZNXyGUPKmWa5Ymfr5W1UWdeQpXLOVw3tgoXjlOUtUPHMq3lJhWR0OUTWWU+yCqgER6kD47XIHZkhwFwyDIbNbnocgxDiR5AgAAL+AFzBYFkTRIracD2lhqkMQy7aZFAwWhRNvqaV27VYH1Q6w2FSYGBQXjMImdrAFS2XInmBZHNqSZwJU9oFSjS1VRc6Pw0m7CpDjeMKATNyBoCUZk2FlOIzTfUDYzzN+ljbMZBzhPc28o2wlA077HzTOU7dcNi76Eu41LYC3kQ4AhrQYAGAAjiEBjwJQkj-Q4FC1GAZAUTQKBgAIvEUODiJ0C0EAgYwBxteIUiPprzN64cQA)

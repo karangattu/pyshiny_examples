@@ -1,1 +1,0 @@
-An app to plan and track daily nutrition, including calorie intake and macronutrient balance

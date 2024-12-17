@@ -1,0 +1,33 @@
+## Technical Description
+This Shiny for Python app demonstrates the usage of `update_date_range()` with the following features:
+1. Generates synthetic sales data for the entire year of 2023
+2. Provides an initial date range input covering the full year
+3. Includes action buttons to quickly update the date range for each quarter
+4. Displays a filtered data table and summary statistics based on the selected date range
+5. Uses reactive effects to handle date range updates when quarter buttons are clicked
+
+## Installation and Execution
+1. Ensure you have Shiny for Python installed:
+```bash
+pip install shiny
+```
+
+2. Save the script and run it using:
+```bash
+shiny run app.py
+```
+
+## Package Dependencies
+- shiny
+- pandas
+- numpy
+
+## Key Shiny for Python Concepts Demonstrated
+- `update_date_range()` for dynamically changing input date ranges
+- Reactive effects with `@reactive.event()`
+- Data filtering based on input date ranges
+- Synthetic data generation
+- Express mode UI construction
+
+The app provides an interactive way to explore sales data across different date ranges, showcasing how `update_date_range()` can be used to quickly modify date selections.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5dKCAEygGdk+7LgB0IDJq2QQAro1wD+EdKIBmzUjGQ8qFBnGTiWbbXF3wiZuFzgAbClFGr1m3gAs6EeYcnM4UYroAbnBOGshuHrhYcAAe6L68-N5sHujSFETSdES+3HDMjhAAxMgA4tT5UFThuJSupnTE4VA2cPzaDhBKWMycXBpYvHBWABQALABMAJSivPasAPomyAC8WlUN8CMTAAwTAMxEAIzHMxDUXEsbq+s6ett7h8hHE0T7R2cmC70QAOb6a3QXCwXx+-xGcygrBWkMWJiIFxWFyuVCIajgAEcVgByAAi2LOsxabRRUBuQKwuKqUAAYr0tiBRMhmchsSZsShQZx-gQmSzsbxibwOVJsD9+jAen0PBQRkcdjtjgrFeE6AAvOArVoQEZcv5wKZTXkQFms4gbX4sXAi7rigbEVykRpwEbAbEAUVaAXUYmIwqI2IAwjZSBR3H9sQHSupiPk6G1sQBdIi8dWa7W6jbfbkGs4AX0JxWQAEFMMgAKoASVEWRwUH+C1I6AovBGugorRWwjAVOqACUcxWgddcXAYKRu4WAO50MPIWs2KC4UjpBap6wAIyhIymiD5zJnc9r67gW+YO73JtNLJKlbEuhat30YP0qXS++vtbfFBRcGz+pGD9rxZbtBVaXhf3-f5uyIIDgOQbsAGVbDgAJkEQoVkF7fQB31GCEKveCWVhCguzAXYDgAWh2I5qKOfC4OAxFuwo-ZKJeSj3gYwiiOQGAPDI1i6Lo7jeJZGAoBiQTHnYiZOPosBGOQQsiJKAAhdIKHIfgtPnYdqmWF8lK-JRV38XRyAWDdNPIQCwGkfS-wxaQoSoZgFNgsAAEUjmQEYAClOEogBZKEZjAM4iJMtIf3MuhLOsigtJ1bsHK+ZzXPyCYGO8iY-NLZhKP86QIHCyL4OisyAniiArJslL7MchYMtYfJ9hyrz9j84qbEo5D0DK4y6Cwb8FjihL6rstKsxatyxg6sY-IAeQCSjR2IQaIA-EpezJewN1aARuHCWQJOYeRIV0OZGl4D8AAFcmsZgQWpBY1FgEIeOsFRmnAhZ9taC8lJKGk6DsfJbjJLchi4ZByHCFCAisJ9kCMnjTRUMG3KsUkbjAkkOmAJTTQhIVSTddlE2QAA+QFgS039LBGb9BjJvVwSmYAdkTQ1kAAMgIsTmVJv7CbZDYk2QAAeOmsAZkwmZZ-GIPZl1OaOHnyuAxMlN8ChpGYE1MfB3xLg6QpTQei58jl2IKA-b7fpJXhTqhXAgfRlljexs3qTxtnqSJz3gJFgnA-FqhJdpoQ5dIRn7iVgOqCgtWuc1-nBaF0OVfDynpdl+WNkV0yKFZ0WsxfHdgA1w0lJ14PUdMA2je7VvFIbgAVUNHww8CUAAEhAb38hxsXlaTQZZAvAgsAmFQ8yU4tgl6f4sKgMH5F7toB6HrGR99+w3XHxMsHgThp9n+elIAOVkDcIdIH6qVwXgUBADNh9N0kpgXhu29braRY+x+GqsEZAcAVAqFQi2ZAulpoGWuGjK2cVgjREgdA0QyDQFwGiMESgzMS5YHgU5FyrV3KfAgcgBYHtTS1mIZBSuSlQJJz-EZQgmdgIkWklRGiIl2FKWYuRGSOw2JcXbqaQsWCgg4IgVAgImDfAoJkXg2ULN6GzSyhQn61DdwfjoU1VWgE-5gGVgwnMol4JcJYsIsYfDYIN0EUJHYAA2TiOwAESMKFIugqDZEYIgN43xKiCExSIU1DRzB9haKoTQlk+iviGKYSYlhKcLGcPmKRaxPCADsdiOHXkccIgAnG4jxLJJGKOwWguR9sAmVOkbg6gqjCHqNIXNaJOjLy0OGvQxJxjTGqzSdeKxQiqLyjyQI7g3C2IcTER+KYYA8xEHANAeAtAwC+GcnQXw8BKC8DljECg7CwBkEoE09ZogJIUHQCGDsdANyiBkHIUQHBuB8AtkLRZiYgA)

@@ -1,0 +1,25 @@
+This app demonstrates several key features:
+
+1. Uses `nav_menu` to create nested navigation with multiple panels
+2. Generates synthetic data for cities
+3. Provides different views of the data:
+   - Data tables showing population, growth rates, and median age
+   - Bar chart of population
+   - Pie chart of growth rates
+4. Shows the currently selected navigation item
+
+Key Points from Documentation Used:
+- `ui.navset_card_tab()` with `id` parameter to enable tracking of selected navigation
+- `nav_menu()` to create dropdown-like navigation groups
+- `nav_panel()` to define individual panels within the navigation
+- `render.data_frame()` for displaying tabular data
+- `render.plot()` for creating visualizations
+- Reactive text output showing the current navigation state
+
+Execution Instructions:
+1. Ensure Shiny for Python is installed (`pip install shiny`)
+2. Save the script
+3. Run the script with Python
+
+The app provides an interactive exploration of city demographic data using navigation menus, showcasing the flexibility of Shiny for Python's express mode.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBf0HDk6KHah6vb204OuECYCvD4Q6AoKAMTIAMq4lOxwUsTItlAUUMgA5tQOGZzkCuFYDB62zFiscHC2ABQALABMAJQKxJxScHoAvMjAAOQAcnAA7sgAmkIA1gNEAwAypHoAghC5ADbdc8gDAMJcxFDZpDsDABKkJqwU5GcACuyk1JwaAwC6CoKmGwXkAPrpTLIProWxYAAiGSgADEyvA6iAFMgUbs9p1cAMUB0uqwCMjUQN7qQfn8IFjkCUynZKtTbNwKHUAIz-AAM7LZ7KITNZnN57NZRC2EDqOM43RaLXxEFRuwA4kxRhR2P8AEoZOAUqnlSomCCcOhCGB1VlYACsRAAzOahdRRZ1xaxJaUrnY6q1pbKBgBZWqcDz-Fa5LXYOm08oM90W5ANaPC+24yUKAC+bQg0WQ92OcDYyRMESCnBw2f+JIorDqUgoWx6cjA6IovAhcBgpGyZXQhz0AFEtBshA460Q6JwNr8AEY1gAqDBMcDTGaGUGknGyZOQo067Epy-+8CCCk3yuQliw0Gk1Qo-yODFs-0y47qnFstbAONw-3PdZaiAJKKP26nuee7UCYdR1g2TbJFAo6sN+v4yrKqIASeRbAe4EBwBs4FgMSpJSEUhDINIUAbHOr7fCYvwERA95QOO8F-khsoAAI2PYDBYECUD-IwsDyIhzGyvYdBuCSVFknRk5wHUP5MUJSFiBQJgMDKlHUYUtHccAgyQQ84kaXc7yfOmglIShQG7hhWE4QqpBKtu6pUHBREkWRcCvu29nKlJjFmQpbHUBxXHQrx8ICQpwlwKJXkOVJWyyQhkVCUpKlqQZknabpGJnHZcVOZqxmRP5yFbqhZ5WR4Nl1kGObNq27YYF2Q7EaR5F1iWD5+clKKBXYDghZkYX8fJQkicgnX0QlcklclqWqWJ+GaYC0I6fsOXzL69IBrVHwmUxFlobu+5gXWABqnCsCYpGcAAXmSLkzQph0VdI-zWdhdYAEJQAwyAHL9FAtW57VgOOv3XuwgPdT1fXBeg-ZA7NSHjQjpBXupZKJaNyXOIYyAwBkaPVpw444LgxMTXoCNIz1SE01gI7ZCpMlM6wd0ecygrIAAbEmyMKQz4MMHUmM0StmTZY2HxEGLy3aUSGU0R8aZ07KDNVgl62NpmSuaawAyq2rKIMxoE42drmJG8bDO4Ob2GK0tdzW2rpspNMFZMJkNE9LGLt0-NakbBQWDZMQdCycVz1lZZb0fTh9ziv9UPCMDbUeXW6DipD0NgE9sPsQNxM4yj0VuIj-yxcq2MC0JeOuITFDExspPk5TPg0yXgvB4zq4s3UbMcz0XNEHz-s9QzWcyXLAIK3lPkFTLyD26wPQz1pq2W0vUBmCSkg9AMACkTJYEydCH4fhtd0JGudFrkHIPPjkagb49zXmC0M2HEcLhAMQAPLoBoqRFAsQnjjGqFsSQtQdwrjXDRBQp52ANBwrELCcBoG2GQEuOBZJfx5wUHDAaVANBI3GsBG4Goa6ykDsgOgEEVI2BEDg1ceDkAgGMGYLA75PzLlksmOsYBkxEHANAeAtAwBiAAI6WDEPucsWAKCkKIm+cgVAaAoDAAoRuzdSbFGCHgL45QvBRx6kI94QA)

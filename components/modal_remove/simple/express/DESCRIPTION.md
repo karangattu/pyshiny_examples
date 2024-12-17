@@ -1,0 +1,35 @@
+## Technical Description
+This Shiny for Python app demonstrates the use of `modal_remove()` with the following features:
+1. Generates synthetic datasets for Iris, Stocks, and Cars
+2. Allows users to select a dataset
+3. Shows a modal with dataset information when "Show Dataset Info" is clicked
+4. Removes the modal when "Remove Modal" is clicked
+5. Displays the selected dataset in a data grid
+
+## Installation and Execution
+1. Ensure you have Shiny for Python installed:
+```bash
+pip install shiny
+```
+
+2. Save the script as `app.py`
+3. Run the app:
+```bash
+shiny run app.py
+```
+
+## Package Dependencies
+- shiny
+- pandas
+- numpy
+
+## Key Shiny Components Demonstrated
+- `ui.modal()`: Creating a modal dialog
+- `ui.modal_show()`: Displaying the modal
+- `ui.modal_remove()`: Removing the modal
+- `@reactive.effect`: Creating reactive effects
+- `@reactive.event`: Handling specific input events
+- `render.data_frame`: Rendering a pandas DataFrame
+
+The app showcases how to dynamically show and remove modals in a Shiny for Python application using the express syntax.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBf0HDk6KHah6vb204OuECYCvD4Q6P4uIgwetswKCgDEyADi1A5QVGy4lOxwUsTItple+awK9nTIAObpMVQA+sUUpRQAFNDwAJSICsj9yOFYMXbMWKxwcLZt7F7sHbBwXcgApMgATABUmwDM6119A6ycAF5wyAC8g9gjcTDDsdztAKwADETrr68HEAPIh-1OFVOucLlc5GAAJIMTjlJAAv7IZIAZRyFDyBWQ0NhAFoADacADW52arQRf1Jl2QIHJiP6AHIJu48Q08dRquj6SghrcxhAhDAoHi2s8sM8iK8xURjmcugRaXTGXBmQ0AO6cWyc7k3WJ8gVCto7CVYAAs0tOS3lvzpiPp6HyQtZ7K11weo3u-IYguFZuQkvFbAtcoVtvtLRZ6s17C5rt5Hv1woAjFgjX6sOtzbKrTbbax7cROHBWDGebr7sR2KROMQ4G1gEqKKRWFB6UR6bIGMcyHihK3kO3OAxqtxqy2ALqZpYhgC+CLgBOBi0u4LAyMbxEJcN61rpKLRGOrbHXhLcMJrRRKEwoIcpVxpO5z-dYuBgACNSHiSzr3VgK1Wa3W9IAIJAQACgAMn29IpAA8jBKSQW2ACyyIAGIACpQUBSEAFoAHL0hOgZZiGfx2mecBfm6dxYCYEBAgKIrvMgbzMTKlqkQM7YfsElHatRYy3E8bSJl8zGiWJbFBtmj4MhWHi1A09oMDWlBUXGWCet6bTMRmxFTg+fyzg+84TCgSLIAAwlAnYhnuuT5IexA2ReLRXjeJRUveskMoKxLqWWv6VtWtb1uhpC4KQLRQahQi2FBAAS5DFFB6FFni46TsGhk2vSMCkPYn78Rpf4hYByJTB4UHIgAqgAaqlDAmBuUGWcw7iSIRWUybJeXoNUAU-lpBrrAGAbsdlPn9pWnbKqQqoOINNHDcKnzMW83WcQy2ghUtYx0QxXptGtXxEAAHJJWUzgiCJiBQJgML86C2FgAAiJSoTE8BtKSPxJMgQHSFAnAZa+bKua05QQK9QHoUByIAKLociVL1tixZtmupAbhj-bWZ2hEJBAySgVAtRsPkJgREEnA4GTcANKQ6AUKwbRSBQbIXBCSEFUKyAAEpwPlsjIK9QukBCf3E8gyIanAr4ueq6IQ1eFNspInDkAoSvsMgljjHLCsMG0PQIvrxhmA0Ezq+0EKku5hD-Ku85wJIouXvkEJEDDcOI8jPx-Ob4SWxIUjkA0r5mI2EBtBCHDzQ0+XFHiXtO8ilaqu7bn5FiigS2AAcDEHpgUA0oeaxAEdR+QsdgGIwsM0nQqpxCgsN8gPPJ5LRPJEhwNPR487II2RSwugGW8PbnsQAAAjY9gMFgpINIwiwVHAVRT6XLRg7WpsPrYVRXLUEAZI0W9tBbFBLx77RdIX-R3Q9vyHz3MsZ8gTd4sgOsqzn3B0H1GHCACg57iA1rIdQdA6Cu2vLPMQ5dIFwFkJQS+wdr7x1VInXmeIfiVGQA0E224KS3ypFfG+2c74IkPlSE+Z8GYXy3g-f4D5kiWQQVkKAn8cE-04MrLeRQHQgyhn8FgVx9Zf1jjlfoEibKEjiKqGOdAISJFUdSLe04s6tFzoAr0mQK6Sx6oiZRYBwrhlEPNVgKAQBshjofLos5CAhhMW1PEwQIBWOpFBLAAArKsdi6C-h4jADxDivYhnZpzExIANFaNVmLFowjwnSOQIAqKDgLgSJwVXCg0da6WR7BMQxIZxDPgaMQQpcALjoSavIB8zCsnJythnNoMApbJDbqQEWX8f55F+PXLp5xI65PIHwPQFTqzEj8PA8BUgkHQNgaAhBEC4DqBQe0chAzZDYOTngjeBCiFm1pl-BoWy95gGnEQcAIJaB1zgAAR0sPXagLMsAUA0BQR2YAyCUBebchQgoKDjyigSV8CggghAUO4TwUMtqoGnGOIAA)

@@ -1,0 +1,18 @@
+This app demonstrates several key features:
+
+1. Uses `panel_absolute` to create an overlay that can be toggled on/off
+2. Generates synthetic data for cities
+3. Allows selection of a city
+4. Creates a bar plot showing temperature and rainfall
+5. Provides an optional overlay with additional city details
+
+Key points about `panel_absolute`:
+- `top="10px"` positions the panel 10 pixels from the top
+- `right="10px"` positions the panel 10 pixels from the right
+- `width="250px"` sets a fixed width for the panel
+- `class_="bg-light border p-3"` adds some styling to make the panel look nice
+
+The overlay can be toggled using the checkbox, demonstrating how `panel_absolute` can be dynamically shown/hidden.
+
+To run the app, simply save this script and run it with `shiny run app.py` or execute it directly.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5ZqCAE1JgB0IDJq2TpOXKAGdkU0VwFCWbCAFdGuGdIjoFjJchhQK6ADakKJugCMcuU+c2iTFAQIBmzXskkALOhA1FEWY4KGIKOgA3OHdPGG8-AKw4AA90EMlpILZ-dBUKIhU6IhDuOGZXCABiZABxanKjOG9cSh84COJkCQooAW0sDm5eLEk4OC4ACgAWACYASgEuN2QAXjksABEjKAAxDnhJkAFkU+QAcgBhOgpcc5Rgc4A5OAB3ZABNFgBrc6JzgAypGkAEEIABzOAmOCSP4XS5+YhQcGkOHnAASpBUkgo5DRAAUfKRqHQUucALoEE5nc740h5ExGOh4h4ADgA+gBWAAM3PZvO5RGm-N5IsFyFm7IA7KKBURJQBmWW8ogARnZADZWXyBZTqadzgAVOCMRoUFQhe7IAZDHgwLAqQRuFgwSY8ogATnFnPmVIgZwuACUoP43FATCYrTbxCNHXRncxXarvd7FhAAL5pgQ1S4hJrICjtZAAZUSGgwOlUdBwyLg7PpFEkkwiFjgqz4YHxnChyBBVkkpBM+WamxNpA7RDcdAjUCs0NWhuYKjgWeqyAAsiH-WRKNQXBBXjcfMgilhGbgsRR2ZI6Fw4FYoMxJvNEPrkIfCyfqze7w+ny+3wDU9cnya8oTgcJJg7YgblwCdkA7YtwPCZBrlueDiCJOhiBhVZlkeNC7nJLBcUsHFnzTAMgOrECr0wiDvisUgUigsBfFIV562iZhz3gxCiXeAB5bjeMIZBInDZdVl2cMxlXAMak3fwnAcR9QjfAABUo72YHAzH3AM7xWGDbnZewKGfV9-So04TNwdkeigNZujcYB8KuWCKTWdZaKwOzn3JQCziC05TAoLAp3BC04EmSKbwALzbSZkyIDV5komynHCv9JkeY1TQ4c1LX+YNQ3DSNKQQ6zMsy4A7IcnY8pNdAzWiiksAkocYWAblKvqxzHlKiAwwjdrOuXSQevJckMpssKSJuaFYo7EBfP8+Z01Q2CS16RsO1mqj5twRkrChViADVJJiMADoDEIiv9ebwWINxn0qBTe37Qdh1EbsTGQBMZC4LgbmZaB-tDF0mXIN8P2PU8xAgKF2VnAchyoZt6XbMBk3QFJ4OYOhwR8Chsdx-GxMPLhC2x2YeTxvjqpq5mauIRlMnZbGrHBABaSxibYJjmB00QeYVfarJqrTqB0h06BC7o4GM2D2UhyyFYDeNkF89jONIESoFwdWmZZ2yVcc5z8PcwivNWHztHyPzYICjXMvui1-VPEHIigk3TeorAfE5ZawFWh3wvWzbR16adJH2v1-ZqhGQ7pBloYgFAQH6xraXpFRGQiPFiPG7resQAh03j12WeTtwO3ylrCuizPs96JqCqMNri6uyay6wVU3ErlReSsbldirv3E6-HAQ6GkaTBb82c7n8qxp7qbEH7wftYgei45u6uqNut2Og96fvefMB0yIcBoHgWgwBCABHIoQngShJBIlIKDEsAdyoGgKAwACEMMYfSlgrD9DUHgAQiMJBxwgIfK+5IgA)

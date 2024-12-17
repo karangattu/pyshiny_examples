@@ -1,0 +1,23 @@
+This Shiny for Python app demonstrates several key features:
+
+1. Uses `navset_tab` with multiple `nav_panel`s
+2. Generates synthetic data using NumPy and Pandas
+3. Creates multiple visualizations and tables using `render.plot` and `render.table`
+4. Uses `layout_columns` for responsive design
+5. Includes cards for better visual organization
+
+The app has three tabs:
+- Sales Overview: Bar chart of total sales by region and sales distribution histogram
+- Product Performance: Pie chart of sales percentage by product and a summary table
+- Detailed Data: Full dataset table
+
+Key points from the function reference documentation used:
+- `navset_tab`: Creates a tabset navigation
+- `nav_panel`: Defines individual tabs
+- `render.plot`: Creates matplotlib plots
+- `render.table`: Renders pandas DataFrames as tables
+- `layout_columns`: Creates responsive column layouts
+- `card` and `card_header`: Create visually appealing containers
+
+To run the app, simply save this script and run it with Shiny for Python.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5dKCAEygGdk+7LgB0IDJq2QQAro1wD+EdKPEs2MKBXQAbUhW10ARjlw69C9toqjRAM2akYyXgAs6EeasnM4UYhToANzg7BydXd1wsOAAPdB9efi82d3RpCiJpOiIfbjhmGwgAYmQAcWp8zThnXEoXOADiZB4KKFElLGZOLkcsXjg4LgAKABYAJgBKUV4obTheAH0WqGQAXiEsABFNKAAxLvghkFFkU+QAcgAlOABzOnJzlGBzgDk1F3Oic4BlUnSPr4AUT4FE+FwA6vNQQBdZAAKmQAGYCCczucAAoOLjSfyPZDPUpQLg3Bpg87gujE0lfTakUhuYgAazguHOsIRIxREDOF2+s3meI6XW4vWFXHcFCGAEYAAwyoiyuUKyaiAC+UwgohKAGEfFVkBR6shvm4PAJMKIsjgoCSFqR0BReEMAvo4KthGA+XN+NtXIZSFBmCIwBrRAB3OiG5BW6CBfoUBatQxDSnusAzb0LWMeiaIVGnCNRmNQQILDgQODaIYer3zZAAeWCzECdDgYZzee5PLOhZc0boWG0UFwfwTZG0sggTtz+e7PN7-awxEDwxnXbnG8Xy6DC3qRPy1bAABU9LNjfz+IZ5Nc7uQc7PNzyAAK5Lj5HC6azrx88t+2ZA+LeEALBm8xDGuP4-oB9zARQp7aPw6ygYsyxYDcDjSOgV5DFctwwecEzPLWvBsn0sjgQ+kE8rYdA3EQUAxGslgUGRhhmI6FHflRPLQeQibwbwH56EMjLuFwqznIYgZggxqwMRq3EbjoLEunMOEnq02jnt6yBXsgN74QpindspWAxEOhiVjhBkPEZxlnKZuAWVZ5waWexEEZRimmQENwuAmQ4juknH2TxDTSMw3I0TchRUQuVrbqunb2QlK67r4b7MIexHIJsdC8BQzBGOkMH3lxkEvtQmVCV+9l-s4F5LPlhXFQE5DgcloWnNF9GMespm8NIbGftOXncchSw7ERF6kW4BVDLJ8ljVRPmRmpPwXrlzVFYYJW2ctkGmeZUCWVWG06QAgjAfyUJ55XeVYWBOSdLn7HAACO0jUMQrJ2aFq1+QFw6jiFXUAeFkXINFsU9pGfbFqW5ZWR6mKkNi-jIOi+S2CwGgQMQIQhp1c7xQOgWjgs46TtOxOPqTS4rh1B1zqlO57pl2WbXpqPo9YIbM92lV5MwNUC7+cD-vEaM4gmyFM-d3FS7z-GaYhDWZqh6F-FhuA4TzMsEdN3qkYNMCg11PUCH1zGsexo0KytWIyyrsyCexIliRJ6CtjJ6T2v4EkAKRSlgUq2IHgcyTEckxH99mra6OE5VjzAE5QNrVNzTu4nHxkA-5Czk8FueKT4FARVFtEwz+9OJfLKUDol6X7llKPZ2wOWbA0UB0AhZX2UL1VJnMYtnPVSvO8PcD12DZcV+r8yTa0aEYTrevt4b50CtCWA2jcQzPKbZLwJwx8MWyobfvTsZlpwyNgF3rS94MuU7B2Y2D++ywLPYsAhAr9VbDSG0NoJeUBEwnTUhBSCc9IYTWWGAVURBwDQHgLQMAPhPp0B8PASggkKAxAoIQEg5AqA0BQGAUQGgtCfgMIYdosg8CiHLDwXg1dHyIOhEAA)

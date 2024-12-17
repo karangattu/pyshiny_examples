@@ -1,0 +1,1 @@
+write a really simple shiny for python app that shows the use of panel_title using express mode

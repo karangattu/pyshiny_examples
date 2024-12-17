@@ -1,0 +1,45 @@
+## Technical Description
+This Shiny for Python app demonstrates the versatility of the `input_numeric()` function by showcasing:
+
+1. Basic Numeric Input
+   - Initial value
+   - Minimum and maximum constraints
+   - Step size control
+
+2. Width Customization
+   - Setting custom width using CSS
+
+3. Floating Point Support
+   - Decimal value inputs
+   - Floating point step sizes
+
+## Outputs Demonstrating Numeric Input Interactions
+- Text display of current numeric input values
+- Dynamic bar plot scaled by numeric input
+- Data table showing how numeric inputs modify data
+
+## Features Highlighted
+- Uses `input_numeric()` with various parameters
+- Reactive interactions
+- Synthetic data generation
+- Multiple visualization techniques
+
+## Installation and Execution
+1. Ensure Shiny for Python is installed:
+```bash
+pip install shiny
+```
+
+2. Run the app:
+```bash
+shiny run app.py
+```
+
+## Package Dependencies
+- shiny
+- numpy
+- pandas
+- matplotlib
+
+The app provides an interactive showcase of the `input_numeric()` function's capabilities, demonstrating how numeric inputs can dynamically affect data visualization and analysis.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5CAV0d2SgGd26ADoQGTVsnRQIAE368B6GSLEs2MKBXQAbUhW10ARjlw69CydooiRAM2akYyPgAs6EHqonM4UYhToANzg7BydXd1wsOAAPdB8+AS82d3QOCiIOOiIfWThmGwgAYmQAcWp8zThnXEoXOADiZDkKKBEIbGZpGUcsPjg4GQAKABYAJgBKERaoZABeSRksABFNKAAxLvghkBFkfeQAcmIqgHMWXEOUYEOAQUOiQ4AhB6OAYVfD5c+AUUOAXQIewOh0CUG0HDgV0EWC6sl6cJk7goQwAjAAGIgYzHIACsEyBEAORwA7nA6KcXBRoR1Yd1ehxRLYWDAhuisLiiGMOUR8SIAL5TCAiEoABSgp2q-QoHGEnDoOAlcAA+qR0BQ+EMAvo4HMhGAAHJcfJ0JoASQ66WQAGUXKQSSd+vqiLY6NptFBDNpdQAVZiQoUim10GRwQxQZjIEl0CguZBkRg+eoQPhBaqceDMU3IVJWsgQV2nDhdALkPgiaOx5BZPohsMRoYTRDA-YlJ78bMZk1NXNsStxmDuIgaGJEbrOKhy4k13vKrtZ4hDFvE5D68Op4hzrjO1dElf7fXtjfII2Z7MWtLWQi7-f7MEQ3W4nHIEoWmN0cHIe+Q5fEwcQOZnwOEoAFl3AYLheHde1Bi-cEfz3fcRzmbEiFbZAQKgGIIKccFdDJGQ4IfX8Dj4Sc5lxFdXwgYgfHgSgAHpQ1ouB6LYMi4CnA5A0Ql8T2NBcc0tPsYzjYgODIxwoxDWNlxnYStzPRcSIPMBoxkWNFJ3FTV0NATz2E6SqwAdRklxtN44lv11MZORvW9-0AogdOQp9nMsg51NjPUwDGdF0XQGJ9XQt4JIoKS3mta1pI08zeJ44kSlPbshMvIy41sXRNHcU5JFIZEiMhctePky9FO7JcPNUzLSE0LTrx0-V1iygIIFy0V8soZAL3SCzb0K3UAGYsFREZ3P6xycRcrCUKmqqJ04wCOXQ5rata3KmAKjiuP2HjQKgdx43IKguojXx0uQUh0kvYr+2rBUPVwK6KGVMgIRgFNG2bXiSmWOg+B0KAeFjapxOYXI2HnbNewG4riQAAVyUNmCwKgYmsXjQ1sdh9M3azNSbHSfBlZgiVsfUKbAHSj2zZKFxQEBeywddTUUxt+R00zYv4pSGaZryXDZiYOfm1bNB57s+eErAarqjN2caqmlcKRLkHbSMzHYu1oza5o1guqGe0MqBbFsOB-Byr9-o4cE6AAL2y8hl0R6hkZwXQMeJLHmlqWBWc1r6dJKABVfocaU1L0gEcLkBgUgkVsHhNZcjgrDoHQ6HyeZI4oZmO03eWJmQBi8XRdCDRZW27eqEGc8a+adFzwtizgIZC1Tau5iGAAOXkJiFfrG7z5hKv6r21huE4qHOZhLkBeyx711obmsgFkAAKlj1OAgz-JxsXo7dGYOZDj4ABrXAvUhV4dOJcF0BcKAloAdh0gfbyH7VvTbr5fcHJp1bIFFB7ZAQwQLb3TgYfIDMYAQN3swRAWAxi2EFIcd++4h4xA9IYOA2ghiHDeGcC4aCdJD1wNg3B+DrQnG9IRAAavBKE6CVxkIMKyHEfl0RFz4taBovBkA+H4OQT03pkC4AALRYX+sgNhMYiYNGLESIepxiC2EbCrYCyAfQiKlNrS22tw4pV7AIE2Zt-BLzaLxF2eQUYzGVPYWAIRMZwGxnHBOmcZDKhmIHeabi6CukGF47GCwZhYDIHgdRvj47+I8UEm4fAaGBNXv8bOfiAmeJkLYFejC16byGEzFmBcuCNmLqXZhf5onpLiYcMkFIqRJJySkhYaTYmZOyQ+XJOcZYtSFvIkmRIWmBMyWAfkRBwDQHgLQMAPgACOWQ6LUA1KjdG14wD5hOhQKZIgNBaA9gYQw7QuB4BEFIWQ-ANGLxGf8IAA)

@@ -1,0 +1,29 @@
+## Technical Description
+This Shiny for Python app demonstrates the use of `modal_show()` with the following features:
+- Synthetic product data dictionary
+- Sidebar with product selection dropdown
+- Action button to trigger modal display
+- Modal showing detailed product information
+- Uses `ui.modal()` to create the modal content
+- Uses `ui.modal_show()` to display the modal
+- Reactive effect triggered by button click
+
+## Installation and Execution
+1. Ensure Shiny for Python is installed:
+```bash
+pip install shiny
+```
+
+2. Save the script as `app.py`
+
+3. Run the app:
+```bash
+shiny run app.py
+```
+
+## Package Dependencies
+- shiny
+- shiny[express]
+
+The app provides a simple, interactive way to view product details through a modal, showcasing the `modal_show()` functionality in Shiny for Python's express mode.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DZMgDEyAIK37t0dXuP+gsIKCq4AyriU7HBSxMi2UBRQyHRCcXAw5KwUDAmc5ArapLYmknoAvMggCk5OcmAAMhgUpOh1KFVg2pzE8rQAjABMAAxDRHVZpMQA1m3IfQCsY2D2rMQMnOhS+bR1ABKcAObsALToDikMMFAQPcgANk0tyamFdHC6edB3rHUAvgTVGp1UJXYTodjkXrtOpdHqzAAcIyWE2mswGi2QdRWaw2WwgszqjSoWWQGXsd2QAHdOBR2MgoLZpNcet43gkTDo-gCIDVMWAACpQABGd2isw6sKhyHmSL5KJm-VGfOx602nwJDUO7AolLgWpE128gUSIrgyDIAjM3AOaWk3V6-0BtTAIKgwkpCWI7HFMPWcNoAGZZeNmqjaMMlirceqdmAAGI0iDvPSG5BRKB3WnIbISKbWtignWe71gX4KMv4iCuAAKUAOZpaeJ+EEsODrcAA+o3WAAKKQUUVlOrVpjFSTIACSiiEVzxyAAskUM8gACLpUh1ACUwSrC6g3GQAFUJ-coLhSGYFNSs62HuezB3WJx7EK3T3N4gnVSaXTW0+X2+H5fryrbGA+rBwKKkg9sBvJAp0o4lBQdRjDycHocCkFwOOSQjkUSEoZiaHobyXqkParBlHcnBZD2hRjhQrBYFMcC4L2m7bsRcGcSRyCgRApgUB2Eh4h2QpmM0EAwWAHCkJSHb2IknDfIRwIQpSyB4Qxq7RPuKlgJxX6uAASr4DjIPRSF8NOly5PkXEAAI2H4WBUBoyFcfYdAWYhkgdtwKTvp+XG8mIFAcjydCYVBVDeFpSHtGBFA4L5FDvmWYA7q4i7xBStg0egd7IHAdBvJIChOeIkgyHA6ildhHmVSJNXqLIlA9klWCyfJil6awnFecgHZBUZyAAOLRNmURsFhkhwEaqVpEpKlcZZ44VJ1a1pTxNS9cp5Q+fhpTAFtAC6X6jQAwmICRmkkZLLtedJbdZFyzuqXEsBUrYPXcMEhTUraJAcTHsAGPZRWAIBbb8OnLT8BncrxQN1kx6AQ3Ua6rKqeLtHt3zAAA5FGarkITp0ZZuSMkSjIM4BjYAjvaKAACQgPjrBE5K5OU9T6G02jDOXRyNgiKEoZTHjun7UT8o83xEA0gjVOwU4-aDsOi1Tm9dn4oQqvPKQVAMGUP1LncYkSeQ0mXXcpAQVufNweIrC4B2xB2xBZT8gwJjyFxO21FxYTqVNZq-V+Zu5Y+6k9jAm6lkQ4DQPAtBgGIACOlhiPAlBMRQ7mECQ5BUDQKCZRAs6FUb1FCgoLYCLgBSGlAzYG7ypanUAA)

@@ -390,10 +390,6 @@ def python_app_to_shinylive_url(app_text: str) -> str:
 matplotlib
 numpy
 pandas
-plotly
-seaborn
-shinywidgets
-folium
 
             """,
         },
@@ -455,50 +451,57 @@ shinywidgets
         )
 
 
+def find_prompt_files(base_dir):
+    """Recursively find all PROMPT.md files in directories and subdirectories."""
+    for root, dirs, files in os.walk(base_dir):
+        if "PROMPT.md" in files and not os.path.exists(os.path.join(root, "app.py")):
+            yield root, os.path.join(root, "PROMPT.md")
+
+
 def process_directory(directory, system_prompt, model):
     """Process a single directory to create and validate a Shiny app."""
-    prompt_file = Path(f"{directory}/PROMPT.md")
-    if not (os.path.isdir(directory) and prompt_file.is_file()):
+
+    prompt_pairs = list(find_prompt_files(directory))
+    if not prompt_pairs:
         return
 
-    if os.path.exists(f"{directory}/app.py"):
-        return
+    for dir_path, prompt_file in prompt_pairs:
+        if not os.path.isdir(dir_path):
+            continue
 
-    logging.info(f"Processing directory: {directory}")
-    with open(prompt_file, "r") as f:
-        prompt = f.read()
+        logging.info(f"Processing directory: {dir_path}")
+        with open(prompt_file, "r") as f:
+            prompt = f.read()
 
-    # Generate initial app
-    original_code, description = generate_shiny_app(prompt, system_prompt, model)
+        # logging.info(f"Processing directory: {directory}")
+        # with open(prompt_file, "r") as f:
+        #     prompt = f.read()
 
-    # write original code to a file
-    with open(f"{directory}/app_original_code.py", "w") as f:
-        f.write(original_code)
+        # print(prompt)
+        # Generate initial app
+        original_code, description = generate_shiny_app(prompt, system_prompt, model)
 
-    # Add a 2 step validation process
-    validated_code, _ = spot_check_app(original_code, system_prompt, model)
+        # Add a 2 step validation process
+        # validated_code, _ = spot_check_app(original_code, system_prompt, model)
 
-    # make the app pretty
-    styled_app_code, _ = make_app_pretty(validated_code, system_prompt, model)
+        # make the app pretty
+        # styled_app_code, _ = make_app_pretty(validated_code, system_prompt, model)
 
-    description = split_and_strip(description)
+        description = split_and_strip(description)
 
-    # Create app files
-    create_app_files(directory, styled_app_code, description)
+        # Create app files
+        create_app_files(dir_path, original_code, description)
 
-    subprocess.run(["black", "."])
-
-    # Test and fix if needed (one time only)
-    success, error_message = run_shiny_app(
-        f"{directory}/app.py", port=8000, timeout=5, success_timeout=5
-    )
-    if not success:
-        logging.info(f"App failed to run in {directory}, attempting fix")
-        original_code, _ = fix_shiny_app(
-            original_code, error_message, system_prompt, model
+        # Test and fix if needed (one time only)
+        success, error_message = run_shiny_app(
+            f"{dir_path}/app.py", port=8000, timeout=5, success_timeout=5
         )
-        create_app_files(directory, original_code, description)
-        subprocess.run(["black", "."])
+        if not success:
+            logging.info(f"App failed to run in {dir_path}, attempting fix")
+            original_code, _ = fix_shiny_app(
+                original_code, error_message, system_prompt, model
+            )
+            create_app_files(dir_path, original_code, description)
 
 
 def generate_shiny_app(prompt, system_prompt, model):
@@ -620,21 +623,24 @@ system_prompt = read_system_prompt(app_type=app_type)
 timer_start = time.perf_counter()
 for directory in os.listdir():
     if app_type == "testing":
-        if os.path.exists(f"{directory}/app.py") and not any(
-            file.startswith("test_") and file.endswith(".py")
-            for file in os.listdir(directory)
-        ):
-            with open(f"{directory}/app.py", "r") as f:
-                app_text = f.read()
-                user_prompt = f"""
-            Given this shiny app code: {app_text}, please provide a test using controllers for this app based on the reference testing documentation.
-            """
-                messages = get_llm_response(user_prompt, system_prompt, model)
-                code = extract_test(messages.content[0].text)
-                create_test_files(directory, code)
-                update_token_counts(messages.usage, model)
+        if os.path.isdir(directory):
+            if os.path.exists(f"{directory}/app.py") and not any(
+                file.startswith("test_") and file.endswith(".py")
+                for file in os.listdir(directory)
+            ):
+                with open(f"{directory}/app.py", "r") as f:
+                    app_text = f.read()
+                    user_prompt = f"""
+                Given this shiny app code: {app_text}, please provide a test using controllers for this app based on the reference testing documentation.
+                """
+                    messages = get_llm_response(user_prompt, system_prompt, model)
+                    code = extract_test(messages.content[0].text)
+                    create_test_files(directory, code)
+                    update_token_counts(messages.usage, model)
     else:
-        process_directory(directory, system_prompt, model)
+        # if directory is a folder, process it
+        if os.path.isdir(directory):
+            process_directory(directory, system_prompt, model)
 
     # print time taken for each directory
     timer_end = time.perf_counter()
@@ -647,3 +653,4 @@ timer_end = time.perf_counter()
 print(
     f"Total time taken: {divmod(timer_end - timer_start, 60)[0]} minutes and {divmod(timer_end - timer_start, 60)[1]} seconds"
 )
+subprocess.run(["black", "."])

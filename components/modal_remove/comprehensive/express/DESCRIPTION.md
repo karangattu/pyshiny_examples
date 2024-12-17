@@ -1,0 +1,29 @@
+This app demonstrates several key aspects of modal interactions:
+
+1. Sidebar with buttons to show and remove modals
+2. Two different modal types (basic and complex)
+3. Modal removal using `ui.modal_remove()`
+4. Notifications to provide feedback
+5. A text output showing the current modal state
+
+### Key Features Demonstrated:
+- Using `ui.modal_remove()` without specifying a session (default behavior)
+- Creating modals with different configurations
+- Showing/hiding modals dynamically
+- Using synthetic data for dropdown choices
+- Providing user feedback with notifications
+
+### Interaction Flow:
+1. Click "Show Modal" to display a modal (alternates between basic and complex)
+2. Click "Remove Modal" to dismiss the current modal
+3. Click "Remove Specific Modal" (in this example, behaves similarly to remove modal)
+4. Watch the modal state counter and notifications
+
+### Technical Notes:
+- Uses Shiny Express mode
+- Leverages `@reactive.effect` and `@reactive.event` for interaction handling
+- Demonstrates modal creation and removal
+- Provides a simple, interactive UI for modal management
+
+Would you like me to elaborate on any specific aspect of the modal removal demonstration?
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzhEArpwA6ERszZceWOAA90Y1qz4ChI7unkUiYiABM4DBZ2RQju-XEMB9RSpUBiZABlXEp2OCliZFsoCihkOiFouBhyVgoGWM5yFXlWBy8YuOQAXmQQFWQq5CVIWE9alGBagEEAG05iOFqiWoAhUgAjHpqwAGF2KAYO7sJRgBEoaU5bEdqAUVlagF0CSurapjaG2mawebhZNtJ0BzWwAFkoaABzO7nai9ZOF4h33rALWgbVw6XuABVPFQGDs9hBqqN7OgphR4JRWI1kGd1hAXtw4A5uC97gAJABK9y+Pwg9yBUBBkQxHzAAEUWjsVABfPwQQIAVXyyHcBlYPk4OCgby8NwoRm46XEtmQpDoyEUEqlMoxfz0IrFGrg0vQsoAFFIKMcSrUHqQYm1kGSUqRZMgLqkIOlMlIcnM6Jw2m0oINLeCGPI4ABKHkAd04FHYavF33sgymJojiH2VXV5ksXgk3ogXkGlgo5BNtQ4pGjXlSdvuQXY1eQNvrYCj8OqOYgFgo+ck2SLJYoZYgFbAYlSslrtvp90dU7gLdnbVqHYR3d7-cLxdL5cOTunrFuxE4fuIM7bAIXzqXQRPZ86y7bHYCz-pRlj8eiZ7oDmoIhkKoPzyF6g7avYqrEGIsSGqm3wXnW9LppmnZVGIFCgfC6pIW0FZoQiozglwcpGPE8FPrhyDxrEyDEM8yCDEuk63rYWA9FmhHmpa-SuE+rZzoQnEIuIrC4F4xDXPkJShuGnGvnYcBQTBVAScw6DHDol7IRmnEYVhiZYLh+GEV24roOOxGcKRLjIKkYh0epml2SuyBfgmMDyG0UgaUucDHGisrse2cKmdm4q5n2VA6BQ455AU0DwPcOLQsguCkKByCJbMEahWFm55vkxySHF+QMF4RyzACQT+XAkhpRlDCiKQxwjMQTadJ4JTxeVRRQGclVMtsuXCdU3FwFa4xObo76rkJBEIokpDQt14q4buI77uMUk5XlpnfAAXhNtRzfJPIAAIwQOsjaHQf6SCol3iNdcDaLIlAmpFWBVjWuEdpByBeChnGBI2za2L+-6UC5dpGPBcBKuQjF7vCkmdAA1tqCJnnwPaWN9Ta-Su6bIAApMgABMpRlAADKhYV2aUdEqXBfGIcT67VP5+T02FLBlNB4iqWQAiadpeGc1UnE4SuXg-SaMAKU9BYyK9Sn3RQj1XVIN2XABn14xQWAsdOf0qADQO6QRgRumkGSwTD9KiIec4ETLdoVYecDptL4oQMtj70Tu8vWq5JsIwAhCMtigVk5AlBTSva6rt0a1rz062r72xV94dyw+57i-9SmA8D1vBPwXkOybRK2cedWB479pmk28gvAm3DUSRbD8L5Qo6LAvlEHGADkRjxkurD1JLhnreHPtu37AfnnHRYh2A94N+eTfO4uthR3MMdgfHic8oEADyxqDvSKDzNZGlQLwxCgTYIhUeksHp4pDBYNFmuKaqdaH8qBlwRPpBg8I6ChztBoZsZB5CUBQCAL6P1xbpm5GAMAnIiDgGyrQCccAACOihJwAVYL-GKcwwBASoDQFAYAVAwFiBpZaHRhgQAgPIAQuAVDIjsK4HkDMERYO2EAA)
