@@ -91,8 +91,10 @@ panel_counter = reactive.Value(4)
 @reactive.effect
 @reactive.event(input.add_panel)
 def _():
+    from shiny.ui import accordion_panel
+
     current_count = panel_counter.get()
-    new_panel = ui.accordion_panel(
+    new_panel = accordion_panel(
         title=f"Panel {str(current_count)}",
         value=f"panel{str(current_count)}",
         icon=ui.HTML('<i class="fa-solid fa-plus"></i>'),
