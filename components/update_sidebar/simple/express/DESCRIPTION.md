@@ -1,0 +1,25 @@
+This app demonstrates:
+
+1. A sidebar with numeric input and selectize input controls
+2. Two buttons to open/close the sidebar using `update_sidebar`
+3. Display of current sidebar state and selected values
+4. Use of reactive effects to handle button clicks
+
+Technical notes:
+
+1. Uses express mode syntax for cleaner code
+2. Proper use of `@reactive.effect` and `@reactive.event` for button handling
+3. Sidebar state monitoring through `input.sidebar()`
+4. Layout using `ui.layout_columns` and cards for organization
+5. Proper use of `ui.update_sidebar()` to control sidebar visibility
+
+To run this app, save it as `app.py` and run with:
+```bash
+shiny run app.py
+```
+
+Package dependencies:
+- shiny
+
+The app showcases a simple but complete implementation of sidebar controls while following Shiny for Python best practices and express mode syntax.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBQoDEyAMpwR6KAHM4yUnQpclYFSxxfOAB9QIpWAAopCgAbOABeOTA3TnsAIygGZABVdFsoKmQAETgYUkyiOk5k5Khc1LSAFQYTOABKJwhXAGExcv9WHLh8woB3Tgp2ZDJKJmTQiDmF5HCJvIL4nIywXamC+oD0aiPiZNJWOFtM3sQFZDftzix2ABZ4zI8KFIID5QmB+hB3h8sMYzFEICZ4AxOMQ-pAEVFBNw4udMgA5BG5BwBOjITGUUFEaRQZI9NIAVgADEQYNw0gBGJnIGBQDTshkM8GQ8IwihRe6pSScABecD+EMh70yxHYBVFFFwl3qrwVb0yQxVwmQHQ18kI2p1ytIyLgrDSwEyABluKaiJkAEJnQjIf7EcpURxgAC6BHNCvFcEkDyOTogptD4JcyBG4gq3O4S3IVEoCk2i3CLVwpFhZBpMAgCRLUTmtgWtuAAA4iN9A89Q64HXA6CISwiIbnkLkzBQQshhxmVqRkmxJtNQ-3wr6GLZ4q35TqFwVbFF2OJ7AxUdk9oUhpnVqDBTqoSKohJghAooPAeRUYFqGKZ57XWAAPKXCGH04AyIG4oF0KIjngABaAAmJ5QyFT5r1vThyAfIdnyVW57nfI8cTAIYsP8ADZy9ECwIguAYLgtcFXg94AAEbD3LAqA0Cg6LeewSROaYxQoMYVxeGjL1ETwTAYCE6D1cSbBEHiCjYfiqBQEAAHJf2oVS+BJEUsHk-demQOA1n8VSCLuB5VIAX0yAZIVcAAlTgfHYbtJ17FRSDmYE2GMiMqFsZAqRpG053mPNPkXZdVxEjcl23XcHAPPzI0CgA1akenPDjkEY6hmNY9jhPeLjfIlAKomCrLBJyyExAocSITlESRKksB8RgQlClIEkyTiFTdPhGAMStckVxspwwFqy82v1VVRxNAaIFMCgsGVVUonVS5xts4qdQTQZkAACSgOxUmnI8LmoAd0IhG5kQAawUPLkNkdQ6DofzntGSU3rgWRKAOZazCwV97308FSqiGqaPCExSjGHDANRfTzg4LzOm6PoBlcE6zvGD9ChuCybqfO7kke77xF+uB3s+yQqde2n-uoCggZWtbCKR6ZIc7ZBoZi944YRqhuf2TJUa9dGZjSAAxal7l6MArKIcBoHgWgwDEABHSwxHgckWLYr0wGWLMKE1hRuQodBbhSThcgUIa8AUbw7FAuyWreZXAyAA)

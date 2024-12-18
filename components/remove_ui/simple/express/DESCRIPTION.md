@@ -1,0 +1,30 @@
+This app demonstrates:
+
+1. Using `remove_ui()` with a CSS selector to remove specific UI elements
+2. Using `insert_ui()` to add new elements
+3. Tracking added/removed elements with a reactive value
+4. Proper use of express mode syntax
+5. Dynamic display of input values
+
+Key features:
+
+1. A button to add new text inputs
+2. A button to remove the last added input
+3. Display of current input values
+4. Clean UI organization using layout components
+5. Proper error handling for removed inputs
+
+To run this app:
+1. Save it as `app.py`
+2. Run it using `shiny run app.py` from the command line
+3. Open the provided URL in your web browser
+
+The app shows how to:
+- Dynamically add UI elements
+- Remove specific UI elements using CSS selectors
+- Track UI state using reactive values
+- Update the display based on available inputs
+- Handle errors gracefully when inputs are removed
+
+This example follows Shiny for Python's express mode conventions and demonstrates proper UI manipulation techniques.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkTEQAJnAZETnBQoDEyAApQA5nGRSKAGx8oa2QbVmIGTnQpcgUHHC84AH1SaNYACj9AgF45MDEYUlkkh3SASlC4QryiOk5-fygAIxyAFQYTODKnCHiYKAYAaytSAHcIdIVkaeQ8ubApmdcAVQBJZAAlKqKof2QAEW3F6dauPQx0SsKIVgoGKCo9djHfUlDcaBhOYl3-XgKij41sg4IF4JRWFhjsgAML+b6DXzsHxNMwUcjIJqgl7o5BQKxWXyaIwQUwUVhECjIiDIEysHxUnwA2SYtEY3HMhnImBQmkzeZzCDdCAuZAAQQJrIo6JuyDoQjxBO4ngA9MzlchgaCqtRyQpRpwqbTOFhGrhSGYkmR-CYYBAkqN7uh0garFTsgBGFUAJjKiGh8WMlokMXtqOl5EmaAJNVmYAlhNaxOQq1JZljxEauiSuTATQoEAAtNp+ANcHlhTNjVggxQkiHOOQkuGZVHObG8ltCiyADJQW4ptMUDNZ1g5vL5oujAYQZUVnquGFiB5BZBkShQbi2OUKqwfWDfTXrbXgvW9E1WGTpThWXN7z7fJK11jzkUQRcWyjb+UMWmzgCOnQpvsL6zkOVqflQv7ZKI4iSDIcBYNIuydOkAAMwoKAAAsu8GyOodB0HAkjYbhUj4XAsiUNeQ5YPiVjCjYdCKlYT5DuU-p8tMxAmAwlh1mQJiUMgMG1hBQlQVg3gUOU0JiYJX4MFg9IyTxfG6uJwkANTIB6lb8lx1bcPSwglJwkyGVWgbgVQGgydCVZVnQeQUHZSQgGp-GaRQAC+HaWY50zOWAqZksgzgebxXkKSIOken5hCzAFgXITacC5q0uDoD4rDMHAVIasiYiCoF0xlAQDkzPSgSSEIubOPeB7EGxZIvoQlXTKMRXpROcA-nAACi1glTMmEQDhcHkYhfVESR41kQh6hUTJtZYJyjF9bB3bJLWHHQp5GkxSJfDgTFthSflsmGZwzEHZQ3nIAAfMgaGcaV4WbNsLKMsgWYiPRcCErWHXVpyZkWe9VbVcR6IMNkwWXtIiDsP26TPc4rl1pF6n3Udha6T53TtcljkwCY-hSOgOQAGK7PSIP6YF8mQedKnpHdAmQcg+N6QuBycKwVNQLwHPIKlnSgRN1jnQ4ChMSoYxJOLcAZH60LK3oMHAAAutCP58CdojBN4NFkt553SeUask2JN7HcFmPuZwCUg3cuBvZD0zK8d0kPHcptmEQtsMVdnvTDdYsoXAHthzMGt0Zg1BWOkwWhWY4UgJwyBxT5KAgMrCWM45mjEHA0Qx5D65SL08iGXJzEQKQIgaxXVZiBQvE0nkABybzPniyH1M0gQjdM0Lt531YUF4kKIxDpXxOwAAsUYwlFurIAAalHrD+mA5Ug-E0+eJC5PpMAR8z6a5nSBU+vSIbGva0XZRgD5RDgJ8CAoPkcCAZwBRdSQkxolMAVddS0AWBAfoFAqZN3hE0BQvQBDllJMEKw-YeixzftrIAA)

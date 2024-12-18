@@ -1,0 +1,40 @@
+This app demonstrates:
+
+1. All possible parameters of `input_task_button`:
+   - `id`: Unique identifier for each button
+   - `label`: Text shown on the button
+   - `icon`: Custom icon using Font Awesome
+   - `label_busy`: Custom text shown while processing
+   - `icon_busy`: Custom icon shown while processing
+   - `width`: Custom button width
+   - `type`: Button style/color type
+   - `auto_reset`: Whether to automatically reset after completion
+
+2. Features:
+   - Different button styles and behaviors
+   - Async task handling
+   - Click counting
+   - Manual button state management
+   - Layout organization using columns and cards
+   - Font Awesome integration for icons
+
+3. Technical details:
+   - Uses express mode syntax
+   - Properly handles async operations
+   - Shows button states during processing
+   - Demonstrates reactive programming concepts
+
+To install and run:
+
+1. Required packages:
+```bash
+pip install shiny
+```
+
+2. Run the app:
+```bash
+shiny run app.py
+```
+
+The app shows different variations of task buttons, each demonstrating different parameters and behaviors. When clicked, each button simulates a task with different durations and shows different states. The results area displays the number of times each button has been clicked.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=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-OgIC1h1TdmBiBmC-Q-CTkBOhRcuF4Tum9LucixJIynnopeZiqx2KzGvO+Uswpw8t603KQCypQKanpDFavalPjmlSKhWcxlyrmUIrZUMjlqKxl6PhsgCop0TAi0aLwWmKCwiqWVnQKgANATIFZGINghDyC2G9EEmFdL4U3MRS1Ew6BIZUHamTKm28Yh01IoQe8WjpgkNsLgQCYA95EHANAeAtAwBiAAI6WF-Es7YFBXbRrAFkJZmaFAwBRtFUgpJOB3AUBAJUeAFCYjsJSCWjcCjJqgUAA)

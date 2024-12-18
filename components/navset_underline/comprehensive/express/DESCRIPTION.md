@@ -1,0 +1,40 @@
+This app demonstrates:
+
+1. All parameters of `navset_underline`:
+   - `id` for tracking selected tab
+   - `selected` for setting initial tab
+   - `header` for top content
+   - `footer` for bottom content
+
+2. Various nav components:
+   - `nav_panel` for basic tabs
+   - `nav_menu` for dropdown menus
+   - `nav_spacer` for visual separation
+   - `nav_control` for custom controls
+
+3. Interactive features:
+   - Reactive plots and tables
+   - Data filtering
+   - Tab selection tracking
+
+4. Sample data visualization using:
+   - Scatter plots
+   - Data tables
+   - Summary statistics
+
+To run this app, you'll need the following packages:
+```
+pip install shiny pandas numpy
+```
+
+The app includes:
+1. A sample dataset with dates, values, and categories
+2. Multiple visualization types
+3. Interactive filtering
+4. Responsive layout
+5. All possible navset_underline parameters and features
+
+Note that you'll need to add Font Awesome to your app for the GitHub icon to work. You can add it by including this in your page options:
+
+This app provides a comprehensive demonstration of the navset_underline component while maintaining good practices for Shiny for Python development.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBf0HDk6KHah6vb204OuECYCvD4Q6AoKAMTIAMqw6AA2cMi2UBRQyADm1A7pnOQKtnTIALy+WAAi6VAAYgywcAAUIArI7cgA5GlUnSjotlg9cAD6DRA5TawZwqWdAEwADPMALAC0iwCMG5udROgOBbaspZuLi0SMcACOc5WdAJQEbR2d0lCJJnB9yOFY47ZmFgIEIYB8mmcLsgzkRIU8Xu1OsR0nAskJcD8-gCgcR2KROMRmsBOgBBPZdABC5M6AGFOgBdWHnB4KAC+LIg0WQAAUoDlkKR0FJyHo6EJkAAjOAUKgMZCJKC4UhmBSWHB80aCiisJpSCjJUpyMAAOSg0lY0uQAFU7A5EtwUpU4DBSEbLpxEgqJQaACoML4crk0sQo5CZaDm6UjEy2hj2iApADunAo7DDnrcpF0nG9KXcDXgstYCmTqeQaojFoo0dj8eaCL4tkNkDNI3sLrdHS7XZiAHkhQVoIlkABJSrIMVyigNYgAa24WTYcGSkjgtmQGQlDYtK6oTaNm82ne7HRiI4gKc4H0SvB3cFX683DfY4nsDFKavYAGYmkbTdJOCyfJyGQJ0XWQUs0xtN863XH0oAlYswCeZAYgACVfBxkDIShqAoBsxVIWUP04IYZCaE9uxiWpSCIrCcKoSgGy7NV0F-MAaLouUGLwidxVTFJK2lTtiAVXQRmbKgNAoNYYDMNcjXhCBKOwsTWAko0YBkr8jQbDkHkQBtqM4Bhpg3BC3A8ZcG0g8tSIjEZ3ATRJ2IpLwCR5RIiM7d5PjgSSEKPZDDOUyjbLVBUlTMEZWE4ewJSgBgmgM5iwpTNM1Vi+LEuSkKVJUtVjGi1h7TfdjBG4bVOz-YIpTlUgSm5fFKCQpkmShABWRYOXyyjCvCYrl3vKQAC961C3qVKNZEqDRBhcDdVLJo6I1YiGyRkBpFE5oWwgluW7C8QJOATmAI0SU9I16WQABqeVOGmJpimJGbUXRBksBjThri+ZKeoO9p-t6-auwAARsN8cC8-CJvy+wSgS2LiEc6HcpByi6A9WU1zbEpymKLAyDwZL0ZPTgSiKihCe29FkuQABCcpzsupBSfyzHEmx2xcbKVI6GAZ6kRp+aGTKcpKep2baYeek2a7DmuZ58oFYcHGCZfKBbCaCWKpav65Y6MQKBMBhlJVsRuYJpIiKwVgZtlJoNDmYZyVwOZfK+R5IlhmI1pwx8LKc6zYfC+zWyDlyjWqDJkHg3MfI+L4AoleZFLyyjweoSGeigEZGEafb4dSGoRk3ZI0dhlTzbVvG+cJwVcBJyvKPJvgBqp16drpxnkGZxIjXTgHq8t2vnsFzv3uu0pxfbyW3vm5LZebk8jZN5SIYcKoagAcQYOLf2X9msdVkesA1rWdea7U-ueQ+q+P0zSj9L5b4B9oX0A9gKFKFZzjZwMfaxy4AwAOEpLLOQgulMMyB4BBBslAisrZYEmHYgAWSECkfswoICtWQB7fymlqAmCCilQ+odgThyspHMAsRghgnmnEDIVVCB4MTgQsAm4dLBTZpnWMQwS753gGzIurA6GJVwDFJhOpSFvwnA-GuvMCZE0bkDA6rcJYTwXg8BmTMwAXX7qzO+k1h5Kz5gLfmQspYiynjPUwHdhYqKXrI6Y6R1LFF5gMLeGR6iNBaAbE8nRYhMIelIYgPxiSoPEBAakkTbBXmiUQQJFB1xOmkDE7gMSoAaAZK-WRrwABqbDwn+KPpzE+uNiT4I+vADwyVcl5O7CYwWVT6RYHgHE2pSkGkniaRYlpttkl1JKffMpFsKlvCKa0mA3AhlGKHvIkelTJltKyU3bpyAnFv3ZCU1eps2BSNxt7FS5CHIR3YiSCUyp8IsPwcnFYac2ZqnobOQEiYIDsV0mANmUQfnIAuVcoBD1QLOldHM3uYKfRcD0O2UgKhSCJmRBaPQAlkAAAMhLVhjDBB0qLsLMEEAmSgkDUyD3ymzAAVMgVBJhOacCSIJM0gFgLKQjsWMFlLKhMAGPC5SyCKWjlwjOKQsg3DQ28HYcyuY2XLUpQAJXEJIGQKRzYLn5RhTWWEPDrkIrKPFuEmJgs+YpI5p4-m2HXOGVsrB3CEjlJOPBD0TAfCXPmZlDZEHSBijahwTcjJmotb8VsDEmDDlssQEw0xlA8QNV2E5QbyDTlIC5GRfVSJQAPstNUGQsisCwJwJookvDqWbHQKAaxWBJrihOMtWR0omC3MhepZKaHKgYISRaYL2BiDoM2L+FB0CsEQAAeiHbW1M9b64wCHR25aMwcjfyNCMb0HhZy6UPgAmIlQHpJEVNhE2Nh9S3nWnuSVrC-IKF4ZDKSMMRHHpxpuCuXZdlmyNDSfdeEbxLl3GuSVKAQASwcjC5KrIjRgFZEQcA0B4C0DAGIH6JlnR4VzRQaSLCwDRooDBhQYJ+3Q3tFuCAQQQgKCcmkNlbMwP0iAA)
