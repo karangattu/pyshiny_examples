@@ -1,0 +1,32 @@
+### Technical Description
+This Shiny for Python app demonstrates the use of `navset_underline` with the following features:
+- Synthetic data generation for cities
+- Four navigation panels:
+  1. Population bar chart
+  2. Growth Rate bar chart
+  3. Median Income bar chart
+  4. Data Table view
+- Uses `render.plot` for dynamic matplotlib visualizations
+- Uses `render.data_frame` for displaying the data table
+- Follows Shiny Express syntax
+- Uses synthetic data generation
+
+### Installation and Execution
+1. Ensure you have Shiny for Python installed:
+```bash
+pip install shiny matplotlib pandas
+```
+
+2. Save the script and run:
+```bash
+shiny run app.py
+```
+
+### Package Dependencies
+- shiny
+- matplotlib
+- pandas
+- numpy
+
+The app showcases how `navset_underline` can be used to create an interactive, tabbed interface with different views of the same dataset, leveraging Shiny for Python's reactive capabilities and express mode syntax.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5dKCAEygGdk+7LgB0IDJq2QQAro1wD+EdKPEs2MKBXQAbUhW10ARjlw69C9toqjRAM2akYyXgAs6EeasnM4UYhToANzg7BydXd1wsOAAPdB9efi82d3RpCiJpOiIfbjhmGwgAYmQAcWp8zThnXEoXOADiZB4KKFElLGZOLkcsXjg4LgAKABYAJgBKUWI6ALh+AF5kYAByADk4AHdkAE0WAGsVohWAGVJ+AEEIAHM4bXmj5BWAYTdiKGvSR5WACVJpXgUcjfAAKLlI1DoMRWAF1RC0oMgliBRMg0U9nrNcCsUDM5rwCKj0SsQaQ0tpNHRgSgOl1uL06Vx3BQhgBGAD6AAZuVzuUQAJy8zlCoj3CBDPF0eYTCaEiDop6lBybCguZAAJSqyCGAFIJjipNgHNJuENad1eia6LYWDAhpysABWIgAZidouoEtmUt4MqIkzlCpWAFlBnROMgAJIQMjwA3m+kwTrdZlDR3C7mcoissYZvnIMVe-Ey0QAX3htiRQiwABFNFAAGJdeBDBFTCCiEogj7VMkBci8URZHA99l93hDAL6OALYRgTEUeQ1uAwUjXLroN78ACicV0PgKhGQtjo2gphnuCwAKsxpHB253kGsoIE6NdKeRnA1kJtZmqTVw+QGBAIQQL+qrIMO0CBP0FDsgBQHuHAQx0Fws5gHiuDstBc4TIgRJouB-50Fg0HshwIHaEMc6kuSH4dmAeEEQqyAAAK5IBzA4Lo1jyixaKAZWTB0f2EDkTxQxMXx-EKjoFBYCe1zSD4QyKbwdAAF4zmyWbIAAbCW0kyWiclYIYUDMK2tirAu2IwkQXDWSSZLSBSomwu2xmyVYWBTvcQwvFiyC0a59G8CsnleSZPkxOedwBbZEXMcZpm4HFVHOSJVIQElRkpTFjT7BODitKJCwjI6kVRaZATXC4cEUrg-wslVXk+BQynyqZ1zELYkmFAqRGQSRZEUfFc5KqQKpqpqVC4fheXoux1CcdxejJeignIOuU2quJeiSQtUXRfJinKchamadprK6QZrX5fJ5mWY5NlYrCDlOZN00alqur6vZyBkPuCwrOuAw5fdMk1bM-mBYuZTKhBs0PJD-GmbFUCGPFcPYqjLGpelAVfUjv16rlx2WPJMSFcVej0eVlUbWjPm1fV7KNc1-WLfx7WdZTWA9X1D5GUNUEvuRnDjWAoZMhG0axiEjFHTJy15FxZi8cZW3uAr+0tcr1U+WdKmXVpCw6UQd1M-jPlPVZr2Lu9zROTL4byvLjhwE7QMsCDaTMDoXt4958l+chOPIK7csxp74XB+i6OEzj5PHQTmPY1H7sx-A2oACT6vHJ1YNTdDEEVQwlfTFWF-zrMNVATXpFzFO88wXU+YLXPMaLI3i2NVFznWrTIFemP3PN1uq6tCLsvYsCgVrcCVph7KtBeyFSS3DR845YClkQ4DQPAtBgD4ACOWQ+PAlC8L51NHhh5BUDQKBgKIGhaDxBiGO0sh4KIFEeCDg7NzFie8YRAA)

@@ -1,0 +1,1 @@
+write a really simple shiny for python app that shows the use of card_footer using express mode

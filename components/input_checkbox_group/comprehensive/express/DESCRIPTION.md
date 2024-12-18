@@ -1,0 +1,34 @@
+This app demonstrates multiple ways to use `input_checkbox_group`:
+
+1. **Basic Choices**: A simple list of choices
+2. **HTML Choices**: Using dictionary to create HTML-styled labels
+3. **Initial Selection**: Pre-selecting some options
+4. **Inline Choices**: Displaying choices in a single line
+5. **Department Filter**: A practical example of filtering a DataFrame
+
+Key features showcased:
+- `choices`: Can be a simple list or a dictionary
+- `selected`: Pre-select options
+- `inline`: Change layout of choices
+- `width`: Control the width of the input
+
+The app provides immediate feedback by displaying the selected choices and filtering a data table based on department selection.
+
+## Installation and Execution
+```bash
+# Install required packages
+pip install shiny pandas numpy
+```
+
+To run the app, save the script and execute:
+```bash
+shiny run app.py
+```
+
+## Package Dependencies
+- shiny
+- pandas
+- numpy
+
+The app leverages Shiny Express mode, using decorators and context managers to create an interactive, responsive interface that demonstrates the versatility of `input_checkbox_group`.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5dKCAEygGdk+7LgB0IDJq2QQAro1wD+EdKIBmzUjGS8AFnQjzxLNszhRiFOgDc4q9Zp17cWOAA90J3v0OS96aRSJpOiITbjhmUVEAYmQAcWpwqCotXEptOAtiZB4KKFElLGZOLg0sXjg4LgAKABYAJgBKURyoZABeISwAESSoADEi+CqQUWQx5AByaHgJlGAJgEEAGzpiOAmiCYAhUgAjDcmAYW0oZhX1zZ7LOi4DiYBRazuBzgBrO9iitbuACWpmXB3ACSlkBmwAUmZ3gBdAijcYTKAAc3WKAKRW4pQxXD0FCqdQADEQAGwAViIAEYCQ04RBxpNeFAlqdAWjsNiscVcVUAMwE-lE5AUwkCynU2n0iZcOAcVjwSizZDzH4AJWBABU7gBlJlwXh3ACyp1eGT0SOeek43yI8PpdvtYwmqo12t1+s2RuYJosEHNmz6log31htsmrnQ4To1G+bMKxU53G5FKIhLFTQgAF909FkAAFZFwZCkdAWcj8YrICwUJY2GR0HAFgD6xYovCqVZrbWEYGOcGIr12pBccXU0nQyC12lIAHdiHwbIRkCo6EtmbtO+rmNI4NmIDEtTc4LtTshp3QKNpkJZTnRSNJ+MR0v3B8OkaPx2QIMukdIiqWILwohnheyBBGUh7HswVQNIgoYxFsfCrMgj59gOQ7IG+d7jsBl68OINbICsvBsKQKjIVOqx6qGYG+P4jYoc+Q6NphY5VKG9LdseeHEPRFFrIBi7seM3YIdxyDHKQlECTadIOsA3YAPIlredILN2NpgEp-7IFs6nIIpynkOJ3bQqGu70jEvaMa+76nuel44uYKkssgMAYOgZrIFUPzqgaAAyhFQLscBLLw6b0jRSh0QxaEuMx75sbJ9rdtoFAwEsvGSfxelCWM3Y+f54l8VRglJXaIxlQ6+lgCYIi0GBvAcBAbFgCqlR6cRuCdt2ZBLCwKC1QA3N2NK5Xa3ZvhUEDdigDVNS1nxTR1FBdXAXZgL1-UYSY1DDWAo2VQ6nFLNuM2gfWjWcC1WwnQuRCdd1G2kH1zAoOu257eFDoZmZkRlZZT6xdtWF2SBejnnQTJaCFfb-tR9a0RQvGoS+8VYYlVXduDFhMo25Q1k55A5YdeVgECYg40sE4w4T02lVV8lgAsmA1jlYAIdA0Bs72zAAmzPRUCZEoOvjsOVG0jPM+grOCT26S87gJm-dN-3IOTKwQIWMUvsDY7w1giPI9ZaOsWNWMQBrcCZVJxOY2TFt6IWEk2-TckGdpFJs1pKnIHUXuGXSPJC2NeiW20m6nWV5njDEXQyqcaXUGwou06Dl5nlwIGfhQ6hLPrhva0xLHoBjR1gNKsqJ5QjbLksVARK7yVgAGdfhMgceV-Kra2w6LTzBXCddxM0JYNIYgAI7btBWAUM9dDEdBwv2hnF7rXyBLoC43bKzmRp6Mh5BUJQAgmK0OHIB40h14BEDn2BzK4HeSO9bIAHQbBqtdPP0tQPIKdUFwZAXEkKPiylRMqd96xzmYNUGCY0wLQK4I2dIUBpRQREohLIztsr7TGgAAVCGgmergKBjWlGRYBPFQFSWbP4PweI4EkztCYCgv46QqG7FqGmACUAgERlgSh1t+LQSLMwSYAA5cg6wfpgD+hZdu38H7QwJgA5ABUArUOyhA+y50sCIPfvAqBpwkEoLQS1dRRUwECS+vaAh1AiFUBcKQph5DkCpXSkIvUtCKD0IMUw+kLC2FLk4dwyovD+HuIypovUIiWASKkRMGRciY4KMako7GkMqb-xUqGSBejjF+Kqgg4xyDTBmO7OTCGUMuEqJybgphdiwjMGIU4shcAyIZNxtk8g3jfGMKqgEjIQSOFgBqWLLg4SooUANhTTJeNuEqViWIiYkjNaJO3ireRX80m-2QKHR25ErG5J0cUmBhSHSnJMWU8ILV1YHOwSVGxdpGkOJIW0jpDtNaeN4L0-w5yBkXyGcwdhISVFhOQHwqZMzLbfKWfEtZSSVax16JWIKBFa710qEAv+oTAEDzlEnG+LzwhYBaDXQYtZXEYvCJURsLR-nZHjgSyg-AOj8PxVXJG1KoJPLoGRCApA2Acq7rwD+VVAnAuyL0UMEq6R9z7lKJlnLh4Gzws1YVhKGjQjABmIg4BpgIBQDVOAk86AmBFTPJxi4nqUCTrQWREA3I+L6tWOgux8iyDwKIJqPAb5jXpDq6EQA)

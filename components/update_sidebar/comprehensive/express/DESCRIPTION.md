@@ -1,0 +1,40 @@
+This app demonstrates several key aspects of `update_sidebar`:
+
+1. Dynamic Sidebar State Management
+   - Open/Close the sidebar
+   - Set sidebar to always open
+   - Dynamically change sidebar position
+   - Adjust sidebar width
+
+2. Interactive Controls
+   - Dropdown to select sidebar state
+   - Dropdown to change sidebar position
+   - Slider to adjust sidebar width
+   - Buttons to open/close sidebar
+
+3. Reactive Display
+   - Shows current sidebar state in real-time
+
+Key Features:
+- Uses `ui.update_sidebar()` to modify sidebar visibility
+- Demonstrates different ways to update sidebar state
+- Provides interactive controls to manipulate sidebar
+- Shows current sidebar state dynamically
+
+Installation and Execution:
+1. Ensure you have Shiny for Python installed:
+```bash
+pip install shiny
+```
+
+2. Save the script and run it:
+```bash
+python app.py
+```
+
+Package Dependencies:
+- shiny
+- shiny[express]
+
+The app provides a comprehensive demonstration of sidebar updates using Shiny for Python's express mode, showcasing the flexibility of sidebar management through interactive controls.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBQoDEyAMJioVNszhtclOxwUsTItl5QyHRCYXAw5KwUDF6c5AqsnPYARlAMAPqJXnB6ALzIwArIVcggcmCk6NR1KAAqDCZwRHWCGVJptHUANnB0FHVdYADumRTszcgATACsAAwAvgSV1bX1jRDzAGJQg6ydyN2kvan7A2AMnADm7GOE51Mzc7QAzCvrmxDVGp1BpNW7HSZQXCscZvHqcPo3FBDEYvCbTWyzeYLX5rBQAXScEEsOCgDzgeQaFFYAAopBRhiU6gBlTJwHIMZAAVXQ4W8ABE4gkkil+kQ6JxBoMoFkGW0OgBKQmuDzibyRDLZXLIaazZBQAEAST5URiJh5KQgDwUOvYyGJGrZuWpmUZYHs8QKrPZMPRsxKyxWRBBEFd9lYAGsKA06vLEFsqsTjGYCnBhpJqfHAW8HeyChQijDM4DmV6tUz81RCwCs1ViOxSJxiMUShVqzXi2AAPJ7ZDUgURqPoZACuhQEyDCiK15F9t1NyDS5wWxV9tZuoAQUGEKhyG7oJnVQJbeQiuPmcTEFMFBTaYoGePHZzuTycIRK9nYBZmo5AAVLvDrnfGs6wbJtWBbOoABkUULMAACVHmeOoj0BU9i2PC8rwKQZWQYe9VzqJ98l9T4ugfaoS2-ZAAHUPiArMYG4EoAEZfjI1cYCgDQSlWQNznIqppGODp-VWdj20SOB0BYlZM1PFxkAAWSgbhkDIShqBEXJxGteFbWJYhclsalY3PTgsEMhhbDyIIoHsPDKMdDluV5Pw3HIJJSBOGNM0zVwACEzCjCA9CjWJ4hC4VvFsTg6DoBxNLtc1vFYJtoHuS5MxtO1zKlXBSGTMhBhMGAQpMuMBJyrAk2vCQETyLIgvIDNdmoT1v1gvcAS-JyfMqzDkzq64GqaiAWuIBdTna3rpzAedF2QHrvTAeTj1cPlOFYdA8rUkwGBsEQiLYCt5GPAABGx7KwKgNDGY97DoNhS3yQoqDyGKtry8qD1EYI9oBOg6iBsAfrcPaDsW57FpOirVwAWl3PYUBAGqsHdUhpvZEzcUqhG-yuchkdRoiX3-BFsZ+hHaIxdgicvMwsBJkjsfQDQfuBoH9ggVw4PESQZD8EZ4skZAwrNVynqonJTlsZByGOoo2FTOB+bSCALr5qRZHUOKVbujWhu1uBZEoZ16YoRnnrzIpTwepLXMx59Xrgb7j2d5AymJq3nZMzNYoV7wSjKOout7ftIwaYcRjHCcp1h9tiXFopHYct1BRTmEOFISYSjlOA0OqVN-fdoO3nmmXmh+xPkvJIiWvRjPXiznOjhOfPM1TU4UGQVxN23PQuqr8yk7euu6gbojM-rHO6nBSFoRWpVkF5w3Bd1kWxZryWnOQV9APVzx+aN9f9cPrW4HUE27y979SYJiBbZGe3k5JvfmtM4834BT3zct2+v5MlgBckwHC+zWsgAAcqQKgrQuB6HRpFZIVA9DT13mTa4al9TICyH4WwARYCNmOIMXgdZ9RkmXMebK9pnrOlsKGdOk9XhfxKF-D+q50BQF0FUHmS4RjcD8EdbKEA4CTDQffJeK8j5r2FiITeEtBF0QPprAWOsZEKANlIy+mkzZXj-k5PIJFH6PRHrXK2zM2HVBIh7Pgv8mYfDAYCVwUCYE0Q+HwPQpwRC2D2twB4292RqU8G+Shekqp1xdOPBhz0fQfBKIY+ONYOFcJ7svXh4phH+K1EIkR2pFEKXXLYGKCJjjYNGnoaIHIYpiBFkdTiEBOCmClMEjR59VF63UWfFRxttGo2DCnIxyA8iu0BNXB2Y804ekYUQZuud2jty5i0rpJ8OnKKNlfHRDMJqLn6QoO2QyLEJmHjXFO9cokdSbtPEordTjyjABsGokBYAIBQHcOAABHSwYh4CUFYNdW6rwwDqSoDQF5ChOIUG2tAnCWQFBEgELgBQHC7CcMJKuQEdy8RAA)

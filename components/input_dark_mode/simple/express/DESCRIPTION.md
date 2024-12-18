@@ -1,0 +1,23 @@
+This app demonstrates several key features:
+
+1. Uses `input_dark_mode()` to provide a theme toggle
+2. Generates synthetic data using pandas and numpy
+3. Creates a responsive plot that changes style based on dark mode
+4. Includes a slider to dynamically adjust the number of categories displayed
+5. Shows a data table alongside the plot
+6. Uses Shiny Express mode syntax
+7. Adds a markdown explanation
+
+The app showcases:
+- Dynamic theming with `input_dark_mode()`
+- Reactive interactions with `input.num_categories()`
+- Matplotlib plot rendering
+- Data frame display
+- Responsive UI design
+
+When you run this app, you'll see:
+- A sidebar with a dark mode toggle and category slider
+- A bar plot that changes style based on dark mode
+- A data table showing the selected number of categories
+- A markdown explanation of the demo
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5dKCAEygGdk+7LgB0IDJq2QQAro1wD+EdKPEs2MKBXQAbUhW10ARjlw69C9toqjRAM2akYyXgAs6EeasnM4UYhToANzg7BydXd1wsOAAPdB9efi82d3RpCiJpOiIfbjhmGwgAYmQAcWp8zThnXEoXOADiZB4KKFElLGZOLkcsXjg4LgAKABYAJgBKURaoZABeISwAEU0oADEu+CGQUWQ95AByAGEqgHMWXAOUYAOAQQOiA4AhB8Oj14Olj4BRA4BdAi7fYHABqUG00jgVyk2C63F6cK47goQwAjAAGIgYzHIACsUwgAF8CaISgAFKCnar9CjSdDIADudAoLmaUGYAGtkDBSFxqql0qIsjhKXAAPqkdAUXhDAL6OBzYRgFac5AAWV51SWcB5SqItjo2m0UEM2gVABVmJCScVkABlOh8wzsxnM1k8VU8vnICikU6nM0CbjIPT1ZjIAXS0RMlnIYW8R1wZ3MIYTRBAvbCyNij0csVeuBDR2KsC5-OapUE-ZxuhYbO8Ax8lNKmQwMXEM4sOhwXh65BKgByskM+RDtmQJyo52Y3d7hH7EGrS+XS5g7jmqKIGhic1xREC4MhcwAzDaSmqoO5kGRKNQ2OzfK7Y2Z78GZj6TWbo26a1hjbhSHSdtSAhGAIBlNMM2QAABXImxwXRrEXfY+XHDspwuMUX1TdNkOXEpbi4AAraReDYF9nAoXBA2dfouBDRdc25Cs8KXHQKD6KizSwUjCwOMtnWIDlTgcaRuAOCNx0jLAywLVNkDgbR+kOVCoGkKwDirFcoOrEo7UUuB-GcaRDBpMc2VaZBaMGBjnEbfIdP2XgTLMhYZiweooGGaTW3bTsZx7VMtOXRy9nYrADVOaQfCGSKEwALwVIYAA4iAANgmYK2KsLBkyGZzTIaG5JzgadLgBYzCooG4wQhKE-iy6twrlM0hmOfz5FqyFeE00LLA4mJjRHbQ2pKsretYpqcuok1FLarqoUa-YfFpZhF3C05iFsVNCmrWDqHgmYxXsWAQlY1Drw6sVWlNQtIMm-Y9IMoyCrM0hx3faz6PIOzEwKB69hW6LGNWDzfG8pR0iwXz0NKrtAsywoSgAeSlOhyHBFBCPo2YqBiNhYh0ThNHRxcTUAtgmILIVaw0TkegZCAhiVFmwCgooShVLkNW9bVdVYqCAFVlJZaoqc1H0-QDflF1F5xE2TSXnBjYhWRHCgGQGRcDFOFxX3opjRfgXgsAXatzXqSxzG6dhRVdI0BHSRwSY7I15C8kiyKVuX+jNfwbILLAbDZkOJjAQkiHAaB4FoMAfAARyyHx4EoE2KHx+cwBvKgaBQNmIA0LREIMQx2lkPBRA4bg+F2ldq3Dv4gA)

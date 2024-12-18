@@ -1,0 +1,28 @@
+This app demonstrates several key aspects of `ui.panel_conditional`:
+
+1. **JavaScript Conditions**: 
+   - `"input.category_select !== 'All'"`: Shows panel when a specific category is selected
+   - `"input.condition_type === 'JavaScript' && input.threshold > 50"`: Shows panel based on JavaScript condition
+
+2. **Python Conditions**:
+   - Lambda function condition: `lambda: input.condition_type() == 'Python' and input.threshold() > 50`
+
+3. **Additional Parameters**:
+   - `class_` parameter to style conditional panels
+   - Different rendering techniques (`render.text`, `render.plot`, `render.table`)
+
+Key Features:
+- Uses synthetic data
+- Interactive controls
+- Multiple conditional rendering scenarios
+- Demonstrates both JavaScript and Python-based conditions
+
+When you run this app, you'll be able to:
+- Select categories
+- Toggle numeric and text panels
+- Switch between JavaScript and Python conditions
+- Adjust threshold slider
+- See dynamic panel rendering based on user interactions
+
+The app provides a comprehensive showcase of `ui.panel_conditional` usage in Shiny for Python's express mode.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzhExARwA6ERszZceWOAA90Y1qz4ChI7ugCuFIhc7zqAEzgMV-QcNFQID5q5MeICwFeKCMIdD93EXQvB1DkePQHSNNkGCgKdAAbUgoszgAjHFxs3ISjbIoVFQBiZABlXEp2OCliZDiKKGQAc2pnDM5yFXCsBljmLFY4OAcACgAWACYAShVO7oBeZCSsABEMqAAxcfg5kBVkK+QAcmIMuB6hXBuUYBuAQRuiG4Ahb9uAGEATc9iCAKI3AC6BEu1xugXgDE4xAA+tIoFkLHBXshRuNvJMCQ5uBQ5gBGAAMRCp1OQAFYVrCINdblQdBR0Zjsbj3gAZUgAdxBAFlZpwgiCABKcHrsEGA5FtTEQjlieDQlQAXzWEFqyAAClA+mxWhYIoFODhjXBUaR0BRWHMpHk4JslGAjRA4FlkIDyCSpORMQ12EL7tMPUQ6JwslkoAUsm6ACoMbG6-X1ThOApQBjIQWcCjsPiUAaSGRwZBkShMLKsFSF4vIWxTbNwXMMOYrRBwq6t8xWVHTJOSOZ91nID33KhPBi4Yc+uCSKNTlmTq4e+pLyR+h5z3Cries4hhlFwVibd4fOPQ5AAamQ+VYZI27xnj2e0KwFggnAU2LdrqrLAdcE4DuEQ6nsuADWBSkDo45gBwQqooizgokeYD1GGgrIAAckEGHtF6PoeqB-ZWoOnLQcQcEIUhKGCqi7JVIQU7YbhyDJroIikVk5ETuBVGQZy4wkqQqIFFYFDkE6x5gWANaBkMEAsSUcBHuuG4ev63hFqp3EaVpG5XKepDnpe7wAFJQBi9TEMiDoggauDFuQmracgFFrqyEGWJyrD5E4XYKZuYDFgYYZZMk7FhRxhFIii3HsFFpAxSZpkwNwmx0vF6Q6JstJEPFGJYm69KUhOGYQHUIpQNw1bkFQlAJGI3RNiWykGcGvoxN69aNkWJatvGuCkFB6VBBATo9hOdR6SpvWGl4PrIOSKCAvuzwNDuQZ6l5nUtla-U+qi3X7ZiSHUVgH4Houo4iAAhJs2yfLe5G9l5rIAAJiN4zhYKx8VOHQpqPbM53bfOLG8d2X2mZOYgUBYDAsnQW57bMe6zs8KAgDdd3PA9y5kisWoetUXkLQGPXQL6-HIEsKCJcRyAAGrclW-ETkdranVk5205dWTXaJUy4WhRHIsQn3xX9jiA6UVTfdcoN4tLKKosr8PxayMZZFQYgOKiGzINsb5vnc0MvFC5vbITNsk2OKx25wYOO7jMMjqT3bIC9tw3lkNzID60wdIcevXJUWAxj0qNwHMcesJwABebpzAAHEQCwrD5iMx52SexkbkNW0T87QtGJfOGXhzvOhMtcuV0L56ZMcukmcw3KzMsc1zRgFLwW1ey8bcbjHOjxgUPrdyPn6V+Pk4x7g0+zzcnMt0vrLI6jLIxz0xB0N2VOsjT+kiytA3IAAzCgPEcv35VX2Rh3Dcd1oDULF+qVdHo3UxWGHI5aqyuArAGDAgYJiTCDOAYNWIsWgYnOaoDJwG1LibM2Ft67lxtneV6pYAq3Sdj7F2bsPbiwrguUhZN-ZvSDiHMOVYNhRyuLvNGyB0G10wfXd8eCfgILKjyKEUJT7XHPktemL9fQLBQHsJosBkrJlSheaKDhkBzFsvZRynAHQ+T5idVagsLq-1FvFf+lDhaqXUugKsr03paKgA5JyFAQ4ADI3GEKsEDFRKEYrIAAHwMiqnFVBxB4yGFRO6MABQegAFp8hymiHEm+lMvIoMRuAkKQNeKwPgb4tRQCyYI0Rtcdh6MPQyjlClNK-jNH1D9FY8gPZkAE3FpFVR6V5jkzSfNRpP9lqM3pCgVy7kIBxNzNMdRi06a83fvzIx39JF-1QRYohJjyA2LsQQm4oywwQHcZ4m6HS-HqKCZVTKG5wmhFYFEj0sS4ncDoKQZArE4mCi4FQHYKS0kgRKRuLJgNgaoPVngMZSy6ZFN1qgneZoOEY09G5fZ-TJHIDFBQfGxyCldO7BTMAVM6gfAcMs30NZWIJG8KHPQ8ZoD7RUK2dIDAYI+EFBAJClN8W1RqHURmMzL57DgDAOSFBxh0oOsozgRgMDoA0OGUIF4OjuzoLXVqgooC4CMLJFs4cAAGCyv4bPpjqr6cScYL14DQwyAsVCmt7slIRVZpCSosJiNOgxhjjO4rxZADrXlIJtcgRxzjdEUAmfK9RJy1FNQGQdU1ezyBhqma87F-jDXVHxRmlYYAtREHANAeAtAwCKFsOqagjogYcnYkpZqZbC0qHSJkHIeRCgjCCHgFQ-U4gNgOqU642aoRAA)

@@ -1,1 +1,0 @@
-Develop an app to analyze spending habits, identify areas for optimization, and provide personalized recommendations.

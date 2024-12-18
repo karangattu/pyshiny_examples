@@ -1,0 +1,37 @@
+This app demonstrates several key features of `update_select()`:
+
+1. **Initial Setup**: 
+   - Creates a select input with grouped choices
+   - Uses a nested dictionary to create optgroup-style selections
+
+2. **Update Scenarios**:
+   - `update_choices()`: Completely replaces the choices with a new set of grouped choices
+   - `update_label()`: Dynamically updates the label of the select input
+   - `update_selected()`: Programmatically selects a new value
+   - `reset()`: Restores the original state of the select input
+
+3. **Additional Features**:
+   - Tracks update count
+   - Renders the current state of the select input
+   - Displays a filtered employee table based on the current selection
+
+### Key Shiny for Python Concepts Demonstrated:
+- Express mode syntax
+- Reactive effects
+- Event-driven updates
+- Dynamic UI manipulation
+- Synthetic data generation
+
+### Installation and Execution:
+1. Ensure you have Shiny for Python installed:
+   ```bash
+   pip install shiny
+   ```
+2. Save the script as `app.py`
+3. Run the app:
+   ```bash
+   shiny run app.py
+   ```
+
+The app provides an interactive demonstration of how to use `update_select()` with various parameters, showing its flexibility in dynamically modifying select inputs.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5dKCAEygGdk+7LgB0IDJq2QQAro1wD+EdKIBmzUjGS8AFnQjzxLNszhRiFOgDc4q9Zp17cWOAA90J3v0OS96aRSJpOiITbjhmUVEAYmQAcWpwqCotXEptOAtiZB4KKFElLGZOLg0sXjg4LgAKABYAJgBKUS44DlZ4Sn4AXmRgAHIAZSgAGzhePqI+gFkoZgBrDL0AcwnkPoBRCCW9CuZl1b6AMT1OYjgDgAkAJT6AXVEAK1IAIwB9Ueth7t6NymZcA5TOhcA4Dah0FgHdYuODEfxWc73CDDUjEJIQiDffoAOTgAHdkABNFhzUGcZCHIoQYh0XhkA4AYV0aKWpAOACFSLwKOQDgBBaTcvR3SIQGIMkxJOACZAAESSUEpsGleLoFG0KTSiyycEYKNwFWyCtEuvQ+oqrxyUGQPXQXCw8tySvgVRAomQHrW0HgfRQwBUwjA6z1pAN0pAdAAvoHkCoWMg6AmIMgqUs4FUAIxEDMABgzDVuBHdnr6LTaFA6FF9UmwVJKMCwxG0pDoZyqZdmFeoFF42ZzOYaReTJaebw+cGG1YKddKTZbbdH7zgn17yFzA6HnrWKLRFl5KGnxVnzdb6Z36PIq-Xg+LHr6vBGswBB9rR4bdb0FCqAFZ+-2iHUf7-mu-ZNBAkZgdEyAAApQGmWgZNIygyHQOBwXArykOgPZVBYFCjF0gYAKp2lKyBgqM5hyrql4UEUe4QIGRAqHQwzDFAzwEQAKsw0hwJBYrkcCcDPLMyCquqyCWLMEKCsgZB-KQXyiBJGpBGUwmicwVQNIgt7IDEACSYgWCMCGUWwvj+OJaoaks6hIZU8knmcvD6epVkUK85QWVU+lboGehqnQIzeROsIUExyD+Z6gbGcFZkURFyDGX4kWENFw5bh6bpZdlAVBnwbAMqQRWBigbpgNihLldFVX4kSJJRYG2IAFK1S1DWteE5S4M1YAMlxHUDeQEARa2-iBpGm75dlgYAOpjMVpXcrVlXzXyw3zXwuhbDyjEZYGADyVzDUdJisgdRCBgym20DdIx0HGzBiHkYDTTF+WBkCXB4kta3fdiw1AhAY28KQuT9fNhlbbSCm8Ho-WGXdKBxaQeJvdGeVbljW5gQFeUxOy-j7fwPLZDRmJ0WRXBPSo4TdsgSE5NKdLUDJXLuahnmvGYDGvM8JPkH5YDM1KrxzqebmHWAJEs8gTLzmMgb456HlKP4vPmBiAtCxAIti1Q7wcRO-Vy2RAAyJvDCrXNYDzfM64LFD7QbpFGz5EWVGb7vSkl5je2AqseuraVa-zzuu4GHgZP1VxjLHQeiuKkrJNa5Ta+QyDkzo6PZ+k8nSMwoRsNyUqiOp2g1CLDJFyX5HhVRqXWQMuRULbjGCfHjvWPJpDSJQ4TZ6Q2dFMQcxM77bkyL7Ev95QNopqY2vWFg0nDHxVQDsnyDx2EzD59KcLF4zZfJKQKiH+ZyWeaIAACoQtMwWBUC4kVhJfnvmN5bfprp+kmAoEXZMAYwCBnAXlWuJ8F7+wYhVTy9sTIhWGGFXyDRcaenNskEqA8KAVUNhhMguCsBpi-Og-S4CwFgM7jEdYKh6ZUXJgQ5yStp4P2XhYVecB6ERXvpKFecBnDWEoFUBBBCJYuTGGBFol9Xg6T0oTaiMBaL0WlIbZYLCpY2UkrTHh9dnowCSNPLc4iiGUDKBkKopj54UBIZYhoyAADUa5g6ZRMahcRX8vyfTqkFUyKCvFMR8ZLVyXRcqzTmmALisJtAAzALEI6R1YjDViKQUgSxRj9SmAMQ4Q17pgCBMQdQ4MVDpWumAPkUwABaQN8l8kMQAL3IFNGaESPSBmONAakNhaCVVatBKYw1+nICmCwJYnB+rsj5AyYa7JOATwvsgep4RWxvXKbEAYKSlJcEMcmIYTZpYYPykc5AAlaE8MYSPZh7FnimwgOwnugjuEMPfg8gRQjuyiI1rY8RNyJzSO4cgOR-88rWOIeUL8YLzGkJ0k4lxFDQUeNnl4vy2NYpgD8cg1BvDCA+L+cMLooCsFOStrc4YyAqjEuQCAKFtiYXoKaNQvGO86EvOHpPeWXinLrz4nwjhCJnAXNefwzhTzhFfjEcixuVAuAAtkfI9ys8zG2IhVYpVNi7FkLhfmBFW4YiylSLAVZbF5BeJlDymweUxp4mxZnZMPRDzcGPErKowBAwJKSVknJeTyn9MGWAW4ri7aeOlaiiJgUkGhUCbitFHouVcC6Na21DF9JnOQKy5K5MY5sHJiwOg2xoDkrPpat5orBUvL5Y8j5IiEHZrlUChVoL1XgssdvPKwapW+R8RGhKATpXNVjcgfFhEwDxX8Q3CyKVvlBMHSEsYYSfEFXWEVBWK10oVRajVfJuICTEnmP1Nqw0d3IG6swXq-VBrDRKqDcacJ0ofUHQVRa3JV1lV6QtFGdVtoOD2s0mWJ0zoXT-eU26V7HrPVei0xd6Kfp-VWu+gptTUYFL0GDCGayv0w3yfNOGl5EYy2RsNQy6NMY+IfRE+NI7qoQOZTQ3e1An4ylyJxaUOdmwElNOaaUVpkCiXKFwZAWcvEYj5fvLAVpXhqGVM0QFnHQwWmY6MRteqKSsSoAfOTYZ+B8aclnY+9dhPNLyk9JMaVEG9uTcp2agDgHIE0xaK0wB7MYUc6WVonZKx3BtD0BBmKo2hoLAAxCL07MhjDJaBU70iDgG9AgFAYATAAEcggmErLwF+b8MpgAUlQGg8XRCGIoGaCGww6DPHyLIPAogODcD4KKNpnp3q3CAA)

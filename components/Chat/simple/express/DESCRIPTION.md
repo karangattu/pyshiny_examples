@@ -1,0 +1,19 @@
+This app demonstrates several key features of the Shiny for Python Chat component:
+
+1. Creates a Chat instance with an initial welcome message
+2. Uses `@chat.on_user_submit` to handle user interactions
+3. Implements a simple response generation mechanism
+4. Uses `await chat.append_message()` to add responses
+5. Includes a basic styling example
+
+Key points from the function reference documentation used:
+- Used `ui.Chat()` with `id` parameter
+- Utilized `messages` parameter for initial message
+- Implemented `@chat.on_user_submit` decorator
+- Used `chat.user_input()` to get user message
+- Used `await chat.append_message()` to add responses
+
+The app provides a simple, interactive chat experience with predefined responses about programming and weather.
+
+To run this app, save it as a .py file and run it with Shiny. No external data files are needed, and all responses are generated within the script.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkQFdOChQGJkAZTjH0ydFADmcZKXRTyrBSZzO4APruFKwAFFIUADZwALxyYFb86NHIAIIAksgAwuxQIgAicDCk8UR0nJGRUABG0TEAKgxGcACUZhCWqQAmXcjERqwUyllWVshdnGKSkbwD3E7IvhTOrFiDuCncg+K9pHSLnFjcxJFGXYHEuj6Hy06r69Gh8c9gCsjvyFjEuRQAtGSUKDcOAMZAgN4fSEwKAaX4Ad04XQo7BQADYAAzo9AaADcEMh72hDCc3BQ6OQUCMQzxEEhAF8zK8mW0IBZsmI8q4oH0fnwIIMoBBiK4EciKbTuJwpFBIsg4XBImR4Mh4Lp-ApvnlkDEDlgcnknrSPoi4mBzsUApqKKV8Sq4GqXKwYsBbZD4gAJBWRUgAQmQ6QA5CxuawkikMhTdJwBZQsGlWABrO0U6qkKkOJhOBiwGDzIjyvLsEFEITIABWAxEVp9zyN7wAugoWWz8tHklBeMjXFbkABVdIan5YEyhZsdZCFcoQLlsMOuHSCfmuFzT7OeWl0IxC9cKAACVqw5ACAxBAVYRmquet0FYuCF4zg+wCo8QtssAHFbMgu4tWCCA3oxSDKIcDCpQdoOvIda-qeqqsP42o8nkw5-gwATcOgVKjlg3rygwo7tJCliJAIKTaHA5xThRIGsIuf7eNBC5ePaiHgtBbpgHgyLkPEKDxAACrg3ESnogoUvKrDMK42ikFmObzMgVQQE4Rj+H66QUAByAJhApBwhupZSnoHJdDUFRSrwgq9LIDDwVIkQWVgNrsR88QFl2DC8cg8T1EWcriB5imkKQCZ6FmAXfqQpm4H6VhbjwcpSuwFJIUKrh7H0UXzHGchnAAHAAzMQuVdHQACM8j5QVXQlcQ1TVM5BKuWARaVCUtAepw35FmIfrunpfRiZkrX2LgaaRdFAD8jVNd5LUKugXnxJkxBiT2NRpiIMlyTAubKfmAU9SWoKCkJqgLAqf5xgAUpWkYJjWhC2gyrLQZYACyeTfDBoJwQhQwZhRj7Ar0TFLgxkJg3+iHLUGyC6SI55iMg7ADQDYO9ADyLIcgjSWYmCkbemgnCQdhbFm4oIVsB8G8K13qPbadClgmcC4EQ0gys0fI0XR9pHFQMBhC0r4ue8nD7KzvDcD9AR-S4ouzQSUOuDqnOnFBSuQtUHIJoRHydJg1CY35KuRd13Y-LaUBwkCVZDhg6DG3L9rwS4oQqy0YB0kQ4DQPAtBgGIACOJhiPAlCrBQGgUIQJDkFQNAoK8EDQhQySkFEnANRAEBGAIuAKI4ECmQxrqzd79ZAA)
