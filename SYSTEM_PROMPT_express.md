@@ -51,6 +51,7 @@ By following these guidelines, you will produce robust and error-free Shiny for 
     def plot():
         ...
 ```
+If using `matplotlib` for visualizations, import the `from matplotlib import pyplot as plt` in the app file.
 
    - IMPORTANT: If using `Font Awesome` icons within the app, ensure you've added the Font Awesome CSS file to your shiny app in the HTML head section. You can do this by using the `ui.head_content` function to add the link to the CSS file. For example:
 ```Python

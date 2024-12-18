@@ -1,0 +1,45 @@
+This app demonstrates:
+
+1. **Inline JavaScript** inclusion with custom functions
+2. **External JavaScript** (jQuery) inclusion with attributes
+3. Different methods of JavaScript integration:
+   - Direct event handlers
+   - DOM manipulation
+   - jQuery usage
+   - Dynamic UI updates
+
+The app includes:
+
+1. An alert button demonstrating basic JavaScript interaction
+2. A counter showing DOM manipulation
+3. A background color toggle showing style manipulation
+4. A jQuery demo showing external library usage
+
+Installation and execution instructions:
+
+```bash
+# Install required packages
+pip install shiny
+
+# Run the app
+shiny run app.py
+```
+
+Package dependencies:
+- shiny
+
+Technical notes:
+1. The app uses express mode for simpler syntax
+2. Demonstrates both inline and linked JavaScript inclusion
+3. Shows how to add custom attributes to script tags
+4. Includes examples of JavaScript integration with Shiny UI elements
+5. Uses ui.tags.script for additional inline scripts
+6. Demonstrates proper event handling and DOM manipulation
+
+The app showcases all parameters of ui.include_js:
+- path: Both string content and URLs
+- method: Both 'inline' and 'link' methods
+- kwargs: Additional HTML attributes for script tags
+
+This implementation follows best practices for Shiny for Python and provides a comprehensive demonstration of JavaScript integration capabilities.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBQoDEyAMpwR6KAHM4yUnQpclYFSxxfOAB9QIpWAAopCgAbOABeOTAASQhiZJN7ZAApN2QAETgYUkyiOk5k5KgAI1S0gBUGEzgASicIVwBhE1YKZSKoaSg3YgZOIOQyQqg9KDYKWYgfBWJh0ZgogCs9NORMs7AFOhNc4IgVUgB3AEFU4Xju5BAFZB-kKFeKPEAORDEZjCZTGZzEQvBwUACEQO6AG4FABfPpXG6ccjIEzoWxQKgDUjXKgMd6fb6-MgQEYLUmUBwAUVS8EoyBOtlIO3ZFCwfgorMq1AoACFcFlbMCyGSHEjUXdfpw6Mh4rKmQxhXyPl8lb8aSERDsGDYKAA1f5dTnIbwMVhwHKAjXk7WirBUDQUElMygfAA+-uQAAZFQaDS6WWz3Z7veQqByTiazZb8v4ANTIACMYd+GIg+cu10kOLuxHYUE2cDFEgA1j4mNdbCTkkJKXqDdzee6mqRbLgsCNcKksE06w3Gc3SK2GDbqeHkF2THzR32B0OR2PiPXG3YW0JOWkTkDkpwfOwKC0ukDkAB+ZBAh5cKg3lAns8Xq9wIGKwsXf99K4OR5AU-jjJM0yzPMwzcD4D7cKeEDfsg8AUOwfZhJwWDcCB9iHAk84LLszD4QQhGoehthpECCHcN+Ci9BALjIMB+SFOBkJQSIMGbA+iG1jeFF9sgDycGhfy2LYYmlv8fwUOsnBNGYcChBA4Q4Wx0RHPEhGZBeFDoKwiAAPTGYscBYAcACOXQMAOZAwMZ1m2bgAC0ADMWAAGxYMGWAwNwlmhIQ5GeJR1H8UCZH6n8rC4LkUTtJ0cDRZ2cB0A4SVdKlNJMLoQhntwGRoBA5C4FUwxnBAjEKKJ4nhI0uCkhQURkPkMB0vEom2GhaRZsZABM3SIIRdXsHiWHEFADDSsNhEGuEU0zVE7DiPYFKZDkiFgRCkHQuUlTVGAjELj86kQKYLUSLcURKfJ5A6TFp2nGAHCPFE-xwjUpxPadmRuOhDzILCwjffNp15MsrCJZkTQUBArnaPw024DU4MLuQeScNuxVvc8ALvFVz0nX9MVjRNWBLbNI2-Wdk3TbYK1rQ4OlgCScqzhUVSZCTC7hBQvisFgUnSKzwbfZwVGZJGjjHT8gxCGIkhwLYbDxQLGjoxTxhmB9JbkLdZijBAj3PQamQ4WIfJg7T4abbkVuisg7OajbZs0o0ugw2AcMI6wJjEMQKnBTl7uY6eOOZPihLEoy5KExctu83bZNieNi0M+8NPPRny2rVA62szW24Tk2zvTgebSkD4PipDzWvnZdes3Xdxum+7L2jDXqS3VshA-R3L1V93-jFzuk5ux3kNe8VvuudwdBHaHZvh9jtbFeWlZ+GPpd7hXFK9InxNa6NacU1TWcN-TefMxtYAHAAii5B3c8dWsAAI2OtWCWFr9iqs5BwuAogjCJMMS+tsDRiAoCYBgdx+aCxwO3QePxMiP2fpwPQrYC4qz+HYUQa1cDwjRpA06G50iZCkqwdAjUUClSQqiEKpCFyS2KoAuyrlQEwOClrA0ydza2wQT4IWrAoRBFZucXhvwAAk8Qlw6iwGIAuuB4hYn1ibXUUiFyyKBM4dhbkuHDCRFgOgOCcjAlYK2B4CotHIDRCiE+AFjpgDREQcA0B4C0DAGIGynBHaUCFhQL0-cwC0gTBQLxCgYBEhoaQFIikFBqQEKjC6lZCSqVsS4gAukAA)

@@ -1,0 +1,27 @@
+This app demonstrates:
+
+1. Using `ui.include_css()` to add custom CSS styles to the app
+2. Custom styling for cards, text, and buttons
+3. Interactive elements with custom styling
+4. Sample data visualization with styled output
+
+The app includes:
+- Custom styled cards using the 'custom-card' class
+- Highlighted text using the 'highlight-text' class
+- A styled button using the 'custom-button' class
+- Interactive elements showing sales data
+- Responsive styling with hover effects
+
+To run this app:
+1. Save it as `app.py`
+2. Run it using the command: `shiny run app.py`
+
+Package dependencies:
+- shiny
+
+The app showcases how to:
+- Include custom CSS directly in the app
+- Apply custom styles to Shiny components
+- Create a cohesive visual theme
+- Handle user interactions with styled elements
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXLOAD3QM4rVsk4x0pBhXER0AVwpEFnIsIgATOAwA6ERs2TooFdgBtOAI3GTpsgAqn2+-QGJkAZTiyTAczhkUnQKTnJWfVUcKACAfWCKVgAKUIpzOABeXTAAYU9PZAAROBhSZABBTGyiOk5zcygrdIyAFQYFOABKVwgPcs1NZDyChVZuP2Qo9jgoTViySmpZblYqWaC6OWJzBW150UjOLGnZ+fIqSiT9ZBvJo4oY1ixV3HSriFvP5GyfsGuvm5YYijCjMAC0xCgDEGIH+AM+VigxAA1n4mAotBDSOZpCg3HQAAx0AAcdDoAG44fCblZpNoGCgAEzofhsbGcQZuAAsADZiYyrFzKR9qbdadCdGCGLNOKMUABGAks4Wi24mAbjBUAVmVVOpMChfm4CqVrIJKvhAF8etTjpw-BZ7ewKGCqPxZLCRaqyDiGchuXyBUK9fC6OcwQB3OBOigoWnmTQW1VhyhgsYALzgCqwjJKSa+1ogIcBwNW4KsSlBH09qppSNR6MxPtx-t5-MF+epzb9Ea4VE78PF9JQEHIcAHAPVmk1yEVLOQjNNE6+Q8l0uncuQOv4y8+wIYrBbUm4VAYu9uFGlEDGoXIcfraNIGM0WN9yAJWAAzKxl4Xi8ggRBctKzvdhSAANx0ZAa1rREUUfZ9XxbNxPy1AB2RpE3-QtqV+H4vWQboICI9wvFgdB0mQTRTCgfRWHI9JYmoh5kAyaCqWyBwmE0BRiFkcpsm1AkCA4sAuNIHi+OQAAhQTkE-AlhNE8TJNkHI5MXJSCM47jeNkQo5K5LUCX0P9eiGYRTECABVABJZA4HSeBKDEUZxmQUtQRYYYPIaUQRH0CNODMO4gShTQkm2KBRFiLIwE88FIWhbJOkQKkpk-K4wE8KB0jEQpovYWlwpS9Kjm4RQKFiVhHLgPisqECS9Oqb5stqqSVOawhkEsVYknoyRGOYqAsGROBcGSToprKrAKqUWIkVvCBYgrCgqyyjhSAjarcoC7rsk8MCIzIvKWqimK4oSmAwVWqtSqLCAgpCqIkoi87WFi7IrohEqwFSqkAAENHpLBVCpbRNnovLYm4MMkn+gjPk4TZR2WeQlGeI6dry+G0sR+FhAoBQGA+bIcksFFkDMQJbvIKmyhqwIoZEKiaPw3D8ZuGr0j4uA5ka1TWLkSqcF0+qiOpZmxDYgaKLgJiaOAbm6qofmxYoABdf9CeJj4omncCkmAf9PgO3axDDBhWpEzmviiVgTAgfr2tV2IBb0oh3s+sAuAdSwHRdN0KBSm3a2QOg5IAEhAKXEAIa0-ltjXOjAS0iHAaB4FoMBhAAR1UYRnMSLAKHdbr4vOJZs-0A0KAo0g0msfQIAUSRcH0R3qIiB6w9TjWgA)

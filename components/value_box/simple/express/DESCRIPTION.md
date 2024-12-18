@@ -1,0 +1,30 @@
+This app demonstrates:
+
+1. Use of `value_box` with different themes and showcase icons
+2. Font Awesome icons integration
+3. Synthetic data generation using pandas and numpy
+4. Basic layout using `layout_columns`
+5. Data table display below the value boxes
+
+The app shows three value boxes:
+- Total Sales with a dollar sign icon
+- Average Daily Sales with a chart line icon
+- Total Customers with a users icon
+
+Each value box has:
+- A title
+- A value
+- A subtitle
+- A showcase icon
+- A custom gradient theme
+- Full screen capability
+
+Below the value boxes is a simple table showing the last 5 days of data.
+
+To run this app, you'll need the following packages:
+```
+pip install shiny pandas numpy
+```
+
+This example follows Shiny for Python's express mode conventions and demonstrates proper use of the `value_box` component as documented in the function reference.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBf0HDk6KHah6vb204OuECYCvD4Q6AoKAMTIAOLUDlBUbMxwbLiU7HBSxMi2SVAKrFAANnCsAPr5FFDIALy+WAAiBQBiDLBwABQgCsj9yADk1XCDKOi2WCMVHRAA5t2sNcJ1gwBMAAxrACwAtBsAjPsHg0ToDpyktqx1AMwbRIxwAI6rTYMAlAR9A4PFZawxshwlhZrZmKCPLZuBQugcNgiiABWBEPZD3L4-fqDYgmJapBiAlAgsEQsEwuGI5AotEYhQAXw+kQgMQAClAFshSOgpORWApLDgOXAKtyKKwulIKGU6nIwABlUrlZAtDgAI1IUAYfkIyDonBKJSgaplABUGCY4EyINFkAAZKC4UhmZAAd04FHYyGkpUtyA1GnKCndnuQgqNTrMFTIJWCEAl+sNdVapVYVsQWOQmZiptINRKyEVAOQADVfWkAEKkDSZkNewU+2MigNdTMDFSkV3ELxwOqCmpzVhYThdYhG3QVWVgOhQXasUglTi2PWz8GGrVzzhzG26pa4GVyujkCibgBecBQazEMAA3HLMRB2+3PXB4FO1XNdnMOtDqCftPwWq4HOcBkJ4DC4HK3yPk+-R0CYhoVKwxBiNQdTmpamYfBmMGwXKub5oWSr8mAbYDHQcoACQgP85RVAUwB-MRgwALpYKwwRdNhBBYBsdD0nKZH9HKDpLOiGwqo6JHMu2MQAIKyB0nItAavBFsqZZNsgVY1rhboevWnBYI2loVC2Qkdl2PZ9kZA5DiOY5eJUU4znOC5LiuuzEOwWonouEDyLuFD7r2h7HmeF7IFer53mAD6wf0L5vnKH5fj+nB-rs3BHrsrpahA3BzFBFnwYhyGoRA6EWvIenYRZcoKYkylQKpREAoJenthRYDUbRlTVFAjF9axWDwB4XGIDxfECaRnUDHKrIOJJkGzdmyAEaUyAAMJ4hQBJ6Jpfo6bWBlhkZJnNtWrZzf0HCdt2aY2VgdnDqO47OYes7zouy6uXiDgkUQe4HtO4WsJw56XtesXxQlSWhWAqXflAv6UHOJjEMQ5SsFliikMVN16ghJRIShcBoRhNXtnVhP4Xmm07fi8CEh1CV6nKNHEfRNSMbiTMAyNHEwBNBAzfVYCiSI9zLdJNossgcm2MurTHgrrrlKkepCHwYH8kERlZCj0bHn+13tv2HJDv5ADWZsJWIJRTsD5RZNkBNs+wYh0FO7AUBQ6CsIgAD0QfELYEAAFZDmOzq2HQRpiFgZAwEHUAR1AGhB4uaqsEHR5o1A6vzvAQcAGy8bxoe6KnhqjdwSe6KzAzWtatqK8utTgwIZR5AUyA1CaaRqnAJSdv3WTeuW-rVkG+tYOwtytmAKklGpxGSTU97MgAAjY9gMFMBQVIwnQKPYdBsFzA9lBNmZiBQJgMI+fXc1Az0tSUXRIh8YD0kQ4DQHgLQMAYhniWGvH+IcFANAUF1GAMCVAaAoFmjAJI6BR7Sk4GqBQQQQgKHcJ4PWFl2y-xYkAA)

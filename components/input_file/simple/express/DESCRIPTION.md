@@ -1,0 +1,29 @@
+Technical Description:
+- The app creates a file upload interface that accepts CSV files
+- Users can select which statistics they want to see about the uploaded file
+- Instead of reading actual files, it generates sample data for demonstration
+- The app shows two reactive outputs: file statistics and data preview
+- The statistics and preview update based on user selections
+
+Installation and Execution Instructions:
+1. Save the code in a file (e.g., `app.py`)
+2. Make sure you have the required packages installed:
+   ```bash
+   pip install shiny pandas
+   ```
+3. Run the app:
+   ```bash
+   shiny run app.py
+   ```
+
+Package Dependencies:
+- shiny
+- pandas
+
+The app demonstrates:
+1. File upload input component
+2. Checkbox group for selecting display options
+3. Reactive data frame rendering
+4. Sidebar layout
+5. Conditional rendering based on user selections
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5dKCAEygGdk+7LgB0IogGbNSMZLwAWdCLmQMmrZMzhRiFOgDc4EqTPmLcWOAA90m3v1Us2i9AFcKRTdzjMiLukelZBSUsClx0OHtGR2QAMToAGzgASQhxUlFRPxwoAHM4AH1SdApeAApdCiSAXmEweKTkAFV0BNIoLmQAETgYDMJkcUSEqAAjGoAVZhc4AEpMiAB3Ogo5ZGyR3FI3At46LjhRqGYy2cRRZEvkZdX1uiw9g6OTs4ur9+znHaGksrqfuAARjqRDqLTaHWQAGEAMoANTiiUMA20xDgJWqwDqWGIvD0dQAukQYC4ErpWnBqrEoAleHM3u9Lp8IK4KAViHI4MQANajUiWAq5KQudB-CCMiXIOq8ChQUoghmSy51KFyUikOnIGGy3Qyui45AUUjdOi8VpQXAK8VKq4c0j6yKYxU2q51ABKpEW0O2lCtLolKtICRcMHFUJ9FD9-vegeDoeQADlYJEo9HlWAunKoMgAAqaPR0OCLOrOyVE0sSulJHRwLhOsAer3hly+gaxkNhiOEivIeZia2XAACngOzCwPFlBUkycVB3EgyRux15VeA8ZAGJoZo5XBkL0SspM7LYsxkyp5xBjQD1q12gcRGv3nQL6QnCy3FgAYDTudH5LNBQLjMOK6BcFgR5QCeyZlCAPZKnU2pyqaujEHUKBYmAOZJHwu4ihCnTZteRqyHAu4ykheq4oSBBwZKdRwjSMxocgGHdn+EoAL59tGPabgA4nAbDXoo6Q9gCKAJMhwANCkaSkASyDVCo74UJ+SLftxdHscgm5QtuVCyLAFLIBO2Z7BAaLXHAADkmjIJebDblwii5AIOguDSC5JLwPa8EZSQFKZilCOBWZQfAMG0Zc1lJvA1nodZABSpByBA1lENZACCkloulyDWQAQqQox5dZULHEG1nltp7xZfk8UsQATAArEQADMAAM7WtcgjUABzVdGZUrLgDXADFRbIAAmiw3KlQAMuQXDkKVObHKapUTKQ3JbFVNE1Vc1kwjSxyjehzUdZdXXIAAbFd10AOwXZdRA3c9HUEj2XE9rxyCpCsdA0nQABeZHLiZ+q6OQp2+eDSkgBxvlwNWVBcEucr8EpXyqeRpSnD92nPlKDaet6LaRmAykkSjtbo6Uv7RrjvAYY2ZOtgpSlJBAZR+YwAWmZpLo9kT7bxs2rZU1WXKo3TvAM-6TMYeGcaduThLBVzPP+YUpk4kGHa8ILNrC-OovirFKaU4o1PS7TTPyy6itm4myY+WAHPE6CYBYAAVva3O8xSgVZnrKuG1FUrabp5AGOoTOGsaEHhbu6TMBDZqbLDGOBfOSmgaFx6nhFsEHemiG6ihzFM1g3JwLgK77TxYAMcGyIoNXeiMZE+Pad92k9gBQHikzOcLO8m4wmqXpBTYcAFpNRNSzWD7vMO1CjuOWZTkXhhrnOJlb7P8+LD+Jv2a+ymsmpSQacgLDExBub5oWxaUw5VPYw8y6n6XGiCUPIUk47x7jxKOW4tAGUDo0UyvltbB1lMFfOQDoIlyGhbMaSUUppQytlB0pUiolQyuVKQCQ9oRzqjZdCLV2rXTaj1fqg1-TDTCBghMk0ZrMDmhlRa3AVoZTWswDaGUto7VIGQ3+R0TrMDOixd6107pXSIE9RRt13qfV7kbGM2lB7AUMnzHWWYwAcSIOAaA8BaBgE0AARz8JoeAlBeChEsBQAYYAyCUGoC4lAYBRAwDlLeKodBRiiAgCGPAogODcD4GPf0RiCRAA)

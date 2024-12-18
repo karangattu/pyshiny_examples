@@ -1,0 +1,28 @@
+This app demonstrates:
+
+1. Use of `ui.sidebar()` in express mode
+2. Multiple input controls in the sidebar:
+   - A select input for category filtering
+   - A numeric input for value thresholding
+   - A checkbox group for group selection
+
+3. Main content area with two cards arranged in columns showing:
+   - A filtered data table
+   - Summary statistics
+
+4. Reactive filtering based on sidebar inputs
+
+5. Generated sample data using pandas and numpy instead of external files
+
+To run this app:
+1. Save it as `app.py`
+2. Install required packages: `pip install shiny pandas numpy`
+3. Run with: `shiny run app.py`
+
+The app will show a sidebar on the left with controls, and the main content area will display the filtered data table and summary statistics. Users can:
+- Select specific categories or "All"
+- Set a minimum threshold for values
+- Select which groups to include in the analysis
+
+The data table and summary statistics update automatically when any input changes.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5dKCAEygGdk+7LgB0IDJq2QQAro1wD+EdKIBmzUjGS8AFnQjzxLNszhRiFOgDc4q9Zp17cWOAA90J3v0OS96aRSJpOiITbjhmUVEAYmQAcWpwqCotDTgtWHQAGzSeCihRJSxmTi4NLF44OC4ACgBGACYAZgBKUVyoZABeISwAESSoADFi+GqQUWRJ5AByYiS4AHMWXGmUYGmAQWmiaYAhbZmAYQPp3pOAUWmAXWQAKmR6gAYCCanpyyhM6ThVqWxi7hlCAsGCfOqPZ4PSG1CHNF4QKYzBbqaToX7rWIo9DIWonTGkVEPa53ZAAVkeogAvq0INFkABlOBsDgLNKkdAWci8URBHBQVkAfXZFF41QsFGynWEYHpdC4cAARlBmMhenAYKRpUQVHRMpkoArJQAVZjfGl0w4meZaOWK5XIADudAo2mQZEo6ky3IgTpdyF5vFtSuY1WaiFek15vn8Aoq2XM1QjiOQ0rmVCWzFwWqTiOljPjbEO8wzWcIOamxG0pDoxDgvE6wGlGz10puAGpkJk6LwKNV2us04tltcsNIxABHb6hmmImdTKNKGMyeDMGuJsAujxVzIiQgpsAANU+32QRu0W9IO61yA+XzgnRhkJgek6T6gLk6T0ec8jdCw0YoAVKzgYgAGsFVIFwBWRAl0ETBFk0maUYNRbkywQxC8zgAs4ixND4UQyZK2rWt6y7Hs+wGdYULRK5RwnKdmjhctJjjECqC4TpyN7ftphokcxzoSc4GnJNzQgGIAFkoD0N1yCoSgBCtHk-20ep136PJkA2aBMlwQN+H6HQIOVXdxJiS1TGSCgHVIN1TK8BEOnUB1RF9V1eX1XACUAsgvhgCBRTDJMYkGOhmB7ezmC4R1nVdHVMioEwYvaZA8kNGwMNiv1eTmaLQ3DLLEVy0yBW0Ux5RDaUwsS8IqlVAZpR-ZMWOQAABUJKqwdoBTUWBMsI5B5RUZAEqSqoBXS7ICtaxEuBG7p2iwMg8FDWaplC3UkuQBV5EHEt1smOgRoA5bi2WUNkAAQm6JsWyQQ7k3mrohpUYB5oHc7M2JTpulO-aLuaK5Hs22qVV2tLzzrbcRCKwjnsWt6PveY8fhuAA+P7FwoLBN2hy8aiBkHkBq7aIZo71BrmhbXvet6+KxEduz0apTop6dgbhxCTAoaRmAReakxChkQPIGK8pi9ytFkUFMy0PILB7GtKamKWSvy4Kuf9P8JbKirwnXekZeVeR6QV7sLGINDmtzLWOuoLqer6+BWuG6WYFl3BYwVoLCqpqYEaGgZlvZXA1q1xEYg2TA9PSeBRq28J+EEKaBv95Bjoz7GzvTQHrtusBm0yaU-fT6mXo+5GAe+m5fqzvwcersOiYjgOacr+nb2+YlMfr-xcahnQCdDTmy8DjvqMZujmYgVns-ZpjR-T4mi0yYhpH1ZJeGNuWeySC3lce7ePZNl70C4PoBmGfqxkexFpkkplV2IdFpkOAlKBOR-OC-qo6B-nYZsYpqksNcAiZc3hHjvOiO+hFsiz3msxVu-sUTcD7J3VGI54CcFDEQeoSCIGEVQTUZGXc0ZYHgFwf+s84QPAIYQ5MxD0HrDISOHshM8E23Tkvf21JHo8z5giY+nswCUiIOAaA8BaBgBMJOcK6pqAilxi4Cge4wDugUqolAYBRCggoFkUgEo6AKgKLIPAogODcD4JEZBqBKRXCAA)

@@ -15,7 +15,6 @@ def find_prompt_files(base_dir):
                 yield root, os.path.join(root, file)
 
 
-
 def run_shiny_app(
     script_path,
     port=8000,

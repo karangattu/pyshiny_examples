@@ -1,0 +1,25 @@
+Technical Description:
+- The app demonstrates three different ways to use JavaScript:
+  1. A simple alert function triggered by a button
+  2. A counter that's updated using JavaScript
+  3. A real-time clock that updates every second
+- Uses `ui.tags.script()` to include JavaScript code directly in the app
+- Demonstrates interaction between JavaScript and HTML elements using element IDs
+- Shows how to bind JavaScript functions to button click events
+
+Installation and Execution Instructions:
+1. Make sure you have Shiny for Python installed:
+```bash
+pip install shiny
+```
+2. Save the code in a file (e.g., `app.py`)
+3. Run the app:
+```bash
+shiny run app.py
+```
+
+Package Dependencies:
+- shiny
+
+The app showcases basic JavaScript integration with Shiny for Python, demonstrating both event-driven JavaScript (button clicks) and automated JavaScript (time updates) without requiring external files.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXLOAD3QM4rVsk4x0pBhXER0AVwpEFnIsIgATOAwA6EfQGJkAZTiz0UAOZxkpdBU7lW+1TmtwA+vYqsAFI4UADZwALy6YACSEMRBCtrIAFImyAAicDCkEQCU+kbI0bHxtsQKrBTMSVAAblAmxAycDshkCZqcwsTBuPoAVqyerbahyBFjYPp0CjGO5GzspADuAIIhMn7ZyCD6yLvIUGsUfgDkABJwQUGkyIyVpeWViTV1DU0UAITH2QDc+gC+eQgUxmTggyAU6E0UCoAGFSNMqAwNlsdnsyBByi14ZQdABRELwSjIEaaUilQkULA2Cj4jLUCgAIVwkU0J1inGIAGsALRkBE6L6-MF7Th0ZB+Pk4hi0imbbbCvZo5yyUoMDQUOEI4nISwMVhwaJHSWImX0rBUfga8hUSibAA+duQAAYhYrFca8QSzRarTiiSNVerNUSANTIACMrr2AIgMfGYwMEGMhTiCQo7FsT1q9UazSGrk45usrCwrFeDj8-UGpG0uUTxhhwmhtigLSgDE0yEWnHTyAARkoKhjkOnoeD9SOM1Vs+XZMCuqCXBBu723MR26zsohUbs1xvPBmoNokREsy9c7J0pkcjvRgrkMYGYO5qPZBRGlYbHrp+e3vtDrebjcIoFCeFAC7kJ4A4UEOfi3oqEQcEsYEAYQd5unsEQmAsizIKsOgUBERDwXs5Dsly4RgEhKyHBsREkbssRQKIniUX2FAQNyQgSO2uDIPA3IAEwJoqdYIfej7PmCr7gpCzZiB6DDjtwVg-jmbyAYWwFKGBEEQFBUlwfeCFgNwDR0pQRHoRhoxRDEwgUsgwaIlZDF2DEQQcpylEQlCsLYoidGEG5TEsWxHHcqwCjEMQIguBM95iZhElpJwrDoEEUB8e2cCtnQ0hYvyej3m47TVEZNngoW6AVZVmFgDCnlcoVlAoPRxk2W46VQBAcFgE6VmcJolHkTyilWeUuAhJR+WUNyixwJwVjsBQKB9qQQSaL8YBJRh2QECFmVhREMAUNyADMIl7HW+SpGlGVZS0ChqvSI4SLYZQqWps76Cu7BVVg64dhKR0DJRp0XTk24lYWQOaAeuXHn1MLPeqyAACrvTe963gAAhox5YKot7aGK1GeI48AbNDlXCBQz1gm4FDFlgZW1XV4jDREgb0tylNwO1HOMaDrEROgkPBR1GFgZo8OLKwoTowwCgC1LyA3Um30XiO1y+c2b3wMgcDVDofH6uimj6Pznh61Qnj9Nq8YJfOsyM3JVCY1Tcq3uimL86a-rIKS5JmtSAeMsyrLHDzc384Kt6iuK-teraKJq77sgQEs2oQHAuGpM2GxRhhycWZSPpwn6sgjFnizmqQAAyZIHHAntwCY74qUXt4xnGEAAPT98gACq7u2Pz4gwPA7TNkE2VaJO1BGybDBm3AFuuGPbfdxi5iGjotRBH4tut+9RDhk6l8-HkEy34CTMs2WF4BO9Ntj-brDZGAfxEOA0DwLQMAwgACOqgHL0hLBQS0aEwDohtBQQB+gYDQgyqQYInA+z6AgAoSQPR5A9ShEuNyipv4AF0gA)

@@ -1,0 +1,33 @@
+This app demonstrates several key features of popovers in Shiny for Python:
+
+1. Different placement options (right, left)
+2. Integration with cards and buttons
+3. Dynamic content in popovers
+4. Popover updates through reactive effects
+5. Various content types within popovers (lists, markdown, inputs)
+
+Technical description:
+- Uses express mode for simplified syntax
+- Leverages ui.popover() for tooltip-like functionality
+- Demonstrates both static and dynamic popover content
+- Shows how to update popovers programmatically
+- Integrates with Bootstrap styling classes
+
+Installation and execution instructions:
+1. Make sure you have shiny for python installed:
+```bash
+pip install shiny
+```
+
+2. Save the code in a file (e.g., `app.py`)
+3. Run the app:
+```bash
+shiny run app.py
+```
+
+Package dependencies:
+- shiny
+- (Font Awesome CSS is loaded via CDN)
+
+The app shows a clean layout with cards containing various popovers that can be triggered by user interaction. It includes sample sales data and demonstrates different ways to present information in popovers.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkTEQAJnAZETnBQoc4oAczgB9UugqsAFFIUADZwALxyYAAKPqSyDMgAInAwpJFEdJzBwVAARqFhACoMJnAAlE4QAMTIAIJWVsgAYuQitQDucKzMcMgAwgDKA8h0QnxkEKzOnFjs4laeE1SU-grI68guABKFALIAMv4A5AA8wdwA1qJwwRFgrBS4oRxwcBSRyOxidHfsFBToViIAD0wOIVggACtWFhiMFSCYrHQcmJYcxgVBIVANMDzrlWMDRpQALRQTrdeDAgBsWAALFgAAxg3QY7JYGDcWG6SIAPiOFQgAoUNQGsHQoWQVigFCgClYUGenilMuQYWQIDWG0iAEUAIyRFC6gCsDNNDIImvWOoATAbkLqABxm82W5A6gDMdut1udFogGzdYG1tK9JrNCgAvpV2pwKOxNjMcrgERRFqRgiYYBBPO0GBh-DGrHGwrrgdayohXTG4wnYVAGFZ-BXXQHq-GXMR6ws5lAbAwm5X-QHh1awKLnsgorZRgwYFAIMR5GAWyPkG3a4JBPF-OKJClqBQ7gxOG4-uk+FY7vLFdxRpFm0PV6uXKx0PP-C4ZW4YZx-HCoLonh3HQUDEt05yNCBxLEJwDBwnAxK3mkhBsI8BSRMQJgMN0DAoII3BUAwADc94Ck+T6RH05zEFc5DIPOvAAI4mPWhHIBQpBsK8kpvFAWRwI0SGztKnDkJEK7kbWxhmJ4rA3HAkirGA8AUMexDnpEABqnBwO0yC7G8annsAkQAEpwLIEClBpYAAOJMO0NamdKS4ALpCo+w7ri4m5xLY-icJekSMbqnibveg6Sesn7uDCuRmBxED+HQOq6igAAkIDXl0SrSlAwBHHqRyuYgBBRih-6AXcuQUP6NUQMS2j8PWvAwMStpgGRUWpZO05CHOC69MkMpZFMy6eU+MXflgJjBP4JkTVFU0wucSkAFLzixDC4BltJGgQ4adX6UXDstWCrZETRwLkJQtbtDoHaa97HSdGxnRdYC7PWxDsBlRoAOyPQy94ScO7mVE+3kzL526BXcjHWmFPgRaDAZnfF-zkMlNoZVlCo5cq+WFdaxWleVRCVawQGRPVyD1YhiicW1HVdZJNq9QwM4DYuSS8aN4mLSOZ2zfNqPPjMX4rb+kS1E1wR-Q9h1lC9r21pL53S59UA7cg6VUtaQPPWLQsS7FGvrSYEBwBlVLmkrxvIODECgwAApYfZYFQGjvILPF0FxoSSAJngqWpA4O2IFBYf6KVgH0WGWCEvDSDpMYQG4KAgNJFDsoZnDEE25UQxsUN1g24e+6XnYNp4PZ9hXJ2RFsNzoMgABkSSkJh8CUCJYnjY3lexu20OxLDQVgHMwToEj6Dnrui494ekShHQ7ydZFS2m9NGOJUpAByryNM308APznpT1NgLT9NyRMUrbSDvtozMc4MBcVikO0SXicuA9RVUQByBtQOBosgE+rdbIOBsA7B2AAqZAABVOS7E5iSiYOgT+392KcVYNWH6yBQ75ymM-DYCCqL51ov6ZirFbB0wSuQPQM4eIjWCCQk6CDEh5T4HoEwmCXKCX9GIBUxIpDwFgX-J+0wsDZ08BIKQ5BPC7yxpEDgX85HZBsgMdgX86jZEnGPWwY0KY5CqpEGAFBiSek6pUN24hJAyDgOoOgdAFI+zsfIxx6hLIUAChAUwOc1HtA0cEAUNh-aeAbm9GYfDlReBhv5YKoVwooSCUUEo5RXQuFiS5Wefl+zBURikogaTiilFZrWHJVA8nbkiFPGexSVBf3SeUrJMT+HVISQU+4+MqZIXPKUjJZQwARiIOAaA8BaBgDEMxWC+5KAwgoN7FCYAlgHimQoOcAJ4QhE4LkBQVkBC4AUG+awAFi6SRGa5IAA)

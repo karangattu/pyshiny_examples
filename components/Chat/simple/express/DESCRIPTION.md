@@ -1,0 +1,28 @@
+This app demonstrates:
+
+1. A simple chat interface using Shiny's `ui.Chat`
+2. Basic message handling with predefined responses
+3. Use of async/await for message handling
+4. Welcome message using markdown
+5. Simple pattern matching for responses
+
+Key features:
+- Uses express mode for simplified syntax
+- Includes a welcome message with markdown formatting
+- Handles basic chat interactions with predefined responses
+- Clean, minimalist interface
+- No external dependencies or file loading
+
+To run this app:
+1. Save it as `app.py`
+2. Install required packages: `pip install shiny`
+3. Run with: `shiny run app.py`
+
+The app will respond to basic inputs like:
+- Greetings ("hello", "hi")
+- Weather-related questions
+- Help requests
+- Any other input will get a default response
+
+This example showcases the basic usage of the Chat component while keeping the implementation simple and self-contained.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBQoDEyACJw63OG2Y-WsOgANj62UBRQyHRCyBTsPsTs4QoAygCCALIACgAyAKIA+gBKeSlZAPIAcimlyAC8yCAKyC3IcmAA5mJwUhAd7SjtABJwQUGkAITIQ6QA7sjEUBDIAJLIULqcrCK4pCaxpGG4APztBM2t7bPicQ4DbWArAOQsEKQiUABGIQcL8cQAa1E4iCAFopPBkNdwvEGERPmZVgslrFRkFkLt9pwKE89FAgrMoLg9KwTBAeHxlrdkLZOB1sfioUIgrYJmcLi12vEguh7u01otltz0Bi9lDsexkJ8NpxiMgAI4mODbTjkVhYZAAFQYvA2AO4HXWnz2ImhtwYyBiACsTNs2ETkNzxmzCByHvY6FATEEKHzHi9kG8RKSxI65r8dII7L84uENdrdax9X1fPA4gbkKNWHAXQoAL5OCCWHBQDpwAqkdAUVgACikFBCdXaKX4wR8AGEkiIPDBSGcopwxl9G9qlQBKQuudticI+SLXIJkSHwXSl+QQBdLnwNYswKAMAG2OYQGtu9rnsBu1wtgQ-TvhdxwXtugDqoy3Ma4emlrFlfwf9i9lMCaxPE2aZhogQ-NwVAMBIUhqogboAFTICkDpcmifZgJaFpcpw57LK0qFpEmRomqBPhmrCKHIKRQLRBawpnperEKBOEAuMg043AkXaUtsSzEFREpQu+fjICuARlgoiQPjunBYPeFCnkRLScLYTZgIBpAFHJvqumpknKtJyp1MAm5+AAuuxk7uFswQOtS+nIAAqissldlglg1hxCgAAL6Vg5AFLaDgFKSnwwNiCgbLgEByh6jpLLYIR6V2vlIUZrgAOI9MgYUMLixmrjJRmFQUMCsIaDRBRVxhmL5WDjNcDC+We2WPrB0UQD4kZqj4P5wLYlrLIVlKmL6RmcHQ6w8DWsxCCN3AFdmDCVdVUQxItDDLcswCYWM2FEPh-aYbg7RWWOWWtLdwKsFG4ENOk2T5MUpQVNUpQHZ03S9P0YA2UZowzQ81F3DhK0VVVHQ3XdLT9RAT1oZkuSFCUZRVDUKQ-eDjiA26IOzYdvKQ2Na0bbDbq3YjyMvWj72Y19OMk5dhNBNmcPw7T24o696MfVj33tB6Xo+mzRlXnRtgjawQR0uwIj2EETmkGw-DerOyDaKQwmbH0bpQIS2L-hQWAYOg1C2JVJlrjWPNjmAeZEOA0DwLQYBiIqnBiPAlDqhQGgUIQJDkFQNAoJeEB7hQwTvPLnwKEWAgXRA6ApRshbw-DTtWUAA)

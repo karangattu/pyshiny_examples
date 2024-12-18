@@ -1,0 +1,26 @@
+This app demonstrates:
+
+1. Use of `navset_card_tab` with three panels: Overview, Details, and Statistics
+2. Synthetic data generation using pandas and numpy
+3. Different data views in each tab
+4. Interactive filtering in the Details tab
+5. Use of Express mode syntax for Shiny for Python
+
+Key features:
+- The Overview tab shows summary statistics grouped by category
+- The Details tab allows filtering of raw data by category
+- The Statistics tab shows overall statistical measures
+- The app uses the fillable layout for better space utilization
+
+To run this app, simply save it as `app.py` and run it using:
+```bash
+shiny run app.py
+```
+
+Required packages:
+- shiny
+- pandas
+- numpy
+
+The app follows Shiny for Python's Express mode conventions and demonstrates proper use of the `navset_card_tab` component for organizing content into tabbed sections.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5dKCAEygGdk+7LgB0IDJq2QQAro1wD+EdKIBmzUjGS8AFnQjzxLNszhRiFOgDc4q9Zp17cWOAA90J3v0OS96aRSJpOiITbjhmUVEAYmQAcWpwqCotDTgtXEptOAtiZB4KKFElLGZOLg0sXjg4LgAKAEYAJgBmAEpRXigAGzheAH18qGQAXiEsABEkqAAxUvhakFFkZeQAcny4VZR0LiwNvtKIAHM4Wt4C1mHVxoAGFoBaG-rH+tWiai4r24em++bXohqOAARyu41WrQISxWqxM1hkmxQxUO5RgWAgLBg3QaN1xRFuNyIzQAbABWSHQ5araRiCi8LZSbAoioovQUWqkwnIeqcolkikQFZrYhJOBHFi4BnIsoVYjaUh0YinYCrACiPXM6jExHpRFWAGEuqQKLpjm81tNSKQuKsALp88miAC+7Qg0WQAGVsuwoCdkKR0BZyLxREEcL64H0A3TahYKD1hsIwB7ur1kJMdAAjUhQZgiQjIFR0LpdKCZhMAFWY0jgrvd+pMoqkUEsVTYIrzyAKmeQpdwpH8ogA7nQTcgw9BW9k+h2uH1u7U6J8k9220nWohKcgtzEAPLWZiWOhwIfICtlrcjscTlt9DgQOBdWpJ-fhI8n9ebwVClZh7TNZ9k1TfhX0PY8h3XLchSglYAAFQi4cI9imPo1FgGxvx-PI4BULRgL6XhZCxZhcFqDcYKwwiYGI+RRk6Hp+kGLAjnUaR0EzUjVhFKhxRIiEsF9I4FgorCYThagawZFV4E4c1Viou0oUw0SsOpWl6RQaTTAgOSFNtEShRdEoB24WpGldFShSomisDILpZAgfhRhVABBSwjmQAAlOB4UkvUK2NbovJ8iTNj1NyPIAVXUuSAoKLpkGi0d6X05SVJMChpGYQVrNzXAtx3dNsigYt+HPTNL1HbRxzodFb3vR9APGYrSs-ESw18fwCMfOBzGfNLRKTbixQlJMlMslYky9DU2H1UVePywgDJWOUFSVXhhmAJMXJLJNbWQABqXs6HOM58MGFVhoWu0sBpOhgRrMiLNE56sJE+CPiQwZULmDCVMQ3Ciy6KgTDnQYyK-CbljoXDOooWz5olMiRlGbbdqQZasIyrKcvOqZMeQbHsrwhiBimYB6N6MmCkuxG+P24ZRjhhGeKR1pUug5SYg9AoLHORUyovZSr2qm9LDvThGqm3mTpyEMwHIgblj-ADpaSWXFSCj0iLyyCle3fWPrCZhkIKH70JEgGtF5-pcpIiGCfOJInJJqmmMQ3hiGYOhM1OVpjJpOpzIJomcpt4AVXEhE5Luuk7VtMAnSIcBoHgWgwBMB66BMeBKF4LAKBcCgCzAMhKGoYuUDAUQsQodAjXjH2ilkPBRHvHgQzdfWhUT20gA)

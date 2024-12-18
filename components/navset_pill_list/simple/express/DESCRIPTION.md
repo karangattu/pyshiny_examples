@@ -1,0 +1,28 @@
+This app demonstrates:
+
+1. Use of `navset_pill_list` with multiple `nav_panel` components
+2. Basic reactive rendering using `@render.text`
+3. Sample data structure using a dictionary
+4. Simple statistics display for each department
+
+The app shows three departments (Electronics, Clothing, and Books) in a pill list navigation format. Each panel displays:
+- Total sales
+- Growth percentage
+- Best performing month
+
+Technical description:
+- Uses Shiny Express syntax for simplified code structure
+- Implements `navset_pill_list` for vertical navigation
+- Uses synthetic data stored in a dictionary
+- Employs reactive rendering for displaying statistics
+
+Installation and execution instructions:
+1. Save the code in a file (e.g., `app.py`)
+2. Install required package: `pip install shiny`
+3. Run the app: `shiny run app.py`
+
+Package dependencies:
+- shiny
+
+The app provides a clean, professional interface for viewing department statistics with easy navigation between sections using the pill list format.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzjIAOhEbM2XHljgAPdGNas+AoSO7oArhSJiIAEzgMipzosUBiZAGVY6ADZzrUCihFHVJrU0kAfX9A5ABeZBBFZGSFMABRX0kmCE5iVnlaRIgUktTWKF982mAARgAmAAYGohqAViaWgGYO5BqAdiaAXQIk0uSCmHIKdiqUYAKAKSgIAqICgDE4ACNV1IBZKAZdgoBBHQLh0bGCgHMmAHdpgpQCgGo2gFICq+QAXxHiikCgBhbykabcG7PBI-EoFcqVaHAAAcPQAnO0Wk1mr0akMAWNxmBJpQZkjFstjmBNjtCPtDlSzkcwJdAdcwHdSI92NC3vUvmAfv8fgUAEKkUgAa1mMLZpXhFTgMuAABYep1UUQVY0te1WYTUiTpsqKSs6RttlSDsy1mAmRcCYTbg8nrQ3siBULFL9nBA3O44CJTOhkOgoDc5KR0FJyPkII4cOG4BEoxRWAAKKQUXyxAoABSYYUkyDzdjoQhgy2IcgAIlAOFtSIdrLs6JxvN4oFscwAVBimOAASl9bmBYgCcmg0lYgYi6Hb3gi3k4rAoinunGmyATU5nFDnC6XK4o6c41lzYBCRf3U4Kg8QPzcGTgWXIuX0YYgcG8Pw3W53UDSHOyzfumBTPq+OR5HeD5yiUCbsJ0YHpJkFDZO+yA1nAYbCPAlB3rCQJwSkAACVi2AwWBUJoa7Eckth0Mg34vmhb55BEq4BBm96EWM0RQHEoaFuE+78fMKEseh0EsrxpRiBQpgMMU6Z0AUPbghUHiKqwKAACQgKwpgwOmYkAOQIkqpmDPeBA+s4gp0QaJSqWAADiLrsCgIBmZy3JWXZZqyU5yQuaKSoiHsUyeQkZlGjMVnAGZFmsFZWDcLYmjppWmVJdpVmDoOgw+mAw6OY+yCguCag3KGIHeHCcp-uw26cFgU7AV+3jIZVEIQFCJWwQaCFISCYK9TVWE4RQeFriVsmyWR1AUVRWi0QaDHIMQY3VRxgRpumPGOSU-GCVeIlRAEUDiT11UXEFKTyYpykuepgT1Z4lR6QZRkmZdwDmXl1mILZ8j2fdTkue5XLTF5Pkef5oOBUdwWheFyCRaSsN-aZcUpYMiXY8lqXpVoWVQDlhOAwVRUEWVcpuOKUofnVDUlE1LVtYBHWgWKErSjBsnDchjPSph2GHNN1CzaVBoLeRdgrTRskbY2TO7VxB2DcFyAnfEZ2RGJvNM3dyPJI9SnICpakae92lfYZxm5ZU+XAwF3ymwakMeVjgT-b50wI2DHuEqjq7o1FPtXTjUV4wTvsA87gxpTYpPZb98dE9ZhXFYOYD-AkkCwAgKBgGIACOjhiDNrBUTRdJgGQlBS7QDmVhQPjgsuOwQPGAi4MEyz+HG4OoL8gxAA)

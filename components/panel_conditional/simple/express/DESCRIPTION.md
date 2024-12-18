@@ -1,0 +1,31 @@
+This app demonstrates several key features:
+
+1. Uses `ui.panel_conditional()` to show/hide different UI elements and outputs based on user selection
+2. Shows different input controls depending on the visualization type selected
+3. Generates synthetic data on the fly instead of reading from external files
+4. Uses both table and plot outputs to demonstrate conditional rendering
+5. Implements proper reactive behavior where outputs update based on input changes
+
+The app has two main modes:
+- Table view: Shows a sample dataset with configurable number of rows and option to show/hide row numbers
+- Plot view: Shows a histogram with configurable number of bins and color
+
+Key features demonstrated:
+- Conditional UI controls using `panel_conditional`
+- Reactive rendering based on user inputs
+- Dynamic data generation
+- Multiple visualization types
+
+To run this app, simply save it as a Python file (e.g., `app.py`) and run it using:
+```bash
+shiny run app.py
+```
+
+Required package dependencies:
+- shiny
+- pandas
+- numpy
+- matplotlib
+
+This example follows Shiny for Python best practices and uses the express syntax mode for cleaner, more concise code.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkTEQAJnAZETnBQoDEyAApQA5nGSl0U8lYFBxwvOAB9PwpWAAopCgAbOABeOTAPCDgE5ABhcitOAOhsgBE4GFI0ojpOBISoACMk5IAVBhM4AEonCFccsSgqZAp2HxgobmR63FIzBQB3QvZkEOnZinDWThsGqAYYzsQFZBPkRZGVziwtnb2Do4hTp8usYzNwhigC0nCGswpAjFjs8QWlpJwAF7hCi4dDyQjAkFPNI5dikUisHwANU4rBMUASkMGnHIVURSJOxDRnGIcFYyWAaQojSSVWQaXQCVIFDSAF0COSKZikpI4FZUmBmU14YLTt1HkjZSdXABlNHzZBkShMBJ6LUFIoEhK8XaYqy+R7gvEEolFYaw+QKkHnZYhdBQTIJcL6wok4pAsBvChYcFQmFw5DJKPIADknO5MbShyVzxCQc2hJs+zSEBMMF+3CChHZYAAcnmGrZfHRkA1C2yYNxkgBWIjjDQtgAMRGkBI6yQATJ35RSnmmIKYNsK4JJIXAgU7R8iwPGNmQuQwyYulyc0m4uSI8hutzvnlTSDS6Qy0k0Omy0mIrPewJ4xNQ+QLtzvp6LxTeEneYApk8I6Kl+Jwui87qet6+S+uQBIBkGIaQtCDqRtGMZSkkiZgMm4Gplc6a5vADA0gGJEfKQ8xFkQaTljAlYMNWojUbRyC9gBKStsgjYQMkACMbZQB2Q6gUu46Tt6ozEAA1g0pAaAGHDUeE3A2Boz5qtRrEaiRTHsZx-ZtB04nsourgALITI80FZJq5BUJQ5KQW6HpZLB1jwf6aTIaGaERlGySxthcC4fhFIAAKWFmWBWIMUDhIwsCOhSNg1ip8zQiy84RTu-CCMIyDQfFehQHo6BPgRTwFYYyAkXgyDlfV6DAacbXKsgADi1C2IMPisLAnI+PFzIdS1WCfNYzDXHAYoxAJA4AMxmRSEBUTRkZ8BOZhYJRTA0Qc43jVYNbBZVWAlAlABinzwDEIDjU8MalilMYoMAdAxm4tisOQ4QgJwAC+MbIHQQh8Ntoget4MTrQdrCdPyT2nDGACC3jvRNU1WDNOPcBQMRDkQAAc3b1RtiOfqez0qmQYhYxOk0erjMB7UI4wJDEADsPECTx8NsZ0k2zNYROrUiQMS6C1WnGIFAmAwjynZNdJwBs6maDEVhMOgyQQNy22Ttc6pqdYWudGZLlLFB7lej6hpc75O3Bv54Y+EFsaruFDxRTFtg4AeKbpSoqmrvc421UVDW8M1E6RwYRXjBQq6Eg0OCwgeTUVQkPKy7u+fIK4PWZJ8QyDQISTIKNUDjUzOMzZi82LStJ0JVt9cszNBsMJzC2duT-NEAJA-Dsdhd9AMQwjD4q7jTUnhECJW2csGeINKusTS88IlYFwrCEzXRB1hA9LIZRJ9b0Q65CMkyGrrBG4HNvTy75iGzxEkMQxiqQ1VyUuIKBkT+EUGML9Thv3VuEDQ9RKxcxjFiPsYVwEnEgRsXAsCsjf1unAAAjh0CAxBcBgPHqeeWitHgLzAEDIg4BoDwFoGAMQ+DOBiHgJQVgWAKAaAoMWMAWonK8JQEBCAydU6cAaAoGOCgSrlR6KeahvIgA)

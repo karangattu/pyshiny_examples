@@ -1,0 +1,25 @@
+Technical Description:
+- Uses `layout_column_wrap` to create a responsive 2x2 grid layout
+- Each section is wrapped in a `ui.card()` for consistent styling
+- Includes a mix of static and reactive content
+- Demonstrates data filtering using selectize input
+- Shows both table and summary statistics displays
+
+Installation and Execution:
+1. Save the code in a file (e.g., `app.py`)
+2. Make sure you have required packages:
+```bash
+pip install shiny pandas numpy
+```
+3. Run the app:
+```bash
+shiny run app.py
+```
+
+Package Dependencies:
+- shiny
+- pandas
+- numpy
+
+This example showcases a simple but functional dashboard layout using `layout_column_wrap`. The layout automatically adjusts to screen size, and the content updates reactively based on user input. The synthetic data is generated on app startup, eliminating the need for external files.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5dKCAEygGdk+7LgB0IDJq2QQAro1wD+EdKIBmzUjGS8AFnQjzxLNszhRiFOgDc4q9Zp17cWOAA90J3v0OS96aRSJpOiITbjhmUVEAYmQAcWpwqCotXEptOAtiZB4KKFElLGZOLg0sXjg4LgAKAEYAJgBmAEpRXigAGzheAH0cqGQAXiEsABEkqAAxIvgqkFFkBeQAcndSLmlzJZRgJYB1Oi4AcwzeJaIl2Kgjk7PlgBVSUnbT84BlaUx2ui6lgF0CeaLJYmawyOBbKTYIrcUrQrh6Ci1AAMKKINRRqOQABYmgCIItltIxBRTigCnDYcUEcikWiMUQcXiCSt1Co6BRujAoMxDnoIeTiqUiXQVCwYFUkVgakRJViGU1CqQidU6i0IABfNXRZAAQUwyAsFE6Am42S6xGYdHQFnIoiCOCgx26pGtvCqhs6A2EYFeHS6yDGOgARqRuSJCMg2e12lAg567sxpHAtRAYgAZKC4JVsaS8PSHZAxrP+bpkdqyCDdADuRWUECr7O0yHtRezpaeFertaqDa4FG0AxqAHpVYhAQtx8gYgBhMPIGooMa5ZB3WOdScN-vNuhYYhhqpNMf4gmLe175hcbrpK7hKre32dfhLvJgNUnxYAAVCXHCWD63TUWAbGPd8fxULQ-R6XI4zgA8j3fd8TAoaRmHxb9f2fWJLWqNpH16cYUwJGc5zqFAAAV1HWcxkAmOh2ioCIQOQTcmzPfdD0nAk2IvK9TB-Zg7zAWj6PCZAKLWDYSW9N8EPtXwS3KTpzDoAAvWDOIQ71VioqTCA0997zgJS2HEnTeG9JkEIJYhtFIOhiC6AZcK6fDch2bTJL+LAKCeOheERXF9JPGBpHoq140TYCrMIxZiIvZAGhQd4YC5Zh5FeXIpKYljt13dj4Nkndz0va9+ME5LUvSzK-MyczXyCr9qH4v9xgA6YooQsCtFkSrun8pI3Q4pirK4cChmcno+iCgkRWQeSKBwSjJMGgqrNAsbshUYBRvcpbNl+LA-L0Kp5sWiTzEGppfmmxYboWfqSUGYZnymIDZjuk8lgAWQyS1iAhHYHlydpkAAJTgUEk1uJYgY6ZAAFViReZYdUsAtxLZNgvu5XkID+Sy1s+gA1Dooe2D6rJUb0ABIQB24EIeoKGDt4WQ4IILAkRUdULIphCqbAOmtqWYUSS81nxUPDmuZ5vThsJk8BaF3bSExzkcb5A74E4OCpQAUllvmFmu+X301D6kJQ-EHvMiBJzirhsRQABJCBRWQWcLw3RtcuKuCgu4kq+Nvb0dRDfxpKC707l0fgeGDUN4p-GByH8ooqH4fs4GbcpkFVwtMzbMtOxrDA5vxV5dH0SMWDE3B+3ILBvSjsAY+z1t-AEfwNCSeyOnaeQrgAK1zR6gz4So8+ti0Kmt1S4CbsAW4TeRFLgZSIALeEVBUcJqDYDyLoNUgtAqA10m6lLuVXzL+A+HIF+9MB1SIcBoHgWgwBMABHIITHgSgvBvIuAoBGMAZBKD70-qILkFB0DtFIEaOgQZ8iyDwKIDg3A+CRFNieZ+vwgA)
