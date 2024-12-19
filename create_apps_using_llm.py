@@ -7,9 +7,7 @@ import subprocess
 import sys
 import threading
 import time
-from pathlib import Path
 
-import black
 import requests
 from anthropic import Anthropic
 from dotenv import load_dotenv
@@ -408,8 +406,9 @@ def create_test_files(file_dir, code):
     """
     Creates TEST.md files with the extracted code.
     """
-    # Create or overwrite TEST.md
-    with open(f"{file_dir}/test_{file_dir}.py", "w") as f:
+    # given a string like components/sidebar/comprehensive/express/ get sidebar
+    test_name = file_dir.split("/")
+    with open(f"{file_dir}/test_{test_name[-2]}_{test_name[-1]}.py", "w") as f:
         f.write(code)
 
 
@@ -458,6 +457,13 @@ def find_prompt_files(base_dir):
             yield root, os.path.join(root, "PROMPT.md")
 
 
+def find_app_files(base_dir):
+    """Recursively find all app.py files in directories and subdirectories."""
+    for root, dirs, files in os.walk(base_dir):
+        if "app.py" in files:
+            yield root, os.path.join(root, "app.py")
+
+
 def process_directory(directory, system_prompt, model):
     """Process a single directory to create and validate a Shiny app."""
 
@@ -473,12 +479,6 @@ def process_directory(directory, system_prompt, model):
         with open(prompt_file, "r") as f:
             prompt = f.read()
 
-        # logging.info(f"Processing directory: {directory}")
-        # with open(prompt_file, "r") as f:
-        #     prompt = f.read()
-
-        # print(prompt)
-        # Generate initial app
         original_code, description = generate_shiny_app(prompt, system_prompt, model)
 
         # Add a 2 step validation process
@@ -624,19 +624,29 @@ timer_start = time.perf_counter()
 for directory in os.listdir():
     if app_type == "testing":
         if os.path.isdir(directory):
-            if os.path.exists(f"{directory}/app.py") and not any(
-                file.startswith("test_") and file.endswith(".py")
-                for file in os.listdir(directory)
-            ):
-                with open(f"{directory}/app.py", "r") as f:
-                    app_text = f.read()
-                    user_prompt = f"""
-                Given this shiny app code: {app_text}, please provide a test using controllers for this app based on the reference testing documentation.
-                """
-                    messages = get_llm_response(user_prompt, system_prompt, model)
-                    code = extract_test(messages.content[0].text)
-                    create_test_files(directory, code)
-                    update_token_counts(messages.usage, model)
+            app_pairs = list(find_app_files(directory))
+            if app_pairs:
+                for dir_path, _ in app_pairs:
+                    with open(f"{dir_path}/app.py", "r") as f:
+                        app_text = f.read()
+                        user_prompt = f"""
+                    Given this shiny app code: {app_text}, please provide a test using controllers for this app based on the reference testing documentation.
+                    """
+                        messages = get_llm_response(user_prompt, system_prompt, model)
+                        code = extract_test(messages.content[0].text)
+                        create_test_files(dir_path, code)
+                        update_token_counts(messages.usage, model)
+            # for dir_path, prompt_file in prompt_pairs:
+            #     if not os.path.isdir(dir_path):
+            # with open(f"{directory}/app.py", "r") as f:
+            #     app_text = f.read()
+            #     user_prompt = f"""
+            # Given this shiny app code: {app_text}, please provide a test using controllers for this app based on the reference testing documentation.
+            # """
+            #     messages = get_llm_response(user_prompt, system_prompt, model)
+            #     code = extract_test(messages.content[0].text)
+            #     create_test_files(directory, code)
+            #     update_token_counts(messages.usage, model)
     else:
         # if directory is a folder, process it
         if os.path.isdir(directory):

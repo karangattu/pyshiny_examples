@@ -87,6 +87,90 @@ This approach ensures that you're working strictly within the scope of the docum
     career_plot.expect_not_empty()
 ```
 
+
+1.  Adding test methods for params passed in options is not required. Only test the params that are explicitly mentioned in the reference document.
+
+if the app code uses a component like this
+```python
+    ui.input_selectize(
+    "item_select",
+    "Select Items",
+    choices=items,
+    multiple=True,
+    options={"placeholder": "Choose items..."},
+)
+```
+
+do not add tests like this
+```python
+    selectize = controller.InputSelectize(page, "item_select")
+
+    # Test initial state
+    selectize.expect_label("Select Items")
+    selectize.expect_multiple(True)
+    
+    # Verify the choices (categories and items)
+    selectize.expect_choices([
+        "apple", "banana", "orange", "grape", 
+        "carrot", "broccoli", "spinach", "tomato"
+    ])
+
+    # Test placeholder
+    selectize.expect_placeholder("Choose items...")
+    ```
+
+    since the `expect_placeholder` are not mentioned in the reference document.
+    Instead just test the the other params like this
+    ```python
+        selectize = controller.InputSelectize(page, "item_select")
+
+    # Test initial state
+    selectize.expect_label("Select Items")
+    selectize.expect_multiple(True)
+    
+    # Verify the choices (categories and items)
+    selectize.expect_choices([
+        "apple", "banana", "orange", "grape", 
+        "carrot", "broccoli", "spinach", "tomato"
+    ])
+    ```
+
+1. You cannot reset a selectize by passing `selectize.set([])`. Instead use this logic to clear selections
+```python
+    selectize = controller.InputSelectize(page, "item_select")
+    selectize.expect_selected(["apple"])
+    selectize.loc.locator("..").locator(
+        "> div.plugin-clear_button > a.clear"
+    ).click() # Clear default selection
+    selectize.expect_selected([])
+```
+
+1. Never try to define a controller by using `page.locator` or `page.get_by_test_id` or any other method. Always use the controller class to define the controller.
+
+## Incorrect usage
+```python
+value_range_slider = page.locator("#value_range")
+value_range_slider.expect_min("0")
+value_range_slider.expect_max("100")
+
+
+sidebar_controller = page.get_by_test_id("demo_sidebar")
+sidebar_controller.expect_open(True)
+```
+
+## Correct usage
+```python
+value_range_slider = controller.InputRangeSlider(page, "value_range")
+value_range_slider.expect_min("0")
+value_range_slider.expect_max("100")
+
+sidebar_controller = controller.Sidebar(page, "demo_sidebar")
+sidebar_controller.expect_open(True)
+```
+
+1. Never attempt to test a component that is not part of shiny framework or a component that is not assigned a unique id since controllers don't work for components without a unique id.
+
+Some examples of App code and their corresponding test code are shown below:
 **Example App 1 (Shiny App Code):**
 
 ```python
@@ -454,4 +538,185 @@ def test_sidebar_kitchensink(page: Page, local_app: ShinyAppProc) -> None:
     always_sidebar.expect_desktop_state("always")
     always_sidebar.expect_mobile_state("always")
     always_sidebar.expect_mobile_max_height("175px")
+```
+
+**Example App 5 (Shiny App Code):**
+
+```python
+from shiny.express import input, render, ui
+
+ui.page_opts(title="Selectize Inputs kitchensink")
+
+fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry"]
+fruits_dict = {
+    "apple": "Apple",
+    "banana": "Banana",
+    "cherry": "Cherry",
+    "date": "Date",
+    "elderberry": "Elderberry",
+}
+
+fruits_grouped_dict = {
+    "Citrus": {
+        "Orange": "Sweet and tangy",
+        "Lemon": "Zesty and refreshing",
+        "Lime": "Bright and tart",
+    },
+    "Berries": {
+        "Strawberry": "Juicy and sweet",
+        "Blueberry": "Tiny and antioxidant-rich",
+        "Raspberry": "Delicate and slightly tart",
+    },
+}
+
+
+# Currently not wrapping in cards, as opening the selectize within a short card hides the selectize dropdown
+ui.input_selectize("basic_selectize", "Default selectize", fruits)
+
+
+@render.code
+def basic_result_txt():
+    return str(input.basic_selectize())
+
+
+ui.input_selectize("selectize_with_label", "Selectize with label", fruits_dict)
+
+
+@render.code
+def selectize_with_label_txt():
+    return str(input.selectize_with_label())
+
+
+ui.input_selectize("multi_selectize", "Multiple Selectize", fruits, multiple=True)
+
+
+@render.code
+def multi_result_txt():
+    return ", ".join(input.multi_selectize())
+
+
+ui.input_selectize(
+    "selectize_with_selected",
+    "Selectize with selected",
+    fruits,
+    selected="Cherry",
+)
+
+
+@render.code
+def selected_result_txt():
+    return str(input.selectize_with_selected())
+
+
+ui.input_selectize(
+    "selectize_width_close_button",
+    "Selectize with Custom Width and remove btn",
+    fruits_grouped_dict,
+    width="400px",
+    remove_button=True,
+)
+
+
+@render.code
+def selectize_width_close_button_txt():
+    return str(input.selectize_width_close_button())
+```
+
+**Example Test file 5 (Test Code):**
+
+```python
+from playwright.sync_api import Page
+
+from shiny.playwright import controller
+from shiny.run import ShinyAppProc
+
+
+def test_input_selectize_kitchensink(page: Page, local_app: ShinyAppProc) -> None:
+    page.goto(local_app.url)
+
+    basic_selectize = controller.InputSelectize(page, "basic_selectize")
+    basic_select_txt = controller.OutputText(page, "basic_result_txt")
+    # # TODO-karan; Debug why this does not complete
+    # basic_selectize.expect_choices(["Apple", "Banana", "Cherry", "Date", "Elderberry"])
+    basic_selectize.expect_choice_labels(
+        [
+            "Apple",
+            "Banana",
+            "Cherry",
+            "Date",
+            "Elderberry",
+        ]
+    )
+    basic_selectize.expect_choice_groups([])
+    basic_selectize.expect_label("Default selectize")
+    basic_select_txt.expect_value("Apple")
+    basic_selectize.expect_multiple(False)
+
+    selectize_with_label = controller.InputSelectize(page, "selectize_with_label")
+    selectize_with_label_txt = controller.OutputText(page, "selectize_with_label_txt")
+    # # TODO-karan; Debug why this does not complete
+    # selectize_with_label.expect_choices(
+    #     ["apple", "banana", "cherry", "date", "elderberry"]
+    # )
+    selectize_with_label.expect_choice_labels(
+        [
+            "Apple",
+            "Banana",
+            "Cherry",
+            "Date",
+            "Elderberry",
+        ]
+    )
+    selectize_with_label.expect_choice_groups([])
+    selectize_with_label_txt.expect_value("apple")
+
+    multiple_selectize = controller.InputSelectize(page, "multi_selectize")
+    multiple_selectize_txt = controller.OutputText(page, "multi_result_txt")
+    multiple_options = ["Banana", "Cherry"]
+    multiple_selectize.set(multiple_options)
+    multiple_selectize.expect_selected(["Banana", "Cherry"])
+    multiple_selectize_txt.expect_value("Banana, Cherry")
+    for option in multiple_options:
+        # click on the remove button for each selected option
+        multiple_selectize.loc.locator(
+            f"+ div.plugin-remove_button > .has-options > .item[data-value={option}] > .remove"
+        ).click()
+        page.keyboard.press(
+            "Escape"
+        )  # to remove dropdown from blocking access to other selectize inputs
+    multiple_selectize_txt.expect_value("")
+    multiple_selectize.expect_multiple(True)
+
+    selectize_with_selected = controller.InputSelectize(page, "selectize_with_selected")
+    selectize_with_selected_txt = controller.OutputText(page, "selected_result_txt")
+    selectize_with_selected.expect_selected(["Cherry"])
+    selectize_with_selected_txt.expect_value("Cherry")
+
+    selectize_width_close_button = controller.InputSelectize(
+        page, "selectize_width_close_button"
+    )
+    selectize_width_close_button_txt = controller.OutputText(
+        page, "selectize_width_close_button_txt"
+    )
+    selectize_width_close_button_txt.expect_value("Orange")
+    selectize_width_close_button.expect_width("400px")
+    selectize_width_close_button.expect_choice_groups(["Citrus", "Berries"])
+    # # TODO-karan; Debug why this does not complete
+    # selectize_width_close_button.expect_choices(
+    #     ["Orange", "Lemon", "Lime", "Strawberry", "Blueberry", "Raspberry"]
+    # )
+    selectize_width_close_button.expect_choice_labels(
+        [
+            "Sweet and tangy",
+            "Zesty and refreshing",
+            "Bright and tart",
+            "Juicy and sweet",
+            "Tiny and antioxidant-rich",
+            "Delicate and slightly tart",
+        ]
+    )
+    selectize_width_close_button.loc.locator("..").locator(
+        "> div.plugin-clear_button > a.clear"
+    ).click()  # Clear default selection
+    selectize_width_close_button_txt.expect_value("")  # Expecting empty after clear
 ```

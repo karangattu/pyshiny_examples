@@ -38,12 +38,12 @@ By following these guidelines, you will produce robust and error-free Shiny for 
    - Avoid R-to-Python direct translations
    - The string used for id in shiny components and @reactive.event(..) can only contain letters, numbers, and underscore. Other symbols like `-` are not allowed. As an example `task_modal-save` should be `task_modal_save`. Similarly, `@reactive.event(input.apply_btn)` instead of `@reactive.event(input.apply-btn)`
 
-2. Data Handling
+1. Data Handling
    - IMPORTANT: Generate realistic synthetic datasets on the fly within the app matching user requirements context
    - `input.date_range()` and `input.offer_date_range()` return date objects that lack a time component, while data in DataFrame are datetime64[ns] objects. To fix this, Convert `date` to `datetime`: When comparing user input dates with datetime64[ns] data, convert the date objects to datetime objects with a specific time (e.g., midnight) using datetime.combine(). For example, `datetime.combine(input.date_range()[0], datetime.min.time())`
    - In Shiny for Python, `@render.table` is designed to render `pandas` DataFrames as interactive tables. The app will not work correctly if within the code `@render.table` decorator receives a list or dict instead of a pandas DataFrame.
 
-3. Visualization and Interactivity
+1. Visualization and Interactivity
    - Create responsive, accessible interfaces
    - Use `matplotlib` for basic visualizations. If using `Plotly` for advanced visualizations, you need to import `render_widget` from `shinywidgets` in the app file first. `from shinywidgets import render_widget`. Next, use the following convention
 ```python
@@ -64,6 +64,19 @@ and use the `fa-solid` version of the icons as an example `<i class="fa-solid fa
    - Use https://picsum.photos/200/300 for placeholder images
 
 ## Deliverable Specification:
+
+- Always use an an id when using a component in the UI. For example,
+
+## Correct approach
+
+```python
+with ui.sidebar(id="sidebar_left", open="desktop"):
+```
+
+## Incorrect approach
+```python
+with ui.sidebar(open="desktop"):
+```
 - Include concise comments explaining complex logic
 - List all required package dependencies
 - The `@render.ui` and `@render.plot` decorators should be placed directly within the `ui.layout_column_wrap` section, where you want the output to appear. This is the correct Shiny Express way to define `reactive` outputs.
