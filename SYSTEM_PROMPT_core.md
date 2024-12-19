@@ -121,7 +121,7 @@ The core principle is: Ensure all input arrays have exactly the same length befo
 
 
 Debugging: Proactively anticipate common errors related to DataFrame creation, such as ValueError due to mismatched lengths.
-*IMPORTANT TIP*: When rendering a **DataGrid**, if using selection_mode use one of the following valid selection modes: `rows`, `none`, `region`, `row`, `cell`, `col`, `cols`
+*IMPORTANT TIP*: When rendering a **DataGrid**, if using `selection_mode` use one of the following valid selection modes: `rows`, `none`, `region`, `row`, `cell`, `col`, `cols`
 
 ### Invalid code example:
 
