@@ -10,11 +10,10 @@ ui.page_opts(title="Busy Indicators Demo", fillable=True)
 
 # Configure busy indicators with all possible parameters
 ui.busy_indicators.options(
-    spinner_type="bars",  # Type of spinner
+    spinner_type="bars2",  # Type of spinner
     spinner_color="#FF5733",  # Custom color
     spinner_size="3rem",  # Size of spinner
     spinner_delay="1s",  # Delay before showing spinner
-    spinner_selector=".spinner-target",  # CSS selector for spinner
     fade_opacity=0.5,  # Opacity for recalculating output
     fade_selector=".fade-target",  # CSS selector for fade
     pulse_background="linear-gradient(45deg, #FF5733, #33FF57, #3357FF)",  # Custom pulse background
