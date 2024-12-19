@@ -1,0 +1,25 @@
+This app demonstrates:
+
+1. Two cards with footers, one static and one dynamic
+2. The first card shows total annual sales with a simple footer showing metadata
+3. The second card has an interactive sales calculator with:
+   - Quarter selection dropdown
+   - Growth percentage input
+   - Dynamic footer that updates based on the selected quarter
+
+The app uses:
+- `ui.card_footer()` for adding footers to cards
+- Reactive rendering for dynamic content
+- Bootstrap utility classes for layout
+- Sample financial data stored in a dictionary
+
+To run this app, simply save it as `app.py` and run it with:
+```bash
+shiny run app.py
+```
+
+Required packages:
+- shiny
+
+The app demonstrates both static and dynamic use of card footers, with responsive layout and interactive elements.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBQss4oAczgB9UugqsAFFIUADZwALxyYADCUAy2yABipKRUDMgAInAwpJFEdJzBwVAARqFhACoMJnAAlE4QAMTIAMqw6KHItlAUUAqsUKGsnl09yGHIIArI08iRAIoAjJEoCwBMAKwADNsEUzPzq8vICwBsWzt70-MAzEcLABznm7sQM7NgcwAsR6sLTwoAX3qTUy+QgcFE1HsaToJggkk45D0pDMrE49mQpDoyAAqgBJZBFXAoigKAACNmhWCoGlJdjg2O0pAAVnBJHBbJ5+oN-DVEJdkMUoKwvNy4HpxmKhiMoMBjGYsABHEyxVK8gC6ArcTAA7hR2GM+BBTBQsNrSHr2LzkAB6Y7bAViCgmBivOiRAAkICFIq5A3FyAAVMh-AtkABqZDmy18ghYVZ0IFgeoUqEOLCWBT2bF0ZKpYZwHoFAJ8x2Fl2vFysdBQCD+AVvd1gABCwrgKC9UuG3Vl8tNytVDg1iAISZebzexCKuk8ETANIoAFoYGYOZEBXUIAodZx9cgXESSZ4yMETDAIJ4dQwMP4d7Z9WEFjbVqXXjMmglOAxWCJiLF4jue5QGwPRSMQyC5ikDgCoBBouH+cS8vyb4TvunBYAhnLsOI0L1h8KrCA4wS8K0gyRJuqHTC47DXP4Tadme-hdjKWDSAM1QlrGSYUZR8H-p4kFqg2vHobYMj1ihlGoZMYBTsKrBHJEtiLnQoQaMgzImD+nB0Lgi5kJQ1BLsUhY6nA1DIAMnBuBAi67lkrD6UZ0FgAC45SSJOB4eUKQDMgACCEAQCqwQtP6CmEMgckznOMCLps5HuR5E5VjWdZNiAoR1sxPY1ACyBzARqQRUQ0VDHOC7LqutjkcJqE8fV9RvE0zRsuQ8SYcgsGWZ0uDQDAnDgYJDiCm28TkPuIppH2MG7nB6GYUhdVoRh-HYVAuGRKRAYxMExAmEUFBCLVklvC4fZcnAoSSBJyVXGAA6EY4hDLW8W1XWyIiFYOz1JR5xDsKQg3imEwScD+THhd2PRYAA1nAuCcX9UkitdVC2HOizrqdMwNSl6EXcF8AMINt13ZE0b6rkr37GAADiup7gACg4xBGe48gvTjqFsae4QLM8NPTANEBhIL3MTjAUAaI+DoS3jb0S0yrLspyUq8k1nmYQJeZDkLK1idIZN3TMMllYpYDKapmgaVpUi6fp5BUJQi4mRQZkWVZNl2VQMCOWzhnPW5+tneh6B4UzTAq+jYVkZFZWzpEcUJWANTI3dw0MAWRbBCW+sK7jrlEOA-UICgYBiMqX5ZEZrDUrSkWyU7Rm0MmEBSxQ7QpGDxQKETeAKGlXQKVuEtvK56pAA)

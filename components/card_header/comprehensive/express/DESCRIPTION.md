@@ -1,0 +1,29 @@
+This app demonstrates:
+
+1. Basic usage with just a title
+2. Using a custom container (h3) with class
+3. Complex header with multiple elements and flex layout
+4. Header with icon and dynamic content
+5. Header with custom styling
+6. Interactive header with toggle switch
+
+The parameters demonstrated include:
+- `*args` - Multiple content elements
+- `container` - Custom container element
+- `**kwargs` - Additional HTML attributes (class_, style)
+
+Key features:
+1. Uses express mode syntax
+2. Creates a responsive layout with `layout_column_wrap`
+3. Includes Font Awesome for icons
+4. Shows both static and dynamic content
+5. Demonstrates various styling options
+6. Shows interaction capabilities
+
+To run this app:
+1. Make sure you have Shiny for Python installed: `pip install shiny`
+2. Save the code to a file (e.g., `app.py`)
+3. Run with: `shiny run app.py`
+
+The app will show six different cards, each demonstrating different aspects and capabilities of the `card_header` component. The layout is responsive and will adjust based on screen size.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBQoDEyAMpwR6KAHM4yUnQpclYFSxxfOAB9QIpWAAopCgAbOABeOTAAYSgGW2QACXF7BmQAETgYUkyiOk5k5KgAI1S0gBUGEzgASicIVyyxKCpkKGQySihuB2QKdmHkeyqIVgoGYbg9KAbx3Nso9mKZ73X4KgZQiAB3TjnkcMbcUjMosmSTGAgoq-X0eJvbHM0gBGAD0ACZuogFMhYcgYXDXABRDSwdCpZDAlAAISgrE4xF2eWQhygJWQNzuSVSCNhlPY904WGIe3iUNpcNh4RZeQORwY8UyuPxhJyxKKZIcmV6EE5nMybS4eg4pCuW2QTTxBKJ+VJ5PpyAAViZVqNZrcaWAOfLZYjkCi0RjwSgxbr+RTbgziCaKMoJhQphAZvF2ABmGWcg3c1ns21yxnMvZ8yUC63x+FgCX6z3ILI+5RZcgB6aOQhp+P+wMONLhAM+VhYMMEcty4iNXRRDJgKgaCgAWm0-FyuEyLYj6YVSpUqvVPLdKfu+IgPlGsrDs18oz0lZLo7jco5yNRAgxoZdexJ7oNMBMySk6P8cFS8Eol0jOejeTZ0P3nM-+z1BxBV-dNwnYAAWQVsmYB8NEKflpWbED43CVhvAgKCAHUc1YEwmmpeRCHGdtWE7TIe37G8qFsRCWz-JljBeCRgi+JozF9DDMnwiBgRqDMAEFJE4cg+LbPFSK7OhklIYY+2oGiwG6JD01bEiyLAWw+ykzQjR9Tg6FwPt-Wofsmk8K44GoUZkk4HwID7W5KlYIyTKlK1kOQcd40nThlXYGczTnS8F2vW97wxJ9KhMrY7GQbS4MeZ4KD3FTD3tY8H2QcDz2JQDSgNAlyFXfJbFwaAYG1YzKA5KMmTnb8W3-ZMSmAlT6KwOsG04eIxI7SSoD7VhSBs-I6AG4h5mEPsbKDZB4D7cFaI8+UwDKMrYG1LM3OUtrYV6iTMk0+LrNs+zHJgZziFc0sxxbFsAAEbBKDrNGSjz7DoRZ1oq4gogohrlrhMQKBMBhZUyABVdBbA2fIquS9zdthNKHRPfwAFYcvnbM7m9VZlFWXAZp8GqPzqmMfxUpq8tapHMjzfGWDcCgibgfIttLHbdsJ1ouIkABrHwmBMOwjOGoQUGcOBQzocE6FsABucZxYYSXgQATgAdgANlscElboIs+ws2z2AoFAmmGxWUvTLyDzARVfOnNVAovPKPVx-MWCyNw3DYFniZt7z9yPR1-G1lAAElKAcZiZH8IK8tJu5-wBqnyd5Gm6LhTJo-OOPZHglMamzrkGIgUwKCiVhKQmqDfR8HxLSIBVSEbjEADVODgK4+OkbYunaToei5tr9vUo7Ujg41Vn0wz4b7MyKAs6gg7lO2bRUx75IcLBLBbD7lbsW5hOgZJXiLEy06R-S+ArswOrbpu4GvpGgc8UHwegmPKD4PRpF8pwFohFS6iA-mDDMhYf5GD0FwWw9gIB7hcMgfi8DkAADEiwoIskNeAcUhB8AmJcMCxQL7QNpmXLABQ2gAFkAAyFC5QAHIAA8M1+ZgOSF2HmmxDieEyCSMQdAuxmwoOgVgiBQSgmILYCAhoGxtmeLYKSuQ4DMmYKCKAhooAaFBDZJorBQSG0oH2KAODmBwFBNrLAAAGWx0jdCaIaFgCqEBmS6EyAAPiYRyGU3QwAAF8iDgHKggFAYAxAAEdLBiBfHEDqvYiJgHhrQdyMBhjolICkIBCgIAfDwAodCMNLigMCQAXSAA)

@@ -1,0 +1,27 @@
+Technical Description:
+- This app demonstrates the use of `busy_indicators.options` to customize the appearance of loading indicators
+- Features a histogram plot of random data with configurable size and artificial delay
+- Uses reactive programming to update the plot when the "Generate Plot" button is clicked
+- Customizes the busy indicators with:
+  - Custom spinner type and appearance
+  - Custom fade opacity
+  - Custom pulse animation with gradient colors
+
+Installation and Execution Instructions:
+1. Ensure you have the required packages installed:
+```bash
+pip install shiny numpy matplotlib
+```
+2. Save the code to a file (e.g., `app.py`)
+3. Run the app:
+```bash
+shiny run app.py
+```
+
+Package Dependencies:
+- shiny
+- numpy
+- matplotlib
+
+The app showcases how to customize the busy indicators that appear during long-running operations, making the user experience more polished and informative.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5CAV0d2SgGd26ADoQGTVsgoM4IgGbNSMZHwAWdCDzEs2zOFGJSAbjIjzFytRqxwAHul18BWievQcKRDnSK6IAEzhmEREAYmQAZTg2dCgAczhkUnQpcgEof14-P2QAMXI2AEEAdzg+RQSAYXDw5FkWZDoyCD4RLxw4uAB9JIo+AAopCgAbOABeITAAIQ4+HgBJf0aoChYBABE4GFIJgEpWuiwVPT9OpqpKPpFka+Q2gAkAFQBZABk+gHIAHiH1AGtkXRDcZgPgUXAjVRwKITZAqXSyYEqCgUdB8RAAenRxD8EAAVnwsMQhqQOH5ZEMoLpCYp0VBcVAbOifgAjPjouqUAC0UBKZXg6IAbFgACxYABMWMctKGQywMHUhMcEwAfO89hB1aFkBVyLI6LEOLpkMyZppFsRlqt9lgTbNOuo-EsVswCT06KlLhAbsp0OoIIFOmD0GMJszKXwAMwTAhXG58X0Qf3MU6kYnMYEhAoFAAM2az0dj13jfoDfDoAC8Q2AxboYAWvTdZFAAt0YsQ6GDRtmsBGYw3rm4hnwumHiL9YgoOP5gT9-ZTORPm3RqBQ+sKAKwBWJEEI5HK53M73N7w-IEIH7N7vaEQvIQfDzpHfVI4HC9A2eve+9deNQvzAsUWjAERNQgMIKl0ZYEigZAKVwEk2CKDsVGUOgAjDIIICQigULaOCEM6Mt0MpPodkQW9sNwg4iLgDDSPI-tvVuA5XHcQifgCZhLkgTomHUXpo2QCYADkuGZQJElkZAAAVSH4oCiAARgPJSL2zIh1wPdUmJuNpWIodi0MCbiAjgwSJgKVg6D1dsoCGZANjg5A+j4a8iHU5B1yIMUiFBOB0C7LB120nTmKwfTOn0FIIE6E1kXIbj4iTKDzLAABxahAigmTiQoQSiX4PhOmBZkKAgTl7AYSlcF2W9vTq3SDjhUiGuuNoYEpX4-FIIoIG4iYBsY70QhG5ACmZBDWuQB41DSTBkACLZmgoZgoIEHCEhmBJSCk20zUdC1nScL1wksHg6mYGTcBw8gsCm4TSCkYgEg25BiBmFZ5UrPwGNC5AACpkBeUglwgWIfRLTC-sBnJmwSOBZFkOADCmwHpI4IdoNEDroqmgbgLAUDhuQJ4oHUO90jgIZbzaFQxW4gAldJuqUNZlhggA1Og+A4OyK2Wd0IFqxjbwAAV8TicFysXIIMOhjGsYwLn0rAkqyqgQuuAIpPQXL6KmsJLKkGy6DshaqagHgVgsHrJCOY1TQac1LRdKapHgLA+BGfy+hV0zLdIzWmIN5AMuSqgAWZ8w-HZqavVGJ23AoLAYr4yh+iD70Y4oGCE4gbBVv8RQU5YDqhj6DzFKIDU8aGm5wMgiPXt1x6pr1bdeBsZAE915OeeZFvej6duy0rUY+mUogBR2TObgZQ5udXbOoCIZl1D4UZNKIAJmg7XBRgeZgODgIg7PQFQoECgB2Wfrnn4cDMGEZh4mO5F9IRclB25AQAgRACAAL7ICZkXJQsl5LCz+vfKInQbAUnEuXCYHM7LH0gaFaBBlwRQAQdxDYu8wRoJ0lNXQFBDRenbmAABRBwDQHgLQMAugACOXhawrgJBQGwFBCAkHyCuehIgcaDxZCITg3ARAxH8PwYIdcdKUIALpAA)

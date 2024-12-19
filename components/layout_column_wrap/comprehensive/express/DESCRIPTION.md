@@ -1,0 +1,37 @@
+This app demonstrates all the parameters of `layout_column_wrap`:
+
+1. `width`: Shown with both fixed pixel values ("300px") and fractional values (1/3)
+2. `fixed_width`: Used to enforce exact width specifications
+3. `heights_equal`: Demonstrated with both "all" and "row" options
+4. `fill`: Used to allow content to grow/shrink
+5. `fillable`: Enabled to allow container filling
+6. `height`: Set with specific pixel values
+7. `gap`: Demonstrated with different pixel values
+8. `class_`: Added custom CSS class
+9. `min_height`/`max_height`: Implicitly handled by the layout system
+
+The app includes:
+- Multiple types of content (plots, tables, text)
+- Different layout configurations
+- Visual separators (hr) between sections
+- Clear headings for each demonstration
+- Responsive design considerations
+
+Technical details:
+- Uses express mode syntax
+- Generates sample data internally
+- Uses pandas DataFrames for data management
+- Includes reactive rendering
+- Properly structured layout hierarchy
+
+Package dependencies:
+- shiny
+- pandas
+- numpy
+- matplotlib (for plotting)
+
+To run this app, save it as `app.py` and run:
+```bash
+shiny run app.py
+```
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5dKCAEygGdk+7LgB0IDJq2QQAro1wD+EdKIBmzUjGS8AFnQjzxLNszhRiFOgDc4q9Zp17cWOAA90J3v0OS96aRSJpOiITbjhmUVEAYmQAZVh0ABs4ZB4KKGQAc2pwqAtyUSUsZk4uDSxeODguAAoARgAmAGYASlE0jIBeISwAETyoADES+BqQUWRJ5AByNLhplHQuLDmAfRKIbJredNZO6YaABgaAFgBaQ7qLuumidHC6Ui5eTrrDw5aCCanpyyhE6TzFBFDZlGBYCAsGD-ervIh1ACs8Pen2+k2mxDycEyLFwCyk2FB5WI2lIdGIcBqwGmAEFbjMAEL06YAYWmAF1kR9RABfNoQURBHBQbKrUjoCi8GoWCjJTrCMAAGSguFI-mQLNIAJgEGQAHUSuhkL04DBSAqiCo6IlElAAEZygAqzEB-OiyAAoi4EslkHUUAy+OTkAB3OhcCjadhQEZwKjMZA1K0uaqh8OR-lC7RNGoKupYZCDOgprj69NR5Wq-wK-lhyPIIW2qsUVZkbUQVYhw01MMR7TysBNd7oFw1xBotP1oWY5i1Frj3VTJcKosltN95CkFTIIeHEcKidLgACoS44RwiVIFEPUzP26SV7qNXnN6XkxMFGkzF1HQvV6wiR6JSLj7HM9K4PsfwAvM-LLoukx1lG04xnOC5vlMCo0pCkbhDuw4uMgM4iGAr7ICe1BnswWDpA6NjwW+d7IDRyRPi+9Hoe+cZfj+AxYNophzpEMh0HxzDPkJMRej6KQNCgwxmPk0CJOukaCiJ2a5mADQFvJ5iPEpZYbpWarXmAtZ0FOIlNiZrZarIHZdhgPblq8AD0rRoVMiENiJRHPp56F5u5KlRkRB7sVM5FhFRD7XhFkyMbFDT+aRS4ftxqS8bFFSYhQ8Y1CBvz-IC4GQcVMEThO3nIbOKXxcgQVNCFhEoeFHFkae57MXR7WMd1yVse1aVcd+mXpCscC8MQzB0HalKwRh9HVb5KF1e1jXNWFJH1VFlHUfaySkX1B1wDmg1DZxn6jb+mTqNI6B2rgNQYliOLMHiLRYPAnDiQKwmib97pSYwvpNHJxapr29befxdCZNokqrHAACO0j-NGsbxmpfE5gqTQFh6qPowAEnAcMI-wxnVmZojLQBKo2W29mdt2VUuQqDQInuo6EBOsPw4jKNo4kA7-IkFqTDEACyUAANaTQINotbO-C8LAKT8wjE6ZBgA5vPuYCS8gNJcFweiZFkGDIHNFAhlUupEbwojnQhFlISttUu2+CqE8LyCa2wRF+m1HG7V1rhxb1cDblQLgUKxAVDelo0KrEpKSGQlDUKZlVLW7PlYH5XvLmAvvowHyulg0IfoWHVGx5HHF9RHA2J+1ye6gqjq6PwQfaHwwiiGaJiEeQVCUIPEB2uqYZK3Nk84Vo6v+2TAvhdj2hiW6ECSd6IMpCc4NK6UhbWratGpKa5A7CUikb7jYAnDpZ8CNwp82idyBU6Z5mWfTza2XbCzJybM+xuQaF8eiVobSdGdICSBS5oHnydC6OACCpgBwHLuA2RtVypgDs7ROdMi5twwmAIsH8L5BzqDXN8dc-yN3QolS8FAzqkPQh3MaUAGFYDtKQFwNQmY6jKtBekj19i5WxLiaYC1Jhsz-iQ0iK4z6fyDtXba7V6HdSOtHJiJ0ThrQusgThv50jWlhNvLMW8JKej3kkFICIUA0iVhwTG4Re4aDtEBEQ-0NIKgRAWTUMAvEQFTAABRjOreMlMGbU1-u7f+jM7I6mAegXMecwEKhOPhC0E5kzVE7C5OBaCjYeggCoFgFJkCuAUiFPmq8KZIyJiLBU6gQwS2QJJZpK9yaSknLoXUpgSTGNIO0qBZ9YGoPQZMJBJ1JnwPqb0gc2Tua5PojrdAA4jgG2mYRW0nhVgDhgLgM4xBpA7A0Kc-ZTttpe2IatYuZCgkhNTK4qJ7jK7Bw0aHTqMUWE6PvCwgxjyOEjR4uNbKPcKCCOSRAERJUiAhJeEcWRDU84KIeewhqYBnneIxu85gvcULIHUaRLRJ0AV6NogiQxF0TG8VumqB6T0XpUDeh9LAIpMhjFShxIqoiUDUm+hAZkOwuDMjINISgHJeWTD5LnJc9zPZYoVLi0JpY3nwGiZ8potDjy-OohHSlDc2GyuMWC5AKgu5XnRgAJTgGQFWKAQDJAgDUDoLQeSTxZK9FgdBJrOuZFgAAVmSN1HRqSSPZRyLAUq6Co3mp6hUYAeREHANAeAtAwAmFRnQEw8BKC8GonHQgJAx7ZyzUPPIsVAJ2kKLIPAogODcAHn9IxqAeTsiAA)

@@ -1,0 +1,23 @@
+This app demonstrates:
+
+1. A text area where users can write text
+2. Radio buttons to select different story templates
+3. A button to apply the selected template
+4. A reactive effect that updates the text area when the button is clicked
+5. A display of the current text length
+
+Key features shown:
+- Using `ui.input_text_area()` to create a text area input
+- Using `ui.update_text_area()` to dynamically update both the value and label of the text area
+- Using `@reactive.effect` and `@reactive.event` to control when updates occur
+- Basic layout using `ui.card()`
+- Simple reactive text rendering
+
+The app allows users to:
+1. Write their own text in the text area
+2. Select a story template using radio buttons
+3. Apply the template to replace the current text
+4. See the current length of their text
+
+To run this app, simply save it as a .py file and run it with `shiny run app.py` from the command line.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkTEQAJnAZETnBQoDEyAApQA5nGRSKAG3kIBxwvOAB9UnQKVgAKP0CAXjkwABVNEQBBMShkAFV0KygqZAAROBhSFIBKJwhXAGEcktziKAYrX1JkdlJ-TtITBj4IUxjkKGtkQYox1gUAd04KdmQQto7Y6sQFZD21ziwNq3D2cRsGWJT0jSyc-MLin3LKmt39973G5p9cqluJvdjGZPgcsMCKOF-pD2uIrhB9ojkClWBQhLgUkRQYiUgB1BjLHy4QbDVHonaEZEIpF7aRQfwmODJMAAeQgxB8JkECL+-DgWAFmOx+zOnE87AozIAjABWAAM6A0KVBtWpe1BrkyVk6rGYPgYUCsnG6ACMzGiIHo0Ww4IFJGw0QxeFQBP4nvM1WCIeEDUbSOEzRQLXFheqwC70G6qELPTiwABlW1we25MlO3wVSNPCkEUPIEB5uOG2SUIbyWgpLUlihl5Dxx0YwiFj5gGC4VG2RsoFIAWXbVHT9fRMZpNJSdEmFCgrC7yLAADFJ9PeEOncrY-sAL4q0Ea5Bazq5QMWroTTD+Z1nDOup6gkLeiRScgB83kK5oc+NrFgTKf5DpG9o0pYg3V0cJmRNCgIAAWm0fh2l4GAKGggBmN4IBcZAmnEFpRHESQZB8OA6DoZMRGtLkihKFYfGhQFxGQBYzgRY9yD4PQQM4YgAGs4CsBQAAEcgI2R1BIsjBOEqRRLgatYghLAMEjXBVRsOhkHCLYdk9CMowiOjEnzPMUmLagazEFJuzAZVWXZTluQmXw+SII8DVkZBNEjIRbGQaB4E6TJAg0ZBqzLTpuGtPMaOQGxLR8AArEwIE8QIsGQXFllWcgL0cmAMAmKZWmYdBp1YAUsBskdR2M1t+07Sy5xs1Irz6To8stY0ETJUgdU4QJKBGXwr0qbKxQlNLyioESfDzeN2igVYPAYXjhiUpgJDOTpouIHJuN4JQBqsUghCIbiIFIJZkqG4oRlYTgbHKyqmw3dUXrnCdKGXBqnoASQRaK8s8Lj6Tw+kWFIdSAFF+iETgoCIJjbB8KwDU8cg9F1WEtvYJgTHFKlR2QHb+xB1huM4OA9EmTolgAL3aKw9G0R8uL4griApgbWHQW1-DKwVrMF0Ft09PcCio2irzo2FciWFYhp8Vgk0kNndNvT0Qkop4oQycIZfhQmUQbKqaTpBkmTVqgdduYAFMtuAtgAXVzN63RNW1EjoPECRKYkhnzO3Mz0rZNwdcl10RVVMNKThubdS8fGIIZLHIjJJOoC4sGhBQ1KJ5OzOtigtNBMRzIRL2wAafOBro-rPBWFAQH6+TRjMLA01wLZqlD4h2HmlWGHmMAwE3IhwD8hAUDAMQAEcHDEeBKDKihbkpMAyEoMzaGsiA8tmfxSACTgTQUYIBAxUZqenOpCcREfHaAA)

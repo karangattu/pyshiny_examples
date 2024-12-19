@@ -1,0 +1,35 @@
+This app demonstrates:
+
+1. Using `ui.Theme()` to create a custom theme with:
+   - A preset Bootswatch theme ("sketchy")
+   - Custom CSS rules for cards
+   - Custom color variables
+
+2. Basic app structure with:
+   - A sidebar layout
+   - Interactive inputs (selectize and slider)
+   - Two cards showing a histogram and summary statistics
+   - Reactive filtering based on user input
+
+3. Theme customization affecting:
+   - Overall look and feel (from the Bootswatch preset)
+   - Card styling (custom CSS)
+   - Plot colors (using theme colors)
+
+To run this app, you'll need these additional imports at the top:
+
+Installation requirements:
+```bash
+pip install shiny pandas numpy matplotlib
+```
+
+The app features:
+1. A dropdown to filter by group
+2. A slider to control histogram bins
+3. A histogram with theme-consistent colors
+4. Summary statistics that update based on the selected group
+5. Themed cards with custom styling
+6. A responsive layout that works well on different screen sizes
+
+The theme affects the entire app's appearance, from the basic UI elements to the custom visualizations.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBf0HDk6KHah6vb204OuECYCvD4Q6P4uIjBQFOgANqQU8ZwARji4CUnIPgkUCgoAxMgAwmKxcGywCZW2sVAK4VgMHrbMWKxwcLYAFACMAEwAzACUCnUUUMgAvL5YACL1AGIt8D0gCshbyADkJRUA5kK4OyjAOwCCO0Q7AELXuyUPO-PPAKI7ALrIAFTIAwAGAibbY7ABqUHiJjgp2QTRadnaECEMXi-QBQOQfQArEQ+hiRsCINtdgBxJgmdCw+GtdrEdikTjEOA9c7k0iUrHPdmcgbcinoZBDL54gkKAC+YwgRVK5SoOWQxBMrAoygo7Dg8AUSpVzAA+urNZVZj0QVtLFgACoatbaOCdCjTORgVgAazgFHpuGdUpJWCgtlseoYJni9tNYGdUeJJO2WGIUAYtmQIGQZtjJNSQnsDAAtC1bJxlSgcegNABudMZrZZjS5jgB0gAdxQAOQABYy8gABxdhgHVJQHpAkcEAFYPojSsxjPi9NRyNgX1xgNB+x0KChiisU0z2PafiJ3B6siJBhOsCFABsUHbxAAnENnUTq2w4GRPAxj6ehBfCn0oEfK86GjEkpSlGUAGUPTcKADkqUh0Ckcg9CbTh1UVZVVRYQ0tSCTgcDguA9UQ7ddxJKRkjgC9rSNZB5k1UhkAuTBn3TXDqJ1bCDRtOAX22OhOHieIoFSMNpktEN5AgCCIGKMpxHlQ1kBE3AOXyCA0Iwi1VPUvVWE4exBwYHoRkQdMtPYZALQMozE1M8y9xJC1jDMfS4DDSROAALxZKtq2dA4BTYpyArAaDPJEHkIkIfyM3pRlmVYaZgGdC5hOdb4AGoVM4FUegmKA2QFL4sBMCBOAAR2hUzCTi2NOki7oL3S+JQOrZcM3qlzwjc1gUhzcjX22Z1Um4VgQuGkawAAOWCVIHGQUg6GQMaIAm2LQozGBuGmXF6pJGIND2oEDu2aRIWhaZAXq2SSUs6yCITJMHO6p7EyDDUAwcCNFkmei8ooBg0jMThyB9er6oAARsHMcESDTX3XZAuF1ILYFerbY0E+IqDENd6hmZBCrOrZOBW1yKCwIKOXQUzkAAQlmNKMqQUnsaEvHuj1QqicK4B+Z2aKvhmWZKepgVTM+dn2cEg4iCgDQibyDoTFSLIyM64bFawVGKB6HGuYJyZzghKEYU+Ih2erNbkvF23TKtrGpsVUgz2mHZr1vB9hSIZBigAVQMiADjcYGYi-V2z2JzgxEkeJvWdqbIXQdgoGmccAHYtdfHWHQNdCwx6cFLsqeZAeB1JQfIHYc+rPOPT1DQRIWtES-N2v2Ybig9VwFuPOLlY4Gq6hiBOOuMzECgTAYYk5YKPcHotZ7ejMt74w+vUvsG51IOCCPeEgyYpBVJkNontMsZh6g4cKvVGFgaSkbgFbWH3o99OPnc16TrZDYcbmvNZgk1-nwCmvUqY00pPTJmaYwCtWdI5F2HNcYAONlMYB9QBZYKFiVb40wxYQIlrTKWMtQEqliHoWY6BbALGWKsFkGxQEkh2AAWQ9MDYgsJzjsI8M8dhhY+E3CPsmBi0hnglA5JQEU1tQRm2hNw2Rk8pG9H-vjHmOD5EWywPADwjt-h1WYdWCkdgDaczQRok27cFGfB0d0TgejCQGP4sg5R5VVHmPUYLLRpUVSryIAMQxrjqxhggGY1BXj6gX1fNLUBkp2ZTxnsSCh24wDiiIOAaA8BaBgDENVWORpKCsCwBQDQFBCAkHIFQGgKBIwQBiHEBGKRUiNGCHgBQ7hPATWlKAtJnwgA)

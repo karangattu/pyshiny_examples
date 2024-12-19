@@ -1,0 +1,25 @@
+This app demonstrates:
+
+1. Using `input_dark_mode()` to add a dark mode toggle
+2. Adapting plot styles based on dark mode state
+3. Automatic text color adjustment with dark mode
+4. Responsive layout using cards
+
+Key features:
+- The dark mode toggle appears in the top right corner
+- The plot's style changes based on dark mode state
+- Text and UI elements automatically adjust to dark/light mode
+- The layout is clean and responsive
+
+To run this app, save it as `app.py` and run it with:
+```bash
+shiny run app.py
+```
+
+Package dependencies:
+- shiny
+- numpy
+- matplotlib
+
+The app uses synthetic data (random normal distribution) rather than external files, and demonstrates proper integration of dark mode with both UI elements and visualizations.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBf0HDkMKBXQAbUhS+cAIxxcb19kKD1vCicDVwgTAV4I5Ah0BQUAYmQABSgAczhkUnQpcj0oO2RbKAYAazdSezYAd04KYnYFSxx8uAB9YopWAAopPzgAXjkwABEa+oBZRsKZuBhSaaI6Ti8vKACvSYAVBhM4AEouzixjMz7qur71+2HOWymwB9qn5enLiEyyAAwmIPIVWMxwbBvIVqhQoApUlgGBVbMwsKw4HBbMMAIwAJgAzP84VBkBMUtgUXZ0RAhO4vHiAAxMoi4gCsbJZTP+gIAMlBcKQzMhWhR2OFkMQarYpeR4dxuHlJaFohAxRLutKGDjzogFMhDcgtTK+uxxPYGMNpgBlaGHZAzTisCgMQJmTjkP4Go3dW4UPqsfyW61gALcVibZDTAByCQCDiKdGQ4YgkcIbm4E1xrLcUA02ZZRGkUC8ZwmhJ56QgRuQAAEbJacD41bX7MmuC7SHkUTBhnqfbXDds8kR8+TkFEMSYAqqRv8h0bB0OskdzfBkOLCqqUxFsUUa18Gk0XWDl7XOMn-Vgvj8XudyRTpl9pvqa4uh1OXbhDlgTJjhgAclvAIJFqHthTsQCFw-WsyB8BgJ0A5ouCoQDzyNOAvExN9YNrL8KB-OA-wA4C4DoKATC8ChoIwxd4KEJCDjA9D3zw6M2JXYFQSoZBOwobtezo8INCwfjhlJIhU1YCZr2k-siAYhgJkAjIABY1IAdiZABOHTALHLx0HYKAJiZLBNJgxd8wxOAAzGQ5QxjelS0dZ1XXdUoAQzJSJiUqyhxszEAw0PYE0ZaYADVSzOdNFNIBC-ISoQAtrIK7L6H99iw0MADExAARzOCBiFwKNfP84ThKyG07N3YhwKYExKiU4SRx6dp2FsgMKOIOAlKAukIDgWjOLS0Tgr6Xr+uSq1AKGkbUqXMajTECgTAYGsR2rLIAEFbFlCEN3sVhiDdEoZEKKgNBEcUPCqNYyldME9CPZ5CigOg6H6oYFA1Y1rm1XVcN9QHTXNKAQ2mXaAmFaIwAC6Y12dcJMAe9Y02eqg9C3Y1MSTKp5mPQpuGQG1VF4OhGOyXBxXILBpmXWNfE4Pq+NIZpN3NScW3CSprpESiBPcKRpV2JJbAAK3-W7SEJuoAHp-DydgRHehmwCZsATl4Yh-AapUudhIn3s3bs8gdUncYE9AAFo3RVkQyE2hwAEJpjAABfIhwGgeBaDAQrLDEeBKFYLAKBujMwDIShqAoAOFBF1V-ACREEjwBR0FRCJq3Yw0vYAXSAA)

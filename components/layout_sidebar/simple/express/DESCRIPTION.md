@@ -1,0 +1,33 @@
+This app demonstrates:
+
+1. A sidebar layout with filtering controls
+2. Synthetic data generation using pandas and numpy
+3. Interactive filtering using reactive programming
+4. Both tabular and graphical display of data
+5. Date range, product, and region filtering capabilities
+
+Key features:
+- Uses `ui.layout_sidebar()` for the main layout structure
+- Includes multiple input controls in the sidebar
+- Shows filtered data in both table and plot form
+- Implements reactive filtering of the data based on user inputs
+
+To run this app, save it as `app.py` and run it using:
+```bash
+shiny run app.py
+```
+
+Package dependencies:
+- shiny
+- pandas
+- numpy
+- matplotlib
+
+The app creates a dashboard-style interface where users can:
+1. Filter data by region
+2. Filter data by product
+3. Select a date range
+4. View the filtered data in both tabular and graphical formats
+
+The layout is responsive and the sidebar can be toggled on mobile devices.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQEsZ1SAnC5CAV0d2SgGd26ADoQGTVsnRQIAE368B6GSLEs2MKBXQAbUhW10ARjlw69CydooiAZs1IxkfABZ0IPVROZwoxCnQA3OFt7Rxc3XCw4AA90bz4BTzY3dA4KIg46Im9ZOGYREQBiZABhb004J1xKZzh-YmQ5CigRCGxmaRkHLD44OBkACgBGACYAZgBKESaoZABeSRksABFNKAAxDvgBkBFkfeQAcia4Q5QlLBOAfQ6IAHM4Ab5m1jnDkYAGcYBaD6HfoaHIjoPJ0UgyPhzIYfD5EOxwACOb2WhwmBD2B0OfCg2jgfDOgiwty6MCwEBYGm0wxhRCGAFZaTC0Rj9odvHcwRACW0iZ1usRnKQ6MRHsBDgA5NTOIFHADKpDS0qIhwAovwKDLDgB1PEagC6jI+zIgByOcXBHD83PafNJAqFIoGYoAgpqAEKakqHA3IaFGkQAXymECKyFldUkUAeyFI6H85D4IkyOCjcCusYofAG-n0cDmQjAspxeOQqxchlIUGYykIyBsdG02ighlxcwAKswOHBg6Gyj4qMgm7gFWwAO50CjOJx0GRwQxVkTjyfIZNDkdXPgzudVgYTRAs5DFWVb+fMZBkSjUTMHpdT5Ob2en3f7k2mg7JlJpDdwXF+OgAL0eA83wOAt2U5At0VfEDTQLcNfzYAAlOAOXISDgJg+1hTxOZgALZ1GwLPVkAAakHOhngGGYxXA8hvSwDhRARLtd2NGC316BD+nzMACO0AsMP2YN2I-Nov04uA-0AgZBLfAtzRkS1rEIWTYMLH9JLYAAFexFL8dDoPY89BWwyE8N4wiwGIsiDEo6jDgUpT6MYuhmMeCY2KM-YJL8bj8Ms2ThJg0TUgoK5rluB4ZMM9iCwi6QHgMrz9jgjS-FLCpkEQhLghUmKYOeKsKDmeyTnomA3F3KDkuQagZBKtYxTKvUsA0aJd0CgpDOKABZKA3EjCAf3PcgqEoRNDIAARyWdmEuNYrjsWBgkM2cbCcYs+CuZoW3cl92PrKw8n6cK1nmOsGyoZhTuaDr8v2bwKA4ZgTUOq6TuopqKk1bFcXxZVaK5ZVHKtPUWtqKBBmhHsppmvIcF0axVrgdbfrxK4zAoZ9ZLe46ZBu2YFlx66Zjug66DuIgoGic6dAoHoOEMTGsyCkDiY+tYEb0AZojeMqiFwN40f+3heep1m32pno6m2idcQGQ4iz+5AAHkgjPNsGFOCXTSl3owuiJtDB-BXVioVFZL1mXcCNk3Fc2i37uQR7nteimuumnw-yCLBiBxYhphRi6jpJtZse6sMXjHCcpzIRhcQHGZ9YPGR1oWGZfdjXAydAiP1kuvJkEMHgTmdnKD0K1gbsqBZP3p+L7nc4APj1A86ur866-mqgbhy3dgCGVvVrTxobGAKix+Ob6WpkevMoAPgWSuwpOCZkAAMmQVSDgnr7zZnueBwAHgWdvV6H2C84Ls9i+dlDOWQOh1vJNh-P4sADyfx+xPpwHd2QAAhAsN+BZ9owVTudVOwAoFsnvnRYicxa4-yJHAiAu4L651NMUfOIci48BBskZ+5gQEf0Ml-LuBD-5AK3hZd+YCQIQPTmPGBBDvTzCQaFHAuklLoIPAeF2L1R5gADEQcA0B4C0DAN4ZidBvDwHGlgCg0QKC1jABeMaKiUCkI0FoRGBhDCtC4HgEQUhZD8C6jVYReogA)
