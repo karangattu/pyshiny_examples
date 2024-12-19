@@ -408,7 +408,9 @@ def create_test_files(file_dir, code):
     """
     # given a string like components/sidebar/comprehensive/express/ get sidebar
     test_name = file_dir.split("/")
-    with open(f"{file_dir}/test_{test_name[-2]}_{test_name[-1]}.py", "w") as f:
+    with open(
+        f"{file_dir}/test_{test_name[-3]}_test_{test_name[-2]}_{test_name[-1]}.py", "w"
+    ) as f:
         f.write(code)
 
 

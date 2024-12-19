@@ -62,10 +62,8 @@ ui.head_content(
 ```
 and use the `fa-solid` version of the icons as an example `<i class="fa-solid fa-shield-halved"></i>`
    - Use https://picsum.photos/200/300 for placeholder images
-
-## Deliverable Specification:
-
-- Always use an an id when using a component in the UI. For example,
+  
+1. **IMPORTANT**: ALWAYS use an an **id** when creating a shiny component within the shiny app otherwise the tests won't work. For correct and incorrect examples are shown below,
 
 ## Correct approach
 
@@ -77,6 +75,22 @@ with ui.sidebar(id="sidebar_left", open="desktop"):
 ```python
 with ui.sidebar(open="desktop"):
 ```
+
+## Correct approach
+
+```python
+with ui.card(full_screen=True, id="card1"):
+    ui.card_header("This is the header")
+```
+
+## Incorrect approach
+```python
+with ui.card(full_screen=True):
+    ui.card_header("This is the header")
+```
+
+
+## Deliverable Specification:
 - Include concise comments explaining complex logic
 - List all required package dependencies
 - The `@render.ui` and `@render.plot` decorators should be placed directly within the `ui.layout_column_wrap` section, where you want the output to appear. This is the correct Shiny Express way to define `reactive` outputs.
