@@ -1,1 +1,0 @@
-write a really simple shiny for python app that shows the use of panel_absolute using express mode

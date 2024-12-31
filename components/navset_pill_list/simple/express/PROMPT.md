@@ -1,1 +1,0 @@
-write a really simple shiny for python app that shows the use of navset_pill_list using express mode

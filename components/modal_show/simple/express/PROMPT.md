@@ -1,1 +1,0 @@
-write a really simple shiny for python app that shows the use of modal_show using express mode

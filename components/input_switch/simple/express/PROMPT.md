@@ -1,1 +1,0 @@
-write a really simple shiny for python app that shows the use of input_switch using express mode

@@ -1,1 +1,0 @@
-write a really simple shiny for python app that shows the use of update_select using express mode
