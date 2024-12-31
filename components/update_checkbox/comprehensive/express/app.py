@@ -39,9 +39,7 @@ with ui.layout_columns(col_widths=[6, 6]):
         @render.text
         def checkbox_status():
             return f"""
-            Current Status:
-            - Value: {str(input.target_checkbox())}
-            - Label: {input.target_checkbox.label}
+            Current Value: {str(input.target_checkbox())}
             """
 
 

@@ -64,15 +64,4 @@ def _():
     )
 
 
-# Add some styling
-ui.include_css(
-    """
-    .sidebar {
-        background-color: #f8f9fa;
-        padding: 1rem;
-    }
-    .accordion {
-        margin-top: 1rem;
-    }
-"""
-)
+

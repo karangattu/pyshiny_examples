@@ -23,9 +23,9 @@ ui.head_content(
 ui.page_opts(title="Value Box Demo", fillable=True)
 
 
-# Create plot first
-@render.plot
-def trend_plot():
+# Create separate plot functions with unique names
+@render.plot(alt="A histogram")
+def trend_plot_showcase():  # Renamed function for the value box showcase
     dates, sales = generate_sales_data()
 
     plt.figure(figsize=(6, 2))
@@ -75,12 +75,13 @@ with ui.layout_column_wrap(width=1 / 2):
 
     # Value box with bottom showcase and plot
     with ui.value_box(
-        showcase=trend_plot,  # Reference the plot directly
+        showcase=trend_plot_showcase,  # Using the renamed plot function
         theme="bg-gradient-blue-purple",
         showcase_layout="bottom",
         full_screen=True,
         height="300px",
         class_="m-2",
+        id="trend_plot",
     ):
         "Sales Trend"
         "$890/day"
