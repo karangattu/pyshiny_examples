@@ -8,8 +8,10 @@ import requests
 
 
 def find_prompt_files(base_dir):
-    # Walk through the directory tree and find prompt files
+    # Walk through the directory tree and find prompt files but skip components directory
     for root, dirs, files in os.walk(base_dir):
+        if "components" in root:
+            continue
         for file in files:
             if file == "PROMPT.md":
                 yield root, os.path.join(root, file)
@@ -185,7 +187,6 @@ for directory in os.listdir():
         prompt_pairs = list(find_prompt_files(directory))
         if prompt_pairs:
             for dir_path, _ in prompt_pairs:
-                print(dir_path)
 
                 total_apps += 1
                 success, error_message = run_shiny_app(
@@ -194,6 +195,7 @@ for directory in os.listdir():
                 if success:
                     total_success += 1
                 else:
+                    print(dir_path)
                     total_error += 1
 
 print(f"Total apps: {total_apps}")

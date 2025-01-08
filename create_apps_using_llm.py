@@ -577,7 +577,7 @@ def get_llm_response(prompt, system_prompt, model):
     # start script here
     client = Anthropic()
 
-    messages = client.beta.prompt_caching.messages.create(
+    messages = client.messages.create(
         model=model,
         max_tokens=4096,
         system=system_prompt,
@@ -625,7 +625,7 @@ system_prompt = read_system_prompt(app_type=app_type)
 timer_start = time.perf_counter()
 for directory in os.listdir():
     if app_type == "testing":
-        if os.path.isdir(directory):
+        if os.path.isdir(directory) and directory != "components":
             app_pairs = list(find_app_files(directory))
             if app_pairs:
                 for dir_path, _ in app_pairs:
@@ -633,6 +633,7 @@ for directory in os.listdir():
                         app_text = f.read()
                         user_prompt = f"""
                     Given this shiny app code: {app_text}, please provide a test using controllers for this app based on the reference testing documentation.
+                    Please only add controllers for components that already have an ID in the shiny app. Do not add tests for ones that do not have an existing ids since controllers need IDs to locate elements.
                     """
                         messages = get_llm_response(user_prompt, system_prompt, model)
                         code = extract_test(messages.content[0].text)
