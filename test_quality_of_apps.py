@@ -181,6 +181,7 @@ def monitor_app_logs(process, timeout, success_timeout, verbose):
 total_apps = 0
 total_success = 0
 total_error = 0
+failed_apps = []
 
 for directory in os.listdir():
     if os.path.isdir(directory):
@@ -195,9 +196,19 @@ for directory in os.listdir():
                 if success:
                     total_success += 1
                 else:
-                    print(dir_path)
+                    failed_apps.append(dir_path)
                     total_error += 1
 
-print(f"Total apps: {total_apps}")
-print(f"Success: {total_success}")
-print(f"Error: {total_error}")
+# print(f"Total apps: {total_apps}")
+# print(f"Success: {total_success}")
+# print(f"Error: {total_error}")
+if total_apps > 0:
+    success_percentage = (total_success / total_apps) * 100
+    print(f"Success percentage: {success_percentage:.2f}%")
+else:
+    print("No apps found.")
+
+if failed_apps:
+    print("Failed apps:")
+    for app in failed_apps:
+        print(app)

@@ -40,8 +40,10 @@ By following these guidelines, you will produce robust and error-free Shiny for 
 1. Data Handling
    - IMPORTANT: Generate realistic synthetic datasets on the fly within the app matching user requirements context
    - In Shiny for Python, `@render.table` is designed to render `pandas` DataFrames as interactive tables. The app will not work correctly if within the code `@render.table` decorator receives a list or dict instead of a pandas DataFrame.
+   - When using `max_height_mobile`, `height`, `width` params for shiny components, always use the value in px like `height="300px"` instead of just `height=300`
 
-1. Visualization and Interactivity
+
+2. Visualization and Interactivity
    - Create responsive, accessible interfaces
    - Use `matplotlib` for basic visualizations. Add `import matplotlib.pyplot as plt` to import the necessary plotting library when working with plots using `matplotlib` in the app
    - If and only if using `Plotly` for advanced visualizations, you need to import the `output_widget` and `render_widget` from `shinywidgets` in the app file first. `from shinywidgets import output_widget, render_widget`. Next, instead use this approach for rendering the Plotly figure:

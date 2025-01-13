@@ -31,17 +31,19 @@ Create robust, interactive, and well-structured Shiny for Python applications th
 By following these guidelines, you will produce robust and error-free Shiny for Python applications.
 ## Technical Constraints:
 1. Library Adherence
+   - Use static data within the app that is generated internally. The benefits of using static data include predictable and reproducible results, which also simplifies the process of writing tests for the application.
    - Use ONLY official Shiny for Python library functions for the `express` syntax that is listed in the documentation and don't use any components you are not confident about
    - Validate all code against current function reference documentation
    - Avoid R-to-Python direct translations
    - The string used for id in shiny components and @reactive.event(..) can only contain letters, numbers, and underscore. Other symbols like `-` are not allowed. As an example `task_modal-save` should be `task_modal_save`. Similarly, `@reactive.event(input.apply_btn)` instead of `@reactive.event(input.apply-btn)`
 
-1. Data Handling
+2. Data Handling
    - IMPORTANT: Generate realistic synthetic datasets on the fly within the app matching user requirements context
    - `input.date_range()` and `input.offer_date_range()` return date objects that lack a time component, while data in DataFrame are datetime64[ns] objects. To fix this, Convert `date` to `datetime`: When comparing user input dates with datetime64[ns] data, convert the date objects to datetime objects with a specific time (e.g., midnight) using datetime.combine(). For example, `datetime.combine(input.date_range()[0], datetime.min.time())`
    - In Shiny for Python, `@render.table` is designed to render `pandas` DataFrames as interactive tables. The app will not work correctly if within the code `@render.table` decorator receives a list or dict instead of a pandas DataFrame.
+   - When using `max_height_mobile`, `height`, `width` params for shiny components, always use the value in px like `height="300px"` instead of just `height=300`
 
-1. Visualization and Interactivity
+3. Visualization and Interactivity
    - Create responsive, accessible interfaces
    - Use `matplotlib` for basic visualizations. If using `Plotly` for advanced visualizations, you need to import `render_widget` from `shinywidgets` in the app file first. `from shinywidgets import render_widget`. Next, use the following convention
 ```python
@@ -54,7 +56,7 @@ If using `matplotlib` for visualizations, import the `from matplotlib import pyp
    - IMPORTANT: If using `Font Awesome` icons within the app, ensure you've added the Font Awesome CSS file to your shiny app in the HTML head section. You can do this by using the `ui.head_content` function to add the link to the CSS file. For example:
 ```Python
 ui.head_content(
-    ui.HTML('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">')
+    ui.HTML('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">')
 ),
 ...
 ```
@@ -111,7 +113,7 @@ As an example,
 1. Verify array lengths match before DataFrame creation
 1. Use `len()` to check consistency of lists/arrays
 1. Build DataFrames column by column, ensuring equal length
-1. When using NumPy or random generation, create arrays with explicit length control
+1. When using NumPy or data generation, create arrays with explicit length control
 1. Use list comprehensions or explicit loops to generate synchronized data
 1. Print out lengths of arrays before DataFrame creation as a debugging step
 
