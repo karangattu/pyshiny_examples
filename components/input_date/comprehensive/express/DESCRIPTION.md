@@ -1,0 +1,37 @@
+This app demonstrates all available parameters for `input_date`:
+
+1. Basic usage with a default value
+2. Min and max date limits
+3. Custom date format
+4. Different start views (decade)
+5. Custom week start (Monday)
+6. Different language (German)
+7. Custom width
+8. Autoclose behavior
+9. Disabled specific dates
+10. Disabled days of the week
+
+The app displays each date input in a separate card within a column layout, and shows all selected values in a summary table at the bottom.
+
+Key features demonstrated:
+
+- Both string and `date` object inputs for values
+- Different date formats
+- Calendar view customization
+- Language localization
+- UI customization (width)
+- Behavior customization (autoclose)
+- Date restrictions (disabled dates and days)
+
+The app uses `ui.layout_columns()` for a responsive grid layout and cards to organize the content clearly. Each example is labeled with a card header explaining the feature being demonstrated.
+
+Installation requirements:
+```
+pip install shiny
+```
+
+To run the app, save the code to a file (e.g., `app.py`) and run:
+```
+shiny run app.py
+```
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAEyiooEt5kf1SDCmw5wAOhEbNkAZwAWXCLj4wBQ5AzhRi3AG7jJTFvMW4scAB7pNMmSrXDF6AK4UimiKzgMizrhIk-HCgAczgAfVJ0ChkACm4KABs4AF4xMAARUWQASQgXYQy4GFJ0ojouRMSoACNklIAVBmc4AEoAiAB3Lgo5ZCDq3FJXcLJE5xgIONbECWR55ABiZAAhKBkuYhEqPnzXZG7etjg6KGdE4V0ocYMFg56+oOIoBlZYmbm7haeX1nC5LReBixdJrDZbLI7PIFdLtCBfb5cLBOEbsKgg+EIr7pNFwACMZU+WIW6SKp3OwlxuwKs0IROJyCuNzSYAATAAGVkAFgAtOy8XyCWB6Xc4fTlpC4NT9oc+jBFMgoJ5kDAoBZtnAZPTZf0kc9Xu9ZpiET9Xv9Ad4QZlsgAlJVhZAAGR4PS1YDhxKCKIo4VxGIZJLAuNZhONDNJ2R18ogAHpVerEi6YrSCCKsUyWik-RzuUQ8XmAKytVNh4nRlk53n8wWhgPzeMVzm8vGsnkAZiFafmYrDEuy3vuR2IzhkFGkdEEqoo2oeuqw+reH1LiPnv3NUCBVoAwiOxywAGKTjiwrtz72+0T+us40Rt2vXsA70fjo-CWIwGAx1isGO4XAfOllwRDNUnSSs+VbVkAE57wDCcGCnFkPy-H8-3SU8ezuPsdgHHVWC4Og6G8ahhFHF5Li4OBOhnI5TUXI1PT1NcAQ3S1SQIoiPGEABlChyOQAA1SjqPdU8vT2H0-VPO4byoLlYPDMBeP4vC4GeLxGWElNpIWEDG25Pk2x5PECwU4kyKEXRhJZLx1PEYUgOQTCFmwqVcNnYdnxYTo4DgABrWQ+KEGjHiYg0l0Y1czRYzd0ifPdkAAdV8gLlOC0THPEgoL3RHT5lkuBTMAutkHSZL-MC8i7HIZAAFlyHYXBtMcu49LAptDJrYq6x8-yLIoFICUc5z5lc6VhDwjjiMoZBqggEJnFCW4Fh1OjDTEsK-hitjMimrinXtRawhPTKkXPKSWsDXEADYzKxdIAHFvFVeE5oWpbmpKtq2Q69kjP5O6ETeo7QKDeyMI6LDkElcbBz6TyEu6VhehCucF3W06oq2i1gTi3dpESrhkbkE7IvOy88tKoNRAAdkB7EwEJjSBwqOBElYT662+8C-q6ksSqR3oWTbdl2XQCx0OGyGXOh-sJLhxVXFIYhElIGQpXwmRamSVhUbWiKsTo9dYrAABBJWVbVqUMi4LW6jgXWMrJiScrgK8AwKgAOemZMfa5qHYBhKtwar0GoTmA2537-qFfm6zOMdLfVlJ92udWIYgcVZZw+XJrtnWNS1MNVs2jHIoXY2dpt-OHezzVScNs6XYukqCpg7qPaU5gNdEOxNe1h2I4ZKODN5gGO4ZXEZH7+3WBSYB2tHoyTLKKmeeX27CDX6PjLpsAAF0M6zmH3KOGeC8a6q6AOFK9dLg2TU2yvcd2mvWFlkOG8f5Fm4py78uplQPE7IfaBnKn5AOfdbYDw5qA+YI8qwxzgSIEOpA6C9T8ufB2892REGuvvUayBuLOE8FAZQSp37cQ4M4V4ZCj4QAlLbdAgxFRVFkGzNSVB35TwkCXLGZcVwV22i-biHCdC10lG6D0JIwwAAEPBAiwGiKA4RGCwGWvMLw191bJHEX8KeAiERT2QCkZAIBKYAHJoSuAsSgYAdALG4hAFwAAvhY5A8E+C7A0PaN2+ZkB4jxK0feccAwWNEborhddbHIAXv-L43olGiDxO8UJJVxpJKoKyVJlM7iJNxG2HJ8S8kSUyXALkRT0kLHyaIAslSqkZJuvUqpNSqA02aek1pcBPYdJKl0qCvS6xdOAe8Smh9HIuNPJoCgND4RTzAC4og4BoDwFoGATQABHPwmh4CUBkFgCgFgKBbzAGQSgJE1kSCnMw0gSQuA1AkBACYeAJDoAoesaWAYFn7yAA)

@@ -1,1 +1,0 @@
-Develop an interactive dashboard to track and manage inventory levels of raw materials, work-in-progress, and finished goods for breweries and wineries.

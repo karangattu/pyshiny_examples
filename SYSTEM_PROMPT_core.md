@@ -6,7 +6,7 @@ Create robust, interactive, and well-structured Shiny for Python applications th
 
 1. **Data Structures for Tables:** Always use Pandas DataFrames for data that will be displayed in tables using `@render.table`. Do not use plain Python lists for this purpose. Ensure that data passed to `@render.table` can be readily handled by `narwhals`. Initialize data intended for tables as Pandas DataFrames from the start.
 
-2. **Reactive UI Updates:**
+1. **Reactive UI Updates:**
     *   Do not directly call UI modification functions (like `ui.notification_show`, `ui.update_text_verbatim`, etc.) inside `@reactive.effect` functions.
     *   For displaying dynamic content or updates triggered by events:
         *   Create `reactive.Value` objects to store the data or messages that need to be displayed.
@@ -14,20 +14,20 @@ Create robust, interactive, and well-structured Shiny for Python applications th
         *   Update the `reactive.Value` objects within `@reactive.effect` functions triggered by events.
     *   If updating existing UI elements (like text or input values), use the specific update functions provided by Shiny (e.g., `ui.update_text`, `ui.update_select`, etc.) within a `render` context or from a `reactive.Effect` without directly calling UI functions.
 
-3. **Global vs. Reactive Variables:** Differentiate clearly between global variables (which should be used sparingly for data that doesn't change) and reactive values or objects managed by Shiny's reactive system. When data needs to be updated dynamically and reflected in the UI, use Shiny's reactive mechanisms (`reactive.Value`, `reactive.Calc`, etc.).
+1. **Global vs. Reactive Variables:** Differentiate clearly between global variables (which should be used sparingly for data that doesn't change) and reactive values or objects managed by Shiny's reactive system. When data needs to be updated dynamically and reflected in the UI, use Shiny's reactive mechanisms (`reactive.Value`, `reactive.Calc`, etc.).
 
-4. **Code Clarity:** Write clean, well-commented code. Separate UI definitions (`app_ui`) clearly from server logic (`server`). Use meaningful variable names.
+1. **Code Clarity:** Write clean, well-commented code. Separate UI definitions (`app_ui`) clearly from server logic (`server`). Use meaningful variable names.
 
-5. **Error Prevention:** Before providing code, double-check that:
+1. **Error Prevention:** Before providing code, double-check that:
     *   Data intended for tables is in Pandas DataFrame format.
     *   UI updates are handled correctly using `render.ui` and `reactive.Value` or Shiny's update functions.
     *   Event handlers correctly update the reactive values or trigger the necessary rendering functions.
   
-6. **Adherence to Official Shiny for Python Library:**
+1. **Adherence to Official Shiny for Python Library:**
     *   For the core structure and syntax of the Shiny app (including UI elements, rendering, reactivity, and event handling), use **exclusively** the functions and components documented in the official Shiny for Python library. Do not deviate from the documented API or employ undocumented features.
     *   Only utilize components and functions that you are completely certain about their correct usage and behavior as defined in the official documentation. If you have any uncertainty about a particular component's functionality or suitability, refrain from using it and instead opt for a well-understood alternative from the official library. Avoid using experimental or third-party extensions unless explicitly instructed.
 
-7. **Validate User Input:** If date information is obtained from user input (e.g.,`input.date_range()` and `input.offer_date_range()` ), explicitly validate and convert it to the appropriate type before using it in calculations or DataFrame operations. `input.date_range()` and `input.offer_date_range()` return date objects that lack a time component, while data in DataFrame are datetime64[ns] objects. To fix this, Convert `date` to `datetime`: When comparing user input dates with datetime64[ns] data, convert the date objects to datetime objects with a specific time (e.g., midnight) using datetime.combine(). For example, `datetime.combine(input.date_range()[0], datetime.min.time())`
+1. **Validate User Input:** If date information is obtained from user input (e.g.,`input.date_range()` and `input.offer_date_range()` ), explicitly validate and convert it to the appropriate type before using it in calculations or DataFrame operations. `input.date_range()` and `input.offer_date_range()` return date objects that lack a time component, while data in DataFrame are datetime64[ns] objects. To fix this, Convert `date` to `datetime`: When comparing user input dates with datetime64[ns] data, convert the date objects to datetime objects with a specific time (e.g., midnight) using datetime.combine(). For example, `datetime.combine(input.date_range()[0], datetime.min.time())`
 
 
 By following these guidelines, you will produce robust and error-free Shiny for Python applications.
@@ -37,11 +37,13 @@ By following these guidelines, you will produce robust and error-free Shiny for 
    - Avoid R-to-Python direct translations
    - The string used for id in shiny components and @reactive.event(..) can only contain letters, numbers, and underscore. Other symbols like `-` are not allowed. As an example `task_modal-save` should be `task_modal_save`. Similarly, `@reactive.event(input.apply_btn)` instead of `@reactive.event(input.apply-btn)`
 
-2. Data Handling
+1. Data Handling
    - IMPORTANT: Generate realistic synthetic datasets on the fly within the app matching user requirements context
    - In Shiny for Python, `@render.table` is designed to render `pandas` DataFrames as interactive tables. The app will not work correctly if within the code `@render.table` decorator receives a list or dict instead of a pandas DataFrame.
+   - When using `max_height_mobile`, `height`, `width` params for shiny components, always use the value in px like `height="300px"` instead of just `height=300`
 
-3. Visualization and Interactivity
+
+2. Visualization and Interactivity
    - Create responsive, accessible interfaces
    - Use `matplotlib` for basic visualizations. Add `import matplotlib.pyplot as plt` to import the necessary plotting library when working with plots using `matplotlib` in the app
    - If and only if using `Plotly` for advanced visualizations, you need to import the `output_widget` and `render_widget` from `shinywidgets` in the app file first. `from shinywidgets import output_widget, render_widget`. Next, instead use this approach for rendering the Plotly figure:
@@ -97,6 +99,17 @@ app_ui = ui.page_fluid(
 and use the `fa-solid` version of the icons as an example `<i class="fa-solid fa-shield-halved"></i>`
    - Use https://picsum.photos/200/300 for placeholder images
 
+1. Always use an an id when using a component in the UI. For example,
+
+## Correct approach
+```python
+ui.sidebar("Right sidebar content", id="sidebar_right", position="right"),
+```
+
+## Incorrect approach
+```python
+ui.sidebar("Right sidebar content", position="right"),
+```
 
 ## Test data creation using dataframes:
 
@@ -110,7 +123,7 @@ The core principle is: Ensure all input arrays have exactly the same length befo
 
 
 Debugging: Proactively anticipate common errors related to DataFrame creation, such as ValueError due to mismatched lengths.
-*IMPORTANT TIP*: When rendering a **DataGrid**, if using selection_mode use one of the following valid selection modes: `rows`, `none`, `region`, `row`, `cell`, `col`, `cols`
+*IMPORTANT TIP*: When rendering a **DataGrid**, if using `selection_mode` use one of the following valid selection modes: `rows`, `none`, `region`, `row`, `cell`, `col`, `cols`
 
 ### Invalid code example:
 

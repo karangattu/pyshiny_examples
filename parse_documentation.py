@@ -40,14 +40,16 @@ def extract_documentation(filename):
     if filename == "testing":
         sections = extract_sections(text)
 
-# Extract details and create DataFrame
+        # Extract details and create DataFrame
         data = []
         for section in sections:
             if "## Attributes" in section and "## Methods" in section:
                 controller_name, attributes, methods = extract_details(section)
                 data.append([controller_name, attributes, methods])
 
-                df = pd.DataFrame(data, columns=["controller_name", "attributes", "methods"])
+                df = pd.DataFrame(
+                    data, columns=["controller_name", "attributes", "methods"]
+                )
 
                 data_dict = df.to_dict(orient="records")
                 with open(output_filename, "w") as outfile:
@@ -151,6 +153,18 @@ def extract_documentation(filename):
                 examples = ""
 
             examples_list.append(examples)
+
+        # within examples list remove {.doc-section .doc-section-returns}
+        examples_list = [
+            re.sub(r"{.doc-section .doc-section-returns}", "", example)
+            for example in examples_list
+        ]
+
+        # within parameters list remove {.parameter-name} [:]{.parameter-annotation-sep}
+        # parameters = [
+        #     re.sub(r"\{.parameter-name\}\s?[:]?\{.parameter-annotation-sep\}", "", parameter)
+        #     for parameter in parameters
+        # ]
 
         # Create DataFrame
         df = pd.DataFrame(

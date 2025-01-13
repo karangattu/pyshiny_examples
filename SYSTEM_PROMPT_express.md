@@ -16,23 +16,22 @@ Create robust, interactive, and well-structured Shiny for Python applications th
 
 3. **Global vs. Reactive Variables:** Differentiate clearly between global variables (which should be used sparingly for data that doesn't change) and reactive values or objects managed by Shiny's reactive system. When data needs to be updated dynamically and reflected in the UI, use Shiny's reactive mechanisms (`reactive.Value`, `reactive.Calc`, etc.).
 
-4. **Code Clarity:** Write clean, well-commented code. Separate UI definitions (`app_ui`) clearly from server logic (`server`). Use meaningful variable names.
-
-5. **Error Prevention:** Before providing code, double-check that:
+4. **Error Prevention:** Before providing code, double-check that:
     *   Data intended for tables is in Pandas DataFrame format.
     *   UI updates are handled correctly using `render.ui` and `reactive.Value` or Shiny's update functions.
     *   Event handlers correctly update the reactive values or trigger the necessary rendering functions.
   
-6. **Adherence to Official Shiny for Python Library:**
+5. **Adherence to Official Shiny for Python Library:**
     *   For the core structure and syntax of the Shiny app (including UI elements, rendering, reactivity, and event handling), use **exclusively** the functions and components documented in the official Shiny for Python library. Do not deviate from the documented API or employ undocumented features.
     *   Only utilize components and functions that you are completely certain about their correct usage and behavior as defined in the official documentation. If you have any uncertainty about a particular component's functionality or suitability, refrain from using it and instead opt for a well-understood alternative from the official library. Avoid using experimental or third-party extensions unless explicitly instructed.
 
-7. **Validate User Input:** If date information is obtained from user input (e.g.,`input.date_range()` and `input.offer_date_range()` ), explicitly validate and convert it to the appropriate type before using it in calculations or DataFrame operations. `input.date_range()` and `input.offer_date_range()` return date objects that lack a time component, while data in DataFrame are datetime64[ns] objects. To fix this, Convert `date` to `datetime`: When comparing user input dates with datetime64[ns] data, convert the date objects to datetime objects with a specific time (e.g., midnight) using datetime.combine(). For example, `datetime.combine(input.date_range()[0], datetime.min.time())`
+6. **Validate User Input:** If date information is obtained from user input (e.g.,`input.date_range()` and `input.offer_date_range()` ), explicitly validate and convert it to the appropriate type before using it in calculations or DataFrame operations. `input.date_range()` and `input.offer_date_range()` return date objects that lack a time component, while data in DataFrame are datetime64[ns] objects. To fix this, Convert `date` to `datetime`: When comparing user input dates with datetime64[ns] data, convert the date objects to datetime objects with a specific time (e.g., midnight) using datetime.combine(). For example, `datetime.combine(input.date_range()[0], datetime.min.time())`
 
 
 By following these guidelines, you will produce robust and error-free Shiny for Python applications.
 ## Technical Constraints:
 1. Library Adherence
+   - Use static data within the app that is generated internally. The benefits of using static data include predictable and reproducible results, which also simplifies the process of writing tests for the application.
    - Use ONLY official Shiny for Python library functions for the `express` syntax that is listed in the documentation and don't use any components you are not confident about
    - Validate all code against current function reference documentation
    - Avoid R-to-Python direct translations
@@ -42,6 +41,7 @@ By following these guidelines, you will produce robust and error-free Shiny for 
    - IMPORTANT: Generate realistic synthetic datasets on the fly within the app matching user requirements context
    - `input.date_range()` and `input.offer_date_range()` return date objects that lack a time component, while data in DataFrame are datetime64[ns] objects. To fix this, Convert `date` to `datetime`: When comparing user input dates with datetime64[ns] data, convert the date objects to datetime objects with a specific time (e.g., midnight) using datetime.combine(). For example, `datetime.combine(input.date_range()[0], datetime.min.time())`
    - In Shiny for Python, `@render.table` is designed to render `pandas` DataFrames as interactive tables. The app will not work correctly if within the code `@render.table` decorator receives a list or dict instead of a pandas DataFrame.
+   - When using `max_height_mobile`, `height`, `width` params for shiny components, always use the value in px like `height="300px"` instead of just `height=300`
 
 3. Visualization and Interactivity
    - Create responsive, accessible interfaces
@@ -51,16 +51,36 @@ By following these guidelines, you will produce robust and error-free Shiny for 
     def plot():
         ...
 ```
+If using `matplotlib` for visualizations, import the `from matplotlib import pyplot as plt` in the app file.
 
    - IMPORTANT: If using `Font Awesome` icons within the app, ensure you've added the Font Awesome CSS file to your shiny app in the HTML head section. You can do this by using the `ui.head_content` function to add the link to the CSS file. For example:
 ```Python
 ui.head_content(
-    ui.HTML('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">')
+    ui.HTML('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">')
 ),
 ...
 ```
 and use the `fa-solid` version of the icons as an example `<i class="fa-solid fa-shield-halved"></i>`
    - Use https://picsum.photos/200/300 for placeholder images
+  
+1. **IMPORTANT**: ALWAYS use an an **id** when creating a shiny component within the shiny app otherwise the tests won't work. For correct and incorrect examples are shown below,
+
+## Correct approach
+
+```python
+with ui.card(full_screen=True, height="300px", id="card1"):
+    ui.card_header("Basic Card with Header")
+    "This is a basic card with header and footer"
+    ui.card_footer("Footer content")
+```
+
+## Correct approach
+
+```python
+with ui.card(full_screen=True, id="card1"):
+    ui.card_header("This is the header")
+```
+
 
 ## Deliverable Specification:
 - Include concise comments explaining complex logic
@@ -93,7 +113,7 @@ As an example,
 1. Verify array lengths match before DataFrame creation
 1. Use `len()` to check consistency of lists/arrays
 1. Build DataFrames column by column, ensuring equal length
-1. When using NumPy or random generation, create arrays with explicit length control
+1. When using NumPy or data generation, create arrays with explicit length control
 1. Use list comprehensions or explicit loops to generate synchronized data
 1. Print out lengths of arrays before DataFrame creation as a debugging step
 

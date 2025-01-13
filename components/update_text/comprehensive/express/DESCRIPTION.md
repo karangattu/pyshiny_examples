@@ -1,0 +1,28 @@
+This app demonstrates all parameters of `update_text`:
+1. `id` - The ID of the text input to update
+2. `label` - The new label text
+3. `value` - The new value for the input
+4. `placeholder` - The new placeholder text
+5. `session` - (Not explicitly shown as it's automatically handled)
+
+The app features:
+1. A text input that can be modified using various update methods
+2. Controls to update each parameter individually or all at once
+3. A reset button to return to initial state
+4. Real-time display of current values
+5. Organized layout using cards and columns
+6. Clear visual feedback using Bootstrap button styles
+
+To run the app:
+1. Save the code to a file (e.g., `app.py`)
+2. Install required packages: `pip install shiny`
+3. Run with: `shiny run app.py`
+
+The app demonstrates:
+- Individual parameter updates
+- Combined parameter updates
+- Reactive effects tied to button clicks
+- Real-time state display
+- Clean UI organization
+- Error handling through the Shiny framework
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkTEQAJnAZETnBQoDEyAApQA5nGSl0U8j0oa2QAGyhcUjMFBxwvOAB9PwpWAAopClC4AF45MAAVTREASQhTEQBVdCsoKmQAETgYUjyiOk5Q8IAjLOz8hhM4AEonCFcAYTFanygwiKiRAHdOCnZkYigGKz0KUl8GT2DOAC8fVZ8bZoVl1eRY8MizBLJQkxgINJeE5atV1mzgAA2IiAgC6Q0QCmQ0OQrgAYpwGKwRBstsgALTIcbkChMUKsKEwm5rWKoqypOgmToJVjEMTUPoDYaQiAwtl3ThYMkJdjiGwMVJ5bGUPHuYJwUJ5Eas9nQwmy1wAeQYnE83CgoWQVA0RjK0Rlstixie2oogoNspheSEqvVoQSpta8stcrAytt0E1hR1yFK5SdFpd0g1g1yYFKK04GuQwde8kIzpd6HCxDg7FIoX5YfyuHQPlYzDgq24nmQvLEeUTMOlVehsXYAulLtrsKxOLxOz2Jmq0y1vK1RT4eooLaNw4dRXNLrZeQgcEWCW6EoD06tYAAcvPkAAZKBdZcJwOW2OhvJVGpUKw7vcHltNy2jznGigTnVT1fIWfzhIn+MEFszhuW4AGohn+AEwr+YbntMV6-pWR7QvesqPlgz6vmaEGunOC7JhIaYZvyK4fnkm6LO4KYEZmtjEauUFnj2l7IHhqbptRDAIS6yHsqh6ESAEEAJF0Zi7BA76rnk3YXokGqSoeH6fmAMF1AAgp0tHTsQ4S6AkYZdBQEDoto-CbLgnGWtxM6IRyaHjvxnDkEJInkOJ06SYxiRLnJ-7WYByk+Lu+6aoqEChGZ8kflpUA6XpBnoqwcBkNYpnmbKllWtZY7lAk9mOcJFCia5zZgFJ0w-mBGnFf5yCgXGyAhWFlWWlFMV5PphmsCYxCproqXsulcqZU+dmSA5gn5YVWGKaVVAJCxVFERFElKR5FH4Wx-L1aF4U+QpLWsLpbVxdwdAtGAd4trxI0CU5BUuVNeQ6EWTUoWAABKcAJSOS2adpB2xYZiybBAJZ9WyNYWq4ADKiXkFeZIYliJgMJYIhQxQ0zOsSNlkhSVL2rS9IQIygwQqh3K8lA-KCmA4zI6jyDo5jYADZ+1kAAKWPyWAOC2Nh0Os9PUC+yLTKkZO+TCYgUMjrKxBjnisFgVgyEVH7y14SvoBSQpC5QvrDjVYEoCAz5YDaaqehh4sAL5SrtCkwhris4DrtN6yIgUSkbcYm2bOGLjeoS2-bU1ss7Wtu3TKPCz7gxansMMUH7w5YAHv4hyzDuOzZCuR3Qusx-rbiURttgp+UaffvNZeNnbLNTRDrgAKJ0HQiUiOwwRWFkSLIKdDB9j4E2BAonPiKNsjqG3Hdj1Mk9wOosiUKkZszTJnTSvzyAJOLLLh5y6-W5dYAW3aGEvXMQXZP735eeL2fslBt8LhnQyP2yNeEbYN+pwHX-sXFs6CG497JTzgDPSQc8J5SHAcvM0a8PKByClvCBO897OliEfU0atXRnyto6H6bIvK-0rgHe+3EQHz1gYvCB7coEQFAQvJewtV6pyPr+VBAtd4SwPjzJBOCT74I1BfIhkEwKkLMFXV+YEgEWioTAmQtDIEjkYdQpRLCV6IOknNUu38GBcPQbwp2h8BGTiESqS2IjCEfxhAArML9dHrX0XI8GowmE0OnvQ1RHiNFwHgWwyuT0KCGJ4fvEx-CdGCOstaSx58bEthIXkd0VivSDj9NEMR0J6LhhBlIaM8EsnMT0exbMuZ8yFmLBAUs5Z4zAMwaYqJ5jIB3yDq0GMEiGLSSvF7OS3EsFmLfF+GRcZ2k5P8nBCqDcLQDKaUMlpuESmLSIOMjyV57E0RZmAG2RBwDQHgLQMAYgACODgxDwEoErCgOpCAkBxMLQ5CgYC1GTKQTInAugKAgG8PACh0Dd2iqMBS2zQRAA)

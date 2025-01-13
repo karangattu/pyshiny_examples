@@ -1,0 +1,29 @@
+This app demonstrates:
+
+1. Basic equality conditions: `input.view_type === 'table'`
+2. Multiple conditions with AND: `input.view_type === 'plot' && input.age_filter > 25`
+3. OR conditions: `input.show_advanced || input.view_type === 'summary'`
+4. Complex nested conditions with parentheses
+5. Negation using `!`
+6. Numeric comparisons
+7. String comparisons
+
+Key features:
+- Different types of visualizations (table, plot, summary)
+- Interactive filtering based on age
+- Advanced options toggle
+- Conditional rendering of statistics
+- Multiple UI components (cards, tables, plots)
+
+Installation requirements:
+```
+pip install shiny pandas numpy matplotlib
+```
+
+The app can be run by saving the code to a file (e.g., `app.py`) and running:
+```
+shiny run app.py
+```
+
+This example showcases how `panel_conditional` can be used to create dynamic UIs that respond to user inputs in various ways, using all the possible JavaScript-style conditional expressions supported by Shiny for Python.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBf0HDk6KHah6vb204OuECYCvD4Q6P4uIjBQFOgANqQU8ZwARji4CUnIPgkUCgoAxMgAyrAJcMi2sVAKtnTIALy+WAAiNQBiDLBwABQgCshDyHKQPaMowKMAUqTsEKNEMx7yhCNgAEKkqYvrAIIpxKsAugSDw6NQAOarkwBMAKxEAMwADC9PyAAsr6fnQ6NWGQxBNkMAAByfACc72QAHZoQ9jgoAL4ASgKQU4OGucAA+qR0BRWL0pMk4I1RgAFFbxZAAYXItk4UnIUDprTgMFIuzonHi8SgqXiFIAKgwTHAMQsIAB3FnsZCWLCC3CkMx41iceypKAMXpoxD-ZDyiiK5VanV6g1GiDDe1K7HGDXdZmkPGpMwUcgk40Oi5gaScOCyvEUTKrM52-0O0YlOAiyTIABqwdliz9MeI7FInCOrEaUzAFCFIt2oyy+TWgOCMQYuFGyOj-ulMZGzYdyudFE1KXs+suNzxfPiVEc1bAHX5Y+QqV4exu5Y7bZXQxg3Ead1hMQ0jS+n2k7MljTerZjmaGXfCGuzcGIAGtUqQNL1ATnQ1BbIeIEc-BOSu+yB7F+Hi-sgADyRKcD6ozSkUyAbF4ebIGQdgstBdq6qwcC2Mg5CiJ+0Gzl6+HYYmrIyqa5rYu4EAJniqHMhR7KvmA3ZYEGIZhhGTSNM0ADkJbCnA-Gwba9rKuwzyse0JbIKKpaVKmIawcaAACNj9lg1QlsO3TwMa9gNBwpChkJIo2heohwBQJgMHa9TAI5-G4vxxzIAAPM07G4sO04OAaTbwQAsiYo6cBUKFMuhPpRTAqTcDhJoKkBAByrQKFRjo4nR8QMdFzHxKx7GcWZPF8QJlb8cgABkNV8NeFBYL5I4zgAfMgjxicaknSdSiQiMpsrIL0C6VB1jwYmAZ5DBp1BaZWhlwMZ754pWlnLsMrUODheL1E0VR0E5R0uTcbmed5jXNUO236miTZtnyVxEFAGgHXkWCsCYqSViSM0Oq9n3ELEY69Ldu3Oa5pzIODth7SdQJCCJxz-fagPYT2GiCqkCa9PxY38ajwzozZeK4NjuP8SUwIiUTQxiLZ9kw5wVyYsUjJoRRs5eEl+G3g+T5vR4uEmFqEBXBBABKeHoA4sRCJlKXKrR9GMTF0BFaM7EmR+IE-klAA+BsNaYTWldxsu8QJX0wHWuCidN4nDL1rHAd+YGQRRej1SUtZ6g203GllyrAwwtgbW2c12A42k1Hp4ybUMRkqKZmp+-WEerszo47XD+3NI5kNne5Xkm2Y134rdgVWfaNt2+9thtJ0+l9AMicrvxwU2Qweb8ZM-GMiYlD8UQ+OyN0NxAWdo97OPuKlDTblRlnDr8cmR4iZMNdZyKEBg-5Yh53QaLLyvMZMEP4ew-DwCncjWDwB4BpEHcJ-b6uF92PvOeHzf-GI2INyD9xB7xPp1OmK4HpZ3RO-ayjM7R139mzBkzAKhvTVlzLKMAwpSEioSOW3oGCsEVmabKKs8oYIwixY0oxeglTTBbSoFVkD8SqrVeqPkboH2QB1U8yAjbrBoWAOhV1zbhktsw-+6d7bsLLk1HWeJPzuxwlNBQhoerYnYF8V2tgmJULpCUEsUhWBSGIMQwOHYo5aR0lAeOBkOzJwUSY2If0nb+mvvnQ6x1b5QwunIiufkf7V3bs44kDcm4li6D0fosCqZGM4CY3u-dgrcAXkjEeLDgqvTSYA0e1MkalAoLYTk0gl6xPXvESUfcwSwPtB4hGi9jgP24M-WpW0D4QwaekppO5WntzbJ-K+HSj63wAffEx4cwGv1gVA-0MD24MzsggoxxCZTFFSnAK4sQMJRU5hhEh1EcqqwKvo1iABCbWq0lGgRwt1Dsyo6z3lsKZPeow3lgCsgAKgAKLQGEiwgCpkgJ6w9lBH01VvRsDgJUbkYg2DxMSWYz5Qj3lwQgOs4IDhkJkAEHqBJfMTnkAOWQ2k+U9lsk1mxK6LVuHMLeHc+0wdsSh3DsQQUug8SUjAKkK4ABaFIVx2BVnUe3B5eonkvNYp8z5ABNdU-FZBQvIklM0lQjJQBwTkSet1kCHkqXAM50rYJgBREQcA0B4C0DAGIAAjpYMQ8BKCsCwBQDQFA1hgFQlQGgKAPkQBiHEAaKQdgQCCCEBQtFqirNgSa44QA)
