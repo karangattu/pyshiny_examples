@@ -618,7 +618,6 @@ for directory in os.listdir():
     if app_type == "testing":
         if os.path.isdir(directory):
             app_pairs = list(find_app_files(directory))
-            print(app_pairs)
             if app_pairs:
                 for dir_path, app_file in app_pairs:
                     with open(app_file, "r") as f:
