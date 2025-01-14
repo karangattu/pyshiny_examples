@@ -1,0 +1,26 @@
+This app demonstrates:
+
+1. All parameters of `navset_underline`:
+   - `id`: For tracking selected panel
+   - `selected`: Sets initial selected panel
+   - `header`: Shows content above the navigation
+   - `footer`: Shows content below the navigation
+
+2. Different types of navigation items:
+   - Regular nav panels
+   - Nested nav panels within a menu
+
+3. A simple reactive output showing the currently selected panel
+
+The app is minimal and focused specifically on demonstrating `navset_underline` functionality without unnecessary additional components.
+
+To run this app, save it as `app.py` and run it with:
+```bash
+shiny run app.py
+```
+
+Required package dependencies:
+- shiny
+
+The app will show an underline-style navigation set with multiple panels and a dropdown menu, demonstrating all the available configuration options for `navset_underline`.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkTEQAJnAZETnBQoDEyAMpwR6KAHM4yUnQpclYFBxxfOAB9QIpWAAopCgAbOABeOTAAOShpVk9kAFVrW2TufwAROBhSTKI6TmTkqAAjVLSAFQYTOABKJwhXAGExKCpkaDyCgHdOCnZkExKGMog4Kwnczh8xznIFWfnFzixJ-IoopZsV8vjOKwzIXKj7zN7EBWQv5FcABSg1slkABBT7fQ4LcKTKLeQHxTL-QEgt4fCDfdHICHHLDEKAMKzxd5gjEY8K4-FRdjia7wsCIuBA4HIIbkKiUN7EknfTIdLh6Th6eb+MiUagiOhCZD0xmZTlc7HGMxRKgaCi0lUXKB1ZCZACiooYyA1yAlhulyMIOrAblg6FSRs0FA5EE5fwBDOQACEdWjwXNISdobCGbTzZ7tdIoMkeo9g8koi0UXK-UcyXiCUTffKvmmKVSoDSEe6gd6WaL2WB+lnszy+XxBVTkCK2eLJWHZdX5eFFRcICZ4AxOMRaX2YAntXqDRN+y1bCa28WvdqACwAJirrqli6GnKxUOecdD26TnZTAZx6cJqOz31zVkp1NsR6RQ2ZrLFzpvX1rAvrRsbzZivOZrHmAyYkt2ECmBcrBlIWYCwfcthRMQE7WnB-jcFuL7agADEQACMuH4cgACsuEbtWrgVEw6BWKQ0xovAfbAcgBZWHMezQECcahNWe6Bs8zEmLSACyQj+AA8kEXGhJW15cgJpwHsWz4ehUJ5fpi-rYuSGYKVpOYnHpD4Fk+RZIhUb7lk6lbgTWYC8r+v5Ck276UKx5oaWBp43pB0EoVSxAANYtKQGi0sQQXBVEVhoUM0X-s5aJec69lKUGqkWR6uqaV+Sl6Ve9ldsZ6amfB5q6tZLafoZ36OXWLkAe5rYgUiuU+XVRlYD2UQMAWewJmYFAhPCvmGZk-UcaQUTyIQxVfpkCWkKQ+R8Cli4dQQC03lFpBDnArBpMAmTScEaIEWhZ1ccgq5XTJ5DIAAzJkAC6O0YpRrhuOwDGYlwUXIHGf7ECYDCWCkvD5KkkjrAcOl3kV1Z3uV5nZFsOzne4FBjCYclVuinIAAKWNcWAapyNh0GwDJwLD96Hpm8piBQYNonQS1gxDyRQ7T9NA8WKAgD2ynSC8GYAL4di47i-dM63QXoSgsJGg6kHjAuAnxBWXkzt6lXmj4MLSACSUFmMgABqUY9PjnLE6Ttjk46lNwNTcZRJG0aHUjzOeGzyBjVpHOOY6JpMCw5rAkLIsalEUCElLTidV+IdZDOc7K9hHqejH5sUKc-YJoncjJx9IduBhhpez04fKOaQx59BWCIdcKEl2X43oiHCV06F4VsDj4xZ15TdmDi0WxR3LopzeIcAEoDaQNMw1jI+bWPBdTYNcAl7Pn1gBLr1AA)

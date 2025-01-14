@@ -1,0 +1,25 @@
+This app demonstrates:
+
+1. All positioning options: `top`, `left`, `right`, `bottom`
+2. Size control: `width` and `height`
+3. All cursor options: `auto`, `move`, `default`, `inherit`
+4. The `draggable` parameter
+5. The `fixed` parameter
+
+Key features:
+
+- Each panel has a different position to demonstrate various positioning options
+- One panel is draggable with a move cursor
+- One panel is fixed and stays in view when scrolling
+- Different cursor styles are demonstrated
+- Added a tall div at the bottom to enable scrolling to test the fixed panel
+- Each panel has a descriptive text explaining its features
+
+The app is minimal and focuses solely on demonstrating `panel_absolute` parameters without unnecessary additional components.
+
+To see the fixed positioning in action, scroll the page and notice how Panel 4 stays in view while others scroll with the page.
+
+To test the draggable feature, try moving Panel 3 by clicking and dragging it.
+
+The different cursor styles can be observed by hovering over each panel.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBQoDEyAMpwR6KAHM4yUnQpcj06IWQoZGIAG3EIZGioXFIzBUscXzgAfUCKVgAKKQpYgF45MAAFKAg4aOQAQQAjVlJos38AETgYUnKiOk5oxMbSgBUGEzgASicIV3rbWwio8goobgdkAHdOCnZRWqgpWWRBVl3Ocm4fZApSZHZWpb3-KGbW9tPq2tYFHb3kOk1j5WFhbDJ8qwKLhSuUzhdyCgxIljnAANwPOCcHzsCgoACMAAZCdJ2GjylNEApkDTkNTaa4AEJQc7EL41Or-fZ3dAROwJOB0Lykc7BCDXek0rmAzgZDlZN4tNpUQqBMpgInoDR9AVC9Wa7WEbacWx7dUAJmJWp17CxOIo+qthqIMRZrCy6saPgAtNFsbjkI0hPYGKdveaKVT4rSY+UqhzkPiUAAxTgaOBLeFi40Anl8paxIXlWYx1zx2o5-ZBih3FjVJYMf3C0WXcUQHySysyuW1BXvZVwfLV2uO61Gxv20fO42m9gWp02u24x2EscuxK6D3lL2+puB4ObdDhyOd2OVb51c0ptMZ04ihHxaXD5T10RN4sQTuuDoMXw+N6xOyFbSsQJgMC0oZQjC8jRlKuz7Ok3jyoqHwqqetI8vqACsq7TuhNKFg65Q4QApDq+Ezma5SWrh5GwTGmJNiua50vRMa2L+Pj-iMcAlOMkwEBRoHgUI6o9LIfRCRu7qej6fr2vuDAhmGEZgJ2lIUXGF7IAAzCgP5-gB-hIcB8HIOJ-jCRBH5fsgqbppm2l7EcbBrLgejcMg0icHAWzbLa8SsMQTBDBK9HSohF59kq7T5BRmHUbRRoUROy6JSxFE7LO2FJUQFG2kx5QABy5RRAwOXxExwIJbG0q6m6ybuClBkph7Hmp9EabVNJaQmAAs14OXeLbkLc7AuVCSR6FsAVsMFrR+u2Nn0WW2nSvYdBQCY0QiFZQidhFsomdE0WoYOFHPjAOUZd1upEWAOm5axDG0llVFgDRN0vTSBWTuURKlbde0MOqG1bTtklA9JW5gDu8kBi1ylHqp6lRt9dLngmWEoOWnJmWD227WB1kdbZuNdtwtqNkTImOOFZmRch-axfFarEYSZHJbdqX3Y9X3fW9c6JU9+VLvdANrkJxOieUlMOLskPo-VMnbnJe6I21KOdWj329RWABsONrWZcvU1E0uOKTK3IOT0pbXc5u08g+QEztMz0wCjO9ihA5xbdCVgH1HN0ejhHqkHnN5bdgvziLt2-WlGoLoQUu0+q9u9CnUNujDcPqweobIx+MZdejet1AA7EbCZ22Y9zA8t8yLGwzCWas1AiGEkHzaF7bIPYPQQFCv5in8DOysCoLgtIkLQrCYAJ3iyA0bhGLeIs1woJaWrkmApe0ukMBQAwADWtikFsEBxWpN9fq4bg93U5+X7c9ysHA-jlbex2BnA43efteinZRi2iAnUI+p9bwsmQAAci-rYGBxohgHCPp5by5weL+UGP4IKIVFo3D2JwPQZBKAdywJ2AA8i8QuF5pqDDqLghaXYXhfD8CsUhlByFANvnvMAABfAAukAA)

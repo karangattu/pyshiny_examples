@@ -381,16 +381,7 @@ def python_app_to_shinylive_url(app_text: str) -> str:
         {
             "name": "app.py",
             "content": app_text,
-        },
-        {
-            "name": "requirements.txt",
-            "content": """
-matplotlib
-numpy
-pandas
-
-            """,
-        },
+        }
     ]
 
     json_string = json.dumps(app_data)
@@ -406,20 +397,18 @@ def create_test_files(file_dir, code):
     """
     Creates TEST.md files with the extracted code.
     """
-    # given a string like components/sidebar/comprehensive/express/ get sidebar
-    test_name = file_dir.split("/")
-    with open(
-        f"{file_dir}/test_{test_name[-3]}_test_{test_name[-2]}_{test_name[-1]}.py", "w"
-    ) as f:
+    # given a string like components/sidebar get sidebar
+    test_name = file_dir.split("/")[-1]
+    with open(f"{file_dir}/test_{test_name}.py", "w") as f:
         f.write(code)
 
 
-def create_app_files(file_dir, code, description):
+def create_app_files(file_dir, code, description, app_type):
     """
     Creates app.py and DESCRIPTION.md files with the extracted code and description.
     """
     # Create or overwrite app.py in file_dir
-    with open(f"{file_dir}/app.py", "w") as f:
+    with open(f"{file_dir}/app-{app_type}.py", "w") as f:
         f.write(code)
 
     # create a requirements.txt file in file_dir
@@ -452,24 +441,26 @@ shinywidgets
         )
 
 
-def find_prompt_files(base_dir):
+def find_prompt_files(base_dir, app_type):
     """Recursively find all PROMPT.md files in directories and subdirectories."""
     for root, dirs, files in os.walk(base_dir):
-        if "PROMPT.md" in files and not os.path.exists(os.path.join(root, "app.py")):
+        if "PROMPT.md" in files and not os.path.exists(
+            os.path.join(root, f"app-{app_type}.py")
+        ):
             yield root, os.path.join(root, "PROMPT.md")
 
 
 def find_app_files(base_dir):
     """Recursively find all app.py files in directories and subdirectories."""
     for root, dirs, files in os.walk(base_dir):
-        if "app.py" in files:
-            yield root, os.path.join(root, "app.py")
+        if "app-express.py" in files:
+            yield root, os.path.join(root, f"app-express.py")
 
 
-def process_directory(directory, system_prompt, model):
+def process_directory(directory, system_prompt, model, app_type):
     """Process a single directory to create and validate a Shiny app."""
 
-    prompt_pairs = list(find_prompt_files(directory))
+    prompt_pairs = list(find_prompt_files(directory, app_type))
     if not prompt_pairs:
         return
 
@@ -492,7 +483,7 @@ def process_directory(directory, system_prompt, model):
         description = split_and_strip(description)
 
         # Create app files
-        create_app_files(dir_path, original_code, description)
+        create_app_files(dir_path, original_code, description, app_type)
 
         # Test and fix if needed (one time only)
         success, error_message = run_shiny_app(
@@ -503,7 +494,7 @@ def process_directory(directory, system_prompt, model):
             original_code, _ = fix_shiny_app(
                 original_code, error_message, system_prompt, model
             )
-            create_app_files(dir_path, original_code, description)
+            create_app_files(dir_path, original_code, description, app_type=app_type)
 
 
 def generate_shiny_app(prompt, system_prompt, model):
@@ -625,11 +616,12 @@ system_prompt = read_system_prompt(app_type=app_type)
 timer_start = time.perf_counter()
 for directory in os.listdir():
     if app_type == "testing":
-        if os.path.isdir(directory) and directory != "components":
+        if os.path.isdir(directory):
             app_pairs = list(find_app_files(directory))
+            print(app_pairs)
             if app_pairs:
-                for dir_path, _ in app_pairs:
-                    with open(f"{dir_path}/app.py", "r") as f:
+                for dir_path, app_file in app_pairs:
+                    with open(app_file, "r") as f:
                         app_text = f.read()
                         user_prompt = f"""
                     Given this shiny app code: {app_text}, please provide a test using controllers for this app based on the reference testing documentation.
@@ -639,21 +631,10 @@ for directory in os.listdir():
                         code = extract_test(messages.content[0].text)
                         create_test_files(dir_path, code)
                         update_token_counts(messages.usage, model)
-            # for dir_path, prompt_file in prompt_pairs:
-            #     if not os.path.isdir(dir_path):
-            # with open(f"{directory}/app.py", "r") as f:
-            #     app_text = f.read()
-            #     user_prompt = f"""
-            # Given this shiny app code: {app_text}, please provide a test using controllers for this app based on the reference testing documentation.
-            # """
-            #     messages = get_llm_response(user_prompt, system_prompt, model)
-            #     code = extract_test(messages.content[0].text)
-            #     create_test_files(directory, code)
-            #     update_token_counts(messages.usage, model)
     else:
         # if directory is a folder, process it
         if os.path.isdir(directory):
-            process_directory(directory, system_prompt, model)
+            process_directory(directory, system_prompt, model, app_type=app_type)
 
     # print time taken for each directory
     timer_end = time.perf_counter()

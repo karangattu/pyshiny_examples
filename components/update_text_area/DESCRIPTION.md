@@ -1,0 +1,16 @@
+This app demonstrates all the parameters of `update_text_area`:
+- `id`: The identifier of the text area to update
+- `label`: Updates the label text
+- `value`: Updates the content of the text area
+- `placeholder`: Updates the placeholder text
+
+The app includes:
+1. A text area with initial values
+2. Three input fields to specify new values for label, content, and placeholder
+3. An update button that triggers the update
+4. A reactive effect that applies the updates when the button is clicked
+
+When you click the "Update" button, it will update the text area with all the new values specified in the input fields.
+
+The app is minimal and only includes components necessary to demonstrate the `update_text_area` functionality. All data is generated within the app without using external files.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkTEQAJnAZETnBQoc4oAczgB9UugqsAFFIUADZwALxyYAAqmiIAgmJQyACq6FZQVMgAInAwpJFEdJzBwVAARqFhUQwmcACUThAAxMgAkhCcUlDByFQaIlCJyADunezIScSDViMMGOi2yHRCyGVwFFQMyNKcrCbdyEJuUB0AXhmc5AqjFOMuUwxW-nWICsjvyPfTnuziNgz+SIxfrIBLibK5fJgBoQD6fThYYxmTx9CieQbiQGwuEfThWCJgVEYqAFN4496lNbBAkAZVg6FCyGB8USpOx5Ok3VqBPanU4B1RbPJ7wZEjg7FIwX+BIAopRFrhSCYtqjkL8xELhUxhqwwgBWAhk8m-ThudgUAkAJgADNb0BpIkbkDCFC0AMLkChMYJ6ZZbExpC4QNy9WITIbcCZsODoQYZODIB5Wa5jeFYJPPV7stNJn5-WyAsAeyje5AABROcGCkRhcJudwRpUVyLIwRMMAgnmGc3Q-lGVluYQAjAB6S0vJ1wlxItGorHCnGRCBwYaeSlVgrISfCyIAORXyAAMuUN4Qt9mF5y2+FIql0lQZseqY6Lx9a8LpxBTLPYvOFx8lxXTwr1qTdt3JPcDwANS5eQz3AnEQJvMA73jGZVTIeVKBfBd33JT9vxRX8ELhQDV1FYhxUlf4wNfCCwH3YZy1KSiJSlWxaP-D4kIJVCH2QCiqPYlVYhw4U8JxAjkQkKRyE8MozAocg-y4yIA3vOCiBIgCUMDTJmVBVlCG095iFKXRPAJMoKAgABabR+EGXAxPJF1mmyXZRV4YhlUsEQkN9FZZAYTgiimWSIBTW4c2mTMnS+R48ygf5CzdXzqBEGDr1YGsnSdAABSx-iwQVsxsOgVFIVcAriujRHWZVYToR0wBcnE0oYPyjxPYIUBAGcsGXVd12CZ4AF8EI6rqstqPqBqG4DYPGyb0soZixTY-45q-MxBqAwTNoLOoJrqlqX1dZAZToOg4EkXpSE+PSE1uZ6w2JEZflhF7VkU8g+D0MzOGIABrOBkwgQrxEkGQ4HUa7booBRIZkmH1FkSh-AG9T4xhcrkE8WqpwRbGqCI-p0USFScTxAkiSMw06pGsJ5qAkbngZy9YOZnaKD26qlrqDnhQO6jbG578+c8EXhOeJ06jAMaAF0gA)

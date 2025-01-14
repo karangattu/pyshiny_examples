@@ -1,0 +1,23 @@
+This app demonstrates:
+
+1. Simple list choices
+2. Dictionary choices
+3. Grouped choices using nested dictionaries
+4. Multiple selection
+5. Custom width
+6. Size parameter to show multiple items
+7. Different selection states
+
+The app displays all the selected values at the bottom to show the input values being captured.
+
+Key features demonstrated:
+- `id`: Unique identifier for each select input
+- `label`: Display label for the input
+- `choices`: Different ways to specify choices (list, dict, nested dict)
+- `selected`: Initial selected value(s)
+- `multiple`: Boolean for multiple selection capability
+- `width`: CSS width specification
+- `size`: Number of visible items when not using dropdown mode
+
+The app uses minimal additional components, only including a text output to demonstrate the functionality of the select inputs.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBQoDEyAMqx0AGzjJbUCihkOiE-Tjo6B2oRClx0OD1SOmRidlJOYgSFVn5vOAB9VPTMvQBeZGA5MABBKqIqgCE65CqAYWaqgBEqgF0FWwyKQrSMhORykCqoKpQqgHl0KXJkWsIWsAAjGfWFpYhkJrWq4m35xc5l9rAAXwUAcyYTeNth4rGJhWQv9YBxR-RkABGbaTMB3QHTWhVP6kJ5A5AAWhWHTBgK2ULAMLhgMRByq1wIn2+0P+yAATCCqncyZDZpjSWTcat6mCyei6ViAYykYdbhA+S5kAAFKB3Xykc7kVgKSw4UUFCUUVgACikFB8pSqxjM+VYcB8kmQnTgMFIzTonC8XigGw1ABUGCY4ABKJwQADunAo7GQsutuFhQzIXhMMAg+XdDAwys9tm9mrAABYAAzJ9AaKrOxBEr6uBpQHLENj6uCGz3eti5HwpEYlHPIcs+2XEKAMWzKrP176+zhYFtt-LscT2BjKxoFjLuEuSTNd76y7VDPUGihj-bdjdfTi2BPL0sUYGEOeb60bfUJ-OF4sr5DKnICateTisCiuo-rzfdoqjVile95V4f0JD9Py+PdJDgHcqlWY9kFdCB61cNxpxERswkkC5oAYXhvzrEC0ObVt207EDu0IgchygEcxzATpBkw1teFaWssjAeDQIXCBTCXFC11A7tt13FCKXffjvlPc8qmQm80IGDDyEYms3mlUSxKUn9SjkoMWNYYC1OvfdIITSFYPgxCpxkr0fQeWFnnUvDuwI3t+2I7NSPnZyiMHYcHBozlIOQZjlNndyvk47jdV42CBKgsBwIoABmOpovEm1JLAaT9wbKzkBsp4Atw1i9LUwrfzy55AJKYqxPioyqQhKpTLdbtXAAWRMLwpDyAyZ3wnLyNc2CBu8qjfKqdrOs4brMpnNiht7RdIpXPi1MEqp4sTZLQo3CSvATCauureKtv00q-yrApSuq-jap3SoahRQ4emu0CYA6w64FKB0nSahCQKQlDsorYgTBfZRY29esnL7IiOzcjjPIonzRzaUGKGUAB1bdIbm7bwp1eKVrEta4pQgBWE61N2hMZtQnKQbBlgIfYSmxLO-8fEqhIXs-ZmEzJVN00a7azP+iysrQnIAC9fHQVtYDgKhHD6isBrh+aYaR0aUbABpSA0dxYh8EKEawRbCZSrdYvigA2Vn+OpqTAclzgZeQOWo3gJX7dA9mLq53TLcrGWE02sBc3cNJ3T0RM+CoGA9ACZByEyX7BTo1hvCgXhbuQaQoBDMZuGQIIXIUaGXPVkDhso6inZXAKADUC6dFT2O+AABGwRywKgNAoet7GSW78nzwuVRI0CxAoEwGH2In+LoeussBFAQEXLB4sBDtbicMAg6XjLAbJNeN-iskd7kPeD+Xw0EtPrizE3lCEsv6-tu7Q-aeQRMH+45+VyJjfghfeH9vhf0BmTP+T94pk2AcLfSECbw22gRQAB+4baX1AaBZ0NwehAA)

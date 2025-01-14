@@ -1,0 +1,51 @@
+This app demonstrates:
+
+1. All available sidebar parameters including:
+   - fillable
+   - bg (background color)
+   - fg (foreground color)
+   - padding
+   - gap
+   - border
+   - border_radius
+   - height
+   - position
+   - width
+   - title
+   - max_height_mobile
+   - class_
+   - open state
+
+2. Features:
+   - Reactive filtering of data based on multiple inputs
+   - Date range selection
+   - Multiple category selection
+   - Status filtering
+   - Value range filtering
+   - Toggle for summary statistics
+   - Plot type selection
+   - Point size control
+   - Responsive layout
+   - Card-based content organization
+
+3. Technical implementation:
+   - Uses express mode syntax
+   - Generates sample data internally
+   - Implements reactive rendering
+   - Uses DataFrames for data handling
+   - Proper parameter typing and structure
+
+To run this app:
+
+1. Save it as `app.py`
+2. Install required packages:
+```bash
+pip install shiny pandas numpy
+```
+3. Run with:
+```bash
+shiny run app.py
+```
+
+The app will demonstrate a fully functional sidebar with all available parameters and options, showing how they work together in a practical application.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=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-pvhAA)

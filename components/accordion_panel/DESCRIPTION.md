@@ -1,0 +1,31 @@
+This app demonstrates:
+
+1. Basic panel with just title
+2. Panel with title and value
+3. Panel with title, value, and icon
+4. Panel with title, value, icon, and custom attributes (class and style)
+
+Key features:
+
+- Uses express mode syntax
+- Includes all possible parameters of accordion_panel
+- Uses Font Awesome icons
+- Shows the currently selected panel value
+- Minimal design focused on accordion_panel functionality
+- No external data dependencies
+- No unnecessary Shiny components
+
+The app provides a clear demonstration of how each parameter affects the accordion panel's appearance and behavior.
+
+Installation requirements:
+```bash
+pip install shiny
+```
+
+To run the app:
+```bash
+shiny run app.py
+```
+
+This example provides a comprehensive yet minimal demonstration of the `accordion_panel` functionality in Shiny for Python's express mode.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBQoDEyAIK3byAGLkRbgHc4VmY4ZABhAGVIvghkCnYwxKgvVjhJTnJkOk4GVgoFSyxk2wB9MkpqCgAKBWR65CKACQAVAFkAGWqAcgAeABtuAGtROH6AXjkwfNx+4MS4ArBkdjE6SbB2Cgp0VkQAen3iWwgAK1YsYn7SE1s6fqgxS+Z9qFOoDX3BgCNWfbo-ABaKBBELwfYANiwAHYsAAmI66V79fpYGDcS66KYAPm6AEoFASIIVODgoABzOClUjoCisapSChzDZuYhkBi2TJxAAKUAgY2QABE4DBSFMiDkUVBvsyWgwTHAiQoApwEo1ScRHrZqnjEHUGiq1UUJOzOeRqpxbBsTeLkDTqOM5QqiDATP0pOhZfLFXq4g1-a5efz+shDexkKcTPl4qq5vr-fUw+qsCahGaIKV0HyxrUwAAhKCsTjEZBBsZTXXxhP+oowR5DWykAIQXMtLh6Th6KDIb6F4vILPB0Oq8OR6PdxlzAePWCLBwVpx+6uB7MhpOTsJ8rzSKD9BVV-1J41stNczOr3Nltcj5AANV3+8IyB3e7gG0HYzhFd91ertfrjbNq27bTkO7CFj2pBqhOsabnYyDdi+CrTgws5UI4YBKkuCYrkO66wUQSFwEQW58BUB4Gjex6mmeH79LU2G-sgUxXsOaoAJLkYQFHVkR76rgAzOKPEJsW5DjEUFAUhcnDVFchasKUGx0FAgIhIMXgqWpXBjLYgLgf0si2LaMzMlMAKUGpnAAF5wCgACMYgwAA3AujENJW7l-qSdYMA2TYtlMbadqBArcFctzBAhcRiXEWaofA6GNEWEDkj4fjuKCoRuSJuECvhTLEc+D5FbFJHwcQUYUMoUDbAwnDfGYwQiUepKphytEXiJ-osaubHhuEVXKG4dUNU1rDCV5CZ8VMdEACyTUx-qxRJpJSeSMlyQ8uhKeZqnqZa2T7VJGFEKZb7mUCRa2Q5TmuZhBDdQ08k7RslX5MwgJ0YtS31OdGy9sQQzkkwJh2ICZDXAwKDOHQAAcdAAJwqfdImeb99T-n5gGBWAwV6HRyD2KKED5KhVB6O91UsLVFD1Y1FPIFtCnRakFCzIqOUQK4kTsE2oZcMQ4aEyFlUMDYTK8GkcySHAxkQAAAjY9gMFgVAaAUdhwHQbBjOkVBlHROo-g0YgUCYDBxHQUyDeLVT9FLeuy14dEoCAxhmCmbI6gAvlMYA+wAukAA)

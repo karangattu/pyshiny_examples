@@ -1,0 +1,25 @@
+This app demonstrates all the parameters of `update_popover`:
+1. `id` - Used in every update call to identify which popover to update
+2. `*args` - Demonstrated by passing new content text
+3. `title` - Shown in the title update functionality
+4. `show` - Used in the show/hide functionality
+
+The app includes:
+1. A main button with an attached popover
+2. Control buttons to:
+   - Update content only
+   - Update both content and title
+   - Show the popover
+   - Hide the popover
+3. A text display showing the current state of various click counts
+
+Each update operation is triggered by its own button and demonstrates a different aspect of the `update_popover` function. The app uses minimal additional components, only including what's necessary to demonstrate the `update_popover` functionality.
+
+The app avoids:
+1. External data files
+2. Unnecessary UI components
+3. Complex layouts
+4. Additional features not related to `update_popover`
+
+This implementation provides a clear demonstration of all `update_popover` parameters while maintaining simplicity and focus on the core functionality.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBQoDEyAApQA5nGSl0U8j06IWQAIyhWTmI2ClwAG25PBUscLzgAfT8KVgAKKQo4uABeOTAAVXRbKCp3P1JZBmQAETgYUlKiOk44uKhQwqKAFQYTOABKJwgAd04KdmQU3txSM3SyOJMYCHSphgwcmds5krAAFgAGc-QNUrHEBWRH5FcAQTCzCnJkGbnkKGRBIIGsg5tVvnAAOQ9BaVaryCBPb6zeYpYhQBi2HJ3B6Ip6o9G2dLscT2Bg5UpuOrAlptW443HIem4n4ozg4KkOHKcWwnextdKA+oOW73BEM3EpYyrCQBbahD7kcli8Xi0owKDcdKhCgQDqM5Uq3GlADCCWIAGtkPBkDkAJLIdhQWR-AEchhjACEHSZhqexF6unSJ21EAAtNp+OjcKUfeKJgaVaVbRBZpwoHFXUCHMgyJRqBQY7qDa5jeQKEwM-KKJ8IHo0RimSyFmz65jsQm8S2CUSSZyTWWK8gAEIK2t0juPJuLKDLVbrTbbXb7du+x6SiCmCjpGWccha0dK1dGsAmWFUNZl-N62O+0oVKo1XNUSjXieG-0RVhB0oh0OsOC5lUDC8DAoShgATIWR7xke66btuki7nKB43oapSng+GT5IUr5Hoid5nj42E+AAZDml4voQ+p4X6AZfsGOp-gB5BASBYGQWAqGIjBq5wdKiF7lWNaHjRjJgBwpBTAKbq4aJpQAMrsJJmZCo4VFceKH6BgxYasCYxDEHAuhWuxUGrjxvp8VuO6CShb6JmAXD2NJWZqUQGkMqUAAS3I+IKDSyTRWn0T+jFVBA3iNKBEFmb68ZMq48kUNUJh1gSjbIs2WCtliooqviGI9lApLkmAxomAwNgiElcLjiqAACNiklgVAaAWb72HQMRwrlHmiHAFAVQiIk0XQpQALIagiQlfP6UTmqwKAgFKFBYOqmohliviNOcAC+chOJx9nimNZUUSIGFwotyDLRuZhYJd55PvmW0hHtB26kdonIKdgyzIUMKYddt2bg9hHpMRr07ftX3mZMrgAKJ0HQAEiJ8gNwuReaUL4EBxNGECNeIiGyOoyOowoRM7qTcCyJQXJ3atj0ZM9lDxp1yDpL1BpzRaF4mDjRR8IzYOYRe2MUFiTIpMzLmqSNx58qQcsBYQqGnaWEsY1Qtg3bz5r85Qu0gvwRlerDjzxRAiPk5IIKkNrPihKQvzEX8dhY8+7VUyTcBkyjkiU2I1N+7TL0raLcIQ-94wKBzXMrrR82GyIQsR7LkMWVlsv+X2b6lErKvCmrb4a+dSKuzHjvPCA+spzDBCocRRSnfecK639BQ+M4tdmgbZACxQMNMlbNsB2jDsSVMILEipAWE8Hvv+xTC-E1INN05LEdT0X7px3AXUJ3lnaR+eudkgXrTK+fepT0MIyx0WY+o-bDq+TPfkyavIfL4H39L2HemEcnIZHPuzA+nNuaIhluDc+pVC43yonfAAYumf8o9kBI3Hq-KeyAIAu04F0NEspvjEgROtaao4+B1j7nAWwQc14yFDrbb2i916h03gzUGFCtQ6nAYfKBJ98FSCIdUJC6Qp4K0RKdSa3B3jVlmrQ2wHobSmnmuRQeS0I48M2mMXaEwS4qlsBVMR5AiiQQNGMMAu0AC6QA)

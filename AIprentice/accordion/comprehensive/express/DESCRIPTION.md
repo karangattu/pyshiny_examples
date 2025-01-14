@@ -1,0 +1,40 @@
+This app demonstrates:
+
+1. All accordion parameters:
+   - `id` for identifying the accordion
+   - `open` for specifying initially open panels
+   - `multiple` to allow multiple open panels
+   - `class_` for additional CSS styling
+   - `width` and `height` for sizing
+
+2. All accordion panel parameters:
+   - `title` for panel headers
+   - `value` for panel identification
+   - `icon` for panel icons using Font Awesome
+
+3. Interactive features:
+   - Each panel contains different input types
+   - Reactive displays showing input values
+   - Buttons to open/close all panels
+   - Display of current accordion state
+
+4. Styling:
+   - Font Awesome icons
+   - Bootstrap styling classes
+   - Responsive layout
+
+The app creates an accordion with four panels, each demonstrating different features and input types. The accordion can be controlled using buttons to open/close all panels, and each panel contains interactive elements that demonstrate reactivity.
+
+To run this app:
+1. Save it as `app.py`
+2. Make sure you have the required packages installed:
+```bash
+pip install shiny
+```
+3. Run the app:
+```bash
+shiny run app.py
+```
+
+The app will demonstrate a fully functional accordion with all available parameters and features of the Shiny for Python accordion component.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBQoDEyAMpwR6KAHM4yUnQpclYFSxxfOAB9QIpWAAopCgAbOABeOTAAQWIyBltOcmQAETgYUkyiOk5k5KgAI1S0gBUGEzgASicIVzdYdFTkWygKKGQ6ISGykIoGEcKIBWHR5DTkEAVkLeRMj0kF5CzMlEzmrj1OPTJKahEJhjY4faKsrGQASRF7cohWWZG4HoxvUoKxOMRkBI8gUit4IHBklhKpttrsnsEIMgAELHHZgM6XPhXchUSjjSasdEHLHIADunAo7DYzH8EBMMHqDlYKAAjAAmADMRAALABWABsRAA7AAOACcyMxqLAewxyAAwrjTucichrqS7hSqUV1SpSPSID5mfBkFQNIaGDARlJLUjCCitmjnpjilr8TrvjM5lQgcg4Qi6QymcQTH9lH9cMluD43QoAL7dVxZWy2ZAAMRJh1pgJZ5Ie4JCYU4WHY4lsUX1t3iHuQ4QAEs0ALIAGWbSu22wA5AAeJMQADWogRGTACdSHDgnkyyHYYjoM-YFAo6G5AHpd8RbBAAFasLDEZKkEy2Oh1MTn5i7qDHqAaXdJ+qsXcTSgAWigxasCyu7ilgUpYHyB66E+tRYDA3DnromQAHyDi2XQQBhLgamIAKQpiUJCDCmL0oykK1GGpC6JwjT+N4czwFQDChBApFMuEhH5AsfYDpwtgzk63BRJxxGVAO4nIK4ACqECcAAju0fD2JQnDVA4Za2rWkK5ERCwtoE1BpMAXpqkcYAALpEBJA6uO8slSFAtS8AZmLhskLEDjAJjJFIAzpK0inWUFkmHLU5rIF5PmcH5YZQPC7m2qQyCcgE6DUAoHSIC2rgAApxRGWTIL+2KguCsXxS2bGttWIkLFEbk8dZJkHGZBAtgO0iOe0M6Ut6wmKkFFYQGk4SjD4Z6cPEF6gqwUQznQUC-kBSa5gtv7sFelKZBhA6Ze12zhE6DDjrY5oQPEyxQMZKrGpiZnmTt1nhMYZhRGy8AMOCzaQOy-WEHiACiNwPGM72co4-2dck3U8gADI9En7VsAACNj2AwWB2hQSNTHQZq0m9v1QPEe39sFYgUCYDCYnQmQAJpXsgtwOHAtgoCAL0UFg73CSTGZgN0NnIHl8XYkVwv5ckkZkZdQyXAMUC4JVUbVVgtXkPVkuNYjN3etiA3WVD3WZL1GJRPUBsSUNI3VmNE1TXUuhzZka3LXx4yLcQ7BQMIS38H523oVlZMDodPsnWdF0jFdzVFDiFkI+Jz0QKYFBRKwK0ON9Gd8Q45tiWiqSSJCyBG-I-3wcNsNEE6GhpHD1el116SivDOM46j1Do5jmjYyH2z2HjHDmunmcMObJPB8F2wU1TNOF+irNN9DcDs5zWA5+jE8dPzgvbLlksauLIsRlVWN8CnZjK2RHE6VxGsNe3utqpq7r91sZc9bdDaW+J1ujb4e200nbzUWm7Vai00qLDAInUmQUw7HVOrSc6l1rqqgOK-B6ONk6pyiFjb6WMf7-UyEDJi1p-BYwLiqfogxKEwPbu-ZAnc7AOB7vaHGg98Z4N7g2SeOMByz2puMemjMKC4DSmzdY69CHED5pkPeWwD6i2KMfQ+VUYxxhYHOZM192I1TvsRTW8VtbiVjj6X+HVm5fz6rYCx2x-620AVgSawDZqgKWqQFaHtfx+B9oHMmcCnrViOhHZBUdRhoNuiUTIWDGE4Nel7J4456ikA0N9RJxBxxRFscQsAQMGiDDoOISmYgxKfzzI5SkicBwdzRqwyhjDOHDwJhkrJtg+GMIEZ4OewiwB5mKVTfwlx2aDmoAU1mg4+B43Xq07JJMmbuX8IOAorBxm2EHLvRYPQNQkiYAle42loQHCdLJUwdQMQKCquEYgPt2l8RnPqPZDZbnbSngdasNz8hRFrFAdG30chHJNLszxoR6Fk10arOouArxpzINDGAEAoi0jmOgeI9JbCMnrruPkgSJKuCxGYCgRQiWpWoORKWpsFgeSCc4y+acJBm3qIS8gJigqZBcsJWodidYAHkoGhSlugysb9p5bFcc7MA9QKAQF-NofgPslYC0YdU1EjD8XMsxCSi8VF-COQpbdalEl4n0r6kyrcLL+HKm1ZSTlyRuWmLAOqS8lIBXuANfagc4qZxSplb1cgwwGCKpxlhbZAAlcQ+xZBMzoEUyQegDnq0xI8zxChO4MpkHAdQMb0SptwpGzNcBZCUHiOvDleqMKcKiB00O1YTDoGWNERN31BKIsTWJZpLQ2idG6Gm-NWbY1917VIWQ6gi0UBLXS88zrG21ArXAPGVbcWqzrQ24SBjuKZBbWuwF0CiAdoqYskNrhijyyhXqKmNgRCJrYKMKguau71N7ksedXDE3p1vXAatM9ulCNpo6i9txkjOX5ZSkIa9J1bqbTvTIYA0zmSAA)

@@ -1,0 +1,24 @@
+This app demonstrates:
+
+1. Basic usage of `card_footer` with text content
+2. Multiple content items in the footer
+3. Custom CSS classes
+4. Inline styles
+5. ARIA roles
+6. Custom data attributes
+7. Different content types (plain text, HTML, tags)
+8. Nested content using context manager (`with` statement)
+
+The app is minimal and focuses specifically on `card_footer` functionality. I've avoided using unnecessary components and kept the implementation simple while showcasing all possible parameter options.
+
+The key features demonstrated are:
+
+1. Direct content passing as arguments
+2. HTML attributes via kwargs
+3. Custom styling
+4. Semantic HTML roles
+5. Multiple content types
+6. Nested content structure
+
+The app uses only essential Shiny components (card, card_header, and card_footer) to keep it focused on demonstrating card_footer capabilities.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXLOAD3QM4rVsk4x0pBhXER0AVwpEFnIsIgATOAwA6EfQGJkAZTiz0UAOZxkpdBU7kx3YgBsFm7leSOKbuH1VHGs4AH17ClYACj8AgF5dMABhKAZNZAAxUlIqBmQAETgYUiSiOk43NygAIwSAFQYFOABKfSNkZOEoKmQoZGI0jIB3Tgp2ZDocvN9SZG0SiFYKBh7bGqhWTmJkS1X4PNZ9UfHkYMH06LoFKrDWYmFqeMbmonY4Tit2CkSwAGYAAwA9D8MriTS-C6aACMSRaiH0yCRZ04WChYXeUG0DGiSQAQpttp0hsgThMABJwLE6OGI5FJepcFxifobLY7KGksYTTHYvpaSbTGlgOlI85DMJTXI6XFgbLS-JkSjUChg9ybVhhX41KwAWjcn2+tIMEGMXSpvSgEFy70VJIocw4pGG804dDoOhVA3IVEovlw6BEckFCuO3JRaKGVxubjuDzgTxecDeHy+PySgOBoMI4MhQwATHCERBkRH0byZUlUukuadksx0AF+FkhXowG0S-SwIzOGJOU7hmIvO7PX6KAGg6Q6N7lX7uCG8klRchl2SyxKpXlovDl6XguT6gBZAAysoAPMsmBArAA+PGkNwZKj8ChngD0l-It+Npb3qIo1isFgrCWBAsrIAAPiuObLLgCRJDAaRWNwKAAsg0JZgA3D+v5iv+gF8DAsoAKKSOwhIAF5wE+Aiqu2u7IsEAFWEBIFWuBUFgrB8FgIhDDIRAqHoVhOG4UxBFsWBSQAEpwFYNxpL4tFceOPFkG40goFYjwQNh9EmsYACCmgZP04ycDWnJrtweRQMQjgAG62HAATwJQLglpuNIQGu4qXNctz3DpzxNMmyDvIa6b-ECIJgpwEJJFCfxFsufmaBiVLYrK1YjOGACSyqrPZnBOS2ob6aWDJMgMJLkR5tnFaVLnFCqHniFEC7Csuq7hmlkqttE6qiFqSSaLqdBNsgABWCjLG6uC6kqvoULqNTmMMCYllABpWBAupjMUrCLSqwo7p2YmotwigUGEdmOOQYQ1EoDpSeduFdjUFAGDmVYGsQADWyCHoEP1ve9AzVMN2pfbqQgSGkuBLmDyIduDDFIgAAho2JYM+qrI0i2jTu42z-WEZAKJQ27FuDpZusg1qyFdShYJ9YFnbT73CBQCgMCWSQAHJzCTANiLg5hI5zSLc7znm-aT1HICAzMUKzX3bgAvr4EgiEkYAawAukAA)

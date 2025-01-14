@@ -125,8 +125,8 @@ The core principle is: Ensure all input arrays have exactly the same length befo
 - Do not use external files for accessing data, make up some data for use in the app
 - Do not add @output on top of render functions
 - Do not use `ui.panel_sidebar` or `main_panel` functions since they do not exist. Instead use `ui.sidebar` or ui.layout_sidebar. Refer to the documentation for more information.
+- Avoid using `with ui.layout_sidebar():` since it makes the layout too complex. Instead, just use `with ui.sidebar():`
 - Do not add `app = App(app_ui, server=None)` at the end of the code or `app_ui = ui.page_opts...` at the start of the ui implementation. This is not required in express syntax in shiny for python. Shiny Express automatically creates the app when you run the script.
-- 
 - An example of a correct implementation is shown below:
 ```python
 from shiny import render

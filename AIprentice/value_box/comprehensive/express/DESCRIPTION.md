@@ -1,0 +1,39 @@
+This app demonstrates:
+
+1. Different `showcase_layout` options:
+   - "left center"
+   - "top right" 
+   - "bottom"
+
+2. Various theme options:
+   - Using gradients: "bg-gradient-blue-purple"
+   - Solid colors: "bg-cyan"
+   - Text colors: "text-purple"
+
+3. Size control parameters:
+   - Fixed height: "200px"
+   - min_height and max_height
+   - fill=True for flexible sizing
+
+4. Different showcase content:
+   - Font Awesome icons
+   - Matplotlib plot
+   - Custom HTML content
+
+5. Other features:
+   - full_screen option
+   - Custom IDs for each box
+   - Responsive layout using ui.layout_columns
+
+The app creates a dashboard-like interface with six value boxes displaying different metrics with various styling options. Each value box demonstrates different parameters and capabilities of the component.
+
+Key features:
+- Uses synthetic data generated with numpy
+- Includes a reactive plot in one of the value boxes
+- Demonstrates different icon placements and styles
+- Shows various color themes and gradients
+- Implements responsive layout
+- Uses Font Awesome icons for visual elements
+
+The app is self-contained and doesn't require any external data files. All data is generated within the app using numpy's random functions.
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBf0HDkMKBXQAbUhS+cAIxxcb19kKD1vCicDVwgTAV4I5Ah0BQUAYmQAZTgRBig7ZVY4OFtkOiFROG1SWxNiQM5-ClwFVKwCopgsErKACgBGACYAZgBKdIgs7NhvOGRbDyhkAHNqBw9OcgVWKC84VgB9JYoVgF4U7C7bZiwIIXcvIYAGN6Jh9+RRl8mIVaYAHcKOwjgUqMhLoMAKxYADsUyyAEFbOV0FB1shSOgpOQ9IVygAxcgiJGAw7MBYAYWy2QUlhwGLgR2xFFY-Skfjg5zkYAAavsTAsAEKkDTIAAicBgpF5RDozS8UACB3OABUGEK-gz2OJbEcyJRqBR+gpkObkAyABJqgCyABl+gByAA8-ggAGtql4eWBWK0DhxStEwMh2GI6L72BRPKxEAB6ePEWwQABWrCwxB8JlsdCVYkzzHjUFTUA08f8AVY8cqlAAtFByaxKfGAGxYAAsWGGSd0xa8XiwMG4md0vIAfE6-n9MshCZwGP7RKRAVi6MhpIKFgExYcFIDOCDLZwsErcKQzAbSF4EhAjoCCuh+gfbCDzoN4xNEGaLVkBTeRTFZBBhQW0SXYLxeFmQMf3NA8jwZTcAKOHcNFNCALUwlQV2ICJuWtO1HVdThkCzCJWF9OgoDrZt-HKKi62IdgoGEOt3XkUN-VwVVeVrCgaM4AAvOAUGGMQYAAbgnF1404SdxgIWCsI4HC8KOM8LwoX0DjoERiGNBw5SUzCQWlbleQCVY6wBKBbE4Y06xVIU61MBh5iMjCsPNXVOFWaNfU+F50A0DyvPNThbF9VDBl5JTxm-TyvN5MDKAgqD9j3MBjItOheQAEhAPZAxOZZgDrQYAF1EAIbs6AAX1ixKsNyrKTGGQYAE5BmQEAARXEEwQ8OA6oAUg3PR7QiEQUpBRqlL-LdkFFcVhhQJFZAKTFoL3Jr4PYY8sCQoUULFdCwuwwFcJKc4CIdZ0XRIsjdEo6jaIiipqKYlj+ICFjeTYANzLAPiBOE0TxKksBxxkuSp0UprMJUy61I0sxfQobFRF86NQrC0z4CiqybLshyhEKdY6zEWxca8ny-K03lAuCmmsIiqKxWGRrMPi7LzV5dbNi2jLWC5sKWoKjp4EKfoisOEqznimrhnq0WkrASalx+SUoFwEWsogebkH-IUlqA0YUG2vQNWoandsPfbEK3E60N5i6rvwk9NNMCgjlCE1eQoGx9T9uUwzgbGGbAQY3mZsAFNdpH3fUnXNPZmNmBZkzdQJiyiYKEn6wBUoIDrKh9kzi06f83kfiCkLCFdugTAHI5WGIMRqHVTU4Hh862YssVRlV5AeYRi1eUt5BrbsYfMPFkAOlYBIZeF+WoEV2qGv187eTVXx9hyYW5ogAABIOHBwHxojsOB10Dm3fav-pR7n3yiDLSFkCiXoTACP32QVKsVgQluT9FbB8cYfxMJlkvr4FexVThQCIGQHwDBzhOkBFwKgToiDsRfG+YYUCLQwJKD7DQUhiAenZMACqRDzQkLyEcXAFCqH9BoXQioVRWDoG4Asbg4QNC9B4RAQ4h0tzshfmFbhvDeiMOkJwYBKo4D9EJPsEoHDAGMgoExWRPt9joGYv0F4WBfhKRgeibR7BdFHH0YY4xpimpiAoCYBgGFAGIhyHAQ05QgRrg3ItVCO09oHVRj7FBt57yPmfBFN8H4vyG2NoBcUHYUAACU4CyHiAsAA4kCWadsEIniOsyVCZ0pHsFUtdW6REHqkSVM9Xir1rzvQYrcAcLEBKrANpxQGlESSgxEsgMS0pIbQ1kvJXueNs5AyoOQlyLj3INzHt5cO9MAox3rpMry-cwCoQ7MPSRat0mZJNrk-q7BZ45V5L1PJoJwTDRGpcvmYAACa4gGBYg2sgN5f19YJMWstZA0I1qSBkAsAAqiURcSlgmO2QqUhOFTkZVJPDaO6xE6nkRejRZp9FqImChXrAG3EgYg2AWDIZENpLjLhq7fGQNLKMVwIUCuKyI7rLrqyvgkUB4aGhAchKO8wBIlBbIZAkKHB60btcjoNw7g3G4CaaOXxoRvF+FvV2vIqQuJsNNcCx9MILQAqbcUrYQVcAyWZSgOQyBiBhfbA6xTnZlK8onPCN1UWEXuo9epFFGk4roh9UuTADFtB6SSvp9ZyWDOGZJalsN47LOQPSwmdZcBwAHCuLlVdI5M02a7HZqFWwCs1cKpi9lZDwGtdkW1HFpVgAXtcAk8qCSKv6AADmhEQZV4xRpPOQLyAACg4SoDB3AQH0sgAAkjfeuYA6oVSAA)

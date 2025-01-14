@@ -1,0 +1,34 @@
+This app demonstrates all the parameters of `notification_show`:
+- `ui`: The content of the notification
+- `action`: Additional action content (like a link)
+- `duration`: How long to display the notification (None for persistent)
+- `close_button`: Whether to show a close button
+- `id`: Unique identifier for the notification
+- `type`: The type of notification ("default", "message", "warning", "error")
+
+The app provides buttons to trigger different types of notifications:
+1. Default notification (basic usage)
+2. Message notification (blue styling)
+3. Warning notification (yellow styling)
+4. Error notification (red styling)
+5. Notification with an action (includes a clickable link)
+6. Persistent notification (doesn't auto-close)
+7. ID notification (replaces previous notification with same ID)
+
+Each button demonstrates different parameters and options available in the `notification_show` function. The app uses minimal components, only including what's necessary to demonstrate the notification functionality.
+
+Technical notes:
+1. Uses express mode syntax
+2. No external files or data dependencies
+3. Minimal UI components (just buttons to trigger notifications)
+4. Uses reactive effects to handle button clicks
+5. Demonstrates all available notification types and parameters
+
+To run this app, save it as `app.py` and run it using:
+```bash
+shiny run app.py
+```
+
+Required packages:
+- shiny
+## Preview the app on [Shinylive](https://shinylive.io/py/app/#h=0&code=NobwRAdghgtgpmAXAAjFADugdOgnmAGlQGMB7CAFzkqVQDMAnUmZAZwAsBLCXZTmdKQYVkDOFGIVOANzgAdCI2ZsuPLHAAe6Ma1Z8BQkd3QBXCkROciYiABM4DBQoDEyAApQA5nGRSKAG3kISxwvOAB9UnQKVgAKP0CAXjkwADlSKTpOYigpcmQAETgYUhSiLP9-KAAjJIAVBhM4AEonCFcAYTFcnyhkHIZbX1J+8goobl92H2qzCnJWBQB3Tgp2ZBCB21jmxAVkA43OLC3w6ah7BliU9Mzs3M58gFENWHRAxbBWiEPkfcPOt0qMhZhR5hA9PNfAxOJ5vAxkLZOHQ6A5qCIIBlkfc8j8KLh0HBFj9Dis1kcsFVcKQzOEyP4TDAIOElgwMLEVrY1skwAAmAAM-PQGhSu3+vwOIWMtIkuPCoPB1zAHFIS3C9joUBM-goZT+YAAyuxVYU4JrtbrCP0qrpwjyYNUALS80XiiVSiCmCjhWWPZkK8hKlVq+C6MJ6lJGk0AWSJrHDVuINtYdpSDudrpJEop0u9vvI8rmgZSwZZUAYEG4ngjhuNS2QAHVy5WINXE8nU2B0y6vn8s+7jrmfZI-YWwcXlXXwg4mI4rZG68gngxZ3qk1BbfanT3vtnJYPPTKRwWAxAg1P8xAa1H6wBBY9X9sblNbjNfN2-D1e4dy0-n1XhISDCsJwrBUJQ16Lm4DggWB6Jrh2r47h+hxfkev5FmeJZTpwtiQSaACSBTIAAQhucB4U+m5ptumYuEuKJwJIyB0EIiJmlqOrIJidw5LiCgAALdCOsjqIxkiCcJUiiXAsiULEuZYKWGqcRQ3waioAEqRaOx7P2IQ8difGjsG1z9r8KR1FweigcgfTaVxhlZMZ5BlChBy2CYbK4okADMbrfPRTziSIrEIqG8beNxWLOQ8rkQEJ4giXAYmohJCVSTIKWyeiCmHhQSlThFYTqWamkhnGYS6W6BkxTiJl1mZe76lZtm2X0xVRU59WuYQ7m+AScD2pV3hueZhyed5fp+QFbSuMFaWhWxSzNlW0W8XFV4ZUl0nZSFkk7Vl6hyRQeVeoVAErRWValXQ5VltdrbVfpxzdS5zKmf1lnWXweh9FdLaeOtRmbWNzX4oSPIA1WYN7pNm0zf2gXtAxi0sWxM5sW9oPbb6Mn7bjyXHblimlpjDC3fd5PPZ+r11e94SfeNBzfW1f0-OTwOxfxfXMwNkMpOTsPZvDPn+Ujc2o0xS0ItjuLIGS6yXgdeN7YtKtEzl8mkxeD6U6Wl406hdMbXKTPNTc9ObQrqxKw+wsSpeiQhFASodP42QANbIPAACEersGIdA8uwYLoKwiAAPSRxw3C4DgpAgQVZCR3q4wMN4FA8vKVQQJ7ooEP1ovTeLvzI-NIXowiQGweBGJW-xhO7al0sa83WunTrAE16Bdf61OPdwfJYovVgcsNaqTV7qzNl-cgg911zPU-LEmJ2WYpCOkmictA7vzF+QiTpBAcCF3z2+sBEp6JA0TSzVtnQ0pQDhV8gRFL+9xLjwWZAmM-CKJFEIdUS0goAMjgLEfk5cpbMTCh-a2is37EViGId4Eg1raFko8EwrBviJVVi3dK+DNYnTOmYC6apcL9wArhI2BxiBeRsCIQB39mS-3-lgTOOw3SsLpE-KgDAlJwFOgwlc6JkAAGpkAAEZdzGzHg3CeSwp7ZjoJbU2fpkDOBAKIphkiZEAF9kAoLgGg4gRJ55iGkNg3Be9Di4R5Kgqo5iaiBHCKwuxHkvII2PqffqF8r6YRvo0IIZdJa3lsEMVgzAfDcDAo0B8xJEGbHLNsdc1EuwUEdP5L4elaYnFSWccQlwlQEQhBQBJuJPhyP3FgGA5ZPa2FVFhMAKQ2n9kdMgd2Xs7I8BBJhYY5VETIlRHoiGFjSB3VYcSX4nSijmkcoohY695hb38DvOydABHIF8mwJi5BbAzMOJ06CwFe7iOmUAgAjpYMQPsoDBDAdaROMMOlIMdNUciQxLlOIkD4TB1iaR6HIBYxBawfDxngEgt0nT7zy0udwJMJh7B2WtF7VxPgPZ5zdG01pXwwAGIALpAA)

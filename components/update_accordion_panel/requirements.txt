@@ -1,0 +1,11 @@
+
+altair
+folium
+matplotlib
+numpy
+pandas
+plotly
+plotnine
+requests
+seaborn
+shinywidgets
