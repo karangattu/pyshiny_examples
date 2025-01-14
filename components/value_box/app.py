@@ -15,13 +15,16 @@ ui.head_content(
 
 with ui.layout_column_wrap(width="400px"):
     # 1. Basic value box with left-center showcase layout (default)
-    with ui.value_box(showcase=icon, theme="primary", height="200px"):
+    with ui.value_box(
+        id="left_center_value_box", showcase=icon, theme="primary", height="200px"
+    ):
         "Revenue"
         "$5.2M"
         "Up 12% from last month"
 
     # 2. Value box with top-right showcase layout
     with ui.value_box(
+        id="top_right_value_box",
         showcase=icon,
         showcase_layout="top right",
         theme="bg-gradient-purple-red",
@@ -33,7 +36,11 @@ with ui.layout_column_wrap(width="400px"):
 
     # 3. Value box with bottom showcase layout
     with ui.value_box(
-        showcase=icon, showcase_layout="bottom", theme="text-success", height="200px"
+        id="bottom_value_box",
+        showcase=icon,
+        showcase_layout="bottom",
+        theme="text-success",
+        height="200px",
     ):
         "Conversion Rate"
         "3.8%"
@@ -41,6 +48,7 @@ with ui.layout_column_wrap(width="400px"):
 
     # 4. Value box with full screen capability and custom theme
     with ui.value_box(
+        id="full_screen_value_box",
         showcase=icon,
         full_screen=True,
         theme="bg-gradient-orange-red",
@@ -55,7 +63,11 @@ with ui.layout_column_wrap(width="400px"):
 
     # 5. Value box with custom background color using class_
     with ui.value_box(
-        showcase=icon, theme=None, height="200px", class_="bg-warning text-dark"
+        id="custom_bg_value_box",
+        showcase=icon,
+        theme=None,
+        height="200px",
+        class_="bg-warning text-dark",
     ):
         "Pending Orders"
         "156"

@@ -453,8 +453,10 @@ def find_prompt_files(base_dir, app_type):
 def find_app_files(base_dir):
     """Recursively find all app.py files in directories and subdirectories."""
     for root, dirs, files in os.walk(base_dir):
-        if "app-express.py" in files:
-            yield root, os.path.join(root, f"app-express.py")
+        if "app.py" in files and not any(
+            f.startswith("test_") and f.endswith(".py") for f in files
+        ):
+            yield root, os.path.join(root, f"app.py")
 
 
 def process_directory(directory, system_prompt, model, app_type):
