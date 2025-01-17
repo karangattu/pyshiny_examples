@@ -31,7 +31,7 @@ chat = ui.Chat(
 chat.ui(
     placeholder="Type your message here...",
     width="100%",
-    height="500px",
+    height="200px",
 )
 
 
