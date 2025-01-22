@@ -443,9 +443,10 @@ shinywidgets
 
 def find_prompt_files(base_dir, app_type):
     """Recursively find all PROMPT.md files in directories and subdirectories."""
-    for root, dirs, files in os.walk(base_dir):
-        if "PROMPT.md" in files and not os.path.exists(
-            os.path.join(root, f"app-{app_type}.py")
+    for root, _dirs, files in os.walk(base_dir):
+        if "PROMPT.md" in files and not (
+            os.path.exists(os.path.join(root, f"app-{app_type}.py"))
+            or os.path.exists(os.path.join(root, "app.py"))
         ):
             yield root, os.path.join(root, "PROMPT.md")
 

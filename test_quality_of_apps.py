@@ -199,12 +199,12 @@ for directory in os.listdir():
                     failed_apps.append(dir_path)
                     total_error += 1
 
-# print(f"Total apps: {total_apps}")
-# print(f"Success: {total_success}")
-# print(f"Error: {total_error}")
+
 if total_apps > 0:
     success_percentage = (total_success / total_apps) * 100
-    print(f"Success percentage: {success_percentage:.2f}%")
+    # Write the passing percentage to a file
+    with open("passing_percentage.txt", "w") as f:
+        f.write(str(success_percentage))
 else:
     print("No apps found.")
 
