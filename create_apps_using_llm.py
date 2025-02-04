@@ -475,7 +475,6 @@ def find_app_files_without_tests(base_dir):
             if app_file in files and not any(
                 f.startswith("test_") and f.endswith(".py") for f in files
             ):
-                print("Entered some")
                 yield root, os.path.join(root, app_file)
                 break  # Stop after finding the first matching app file
 
