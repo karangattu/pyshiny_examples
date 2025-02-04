@@ -46,7 +46,13 @@ def parse_command_line_args():
         # When called as: python script.py express haiku3
         # Returns: ('express', 'claude-3-haiku-20240307')
     """
-    if len(sys.argv) < 2 or sys.argv[1] not in ["express", "core", "testing"]:
+    if len(sys.argv) < 2 or sys.argv[1] not in [
+        "express",
+        "core",
+        "testing",
+        "core2express",
+        "express2core",
+    ]:
         print(
             "Usage: python create_apps_using_llm.py [express|core|testing] [haiku3|haiku3.5|sonnet]"
         )
@@ -452,12 +458,26 @@ def find_prompt_files(base_dir, app_type):
 
 
 def find_app_files(base_dir):
-    """Recursively find all app.py files in directories and subdirectories."""
+    """Recursively find all app files (app.py, app-express.py, app-core.py) in directories and subdirectories."""
     for root, dirs, files in os.walk(base_dir):
-        if "app.py" in files and not any(
-            f.startswith("test_") and f.endswith(".py") for f in files
-        ):
-            yield root, os.path.join(root, f"app.py")
+        # Check for app files in order of preference
+        for app_file in ["app.py", "app-express.py", "app-core.py"]:
+            if app_file in files:
+                yield root, os.path.join(root, app_file)
+                break  # Stop after finding the first matching app file
+
+
+def find_app_files_without_tests(base_dir):
+    """Recursively find all app files (app.py, app-express.py, app-core.py) in directories and subdirectories."""
+    for root, dirs, files in os.walk(base_dir):
+        # Check for app files in order of preference
+        for app_file in ["app.py", "app-express.py", "app-core.py"]:
+            if app_file in files and not any(
+                f.startswith("test_") and f.endswith(".py") for f in files
+            ):
+                print("Entered some")
+                yield root, os.path.join(root, app_file)
+                break  # Stop after finding the first matching app file
 
 
 def process_directory(directory, system_prompt, model, app_type):
@@ -498,6 +518,16 @@ def process_directory(directory, system_prompt, model, app_type):
                 original_code, error_message, system_prompt, model
             )
             create_app_files(dir_path, original_code, description, app_type=app_type)
+
+
+def generate_converted_shiny_app(prompt, system_prompt, model):
+    """Generate a converted Shiny app using the LLM."""
+    user_prompt = f"""
+    Given this shiny app code: {app_text}, please convert it to {app_type} using the reference documentation.
+    Please provide complete code for the same."""
+    messages = get_llm_response(user_prompt, system_prompt, model)
+    update_token_counts(messages.usage, model)
+    return extract_code_and_description(messages.content[0].text)
 
 
 def generate_shiny_app(prompt, system_prompt, model):
@@ -620,7 +650,7 @@ timer_start = time.perf_counter()
 for directory in os.listdir():
     if app_type == "testing":
         if os.path.isdir(directory):
-            app_pairs = list(find_app_files(directory))
+            app_pairs = list(find_app_files_without_tests(directory))
             if app_pairs:
                 for dir_path, app_file in app_pairs:
                     with open(app_file, "r") as f:
@@ -633,6 +663,22 @@ for directory in os.listdir():
                         code = extract_test(messages.content[0].text)
                         create_test_files(dir_path, code)
                         update_token_counts(messages.usage, model)
+    elif app_type in ["core2express", "express2core"]:
+        app_pairs = list(find_app_files(directory))
+        if app_pairs:
+            for dir_path, app_file in app_pairs:
+                with open(app_file, "r") as f:
+                    app_text = f.read()
+                code, _description = generate_converted_shiny_app(
+                    app_text, system_prompt, model
+                )
+                # write code to app-express.py or app-core.py
+                if app_type == "core2express":
+                    with open(f"{dir_path}/app-express.py", "w") as f:
+                        f.write(code)
+                else:
+                    with open(f"{dir_path}/app-core.py", "w") as f:
+                        f.write(code)
     else:
         # if directory is a folder, process it
         if os.path.isdir(directory):

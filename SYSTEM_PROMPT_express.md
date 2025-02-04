@@ -124,8 +124,7 @@ The core principle is: Ensure all input arrays have exactly the same length befo
 - Do not use `ui.input_switch("dark_mode", "Dark Mode")` since it is not a valid Shiny for Python component. Instead, use `ui.input_dark_mode(id="dark_mode)`
 - Do not use external files for accessing data, make up some data for use in the app
 - Do not add @output on top of render functions
-- Do not use `ui.panel_sidebar` or `main_panel` functions since they do not exist. Instead use `ui.sidebar` or ui.layout_sidebar. Refer to the documentation for more information.
-- Avoid using `with ui.layout_sidebar():` since it makes the layout too complex. Instead, just use `with ui.sidebar():`
+- Do not use `ui.panel_sidebar` or `main_panel` functions since they do not exist. Instead use `ui.sidebar`. Refer to the documentation for more information.
 - Do not add `app = App(app_ui, server=None)` at the end of the code or `app_ui = ui.page_opts...` at the start of the ui implementation. This is not required in express syntax in shiny for python. Shiny Express automatically creates the app when you run the script.
 - An example of a correct implementation is shown below:
 ```python
@@ -143,14 +142,13 @@ def txt():
 ```
 instead of 
 ```python
-    ui.layout_sidebar(
-        ui.panel_sidebar(
-            ui.input_checkbox_group("checkboxes", "Select options:", data['name'], value=[])
-        ),
-        ui.panel_main(
-            ui.output_text("message")
-        )
+    ui.panel_sidebar(
+        ui.input_checkbox_group("checkboxes", "Select options:", data['name'], value=[])
+    ),
+    ui.panel_main(
+        ui.output_text("message")
     )
+)
 ```
 - do not use `ui.action_button("open_link", "Open Link", icon=ui.icon("external-link-alt"))` since `ui.icon` is not a shiny component. Instead use this format with the appropriate font awesome icons `ui.tags.i(class_="fa-solid fa-chart-simple", style="font-size: 2rem;")`,
 
@@ -332,27 +330,26 @@ quiz_data = [
 
 page_opts = ui.page_opts(title="Quiz App")
 with ui.card():
-    with ui.layout_sidebar():
-        with ui.sidebar():
-            ui.input_action_button("next_button", "Next Question")
-            ui.input_action_button("reset_button", "Reset Quiz")
+    with ui.sidebar():
+        ui.input_action_button("next_button", "Next Question")
+        ui.input_action_button("reset_button", "Reset Quiz")
 
-        @render.ui
-        def question_container():
-            current_index = current_question_index()
-            if current_index < len(quiz_data):
-                return ui.p(quiz_data[current_index]["question"])
-            else:
-                return ui.p("Quiz completed!")
+    @render.ui
+    def question_container():
+        current_index = current_question_index()
+        if current_index < len(quiz_data):
+            return ui.p(quiz_data[current_index]["question"])
+        else:
+            return ui.p("Quiz completed!")
 
-        @render.ui
-        def options_container():
-            current_index = current_question_index()
-            if current_index < len(quiz_data):
-                options = quiz_data[current_index]["options"]
-                return ui.input_radio_buttons("answer", "Choose an answer:", options)
-            else:
-                return ui.p("")
+    @render.ui
+    def options_container():
+        current_index = current_question_index()
+        if current_index < len(quiz_data):
+            options = quiz_data[current_index]["options"]
+            return ui.input_radio_buttons("answer", "Choose an answer:", options)
+        else:
+            return ui.p("")
 
 
 current_question_index = reactive.Value(0)
@@ -388,132 +385,85 @@ def result_container():
         return ui.p("")
 
 ```
-Prompt_4: Make a Clinical trial management app using Shiny for python
+Prompt_4: make a shiny for python app that uses all the possible parameters of the value_box using express mode.
+Make the app minimal in terms of components other than value_box and avoid using other Shiny components if they are not required for this app
+
 Response_4:
 ```python
 
-import datetime
-from typing import List, Tuple
-
-import numpy as np
-import pandas as pd
 from shiny import reactive
-from shiny.express import input, render, ui
+from shiny.express import input, ui, render
 
-# Sample data for clinical trials
-start_dates = pd.date_range(
-    start=datetime.date(2024, 1, 1), end=datetime.date(2024, 12, 31), freq="MS"
-)
-end_dates = pd.date_range(
-    start=datetime.date(2024, 6, 1), end=datetime.date(2025, 6, 30), freq="MS"
-)
+ui.page_opts(title="Value Box Demo", fillable=True)
 
+# Create a custom icon for the showcase using Font Awesome
+icon = ui.tags.i(class_="fa-solid fa-chart-simple", style="font-size: 2rem;")
 
-trial_data = pd.DataFrame(
-    {
-        "trial_id": [f"Trial{i}" for i in range(1, 13)],
-        "start_date": start_dates[:12],
-        "end_date": end_dates[:12],
-        "enrollment": np.random.randint(50, 301, size=12).astype(
-            str
-        ),  # Convert to string
-        "status": np.random.choice(
-            ["Recruiting", "Completed", "Terminated", "Suspended"], size=12
-        ),
-        "phase": np.random.choice([1, 2, 3, 4], size=12).astype(
-            str
-        ),  # Convert to string
-    }
+# Add Font Awesome CSS to the app
+ui.head_content(
+    ui.HTML(
+        '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">'
+    )
 )
 
-patient_data = pd.DataFrame(
-    {
-        "patient_id": [f"Patient{i}" for i in range(1, 101)],
-        "trial_id": np.random.choice(trial_data["trial_id"], size=100),
-        "enrollment_date": pd.date_range(
-            start=datetime.date(2024, 1, 1), periods=100
-        ),  # Adjusted length
-        "status": np.random.choice(["Enrolled", "Withdrawn", "Completed"], size=100),
-    }
-)
+with ui.layout_column_wrap(width="400px"):
+    # 1. Basic value box with left-center showcase layout (default)
+    with ui.value_box(
+        id="left_center_value_box", showcase=icon, theme="primary", height="200px"
+    ):
+        "Revenue"
+        "$5.2M"
+        "Up 12% from last month"
 
-ui.page_opts(title="Clinical Trial Management")
+    # 2. Value box with top-right showcase layout
+    with ui.value_box(
+        id="top_right_value_box",
+        showcase=icon,
+        showcase_layout="top right",
+        theme="bg-gradient-purple-red",
+        height="200px",
+    ):
+        "Active Users"
+        "2.4K"
+        "Daily active users"
 
-with ui.layout_sidebar():
-    with ui.sidebar():
-        ui.input_date_range("date_range", "Date Range")
-        ui.input_select(
-            "trial_status",
-            "Trial Status",
-            ["All"] + list(trial_data["status"].unique()),
-        )
-        ui.input_select(
-            "trial_phase",
-            "Trial Phase",
-            ["All"] + list(trial_data["phase"].unique()),
-        )
-    with ui.layout_column_wrap(width=1 / 2):
-        with ui.card():
-            ui.card_header("Clinical Trials")
+    # 3. Value box with bottom showcase layout
+    with ui.value_box(
+        id="bottom_value_box",
+        showcase=icon,
+        showcase_layout="bottom",
+        theme="text-success",
+        height="200px",
+    ):
+        "Conversion Rate"
+        "3.8%"
+        "Increased by 0.5%"
 
-            @render.data_frame
-            def trial_table():
-                return filtered_trials()
+    # 4. Value box with full screen capability and custom theme
+    with ui.value_box(
+        id="full_screen_value_box",
+        showcase=icon,
+        full_screen=True,
+        theme="bg-gradient-orange-red",
+        height="200px",
+        min_height="150px",
+        max_height="300px",
+        fill=True,
+    ):
+        "Total Sales"
+        "8,742"
+        "Year to date performance"
 
-        with ui.card():
-            ui.card_header("Patient Enrollment")
-
-            @render.data_frame
-            def patient_table():
-                return filtered_patients()
-
-
-@reactive.calc
-def filtered_trials():
-    df = trial_data.copy()
-
-    start_date, end_date = input.date_range()
-    start_date = pd.to_datetime(start_date)
-    end_date = pd.to_datetime(end_date)
-
-    df = df[(df["start_date"] >= start_date) & (df["end_date"] <= end_date)]
-    if input.trial_status() != "All":
-        df = df[df["status"] == input.trial_status()]
-
-    if input.trial_phase() != "All":
-        df = df[df["phase"] == int(input.trial_phase())]
-
-    return df
-
-
-@reactive.calc
-def filtered_patients():
-    df = patient_data.copy()
-
-    start_date, end_date = input.date_range()
-    start_date = pd.to_datetime(start_date)
-    end_date = pd.to_datetime(end_date)
-
-    df = df[(df["enrollment_date"] >= start_date) & (df["enrollment_date"] <= end_date)]
-
-    trial_ids = filtered_trials()["trial_id"].tolist()
-    df = df[df["trial_id"].isin(trial_ids)]
-
-    return df
-
-
-@reactive.effect
-@reactive.event(input.trial_table)
-def _():
-    selected_trials = input.trial_table("selected")
-    req(selected_trials)
-
-    trial_ids = [trial_data.iloc[i]["trial_id"] for i in selected_trials]
-    filtered_patients_df = filtered_patients()
-    filtered_patients_df = filtered_patients_df[
-        filtered_patients_df["trial_id"].isin(trial_ids)
-    ]
-
-    ui.update_output("patient_table", filtered_patients_df)
+    # 5. Value box with custom background color using class_
+    with ui.value_box(
+        id="custom_bg_value_box",
+        showcase=icon,
+        theme=None,
+        height="200px",
+        class_="bg-warning text-dark",
+    ):
+        "Pending Orders"
+        "156"
+        "Requires attention"
 
 ```
