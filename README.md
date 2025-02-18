@@ -122,18 +122,6 @@ The script tracks token usage and associated costs for different models. Costs a
 - Haiku3.5: Balanced cost and capability
 - Sonnet: Higher cost but more capable for complex requirements
 
-## Contributing
-
-Feel free to submit issues and enhancement requests. Pull requests are welcome.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## How it works
-![](how_it_works.png)
-
-
 ## Why use product knowledge data or function reference document in system prompt for the LLM?
 
 Older versions of large language models (LLMs) may not be aware of certain components or the best way to leverage certain shiny components. This could be due to their knowledge cutoff date or simply not being trained on Shiny documentation.
@@ -194,3 +182,11 @@ ui.input_date_range(
 ## Comparing the cost of examples across different LLM models
 
 ![](comparison_chart.png)
+
+## Contributing
+
+Feel free to submit issues and enhancement requests. Pull requests are welcome.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
