@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 items = [
     "accordion_panel",
@@ -84,38 +85,33 @@ items = [
     "value_box",
 ]
 
-# Create the "components" folder
-os.makedirs("components", exist_ok=True)
+# Create the "AIprentice" folder
+aiprentice_dir = Path("AIprentice")
+os.makedirs(aiprentice_dir, exist_ok=True)
 
 for item in items:
-    # Create folder for each item
-    item_folder = os.path.join("components", item)
+    # Create folder for each item under AIprentice
+    item_folder = aiprentice_dir / item
     os.makedirs(item_folder, exist_ok=True)
 
-    # Create "simple" and "comprehensive" folders
-    simple_folder = os.path.join(item_folder, "simple")
-    comprehensive_folder = os.path.join(item_folder, "comprehensive")
-    os.makedirs(simple_folder, exist_ok=True)
-    os.makedirs(comprehensive_folder, exist_ok=True)
+    # Create app.py file (if it doesn't exist)
+    app_file = item_folder / "app.py"
+    if not app_file.exists():
+        app_file.touch()
 
-    # Create "express" folder under "simple" and "comprehensive"
-    simple_express_folder = os.path.join(simple_folder, "express")
-    comprehensive_express_folder = os.path.join(comprehensive_folder, "express")
-    os.makedirs(simple_express_folder, exist_ok=True)
-    os.makedirs(comprehensive_express_folder, exist_ok=True)
+    # Create PROMPT.md file (if it doesn't exist)
+    prompt_file = item_folder / "PROMPT.md"
+    if not prompt_file.exists():
+        prompt_file.touch()
 
-    # Create PROMPT.md files
-    simple_prompt_path = os.path.join(simple_express_folder, "PROMPT.md")
-    comprehensive_prompt_path = os.path.join(comprehensive_express_folder, "PROMPT.md")
+    # Create DESCRIPTION.md file (if it doesn't exist)
+    description_file = item_folder / "DESCRIPTION.md"
+    if not description_file.exists():
+        description_file.touch()
 
-    with open(simple_prompt_path, "w") as f:
-        f.write(
-            f"write a really simple shiny for python app that shows the use of {item} using express mode"
-        )
-
-    with open(comprehensive_prompt_path, "w") as f:
-        f.write(
-            f"can you make a shiny for python app that uses all the possible parameters of the {item} using express mode"
-        )
+    # Create requirements.txt file (if it doesn't exist)
+    requirements_file = item_folder / "requirements.txt"
+    if not requirements_file.exists():
+        requirements_file.touch()
 
 print("Folder structure and files created successfully!")

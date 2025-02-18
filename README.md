@@ -40,7 +40,7 @@ Before using this script, ensure you have the following installed:
 The script can be run in different modes depending on your needs:
 
 ```bash
-python create_apps_using_llm.py [mode] [model]
+python scripts/create_apps_using_llm.py [mode] [model]
 ```
 
 ### Available Modes
@@ -61,31 +61,40 @@ python create_apps_using_llm.py [mode] [model]
 
 1. Generate an Express app using Haiku:
    ```bash
-   python create_apps_using_llm.py express haiku3
+   python scripts/create_apps_using_llm.py express haiku3
    ```
 
 2. Convert Core apps to Express using Sonnet:
    ```bash
-   python create_apps_using_llm.py core2express sonnet
+   python scripts/create_apps_using_llm.py core2express sonnet
    ```
 
 3. Generate tests using Haiku 3.5:
    ```bash
-   python create_apps_using_llm.py testing haiku3.5
+   python scripts/create_apps_using_llm.py testing haiku3.5
    ```
 
 ## Directory Structure
 
-The script expects the following structure for proper operation:
-
+The repository is organized as follows:
 ```
-your-project/
-├── SYSTEM_PROMPT_*.md       # System prompts for different modes
-├── documentation_*.json     # Documentation files for different modes
-└── components/             # Directory containing app components
-    └── component_name/
-        ├── PROMPT.md      # Requirements for the component
-        └── app.py         # Generated app file
+.
+├── AIprentice/              # Generated Shiny app examples
+│   ├── accordion_panel/     # Individual component examples
+│   ├── card/
+│   └── ...
+├── docs/                    # Documentation files
+│   ├── documentation_*.json # Documentation for different modes
+│   └── *_docs.txt          # Additional documentation
+├── prompts/                 # System prompts for different modes
+│   └── SYSTEM_PROMPT_*.md
+├── scripts/                 # Utility scripts
+│   ├── create_apps_using_llm.py  # Main app generation script
+│   ├── create_dirs.py            # Directory structure creation
+│   └── ...
+└── tests/                   # Test files
+    ├── conftest.py
+    └── test_quality_of_apps.py
 ```
 
 ## Features

@@ -116,10 +116,10 @@ class ShinyAppGenerator:
 
     @staticmethod
     def load_documentation(app_type: AppType) -> str:
-        return Path(f"documentation_{app_type.value}.json").read_text()
+        return Path("docs", f"documentation_{app_type.value}.json").read_text()
 
     def read_system_prompt(self, app_type: AppType) -> List[Dict]:
-        system_prompt_file = Path(f"SYSTEM_PROMPT_{app_type.value}.md").read_text()
+        system_prompt_file = Path("prompts", f"SYSTEM_PROMPT_{app_type.value}.md").read_text()
         documentation = self.load_documentation(app_type)
         
         return [
@@ -489,6 +489,16 @@ shinywidgets
         )
         messages = self.get_llm_response(user_prompt, system_prompt, model)
         return self.extract_code_and_description(messages.content[0].text)
+
+    def _create_test_prompt(self, app_text: str) -> str:
+        """Create a prompt for generating tests for a Shiny app."""
+        return (
+            f"Given this Shiny for Python app code:\n{app_text}\n"
+            "Please only add controllers for components that already have an ID in the shiny app.\n"
+            "Do not add tests for ones that do not have an existing ids since controllers need IDs to locate elements.\n"
+            "and server functionality of this app. Include appropriate assertions \n"
+            "and test cases to verify the app's behavior."
+        )
 
 
 def main():
