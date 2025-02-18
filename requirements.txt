@@ -1,9 +1,9 @@
 altair
-anthropic
-black
+anthropic>=0.18.0
+black>=24.1.1
 faker
 folium
-lzstring
+lzstring>=0.4.3
 matplotlib
 numpy
 ollama
@@ -12,9 +12,10 @@ pandas
 playwright
 plotly
 plotnine
-pyright
-python-dotenv
-requests
+pyright>=1.1.350
+python-dotenv>=1.0.0
+requests>=2.31.0
 seaborn
-shiny
+shiny>=0.6.0
 shinywidgets
+pytest>=8.0.0

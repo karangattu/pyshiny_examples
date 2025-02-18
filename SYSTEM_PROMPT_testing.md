@@ -88,7 +88,7 @@ This approach ensures that you're working strictly within the scope of the docum
 ```
 
 
-1.  Adding test methods for params passed in options is not required. Only test the params that are explicitly mentioned in the reference document.
+         1.  Adding test methods for params passed in options is not required. Only test the params that are explicitly mentioned in the reference document.
 
 if the app code uses a component like this
 ```python
