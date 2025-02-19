@@ -109,7 +109,9 @@ class ShinyAppGenerator:
             sys.argv[2].lower() if len(sys.argv) > 2 else "haiku3"
         )
         if not model_type:
-            print(f"Invalid model type. Choose from: {', '.join(cls.MODEL_ALIASES.keys())}")
+            print(
+                f"Invalid model type. Choose from: {', '.join(cls.MODEL_ALIASES.keys())}"
+            )
             sys.exit(1)
 
         return AppType(sys.argv[1]), model_type
@@ -119,9 +121,11 @@ class ShinyAppGenerator:
         return Path("docs", f"documentation_{app_type.value}.json").read_text()
 
     def read_system_prompt(self, app_type: AppType) -> List[Dict]:
-        system_prompt_file = Path("prompts", f"SYSTEM_PROMPT_{app_type.value}.md").read_text()
+        system_prompt_file = Path(
+            "prompts", f"SYSTEM_PROMPT_{app_type.value}.md"
+        ).read_text()
         documentation = self.load_documentation(app_type)
-        
+
         return [
             {
                 "type": "text",
@@ -140,7 +144,8 @@ class ShinyAppGenerator:
 
         config = self.MODEL_CONFIGS[model]
         return (
-            self.token_usage.cache_creation_input_tokens * config.cache_creation_input_cost
+            self.token_usage.cache_creation_input_tokens
+            * config.cache_creation_input_cost
             + self.token_usage.cache_read_input_tokens * config.cache_read_input_cost
             + self.token_usage.input_tokens * config.input_cost
             + self.token_usage.output_tokens * config.output_cost
@@ -163,7 +168,9 @@ class ShinyAppGenerator:
                 "raw_error": result.stderr,
             }
         except FileNotFoundError:
-            return {"error": "Pyright is not installed. Please install it using: pip install pyright"}
+            return {
+                "error": "Pyright is not installed. Please install it using: pip install pyright"
+            }
         except Exception as e:
             return {"error": f"An unexpected error occurred: {str(e)}"}
 
@@ -193,7 +200,9 @@ class ShinyAppGenerator:
         except Exception as e:
             return False, f"Failed to start Shiny app: {e}"
 
-        return self._monitor_app_process(process, port, timeout, success_timeout, verbose)
+        return self._monitor_app_process(
+            process, port, timeout, success_timeout, verbose
+        )
 
     def _monitor_app_process(
         self,
@@ -231,7 +240,9 @@ class ShinyAppGenerator:
         stdout_future.result()
         stderr_future.result()
 
-        return startup_successful, "\n".join(output_lines["stderr"]) if not startup_successful else ""
+        return startup_successful, (
+            "\n".join(output_lines["stderr"]) if not startup_successful else ""
+        )
 
     @staticmethod
     def _read_output_stream(
@@ -328,8 +339,12 @@ class ShinyAppGenerator:
     def _log_token_usage(self, model: str) -> None:
         """Log token usage and cost."""
         logging.info("==========")
-        logging.info(f"Cache creation input tokens ✎: {self.token_usage.cache_creation_input_tokens}")
-        logging.info(f"Cache read input tokens 🗒: {self.token_usage.cache_read_input_tokens}")
+        logging.info(
+            f"Cache creation input tokens ✎: {self.token_usage.cache_creation_input_tokens}"
+        )
+        logging.info(
+            f"Cache read input tokens 🗒: {self.token_usage.cache_read_input_tokens}"
+        )
         logging.info(f"Output tokens ⇣: {self.token_usage.output_tokens}")
         logging.info(f"Input tokens ⇡: {self.token_usage.input_tokens}")
         logging.info("==========")
@@ -337,7 +352,9 @@ class ShinyAppGenerator:
         cost = self.calculate_cost(model)
         print(f"Incurred costs till now: ${cost:.6f}")
 
-    def process_testing_directory(self, directory: Path, system_prompt: List[Dict], model: str) -> None:
+    def process_testing_directory(
+        self, directory: Path, system_prompt: List[Dict], model: str
+    ) -> None:
         """Process directory for testing app generation."""
         app_files = self._find_app_files_without_tests(directory)
         for dir_path, app_file in app_files:
@@ -355,7 +372,7 @@ class ShinyAppGenerator:
         for dir_path, app_file in app_files:
             app_text = app_file.read_text()
             code, _ = self.generate_converted_shiny_app(app_text, system_prompt, model)
-            
+
             output_file = dir_path / f"app-{app_type.value.split('2')[1]}.py"
             output_file.write_text(code)
 
@@ -371,10 +388,10 @@ class ShinyAppGenerator:
             logging.info(f"Processing directory: {dir_path}")
             prompt = prompt_file.read_text()
             code, description = self.generate_shiny_app(prompt, system_prompt, model)
-            
+
             # Create app files
             self._create_app_files(dir_path, code, description, app_type)
-            
+
             # # Test and fix if needed
             # success, error_message = self.run_shiny_app(
             #     dir_path / "app.py", port=8000, timeout=5, success_timeout=5
@@ -384,13 +401,17 @@ class ShinyAppGenerator:
             #     code, _ = self.fix_shiny_app(code, error_message, system_prompt, model)
             #     self._create_app_files(dir_path, code, description, app_type)
 
-    def _find_prompt_files(self, base_dir: Path, app_type: AppType) -> List[Tuple[Path, Path]]:
+    def _find_prompt_files(
+        self, base_dir: Path, app_type: AppType
+    ) -> List[Tuple[Path, Path]]:
         """Find all PROMPT.md files without corresponding app files."""
         result = []
         for path in base_dir.rglob("PROMPT.md"):
             dir_path = path.parent
             if not any(
-                dir_path.glob(f"app{'-' + app_type.value if app_type.value != 'core' else ''}.py")
+                dir_path.glob(
+                    f"app{'-' + app_type.value if app_type.value != 'core' else ''}.py"
+                )
             ):
                 result.append((dir_path, path))
         return result
@@ -423,7 +444,9 @@ class ShinyAppGenerator:
         test_file.write_text(code)
 
     @staticmethod
-    def _create_app_files(dir_path: Path, code: str, description: str, app_type: AppType) -> None:
+    def _create_app_files(
+        dir_path: Path, code: str, description: str, app_type: AppType
+    ) -> None:
         """Create app files and requirements in the specified directory."""
         # Write app file
         app_file = dir_path / f"app-{app_type.value}.py"
@@ -507,7 +530,7 @@ def main():
     system_prompt = generator.read_system_prompt(app_type)
 
     timer_start = time.perf_counter()
-    
+
     for directory in Path().iterdir():
         if not directory.is_dir():
             continue
@@ -515,7 +538,9 @@ def main():
         if app_type == AppType.TESTING:
             generator.process_testing_directory(directory, system_prompt, model)
         elif app_type in (AppType.CORE2EXPRESS, AppType.EXPRESS2CORE):
-            generator.process_conversion_directory(directory, app_type, system_prompt, model)
+            generator.process_conversion_directory(
+                directory, app_type, system_prompt, model
+            )
         else:
             generator.process_directory(directory, system_prompt, model, app_type)
 
