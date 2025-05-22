@@ -4,9 +4,11 @@ import sys
 from pathlib import Path
 import pandas as pd
 
+
 def extract_sections(text):
     sections = re.split(r"={16}", text)
-    return [section.strip() for section in the sections if section.strip()]
+    return [section.strip() for section in sections if section.strip()]
+
 
 def extract_details(section):
     controller_name = re.search(r"# (.+?) {", section).group(1)
@@ -17,6 +19,7 @@ def extract_details(section):
     )
     methods = re.search(r"## Methods\n\n(.+)", section, re.DOTALL).group(1).strip()
     return controller_name, attributes, methods
+
 
 def extract_documentation(filename):
     """
@@ -43,9 +46,7 @@ def extract_documentation(filename):
                 controller_name, attributes, methods = extract_details(section)
                 data.append([controller_name, attributes, methods])
 
-        df = pd.DataFrame(
-            data, columns=["controller_name", "attributes", "methods"]
-        )
+        df = pd.DataFrame(data, columns=["controller_name", "attributes", "methods"])
 
         data_dict = df.to_dict(orient="records")
         with open(output_filename, "w") as outfile:
@@ -59,23 +60,21 @@ def extract_documentation(filename):
         for section in sections:
             if not section.strip():
                 continue
-            
+
             # Extract file name and content
             lines = section.strip().split("\n")
             file_name = lines[0].strip()
             content = "\n".join(lines[1:]).strip()
-            
+
             # Create a dictionary for this section
-            section_dict = {
-                "File Name": file_name,
-                "Content": content
-            }
-            
+            section_dict = {"File Name": file_name, "Content": content}
+
             documentation.append(section_dict)
 
         # Write the JSON file
         with open(output_filename, "w") as outfile:
             json.dump(documentation, outfile, indent=4)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
