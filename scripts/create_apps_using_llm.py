@@ -1,10 +1,9 @@
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Union
+from typing import Dict, List, Tuple
 import json
 import logging
-import os
 import re
 import socket
 import subprocess
@@ -16,7 +15,6 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 from anthropic import Anthropic
 from dotenv import load_dotenv
-from lzstring import LZString
 
 
 class AppType(Enum):
@@ -466,18 +464,6 @@ seaborn
 shinywidgets
 """
         (dir_path / "requirements.txt").write_text(requirements)
-
-        # Write description with Shinylive link
-        description_md = f"{description}\n\n## Preview the app on [Shinylive]({ShinyAppGenerator.python_app_to_shinylive_url(code)})"
-        (dir_path / "DESCRIPTION.md").write_text(description_md)
-
-    @staticmethod
-    def python_app_to_shinylive_url(app_text: str) -> str:
-        """Generate Shinylive URL for the app."""
-        app_data = [{"name": "app.py", "content": app_text}]
-        json_string = json.dumps(app_data)
-        compressed_app = LZString.compressToEncodedURIComponent(json_string)
-        return f"https://shinylive.io/py/app/#h=0&code={compressed_app}"
 
     def generate_shiny_app(
         self, prompt: str, system_prompt: List[Dict], model: str
