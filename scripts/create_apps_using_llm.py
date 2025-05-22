@@ -356,6 +356,9 @@ class ShinyAppGenerator:
         """Process directory for testing app generation."""
         app_files = self._find_app_files_without_tests(directory)
         for dir_path, app_file in app_files:
+            test_file = dir_path / f"test_{dir_path.name}.py"
+            if test_file.exists():
+                continue
             app_text = app_file.read_text()
             user_prompt = self._create_test_prompt(app_text)
             messages = self.get_llm_response(user_prompt, system_prompt, model)
@@ -406,31 +409,47 @@ class ShinyAppGenerator:
         result = []
         for path in base_dir.rglob("PROMPT.md"):
             dir_path = path.parent
-            if not any(
-                dir_path.glob(
-                    f"app{'-' + app_type.value if app_type.value != 'core' else ''}.py"
-                )
-            ):
+            # Determine the expected app file name based on app type
+            if app_type == AppType.CORE:
+                app_file_name = "app-core.py"
+            elif app_type == AppType.EXPRESS:
+                app_file_name = "app-express.py"
+            else:
+                # For other types, use the existing logic
+                app_file_name = f"app{'-' + app_type.value if app_type.value != 'core' else ''}.py"
+            
+            # Check if the specific app file already exists
+            if not (dir_path / app_file_name).exists():
                 result.append((dir_path, path))
         return result
 
     def _find_app_files(self, base_dir: Path) -> List[Tuple[Path, Path]]:
         """Find all app files in order of preference."""
         result = []
+        # Exclude certain directories that shouldn't contain app files
+        excluded_dirs = {"docs", "scripts", "prompts", ".git", "__pycache__", ".venv", "venv"}
+        
         for root in base_dir.rglob("*"):
             if not root.is_dir():
                 continue
-            for app_file in ["app.py", "app-express.py", "app-core.py"]:
-                if (root / app_file).exists():
-                    result.append((root, root / app_file))
+            
+            # Skip excluded directories
+            if any(part in excluded_dirs for part in root.parts):
+                continue
+                
+            for app_file in ["app-express.py", "app-core.py"]:
+                file_path = root / app_file
+                if file_path.exists() and file_path.is_file():
+                    result.append((root, file_path))
                     break
         return result
 
     def _find_app_files_without_tests(self, base_dir: Path) -> List[Tuple[Path, Path]]:
-        """Find all app files that don't have corresponding test files."""
+        """Find all app files that don't have corresponding test files, by checking file existence only."""
         result = []
         for root, app_file in self._find_app_files(base_dir):
-            if not any(root.glob("test_*.py")):
+            test_file = root / f"test_{root.name}.py"
+            if not test_file.is_file():
                 result.append((root, app_file))
         return result
 

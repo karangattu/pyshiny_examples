@@ -1,4 +1,4 @@
-## Build a High-Quality Shiny for Python Application
+## Build a High-Quality Shiny for Python Application (Core Mode)
 
 **Goal:** Create a robust, interactive, and well-structured Shiny for Python application.  The application should be easy to use, handle data correctly, and follow best practices.
 
