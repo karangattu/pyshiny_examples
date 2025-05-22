@@ -59,8 +59,8 @@ class ShinyAppGenerator:
             0.00000100,
             0.00000500,
         ),
-        "claude-3-7-sonnet-20250219": ModelConfig(
-            "claude-3-7-sonnet-20250219",
+        "claude-sonnet-4-20250514": ModelConfig(
+            "claude-sonnet-4-20250514",
             0.00000375,
             0.00000030,
             0.00000300,
@@ -78,7 +78,7 @@ class ShinyAppGenerator:
     MODEL_ALIASES = {
         "haiku3": "claude-3-haiku-20240307",
         "haiku3.5": "claude-3-5-haiku-20241022",
-        "sonnet": "claude-3-7-sonnet-20250219",
+        "sonnet": "claude-sonnet-4-20250514",
     }
 
     def __init__(self):
