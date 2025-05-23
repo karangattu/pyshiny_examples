@@ -393,15 +393,6 @@ class ShinyAppGenerator:
             # Create app files
             self._create_app_files(dir_path, code, description, app_type)
 
-            # # Test and fix if needed
-            # success, error_message = self.run_shiny_app(
-            #     dir_path / "app.py", port=8000, timeout=5, success_timeout=5
-            # )
-            # if not success:
-            #     logging.info(f"App failed to run in {dir_path}, attempting fix")
-            #     code, _ = self.fix_shiny_app(code, error_message, system_prompt, model)
-            #     self._create_app_files(dir_path, code, description, app_type)
-
     def _find_prompt_files(
         self, base_dir: Path, app_type: AppType
     ) -> List[Tuple[Path, Path]]:
@@ -468,21 +459,6 @@ class ShinyAppGenerator:
         # Write app file
         app_file = dir_path / f"app-{app_type.value}.py"
         app_file.write_text(code)
-
-        # Write requirements
-        requirements = """
-altair
-folium
-matplotlib
-numpy
-pandas
-plotly
-plotnine
-requests
-seaborn
-shinywidgets
-"""
-        (dir_path / "requirements.txt").write_text(requirements)
 
     def generate_shiny_app(
         self, prompt: str, system_prompt: List[Dict], model: str

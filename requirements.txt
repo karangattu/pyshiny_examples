@@ -19,3 +19,5 @@ seaborn
 shiny>=0.6.0
 shinywidgets
 pytest>=8.0.0
+inspect-ai
+
