@@ -183,6 +183,51 @@ ui.input_date_range(
 
 ![](comparison_chart.png)
 
+## Using as a Python module
+
+You can also use the Shiny App Generator programmatically in your own Python scripts:
+
+```python
+from scripts.create_apps_using_llm import ShinyAppGenerator, AppType
+
+generator = ShinyAppGenerator()
+code, desc = generator.generate_app_from_prompt(
+    "Create a simple calculator app",
+    app_type=AppType.EXPRESS
+)
+print(code)
+print(desc)
+```
+
+To use it to create tests programmatically for a single app, you can do:
+
+```python
+from scripts.create_apps_using_llm import ShinyAppGenerator, AppType
+from pathlib import Path
+
+generator = ShinyAppGenerator()
+app_path = Path("path/to/your/app-express.py")  # or app-core.py
+app_code = app_path.read_text()
+
+# Create the test prompt
+test_prompt = generator._create_test_prompt(app_code)
+
+# Prepare the system prompt for testing
+system_prompt = generator.read_system_prompt(AppType.TESTING)
+
+# Get the LLM response
+messages = generator.get_llm_response(test_prompt, system_prompt, "claude-3-5-haiku-20241022")
+
+# Extract the test code
+test_code = generator.extract_test(messages.content[0].text)
+
+# Write the test code to a file
+test_file = app_path.parent / f"test_{app_path.parent.name}.py"
+test_file.write_text(test_code)
+```
+
+You can also convert between app types or generate tests programmatically. See the docstring in `scripts/create_apps_using_llm.py` for more details.
+
 ## Contributing
 
 Feel free to submit issues and enhancement requests. Pull requests are welcome.

@@ -1,3 +1,28 @@
+"""
+Shiny App Generator using Large Language Models
+
+This module provides a ShinyAppGenerator class that can be used to:
+- Generate new Shiny for Python apps from text prompts
+- Convert between Shiny Core and Express syntaxes
+- Generate tests for existing Shiny apps
+- Run apps and validate their functionality
+
+The class can be used programmatically by importing it into other modules,
+or run as a CLI script for batch processing.
+
+Example usage:
+    # As a module
+    from create_apps_using_llm import ShinyAppGenerator, AppType
+    
+    generator = ShinyAppGenerator()
+    code, desc = generator.generate_app_from_prompt(
+        "Create a simple calculator app",
+        app_type=AppType.EXPRESS
+    )
+    
+    # As a CLI script
+    python create_apps_using_llm.py express haiku3.5
+"""
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
@@ -15,6 +40,14 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 from anthropic import Anthropic
 from dotenv import load_dotenv
+
+
+__all__ = [
+    "ShinyAppGenerator",
+    "AppType",
+    "ModelConfig",
+    "TokenUsage",
+]
 
 
 class AppType(Enum):
@@ -79,10 +112,20 @@ class ShinyAppGenerator:
         "sonnet": "claude-sonnet-4-20250514",
     }
 
-    def __init__(self):
+    def __init__(self, api_key: str = None, log_file: str = "anthropic.log", setup_logging: bool = True):
+        """
+        Initialize the ShinyAppGenerator.
+        
+        Args:
+            api_key: Anthropic API key. If None, will use environment variable.
+            log_file: Path to log file. Defaults to "anthropic.log".
+            setup_logging: Whether to setup logging. Defaults to True.
+        """
         self.token_usage = TokenUsage()
-        self.client = Anthropic()
-        self.setup_logging()
+        self.client = Anthropic(api_key=api_key) if api_key else Anthropic()
+        self.log_file = log_file
+        if setup_logging:
+            self.setup_logging()
 
     @staticmethod
     def setup_logging():
@@ -115,14 +158,72 @@ class ShinyAppGenerator:
         return AppType(sys.argv[1]), model_type
 
     @staticmethod
-    def load_documentation(app_type: AppType) -> str:
-        return Path("docs", f"documentation_{app_type.value}.json").read_text()
+    def load_documentation(app_type: AppType, docs_dir: str = "docs") -> str:
+        """Load documentation for the specified app type."""
+        docs_path = Path(docs_dir, f"documentation_{app_type.value}.json")
+        if not docs_path.exists():
+            raise FileNotFoundError(f"Documentation file not found: {docs_path}")
+        return docs_path.read_text()
+
+    def run_generation(
+        self, 
+        app_type: AppType, 
+        model: str, 
+        base_directory: Path = None,
+        docs_dir: str = "docs",
+        prompts_dir: str = "prompts"
+    ) -> None:
+        """
+        Run the app generation process.
+        
+        Args:
+            app_type: Type of app to generate
+            model: Model to use for generation
+            base_directory: Base directory to process. If None, uses current directory.
+            docs_dir: Directory containing documentation files
+            prompts_dir: Directory containing prompt files
+        """
+        if base_directory is None:
+            base_directory = Path()
+            
+        # Update paths for documentation and prompts
+        self.docs_dir = docs_dir
+        self.prompts_dir = prompts_dir
+        
+        system_prompt = self.read_system_prompt(app_type)
+        timer_start = time.perf_counter()
+
+        for directory in base_directory.iterdir():
+            if not directory.is_dir():
+                continue
+
+            if app_type == AppType.TESTING:
+                self.process_testing_directory(directory, system_prompt, model)
+            elif app_type in (AppType.CORE2EXPRESS, AppType.EXPRESS2CORE):
+                self.process_conversion_directory(
+                    directory, app_type, system_prompt, model
+                )
+            else:
+                self.process_directory(directory, system_prompt, model, app_type)
+
+            timer_current = time.perf_counter()
+            logging.info(
+                f"Time taken for directory {directory}: "
+                f"{timer_current - timer_start:.2f} seconds"
+            )
+
+        timer_end = time.perf_counter()
+        minutes, seconds = divmod(timer_end - timer_start, 60)
+        print(f"Total time taken: {int(minutes)} minutes and {seconds:.2f} seconds")
 
     def read_system_prompt(self, app_type: AppType) -> List[Dict]:
+        prompts_dir = getattr(self, 'prompts_dir', 'prompts')
+        docs_dir = getattr(self, 'docs_dir', 'docs')
+        
         system_prompt_file = Path(
-            "prompts", f"SYSTEM_PROMPT_{app_type.value}.md"
+            prompts_dir, f"SYSTEM_PROMPT_{app_type.value}.md"
         ).read_text()
-        documentation = self.load_documentation(app_type)
+        documentation = self.load_documentation(app_type, docs_dir)
 
         return [
             {
@@ -505,35 +606,112 @@ class ShinyAppGenerator:
         )
 
 
-def main():
-    generator = ShinyAppGenerator()
-    app_type, model = generator.parse_command_line_args()
-    system_prompt = generator.read_system_prompt(app_type)
+    def generate_app_from_prompt(
+        self, 
+        prompt: str, 
+        app_type: AppType = AppType.EXPRESS, 
+        model: str = "claude-3-5-haiku-20241022",
+        docs_dir: str = "docs",
+        prompts_dir: str = "prompts"
+    ) -> Tuple[str, str]:
+        """
+        Generate a Shiny app from a prompt string.
+        
+        Args:
+            prompt: The prompt describing what app to create
+            app_type: Type of app to generate (EXPRESS or CORE)
+            model: Model to use for generation
+            docs_dir: Directory containing documentation files
+            prompts_dir: Directory containing prompt files
+            
+        Returns:
+            Tuple of (code, description)
+        """
+        # Resolve model alias
+        model = self.MODEL_ALIASES.get(model, model)
+        
+        # Set up paths
+        self.docs_dir = docs_dir
+        self.prompts_dir = prompts_dir
+        
+        system_prompt = self.read_system_prompt(app_type)
+        return self.generate_shiny_app(prompt, system_prompt, model)
 
-    timer_start = time.perf_counter()
-
-    for directory in Path().iterdir():
-        if not directory.is_dir():
-            continue
-
-        if app_type == AppType.TESTING:
-            generator.process_testing_directory(directory, system_prompt, model)
-        elif app_type in (AppType.CORE2EXPRESS, AppType.EXPRESS2CORE):
-            generator.process_conversion_directory(
-                directory, app_type, system_prompt, model
-            )
+    def convert_app(
+        self,
+        app_code: str,
+        from_type: str,
+        to_type: str,
+        model: str = "claude-3-5-haiku-20241022",
+        docs_dir: str = "docs",
+        prompts_dir: str = "prompts"
+    ) -> Tuple[str, str]:
+        """
+        Convert a Shiny app from one type to another.
+        
+        Args:
+            app_code: The source code of the app to convert
+            from_type: Source app type ('core' or 'express')
+            to_type: Target app type ('core' or 'express')
+            model: Model to use for conversion
+            docs_dir: Directory containing documentation files
+            prompts_dir: Directory containing prompt files
+            
+        Returns:
+            Tuple of (code, description)
+        """
+        # Resolve model alias
+        model = self.MODEL_ALIASES.get(model, model)
+        
+        # Set up paths
+        self.docs_dir = docs_dir
+        self.prompts_dir = prompts_dir
+        
+        # Determine conversion type
+        if from_type == "core" and to_type == "express":
+            app_type = AppType.CORE2EXPRESS
+        elif from_type == "express" and to_type == "core":
+            app_type = AppType.EXPRESS2CORE
         else:
-            generator.process_directory(directory, system_prompt, model, app_type)
+            raise ValueError(f"Invalid conversion: {from_type} to {to_type}")
+        
+        system_prompt = self.read_system_prompt(app_type)
+        return self.generate_converted_shiny_app(app_code, system_prompt, model)
 
-        timer_current = time.perf_counter()
-        logging.info(
-            f"Time taken for directory {directory}: {timer_current - timer_start:.2f} seconds"
-        )
-
-    timer_end = time.perf_counter()
-    minutes, seconds = divmod(timer_end - timer_start, 60)
-    print(f"Total time taken: {int(minutes)} minutes and {seconds:.2f} seconds")
+    def get_cost_summary(self, model: str = None) -> Dict:
+        """
+        Get a summary of token usage and costs.
+        
+        Args:
+            model: Model to calculate costs for. If None, uses last used model.
+            
+        Returns:
+            Dictionary with token usage and cost information
+        """
+        if model is None:
+            # Use the first available model as default
+            model = list(self.MODEL_CONFIGS.keys())[0]
+        
+        # Resolve model alias
+        model = self.MODEL_ALIASES.get(model, model)
+        
+        cost = self.calculate_cost(model)
+        
+        return {
+            "model": model,
+            "cache_creation_input_tokens": self.token_usage.cache_creation_input_tokens,
+            "cache_read_input_tokens": self.token_usage.cache_read_input_tokens,
+            "input_tokens": self.token_usage.input_tokens,
+            "output_tokens": self.token_usage.output_tokens,
+            "total_cost": cost
+        }
 
 
 if __name__ == "__main__":
-    main()
+    def run_cli():
+        """Command line interface for the Shiny App Generator."""
+        generator = ShinyAppGenerator()
+        app_type, model = generator.parse_command_line_args()
+        generator.run_generation(app_type, model)
+
+    run_cli()
