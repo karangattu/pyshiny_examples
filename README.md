@@ -13,6 +13,22 @@ A key feature of this project is its focus on reliability. It includes a compreh
 
 ## Installation
 
+### Prerequisites
+
+You'll need an Anthropic API key to use this tool. Set it as an environment variable:
+
+```bash
+export ANTHROPIC_API_KEY="your_api_key_here"
+```
+
+Or create a `.env` file in your project directory:
+
+```
+ANTHROPIC_API_KEY=your_api_key_here
+```
+
+### Install the Package
+
 ```bash
 pip install .
 ```
@@ -27,27 +43,100 @@ from shiny_test_generator import ShinyTestGenerator
 # Initialize the generator
 generator = ShinyTestGenerator()
 
-# Read the app code from a file
-app_file_path = "path/to/your/app.py"
-with open(app_file_path, "r") as f:
-    app_code = f.read()
+# Method 1: Generate test from an app file
+test_code, test_file_path = generator.generate_test_from_file(
+    app_file_path="path/to/your/app.py",
+    show_token_usage=True  # Optional: show token usage
+)
 
-# Generate the test file (test_<app_file_name>.py will be created automatically)
-generator.generate_test_for_app(app_code, app_file_path=app_file_path)
+# Method 2: Generate test from app code string
+app_code = """
+from shiny import App, ui, render
 
-# Or, specify a custom output file name
-# generator.generate_test_for_app(app_code, output_file="my_test_file.py")
+app_ui = ui.page_fluid(
+    ui.input_text("name", "Enter your name:", ""),
+    ui.output_text("greeting")
+)
+
+def server(input, output, session):
+    @render.text
+    def greeting():
+        return f"Hello, {input.name()}!"
+
+app = App(app_ui, server)
+"""
+
+test_code, test_file_path = generator.generate_test_from_code(
+    app_code=app_code,
+    app_name="my_app",
+    output_dir="tests/"  # Optional: specify output directory
+)
+
+# Method 3: Flexible generate_test_for_app method
+test_code, test_file_path = generator.generate_test_for_app(
+    app_code=app_code,  # Can pass code directly
+    app_file_path="path/to/your/app.py",  # Or specify file path
+    model="sonnet",  # Options: "haiku3", "haiku3.5", "sonnet"
+    output_file="custom_test_name.py",  # Optional: custom output filename
+    show_token_usage=True
+)
+
+print(f"Test file generated: {test_file_path}")
+print(f"Test code:\n{test_code}")
 ```
 
 ### As a CLI Tool
 
 ```bash
+# Basic usage - generates test_<app_name>.py in the same directory
 shiny-test-generator path/to/your/app.py
+
+# Specify output directory
+shiny-test-generator path/to/your/app.py --output-dir tests/
 ```
 
-This will generate a test file named `test_<app_file_name>.py` in the same directory as your app file.
+### Model Options
 
-```
+The tool supports several Claude models via aliases:
+
+- `"haiku3"` - Claude 3 Haiku (fastest, most economical)
+- `"haiku3.5"` - Claude 3.5 Haiku (balanced performance)
+- `"sonnet"` - Claude Sonnet 4 (highest quality, default)
+
+You can also specify the full model name directly (e.g., `"claude-sonnet-4-20250514"`).
+
+### File Organization
+
+The tool automatically generates test files following Python testing conventions:
+
+- If your app is `app.py`, the test file will be `test_app.py`
+- If your app is `my_dashboard.py`, the test file will be `test_my_dashboard.py`
+- Tests are saved in the same directory as the app file by default, or in a custom directory if specified
+
+## Configuration
+
+### API Key Setup
+
+The tool uses the Anthropic API and requires an API key. You can provide it in several ways:
+
+1. **Environment variable** (recommended):
+   ```bash
+   export ANTHROPIC_API_KEY="your_api_key_here"
+   ```
+
+2. **`.env` file** in your project directory:
+   ```
+   ANTHROPIC_API_KEY=your_api_key_here
+   ```
+
+3. **Programmatically** when initializing the generator:
+   ```python
+   generator = ShinyTestGenerator(api_key="your_api_key_here")
+   ```
+
+### Logging
+
+The tool automatically sets up logging to `anthropic.log` in your current directory. You can disable this by setting `setup_logging=False` when initializing the generator.
 
 ## Evaluation
 
