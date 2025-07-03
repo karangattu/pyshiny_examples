@@ -46,7 +46,6 @@ generator = ShinyTestGenerator()
 # Method 1: Generate test from an app file
 test_code, test_file_path = generator.generate_test_from_file(
     app_file_path="path/to/your/app.py",
-    show_token_usage=True  # Optional: show token usage
 )
 
 # Method 2: Generate test from app code string
@@ -78,7 +77,6 @@ test_code, test_file_path = generator.generate_test_for_app(
     app_file_path="path/to/your/app.py",  # Or specify file path
     model="sonnet",  # Options: "haiku3", "haiku3.5", "sonnet"
     output_file="custom_test_name.py",  # Optional: custom output filename
-    show_token_usage=True
 )
 
 print(f"Test file generated: {test_file_path}")

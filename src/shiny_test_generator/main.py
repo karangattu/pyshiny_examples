@@ -3,7 +3,7 @@ from pathlib import Path
 import logging
 import re
 import sys
-from chatlas import ChatAnthropic, token_usage
+from chatlas import ChatAnthropic
 from dotenv import load_dotenv
 
 
@@ -167,7 +167,6 @@ class ShinyTestGenerator:
         app_code: str = None,
         model: str = "claude-sonnet-4-20250514",
         output_file: str = None,
-        show_token_usage: bool = False,
         app_file_path: str = None,
         output_dir: str = None,
     ) -> tuple[str, Path]:
@@ -178,7 +177,6 @@ class ShinyTestGenerator:
             app_code: The app code as a string. If None, will be read from app_file_path
             model: The model to use for generation
             output_file: Explicit output file path (overrides automatic naming)
-            show_token_usage: Whether to print token usage
             app_file_path: Path to the app file
             output_dir: Directory to save the test file (defaults to app file directory)
 
@@ -216,10 +214,6 @@ class ShinyTestGenerator:
         with open(test_file_path, "w") as f:
             f.write(test_code)
 
-        if show_token_usage:
-            usage = token_usage()
-            print(f"Token usage: {usage}")
-
         return test_code, test_file_path
 
     def generate_test_from_file(
@@ -227,7 +221,6 @@ class ShinyTestGenerator:
         app_file_path: str,
         model: str = "claude-sonnet-4-20250514",
         output_file: str = None,
-        show_token_usage: bool = False,
         output_dir: str = None,
     ) -> tuple[str, Path]:
         """
@@ -237,7 +230,6 @@ class ShinyTestGenerator:
             app_file_path: Path to the app file
             model: The model to use for generation
             output_file: Explicit output file path (overrides automatic naming)
-            show_token_usage: Whether to print token usage
             output_dir: Directory to save the test file (defaults to app file directory)
 
         Returns:
@@ -247,7 +239,6 @@ class ShinyTestGenerator:
             app_file_path=app_file_path,
             model=model,
             output_file=output_file,
-            show_token_usage=show_token_usage,
             output_dir=output_dir,
         )
 
@@ -257,7 +248,6 @@ class ShinyTestGenerator:
         app_name: str = "app",
         model: str = "claude-sonnet-4-20250514",
         output_file: str = None,
-        show_token_usage: bool = False,
         output_dir: str = None,
     ) -> tuple[str, Path]:
         """
@@ -268,7 +258,6 @@ class ShinyTestGenerator:
             app_name: Name for the app (used in test file naming)
             model: The model to use for generation
             output_file: Explicit output file path (overrides automatic naming)
-            show_token_usage: Whether to print token usage
             output_dir: Directory to save the test file (defaults to current directory)
 
         Returns:
@@ -282,18 +271,14 @@ class ShinyTestGenerator:
             app_file_path=str(virtual_app_path),
             model=model,
             output_file=output_file,
-            show_token_usage=show_token_usage,
             output_dir=output_dir,
         )
-
-    def get_token_usage(self):
-        return token_usage()
 
 
 def cli():
     if len(sys.argv) < 2:
         print(
-            "Usage: shiny-test-generator <path_to_app_file> [--show-tokens] [--output-dir <dir>]"
+            "Usage: shiny-test-generator <path_to_app_file> [--output-dir <dir>]"
         )
         sys.exit(1)
 
@@ -301,8 +286,6 @@ def cli():
     if not app_file_path.is_file():
         print(f"Error: File not found at {app_file_path}")
         sys.exit(1)
-
-    show_tokens = "--show-tokens" in sys.argv
 
     # Parse output directory if provided
     output_dir = None
@@ -317,8 +300,7 @@ def cli():
     generator = ShinyTestGenerator()
     test_code, test_file_path = generator.generate_test_from_file(
         str(app_file_path),
-        show_token_usage=show_tokens,
         output_dir=output_dir,
     )
 
-    print(f"Test file generated: {test_file_path}")
+    # print(f"Test file generated: {test_file_path}")
