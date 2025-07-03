@@ -1,0 +1,31 @@
+name: Inspect AI Evaluation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -e .
+          pip install inspect-ai shiny pytest playwright
+
+      - name: Run Inspect AI evaluation
+        run: inspect eval eval.yml --log-file eval_results.jsonl
+
+      - name: Upload evaluation results
+        uses: actions/upload-artifact@v4
+        with:
+          name: evaluation-results
+          path: eval_results.jsonl

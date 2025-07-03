@@ -1,237 +1,36 @@
-# pyshiny_examples
-Repo that creates py-shiny examples for the given prompt leveraging AI
+# Shiny Test Generator
 
-# Shiny App Generator
+This package provides a `ShinyTestGenerator` class that can be used to generate tests for Shiny for Python applications using LLMs.
 
-This script helps automate the creation, testing, and conversion of Shiny for Python applications using Claude AI models. It supports various operations including generating new apps, testing existing apps, and converting between core and express versions.
+## Installation
 
-## Prerequisites
-
-Before using this script, ensure you have the following installed:
-
-1. Python 3.8 or higher
-2. Required Python packages (install using `pip install -r requirements.txt`):
-   - anthropic
-   - python-dotenv
-   - requests
-   - lzstring
-   - shiny
-
-## Setup
-
-1. Clone this repository:
-   ```bash
-   git clone <repository-url>
-   cd pyshiny_examples
-   ```
-
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Create a `.env` file in the root directory and add your Anthropic API key:
-   ```
-   ANTHROPIC_API_KEY=your_api_key_here
-   ```
+```bash
+pip install .
+```
 
 ## Usage
 
-The script can be run in different modes depending on your needs:
+### As a Library
+
+```python
+from shiny_test_generator import ShinyTestGenerator
+
+# Initialize the generator
+generator = ShinyTestGenerator()
+
+# Read the app code from a file
+with open("path/to/your/app.py", "r") as f:
+    app_code = f.read()
+
+# Generate the test
+test_code = generator.generate_test_for_app(app_code)
+
+# Print the generated test
+print(test_code)
+```
+
+### As a CLI Tool
 
 ```bash
-python scripts/create_apps_using_llm.py [mode] [model]
+shiny-test-generator path/to/your/app.py
 ```
-
-### Available Modes
-
-1. `express` - Generate Express version Shiny apps
-2. `core` - Generate Core version Shiny apps
-3. `testing` - Generate tests for existing apps
-4. `core2express` - Convert Core apps to Express version
-5. `express2core` - Convert Express apps to Core version
-
-### Available Models
-
-- `haiku3` - Claude-3 Haiku (fastest, most economical)
-- `haiku3.5` - Claude-3.5 Haiku (balanced)
-- `sonnet` - Claude-3.5 Sonnet (most capable)
-
-### Examples
-
-1. Generate an Express app using Haiku:
-   ```bash
-   python scripts/create_apps_using_llm.py express haiku3
-   ```
-
-2. Convert Core apps to Express using Sonnet:
-   ```bash
-   python scripts/create_apps_using_llm.py core2express sonnet
-   ```
-
-3. Generate tests using Haiku 3.5:
-   ```bash
-   python scripts/create_apps_using_llm.py testing haiku3.5
-   ```
-
-## Directory Structure
-
-The repository is organized as follows:
-```
-.
-├── AIprentice/              # Generated Shiny app examples
-│   ├── accordion_panel/     # Individual component examples
-│   ├── card/
-│   └── ...
-├── docs/                    # Documentation files
-│   ├── documentation_*.json # Documentation for different modes
-│   └── *_docs.txt          # Additional documentation
-├── prompts/                 # System prompts for different modes
-│   └── SYSTEM_PROMPT_*.md
-├── scripts/                 # Utility scripts
-│   ├── create_apps_using_llm.py  # Main app generation script
-│   ├── create_dirs.py            # Directory structure creation
-│   └── ...
-└── tests/                   # Test files
-    ├── conftest.py
-    └── test_quality_of_apps.py
-```
-
-## Features
-
-- **Automated App Generation**: Creates Shiny apps based on requirements in PROMPT.md files
-- **Test Generation**: Automatically generates tests for existing apps
-- **App Conversion**: Converts between Core and Express versions of apps
-- **Error Handling**: Includes automatic error detection and fixing
-- **Cost Tracking**: Monitors and reports token usage and associated costs
-- **Live Preview**: Generates Shinylive URLs for easy app preview
-
-## Troubleshooting
-
-1. **Port Issues**: If you see "Port already in use" errors, ensure no other Shiny apps are running, or modify the port number in the script.
-
-2. **API Key Errors**: Verify your Anthropic API key is correctly set in the `.env` file.
-
-3. **Missing Documentation**: Ensure all required documentation and system prompt files are present in the root directory.
-
-## Cost Management
-
-The script tracks token usage and associated costs for different models. Costs are displayed during execution. Choose the appropriate model based on your needs:
-
-- Haiku3: Most economical, suitable for simple apps
-- Haiku3.5: Balanced cost and capability
-- Sonnet: Higher cost but more capable for complex requirements
-
-## Why use product knowledge data or function reference document in system prompt for the LLM?
-
-Older versions of large language models (LLMs) may not be aware of certain components or the best way to leverage certain shiny components. This could be due to their knowledge cutoff date or simply not being trained on Shiny documentation.
-
-By providing the LLM with the product knowledge data or function reference document, the LLM can generate more accurate and relevant code snippets for the given prompt. This will help the LLM to generate code snippets that are more relevant and useful for the given prompt.
-
-As an example:
-
-This is the app generated by the LLM without the latest product knowledge data or function reference document:
-
-```python
-
-app_ui = ui.page_fluid(
-    ui.panel_title("Restaurant Management App"),
-    ui.tabset(
-        ui.tab_panel(
-            "Menu Management",
-            ...
-
-```
-where `ui.tabset` is not a shiny component and the LLM did hallucinate in producing that line of code. The closest to that is `ui.navset_tab`.
-
-Another example:
-```python
-
-app_ui = ui.page_fluid(
-    ui.panel_title("Spending Habit Analyzer"),
-    ui.layout_sidebar(
-        ui.sidebar(
-            ui.input_date_range("date_range", "Date Range", default=[spending_df['date'].min(), spending_df['date'].max()]),
-            ui.input_checkbox_group("categories", "Select Categories", categories, value=categories),
-            ui.output_ui("recommendation_container")
-        ),
-        ...
-```
-The app throws an error
-> TypeError: `input_date_range()` got an unexpected keyword argument 'default'
-
-This is because `input_date_range` does not have a `default` argument. The input_date_range component has the following arguments but the LLM was not aware of it.
-```python
-ui.input_date_range(
-    id,
-    label,
-    *,
-    start=None,
-    end=None,
-    min=None,
-    max=None,
-    format='yyyy-mm-dd',
-    startview='month',
-    weekstart=0,
-    language='en',
-    separator=' to ',
-    width=None,
-    autoclose=True,
-)
-```
-## Comparing the cost of examples across different LLM models
-
-![](comparison_chart.png)
-
-## Using as a Python module
-
-You can also use the Shiny App Generator programmatically in your own Python scripts:
-
-```python
-from scripts.create_apps_using_llm import ShinyAppGenerator, AppType
-
-generator = ShinyAppGenerator()
-code, desc = generator.generate_app_from_prompt(
-    "Create a simple calculator app",
-    app_type=AppType.EXPRESS
-)
-print(code)
-print(desc)
-```
-
-To use it to create tests programmatically for a single app, you can do:
-
-```python
-from scripts.create_apps_using_llm import ShinyAppGenerator, AppType
-from pathlib import Path
-
-generator = ShinyAppGenerator()
-app_path = Path("path/to/your/app-express.py")  # or app-core.py
-app_code = app_path.read_text()
-
-# Create the test prompt
-test_prompt = generator._create_test_prompt(app_code)
-
-# Prepare the system prompt for testing
-system_prompt = generator.read_system_prompt(AppType.TESTING)
-
-# Get the LLM response
-messages = generator.get_llm_response(test_prompt, system_prompt, "claude-3-5-haiku-20241022")
-
-# Extract the test code
-test_code = generator.extract_test(messages.content[0].text)
-
-# Write the test code to a file
-test_file = app_path.parent / f"test_{app_path.parent.name}.py"
-test_file.write_text(test_code)
-```
-
-You can also convert between app types or generate tests programmatically. See the docstring in `scripts/create_apps_using_llm.py` for more details.
-
-## Contributing
-
-Feel free to submit issues and enhancement requests. Pull requests are welcome.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.

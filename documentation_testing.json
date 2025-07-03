@@ -1,0 +1,1253 @@
+{
+    "AccordionPanel": {
+        "inheritsFrom": [
+            "WidthLocM",
+            "UiWithContainer"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str, data_value: str) -> None"
+            },
+            {
+                "expect_label": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_body": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_icon": "(self, exists: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_open": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "set": "(self, open: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "_toggle": "(self, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "Accordion": {
+        "inheritsFrom": [
+            "WidthLocM",
+            "UiWithContainer"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_height": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_width": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_open": "(self, value: list[PatternOrStr], *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_panels": "(self, value: list[PatternOrStr], *, timeout: Timeout = None) -> None"
+            },
+            {
+                "set": "(self, open: str | list[str], *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_class": "(self, class_name: str, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_multiple": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "accordion_panel": "(self, data_value: str) -> AccordionPanel"
+            }
+        ]
+    },
+    "UiBaseP": {
+        "inheritsFrom": [
+            "Protocol"
+        ],
+        "classFunctions": []
+    },
+    "UiWithContainerP": {
+        "inheritsFrom": [
+            "UiBaseP",
+            "Protocol"
+        ],
+        "classFunctions": []
+    },
+    "UiWithSidebarP": {
+        "inheritsFrom": [
+            "UiWithContainerP",
+            "Protocol"
+        ],
+        "classFunctions": []
+    },
+    "UiWithTitleP": {
+        "inheritsFrom": [
+            "UiWithContainerP",
+            "Protocol"
+        ],
+        "classFunctions": []
+    },
+    "UiBase": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, *, id: str, loc: InitLocator) -> None"
+            },
+            {
+                "expect": "(self)"
+            }
+        ]
+    },
+    "UiWithContainer": {
+        "inheritsFrom": [
+            "UiBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, *, id: str, loc: InitLocator, loc_container: InitLocator = 'div.shiny-input-container') -> None"
+            }
+        ]
+    },
+    "UiWithLabel": {
+        "inheritsFrom": [
+            "UiWithContainer"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, *, id: str, loc: InitLocator, loc_container: InitLocator = 'div.shiny-input-container', loc_label: InitLocator | None = None) -> None"
+            },
+            {
+                "expect_label": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "WidthLocStlyeM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_width": "(self: UiBaseP, value: AttrValue, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "WidthLocM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_width": "(self: UiBaseP, value: AttrValue, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "WidthContainerStyleM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_width": "(self: UiWithContainerP, value: AttrValue, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "InputActionBase": {
+        "inheritsFrom": [
+            "UiBase"
+        ],
+        "classFunctions": [
+            {
+                "expect_label": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "click": "(self, *, timeout: Timeout = None, **kwargs: object) -> None"
+            }
+        ]
+    },
+    "OutputBaseP": {
+        "inheritsFrom": [
+            "Protocol"
+        ],
+        "classFunctions": []
+    },
+    "_CardBodyP": {
+        "inheritsFrom": [
+            "UiBaseP",
+            "Protocol"
+        ],
+        "classFunctions": []
+    },
+    "_CardBodyM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_body": "(self: _CardBodyP, value: PatternOrStr | list[PatternOrStr], *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_CardFooterLayoutP": {
+        "inheritsFrom": [
+            "UiBaseP",
+            "Protocol"
+        ],
+        "classFunctions": []
+    },
+    "_CardFooterM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_footer": "(self: _CardFooterLayoutP, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_CardValueBoxFullScreenLayoutP": {
+        "inheritsFrom": [
+            "OutputBaseP",
+            "Protocol"
+        ],
+        "classFunctions": []
+    },
+    "_CardValueBoxFullScreenM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "set_full_screen": "(self: _CardValueBoxFullScreenLayoutP, open: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_full_screen": "(self: _CardValueBoxFullScreenLayoutP, value: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_full_screen_available": "(self: _CardValueBoxFullScreenLayoutP, value: bool, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "ValueBox": {
+        "inheritsFrom": [
+            "WidthLocM",
+            "_CardValueBoxFullScreenM",
+            "UiWithContainer"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_height": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_max_height": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_title": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_value": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_body": "(self, value: PatternOrStr | list[PatternOrStr], *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "Card": {
+        "inheritsFrom": [
+            "WidthLocM",
+            "_CardFooterM",
+            "_CardBodyM",
+            "_CardValueBoxFullScreenM",
+            "UiWithContainer"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_header": "(self, value: PatternOrStr | None, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_footer": "(self, value: PatternOrStr | None, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_max_height": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_min_height": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_height": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "Chat": {
+        "inheritsFrom": [
+            "UiBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_latest_message": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_messages": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "set_user_input": "(self, value: str, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "send_user_input": "(self, *, method: Literal['enter', 'click'] = 'enter', timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_user_input": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "DownloadLink": {
+        "inheritsFrom": [
+            "InputActionBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "DownloadButton": {
+        "inheritsFrom": [
+            "WidthLocM",
+            "InputActionBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "InputActionButton": {
+        "inheritsFrom": [
+            "WidthLocStlyeM",
+            "InputActionBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_disabled": "(self, value: bool, *, timeout: Timeout = None)"
+            }
+        ]
+    },
+    "InputBookmarkButton": {
+        "inheritsFrom": [
+            "InputActionButton"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str = '._bookmark_') -> None"
+            },
+            {
+                "expect_disabled": "(self, value: bool, *, timeout: Timeout = None)"
+            }
+        ]
+    },
+    "InputDarkMode": {
+        "inheritsFrom": [
+            "UiBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: Optional[str] | None) -> None"
+            },
+            {
+                "click": "(self, *, timeout: Timeout = None)"
+            },
+            {
+                "expect_mode": "(self, value: str, *, timeout: Timeout = None)"
+            },
+            {
+                "expect_page_mode": "(self, value: str, *, timeout: Timeout = None)"
+            },
+            {
+                "expect_attribute": "(self, value: str, *, timeout: Timeout = None)"
+            }
+        ]
+    },
+    "InputTaskButton": {
+        "inheritsFrom": [
+            "WidthLocStlyeM",
+            "InputActionBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_state": "(self, value: Literal['ready', 'busy'] | str, *, timeout: Timeout = None)"
+            },
+            {
+                "expect_label": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_label_ready": "(self, value: PatternOrStr, *, timeout: Timeout = None)"
+            },
+            {
+                "expect_label_busy": "(self, value: PatternOrStr, *, timeout: Timeout = None)"
+            },
+            {
+                "expect_label_state": "(self, state: str, value: PatternOrStr, *, timeout: Timeout = None)"
+            },
+            {
+                "expect_auto_reset": "(self, value: bool, timeout: Timeout = None)"
+            }
+        ]
+    },
+    "InputActionLink": {
+        "inheritsFrom": [
+            "InputActionBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "InputFile": {
+        "inheritsFrom": [
+            "UiWithLabel"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "set": "(self, file_path: str | pathlib.Path | FilePayload | list[str | pathlib.Path] | list[FilePayload], *, timeout: Timeout = None, expect_complete_timeout: Timeout = 30 * 1000) -> None"
+            },
+            {
+                "expect_complete": "(self, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_multiple": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_accept": "(self, value: list[str] | AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_width": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_button_label": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_capture": "(self, value: Literal['environment', 'user'] | None, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_placeholder": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_SetTextM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "set": "(self: UiBaseP, value: str, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_ExpectTextInputValueM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_value": "(self: UiBaseP, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "InputNumeric": {
+        "inheritsFrom": [
+            "_SetTextM",
+            "_ExpectTextInputValueM",
+            "WidthContainerStyleM",
+            "UiWithLabel"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_min": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_max": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_step": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_ExpectSpellcheckAttrM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_spellcheck": "(self: UiBaseP, value: Literal['true', 'false'] | None, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_ExpectPlaceholderAttrM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_placeholder": "(self: UiBaseP, value: AttrValue, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_ExpectAutocompleteAttrM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_autocomplete": "(self: UiBaseP, value: AttrValue, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "InputText": {
+        "inheritsFrom": [
+            "_SetTextM",
+            "_ExpectTextInputValueM",
+            "WidthContainerStyleM",
+            "_ExpectPlaceholderAttrM",
+            "_ExpectAutocompleteAttrM",
+            "_ExpectSpellcheckAttrM",
+            "UiWithLabel"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "InputPassword": {
+        "inheritsFrom": [
+            "_SetTextM",
+            "_ExpectTextInputValueM",
+            "WidthContainerStyleM",
+            "_ExpectPlaceholderAttrM",
+            "UiWithLabel"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_width": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "InputTextArea": {
+        "inheritsFrom": [
+            "_SetTextM",
+            "WidthContainerStyleM",
+            "_ExpectTextInputValueM",
+            "_ExpectPlaceholderAttrM",
+            "_ExpectAutocompleteAttrM",
+            "_ExpectSpellcheckAttrM",
+            "UiWithLabel"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_width": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_height": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_cols": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_rows": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_resize": "(self, value: Resize | None, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_autoresize": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_DateBase": {
+        "inheritsFrom": [
+            "WidthContainerStyleM",
+            "_SetTextM",
+            "UiWithLabel"
+        ],
+        "classFunctions": [
+            {
+                "expect_value": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_min_date": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_max_date": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_format": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_startview": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_weekstart": "(self, value: int | AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_language": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_autoclose": "(self, value: Literal['true', 'false'], *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_datesdisabled": "(self, value: list[str] | None, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_daysofweekdisabled": "(self, value: list[int] | None, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "set": "(self, value: str, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "InputDate": {
+        "inheritsFrom": [
+            "_DateBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "InputDateRange": {
+        "inheritsFrom": [
+            "WidthContainerStyleM",
+            "UiWithLabel"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "set": "(self, value: typing.Tuple[str | None, str | None], *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_value": "(self, value: typing.Tuple[PatternOrStr, PatternOrStr] | typing.Tuple[PatternOrStr, MISSING_TYPE] | typing.Tuple[MISSING_TYPE, PatternOrStr], *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_min_date": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_max_date": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_format": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_startview": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_weekstart": "(self, value: int | AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_language": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_separator": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_autoclose": "(self, value: Literal['true', 'false'], *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "Sidebar": {
+        "inheritsFrom": [
+            "UiWithContainer"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_text": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_class": "(self, class_name: str, *, has_class: bool = True, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_width": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_gap": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_bg_color": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_desktop_state": "(self, value: Literal['open', 'closed', 'always'], *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_mobile_state": "(self, value: Literal['open', 'closed', 'always'], *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_mobile_max_height": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_title": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_padding": "(self, value: str | list[str], *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_position": "(self, value: Literal['left', 'right'], *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_handle": "(self, exists: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_open": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "set": "(self, open: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "_toggle": "(self, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_ExpectNavsetSidebarM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_sidebar": "(self: UiWithSidebarP, exists: bool, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_ExpectNavsetTitleM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_title": "(self: UiWithTitleP, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_ExpectNavsetPlacementM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_placement": "(self: UiWithContainerP, location: Literal['above', 'below'] = 'above', *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "NavPanel": {
+        "inheritsFrom": [
+            "UiWithContainer"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str, panel_value: str) -> None"
+            },
+            {
+                "loc_content": "(self) -> Locator"
+            },
+            {
+                "click": "(self, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_active": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "_expect_content_text": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_NavsetBase": {
+        "inheritsFrom": [
+            "UiWithContainer"
+        ],
+        "classFunctions": [
+            {
+                "nav_panel": "(self, value: str) -> NavPanel"
+            },
+            {
+                "set": "(self, value: str, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_value": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "get_loc_active_content": "(self, *, timeout: Timeout = None) -> Locator"
+            },
+            {
+                "_expect_content_text": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_nav_values": "(self, value: list[PatternOrStr], *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_nav_titles": "(self, value: list[PatternOrStr], *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "NavsetTab": {
+        "inheritsFrom": [
+            "_NavsetBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "NavsetPill": {
+        "inheritsFrom": [
+            "_NavsetBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "NavsetUnderline": {
+        "inheritsFrom": [
+            "_NavsetBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "NavsetPillList": {
+        "inheritsFrom": [
+            "_NavsetBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_well": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_widths": "(self, value: ListOrTuple[int], *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_NavsetCardBase": {
+        "inheritsFrom": [
+            "_ExpectNavsetSidebarM",
+            "_ExpectNavsetTitleM",
+            "_NavsetBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, *, id: str, loc: InitLocator, loc_container: InitLocator) -> None"
+            }
+        ]
+    },
+    "NavsetCardTab": {
+        "inheritsFrom": [
+            "_NavsetCardBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "NavsetCardPill": {
+        "inheritsFrom": [
+            "_ExpectNavsetPlacementM",
+            "_NavsetCardBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "NavsetCardUnderline": {
+        "inheritsFrom": [
+            "_ExpectNavsetPlacementM",
+            "_NavsetCardBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "NavsetHidden": {
+        "inheritsFrom": [
+            "_NavsetBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "_NavsetBarBase": {
+        "inheritsFrom": [
+            "_ExpectNavsetSidebarM",
+            "_ExpectNavsetTitleM",
+            "_NavsetBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_position": "(self, position: Literal['fixed-top', 'fixed-bottom', 'static-top', 'sticky-top'] = 'static-top', *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_inverse": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_bg": "(self, bg: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_gap": "(self, gap: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_fluid": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "NavsetBar": {
+        "inheritsFrom": [
+            "_NavsetBarBase"
+        ],
+        "classFunctions": []
+    },
+    "PageNavbar": {
+        "inheritsFrom": [
+            "_NavsetBarBase"
+        ],
+        "classFunctions": [
+            {
+                "expect_fillable": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_fillable_mobile": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_window_title": "(self, title: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_lang": "(self, lang: PatternOrStr, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_OutputBase": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, *, id: str, loc: InitLocator) -> None"
+            },
+            {
+                "expect": "(self)"
+            }
+        ]
+    },
+    "_OutputTextValue": {
+        "inheritsFrom": [
+            "_OutputBase"
+        ],
+        "classFunctions": [
+            {
+                "expect_value": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_OutputContainerP": {
+        "inheritsFrom": [
+            "OutputBaseP",
+            "Protocol"
+        ],
+        "classFunctions": [
+            {
+                "expect_container_tag": "(self: OutputBaseP, value: Literal['span', 'div'] | str, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_OutputContainerM": {
+        "inheritsFrom": [],
+        "classFunctions": [
+            {
+                "expect_container_tag": "(self: OutputBaseP, value: Literal['span', 'div'] | str, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_OutputInlineContainerM": {
+        "inheritsFrom": [
+            "_OutputContainerM"
+        ],
+        "classFunctions": [
+            {
+                "expect_inline": "(self: _OutputContainerP, value: bool = False, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "OutputText": {
+        "inheritsFrom": [
+            "_OutputInlineContainerM",
+            "_OutputTextValue"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "get_value": "(self, *, timeout: Timeout = None) -> str"
+            }
+        ]
+    },
+    "OutputCode": {
+        "inheritsFrom": [
+            "_OutputTextValue"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_has_placeholder": "(self, value: bool = False, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "OutputTextVerbatim": {
+        "inheritsFrom": [
+            "_OutputTextValue"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_has_placeholder": "(self, value: bool = False, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_OutputImageBase": {
+        "inheritsFrom": [
+            "_OutputInlineContainerM",
+            "_OutputBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str, loc_classes: str = '') -> None"
+            },
+            {
+                "expect_height": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_width": "(self, value: StyleValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_img_src": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_img_width": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_img_height": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_img_alt": "(self, value: AttrValue, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "OutputImage": {
+        "inheritsFrom": [
+            "_OutputImageBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "OutputPlot": {
+        "inheritsFrom": [
+            "_OutputImageBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            }
+        ]
+    },
+    "OutputUi": {
+        "inheritsFrom": [
+            "_OutputInlineContainerM",
+            "_OutputBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_empty": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "OutputTable": {
+        "inheritsFrom": [
+            "_OutputBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "expect_cell": "(self, value: PatternOrStr, row: int, col: int, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_column_labels": "(self, value: ListPatternOrStr | None, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_column_text": "(self, col: int, value: ListPatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_ncol": "(self, value: int, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_nrow": "(self, value: int, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "OutputDataFrame": {
+        "inheritsFrom": [
+            "UiWithContainer"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "cell_locator": "(self, row: int, col: int) -> Locator"
+            },
+            {
+                "expect_nrow": "(self, value: int, *, timeout: Timeout = None)"
+            },
+            {
+                "expect_selected_num_rows": "(self, value: int, *, timeout: Timeout = None)"
+            },
+            {
+                "expect_selected_rows": "(self, rows: list[int], *, timeout: Timeout = None)"
+            },
+            {
+                "_expect_row_focus_state": "(self, in_focus: bool = True, *, row: int, timeout: Timeout = None)"
+            },
+            {
+                "expect_cell": "(self, value: PatternOrStr, *, row: int, col: int, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_column_labels": "(self, value: ListPatternOrStr | None, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "_cell_scroll_if_needed": "(self, *, row: int, col: int, timeout: Timeout)"
+            },
+            {
+                "_expect_column_label": "(self, value: ListPatternOrStr, *, col: int, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_ncol": "(self, value: int, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_cell_class": "(self, value: str, *, row: int, col: int, timeout: Timeout = None) -> None"
+            },
+            {
+                "select_rows": "(self, value: list[int], *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_class_state": "(self, value: str, *, row: int, col: int, timeout: Timeout = None)"
+            },
+            {
+                "_edit_cell_no_save": "(self, text: str, *, row: int, col: int, timeout: Timeout = None) -> None"
+            },
+            {
+                "set_sort": "(self, sort: int | ColumnSort | list[int | ColumnSort] | None, *, timeout: Timeout = None)"
+            },
+            {
+                "set_filter": "(self, filter: ColumnFilter | list[ColumnFilter] | None, *, timeout: Timeout = None)"
+            },
+            {
+                "set_cell": "(self, text: str, *, row: int, col: int, finish_key: Literal['Enter', 'Shift+Enter', 'Tab', 'Shift+Tab', 'Escape'] | None = None, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_cell_title": "(self, value: str, *, row: int, col: int, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "_OverlayBase": {
+        "inheritsFrom": [
+            "UiBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, *, id: str, loc: InitLocator, overlay_name: str, overlay_selector: str) -> None"
+            },
+            {
+                "_get_overlay_id": "(self, *, timeout: Timeout = None) -> str | None"
+            },
+            {
+                "get_loc_overlay_body": "(self, *, timeout: Timeout = None) -> Locator"
+            },
+            {
+                "get_loc_overlay_container": "(self, *, timeout: Timeout = None) -> Locator"
+            },
+            {
+                "expect_body": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_active": "(self, value: bool, *, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_placement": "(self, value: str, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "Popover": {
+        "inheritsFrom": [
+            "_OverlayBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "set": "(self, open: bool, timeout: Timeout = None) -> None"
+            },
+            {
+                "_toggle": "(self, timeout: Timeout = None) -> None"
+            },
+            {
+                "expect_title": "(self, value: PatternOrStr, *, timeout: Timeout = None) -> None"
+            }
+        ]
+    },
+    "Tooltip": {
+        "inheritsFrom": [
+            "_OverlayBase"
+        ],
+        "classFunctions": [
+            {
+                "__init__": "(self, page: Page, id: str) -> None"
+            },
+            {
+                "set": "(self, open: bool, timeout: Timeout = None) -> None"
+            },
+            {
+                "_toggle": "(self, timeout: Timeout = None) -> None"
+            }
+        ]
+    }
+}

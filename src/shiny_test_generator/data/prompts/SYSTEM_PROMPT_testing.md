@@ -174,6 +174,7 @@ Some examples of App code and their corresponding test code are shown below:
 **Example App 1 (Shiny App Code):**
 
 ```python
+# app_example_accordion.py
 from shiny import reactive
 from shiny.express import input, ui, render
 
@@ -282,14 +283,16 @@ def _():
 **Example Test file 1 (Test Code):**
 
 ```python
-
+# test_app_example_accordion.py
 from playwright.sync_api import Page, expect
 from shiny.playwright import controller
 from shiny.run import ShinyAppProc
 
+app = create_app_fixture(["app_example_accordion.py"])
 
-def test_accordion_demo(page: Page, local_app: ShinyAppProc) -> None:
-    page.goto(local_app.url)
+
+def test_accordion_demo(page: Page, app: ShinyAppProc) -> None:
+    page.goto(app.url)
 
     # Test first accordion (acc1)
     accordion1 = controller.Accordion(page, "acc1")
@@ -358,6 +361,7 @@ def test_accordion_demo(page: Page, local_app: ShinyAppProc) -> None:
 **Example App 2 (Shiny App Code):**
 
 ```python
+# app_example_card.py
 from shiny import reactive
 from shiny.express import input, ui, render
 import pandas as pd
@@ -440,14 +444,16 @@ with ui.card(height="200px", fill=True, class_="mt-4", id="card5"):
 **Example Test file 2 (Test Code):**
 
 ```python
-
+# test_app_example_card.py
 from playwright.sync_api import Page
 from shiny.playwright import controller
 from shiny.run import ShinyAppProc
 
+app = create_app_fixture(["app_example_card.py"])
 
-def test_card_components(page: Page, local_app: ShinyAppProc) -> None:
-    page.goto(local_app.url)
+
+def test_card_components(page: Page, app: ShinyAppProc) -> None:
+    page.goto(app.url)
 
     # Test card1
     card1 = controller.Card(page, "card1")
@@ -484,6 +490,7 @@ def test_card_components(page: Page, local_app: ShinyAppProc) -> None:
 **Example App 3 (Shiny App Code):**
 
 ```python
+# app_example_checkbox_group.py
 from shiny import reactive
 from shiny.express import input, ui, render
 
@@ -546,13 +553,15 @@ with ui.layout_columns():
 **Example Test file 3 (Test Code):**
 
 ```python
+# test_app_example_checkbox_group.py
 from playwright.sync_api import Page
 from shiny.playwright import controller
 from shiny.run import ShinyAppProc
 
+app = create_app_fixture(["app_example_checkbox_group.py"])
 
-def test_checkbox_group_demo(page: Page, local_app: ShinyAppProc) -> None:
-    page.goto(local_app.url)
+def test_checkbox_group_demo(page: Page, app: ShinyAppProc) -> None:
+    page.goto(app.url)
 
     # Test basic checkbox group
     basic_group = controller.InputCheckboxGroup(page, "basic")
@@ -605,6 +614,7 @@ def test_checkbox_group_demo(page: Page, local_app: ShinyAppProc) -> None:
 **Example App 4 (Shiny App Code):**
 
 ```python
+# app_example_date_input.py
 from datetime import date
 from shiny import reactive
 from shiny.express import input, ui, render
@@ -695,13 +705,15 @@ with ui.layout_columns():
 **Example Test file 4 (Test Code):**
 
 ```python
+# test_app_example_date_input.py
 from playwright.sync_api import Page
 from shiny.playwright import controller
 from shiny.run import ShinyAppProc
 
+app = create_app_fixture(["app_example_date_input.py"])
 
-def test_date_inputs(page: Page, local_app: ShinyAppProc) -> None:
-    page.goto(local_app.url)
+def test_date_inputs(page: Page, app: ShinyAppProc) -> None:
+    page.goto(app.url)
 
     # Test basic date input
     date1 = controller.InputDate(page, "date1")
@@ -763,6 +775,7 @@ def test_date_inputs(page: Page, local_app: ShinyAppProc) -> None:
 **Example App 5 (Shiny App Code):**
 
 ```python
+# app_example_selectize.py
 from shiny.express import input, render, ui
 
 ui.page_opts(title="Selectize Inputs kitchensink")
@@ -845,14 +858,16 @@ def selectize_width_close_button_txt():
 **Example Test file 5 (Test Code):**
 
 ```python
+# test_app_example_selectize.py
 from playwright.sync_api import Page
 
 from shiny.playwright import controller
 from shiny.run import ShinyAppProc
 
+app = create_app_fixture(["app_example_selectize.py"])
 
-def test_input_selectize_kitchensink(page: Page, local_app: ShinyAppProc) -> None:
-    page.goto(local_app.url)
+def test_input_selectize_kitchensink(page: Page, app: ShinyAppProc) -> None:
+    page.goto(app.url)
 
     basic_selectize = controller.InputSelectize(page, "basic_selectize")
     basic_select_txt = controller.OutputText(page, "basic_result_txt")
@@ -944,6 +959,7 @@ def test_input_selectize_kitchensink(page: Page, local_app: ShinyAppProc) -> Non
 **Example App 6 (Shiny App Code):**
 
 ```python
+# app_example_value_box.py
 import pandas as pd
 import numpy as np
 from shiny import reactive
@@ -1029,13 +1045,15 @@ ui.head_content(
 **Example Test file 6 (Test Code):**
 
 ```python
+# test_app_example_value_box.py
 from playwright.sync_api import Page
 from shiny.playwright import controller
 from shiny.run import ShinyAppProc
 
+app = create_app_fixture(["app_example_value_box.py"])
 
-def test_value_boxes(page: Page, local_app: ShinyAppProc) -> None:
-    page.goto(local_app.url)
+def test_value_boxes(page: Page, app: ShinyAppProc) -> None:
+    page.goto(app.url)
 
     # Test revenue value box
     revenue_box = controller.ValueBox(page, "revenue_box")
@@ -1070,6 +1088,7 @@ def test_value_boxes(page: Page, local_app: ShinyAppProc) -> None:
 **Example App 7 (Shiny App Code):**
 
 ```python
+# app_example_selectize_inputs.py
 from shiny import reactive
 from shiny.express import input, ui, render
 
@@ -1194,13 +1213,16 @@ def _():
 **Example Test file 7 (Test Code):**
 
 ```python
+# test_app_example_selectize_inputs.py
 from playwright.sync_api import Page, expect
 from shiny.playwright import controller
 from shiny.run import ShinyAppProc
 
+app = create_app_fixture(["app_example_selectize_inputs.py"])
 
-def test_selectize_inputs(page: Page, local_app: ShinyAppProc) -> None:
-    page.goto(local_app.url)
+
+def test_selectize_inputs(page: Page, app: ShinyAppProc) -> None:
+    page.goto(app.url)
 
     # Test first selectize (single selection)
     select1 = controller.InputSelectize(page, "select1")
