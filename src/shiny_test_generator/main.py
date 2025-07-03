@@ -83,7 +83,7 @@ class ShinyTestGenerator:
             chat = ChatAnthropic(
                 model=model,
                 system_prompt=system_prompt,
-                max_tokens=190000,
+                max_tokens=64000,
             )
 
             response = chat.chat(prompt)
@@ -109,7 +109,8 @@ class ShinyTestGenerator:
             "Please only add controllers for components that already have an ID in the shiny app.\n"
             "Do not add tests for ones that do not have an existing ids since controllers need IDs to locate elements.\n"
             "and server functionality of this app. Include appropriate assertions \n"
-            "and test cases to verify the app's behavior."
+            "and test cases to verify the app's behavior.\n"
+            "IMPORTANT: Only output the Python test code in a single code block. Do not include any explanation, justification, or extra text."
         )
 
     def generate_test_for_app(
