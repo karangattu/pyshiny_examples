@@ -5,10 +5,11 @@ app_ui = ui.page_fluid(
     ui.output_text("greeting"),
 )
 
+
 def server(input, output, session):
-    @output
     @render.text
     def greeting():
         return f"Hello, {input.name()}!"
+
 
 app = App(app_ui, server)

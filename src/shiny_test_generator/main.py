@@ -17,6 +17,7 @@ __all__ = [
 @dataclass
 class Config:
     """Configuration class for ShinyTestGenerator"""
+
     MODEL_ALIASES = {
         "haiku3": "claude-3-haiku-20240307",
         "haiku3.5": "claude-3-5-haiku-20241022",
@@ -31,7 +32,7 @@ class Config:
 class ShinyTestGenerator:
     # Pre-compiled regex pattern for better performance
     CODE_PATTERN = re.compile(r"```python(.*?)```", re.DOTALL)
-    
+
     def __init__(
         self,
         api_key: Optional[str] = None,
@@ -44,7 +45,7 @@ class ShinyTestGenerator:
         self._system_prompt = None
         self.api_key = api_key
         self.log_file = log_file
-        
+
         if setup_logging:
             self.setup_logging()
 
@@ -52,7 +53,9 @@ class ShinyTestGenerator:
     def client(self) -> ChatAnthropic:
         """Lazy-loaded ChatAnthropic client"""
         if self._client is None:
-            self._client = ChatAnthropic(api_key=self.api_key) if self.api_key else ChatAnthropic()
+            self._client = (
+                ChatAnthropic(api_key=self.api_key) if self.api_key else ChatAnthropic()
+            )
         return self._client
 
     @property
@@ -148,7 +151,7 @@ class ShinyTestGenerator:
             "and server functionality of this app. Include appropriate assertions \n"
             "and test cases to verify the app's behavior.\n"
             f"IMPORTANT: Use the exact app file name '{app_file_name}' in the create_app_fixture call like this:\n"
-            f"app = create_app_fixture([\"{app_file_name}\"])\n"
+            f'app = create_app_fixture(["{app_file_name}"])\n'
             "IMPORTANT: Only output the Python test code in a single code block. Do not include any explanation, justification, or extra text."
         )
 
@@ -163,7 +166,7 @@ class ShinyTestGenerator:
             return Path(app_file_path)
 
         current_dir = Path.cwd()
-        
+
         found_files = []
         for pattern in Config.COMMON_APP_PATTERNS:
             found_files.extend(current_dir.glob(pattern))
@@ -224,7 +227,7 @@ class ShinyTestGenerator:
         if app_code is None:
             if not inferred_app_path.exists():
                 raise FileNotFoundError(f"App file not found: {inferred_app_path}")
-            app_code = inferred_app_path.read_text(encoding='utf-8')
+            app_code = inferred_app_path.read_text(encoding="utf-8")
 
         # Pass the app file name to the prompt
         user_prompt = self._create_test_prompt(app_code, inferred_app_path.name)
@@ -242,7 +245,7 @@ class ShinyTestGenerator:
 
         # Write test file
         test_file_path.parent.mkdir(parents=True, exist_ok=True)
-        test_file_path.write_text(test_code, encoding='utf-8')
+        test_file_path.write_text(test_code, encoding="utf-8")
 
         return test_code, test_file_path
 
@@ -282,9 +285,7 @@ class ShinyTestGenerator:
 def cli():
     """Command line interface"""
     if len(sys.argv) < 2:
-        print(
-            "Usage: shiny-test-generator <path_to_app_file> [--output-dir <dir>]"
-        )
+        print("Usage: shiny-test-generator <path_to_app_file> [--output-dir <dir>]")
         sys.exit(1)
 
     app_file_path = Path(sys.argv[1])

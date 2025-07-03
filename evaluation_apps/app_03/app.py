@@ -7,8 +7,8 @@ app_ui = ui.page_fluid(
     ui.output_plot("hist"),
 )
 
+
 def server(input, output, session):
-    @output
     @render.plot
     def hist():
         np.random.seed(42)
@@ -17,5 +17,6 @@ def server(input, output, session):
         plt.title("Histogram of Random Data")
         plt.xlabel("Value")
         plt.ylabel("Frequency")
+
 
 app = App(app_ui, server)

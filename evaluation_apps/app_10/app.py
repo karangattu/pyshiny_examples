@@ -5,10 +5,11 @@ app_ui = ui.page_fluid(
     ui.output_text("password_length"),
 )
 
+
 def server(input, output, session):
-    @output
     @render.text
     def password_length():
         return f"Password length: {len(input.password())}"
+
 
 app = App(app_ui, server)

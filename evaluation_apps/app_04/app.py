@@ -5,6 +5,7 @@ app_ui = ui.page_fluid(
     ui.output_ui("message_ui"),
 )
 
+
 def server(input, output, session):
     @output
     @render.ui
@@ -13,5 +14,6 @@ def server(input, output, session):
             return ui.p("This is a dynamically generated message.")
         else:
             return None
+
 
 app = App(app_ui, server)
