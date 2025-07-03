@@ -54,9 +54,6 @@ You will output Python test code using the `shiny` controllers in the `shiny` py
     *   Follow PEP 8 style guidelines for Python code.
     *   Ensure the generated tests are readable, maintainable, and easy to understand.
 
-**Things that will break the tests**
-
-1. No need to add `local_app` fixture in the test file. The `local_app: ShinyAppProc)` takes care of starting and stopping the app after the test.
 
 ### Wrong Solution
 
@@ -83,10 +80,13 @@ def test_career_path_explorer(page: Page, local_app: ShinyAppProc):
 import pytest
 from playwright.sync_api import Page
 from shiny.playwright import controller
+from shiny.pytest import create_app_fixture
 from shiny.run import ShinyAppProc
 
-def test_career_path_explorer(page: Page, local_app: ShinyAppProc):
-    page.goto(local_app.url)
+app = create_app_fixture(["app_career_path_explorer.py"])
+
+def test_career_path_explorer(page: Page, app: ShinyAppProc):
+    page.goto(app.url)
 ```
 
 1. The test should always test the value in **string** format. If the value is a number, convert it to a string before asserting.
@@ -315,6 +315,7 @@ def _():
 # test_app_example_accordion.py
 from playwright.sync_api import Page, expect
 from shiny.playwright import controller
+from shiny.pytest import create_app_fixture
 from shiny.run import ShinyAppProc
 
 app = create_app_fixture(["app_example_accordion.py"])
@@ -476,6 +477,7 @@ with ui.card(height="200px", fill=True, class_="mt-4", id="card5"):
 # test_app_example_card.py
 from playwright.sync_api import Page
 from shiny.playwright import controller
+from shiny.pytest import create_app_fixture
 from shiny.run import ShinyAppProc
 
 app = create_app_fixture(["app_example_card.py"])
@@ -585,6 +587,7 @@ with ui.layout_columns():
 # test_app_example_checkbox_group.py
 from playwright.sync_api import Page
 from shiny.playwright import controller
+from shiny.pytest import create_app_fixture
 from shiny.run import ShinyAppProc
 
 app = create_app_fixture(["app_example_checkbox_group.py"])
@@ -737,6 +740,7 @@ with ui.layout_columns():
 # test_app_example_date_input.py
 from playwright.sync_api import Page
 from shiny.playwright import controller
+from shiny.pytest import create_app_fixture
 from shiny.run import ShinyAppProc
 
 app = create_app_fixture(["app_example_date_input.py"])
@@ -891,6 +895,7 @@ def selectize_width_close_button_txt():
 from playwright.sync_api import Page
 
 from shiny.playwright import controller
+from shiny.pytest import create_app_fixture
 from shiny.run import ShinyAppProc
 
 app = create_app_fixture(["app_example_selectize.py"])
@@ -1077,6 +1082,7 @@ ui.head_content(
 # test_app_example_value_box.py
 from playwright.sync_api import Page
 from shiny.playwright import controller
+from shiny.pytest import create_app_fixture
 from shiny.run import ShinyAppProc
 
 app = create_app_fixture(["app_example_value_box.py"])
@@ -1245,6 +1251,7 @@ def _():
 # test_app_example_selectize_inputs.py
 from playwright.sync_api import Page, expect
 from shiny.playwright import controller
+from shiny.pytest import create_app_fixture
 from shiny.run import ShinyAppProc
 
 app = create_app_fixture(["app_example_selectize_inputs.py"])

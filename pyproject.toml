@@ -16,4 +16,5 @@ dependencies = [
     "anthropic",
     "python-dotenv",
     "requests",
+    "chatlas[anthropic]",
 ]
