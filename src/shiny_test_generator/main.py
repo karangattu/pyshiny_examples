@@ -3,6 +3,8 @@ from pathlib import Path
 import logging
 import re
 import sys
+from dataclasses import dataclass
+from typing import Optional, Tuple
 from chatlas import ChatAnthropic
 from dotenv import load_dotenv
 
@@ -12,78 +14,112 @@ __all__ = [
 ]
 
 
-class ShinyTestGenerator:
+@dataclass
+class Config:
+    """Configuration class for ShinyTestGenerator"""
     MODEL_ALIASES = {
         "haiku3": "claude-3-haiku-20240307",
         "haiku3.5": "claude-3-5-haiku-20241022",
         "sonnet": "claude-sonnet-4-20250514",
     }
+    DEFAULT_MODEL = "claude-sonnet-4-20250514"
+    MAX_TOKENS = 64000
+    LOG_FILE = "anthropic.log"
+    COMMON_APP_PATTERNS = ["app.py", "app_*.py"]
 
+
+class ShinyTestGenerator:
+    # Pre-compiled regex pattern for better performance
+    CODE_PATTERN = re.compile(r"```python(.*?)```", re.DOTALL)
+    
     def __init__(
         self,
-        api_key: str = None,
-        log_file: str = "anthropic.log",
+        api_key: Optional[str] = None,
+        log_file: str = Config.LOG_FILE,
         setup_logging: bool = True,
     ):
-        if api_key:
-            self.client = ChatAnthropic(api_key=api_key)
-        else:
-            self.client = ChatAnthropic()
-
+        # Lazy loading - initialize expensive resources only when needed
+        self._client = None
+        self._documentation = None
+        self._system_prompt = None
+        self.api_key = api_key
         self.log_file = log_file
+        
         if setup_logging:
             self.setup_logging()
+
+    @property
+    def client(self) -> ChatAnthropic:
+        """Lazy-loaded ChatAnthropic client"""
+        if self._client is None:
+            self._client = ChatAnthropic(api_key=self.api_key) if self.api_key else ChatAnthropic()
+        return self._client
+
+    @property
+    def documentation(self) -> str:
+        """Lazy-loaded documentation"""
+        if self._documentation is None:
+            self._documentation = self._load_documentation()
+        return self._documentation
+
+    @property
+    def system_prompt(self) -> str:
+        """Lazy-loaded system prompt"""
+        if self._system_prompt is None:
+            self._system_prompt = self._read_system_prompt()
+        return self._system_prompt
 
     @staticmethod
     def setup_logging():
         load_dotenv()
         logging.basicConfig(
-            filename="anthropic.log",
+            filename=Config.LOG_FILE,
             level=logging.DEBUG,
             format="%(asctime)s - %(levelname)s - %(message)s",
         )
 
-    @staticmethod
-    def load_documentation() -> str:
+    def _load_documentation(self) -> str:
+        """Load documentation from package resources"""
         try:
-            with (
+            doc_path = (
                 importlib.resources.files("shiny_test_generator")
                 / "data"
                 / "docs"
                 / "documentation_testing.json"
-            ).open("r") as f:
+            )
+            with doc_path.open("r") as f:
                 return f.read()
         except FileNotFoundError:
             raise FileNotFoundError(
-                f"Documentation file not found for app type: testing"
+                "Documentation file not found for app type: testing"
             )
 
-    def read_system_prompt(self) -> str:
+    def _read_system_prompt(self) -> str:
+        """Read and combine system prompt with documentation"""
         try:
-            with (
+            prompt_path = (
                 importlib.resources.files("shiny_test_generator")
                 / "data"
                 / "prompts"
                 / "SYSTEM_PROMPT_testing.md"
-            ).open("r") as f:
+            )
+            with prompt_path.open("r") as f:
                 system_prompt_file = f.read()
         except FileNotFoundError:
             raise FileNotFoundError(
-                f"System prompt file not found for app type: testing"
+                "System prompt file not found for app type: testing"
             )
 
-        documentation = self.load_documentation()
+        return f"{system_prompt_file}\n\nHere is the function reference documentation for Shiny for Python: {self.documentation}"
 
-        combined_prompt = f"{system_prompt_file}\n\nHere is the function reference documentation for Shiny for Python: {documentation}"
-
-        return combined_prompt
-
-    def get_llm_response(self, prompt: str, system_prompt: str, model: str):
+    def get_llm_response(self, prompt: str, model: str) -> str:
+        """Get response from LLM - reuses client instance instead of creating new one"""
         try:
+            # Reuse existing client instead of creating new ChatAnthropic instance
             chat = ChatAnthropic(
                 model=model,
-                system_prompt=system_prompt,
-                max_tokens=64000,
+                system_prompt=self.system_prompt,
+                max_tokens=Config.MAX_TOKENS,
             )
 
             response = chat.chat(prompt)
@@ -98,12 +134,13 @@ class ShinyTestGenerator:
             logging.error(f"Error getting LLM response: {e}")
             raise
 
-    @staticmethod
-    def extract_test(response: str) -> str:
-        code_match = re.search(r"```python(.*?)```", response, re.DOTALL)
-        return code_match.group(1).strip() if code_match else ""
+    def extract_test(self, response: str) -> str:
+        """Extract test code using pre-compiled regex pattern"""
+        match = self.CODE_PATTERN.search(response)
+        return match.group(1).strip() if match else ""
 
     def _create_test_prompt(self, app_text: str) -> str:
+        """Create test generation prompt"""
         return (
             f"Given this Shiny for Python app code:\n{app_text}\n"
             "Please only add controllers for components that already have an ID in the shiny app.\n"
@@ -114,7 +151,7 @@ class ShinyTestGenerator:
         )
 
     def _infer_app_file_path(
-        self, app_code: str = None, app_file_path: str = None
+        self, app_code: Optional[str] = None, app_file_path: Optional[str] = None
     ) -> Path:
         """
         Infer the app file path from various sources.
@@ -123,20 +160,12 @@ class ShinyTestGenerator:
         if app_file_path:
             return Path(app_file_path)
 
-        # Try to find app files in current directory
         current_dir = Path.cwd()
-
-        # Common Shiny app file patterns
-        common_patterns = [
-            "app.py",
-            "app_*.py",
-        ]
-
+        
         found_files = []
-        for pattern in common_patterns:
+        for pattern in Config.COMMON_APP_PATTERNS:
             found_files.extend(current_dir.glob(pattern))
 
-        # If we found potential app files, use the first one
         if found_files:
             return found_files[0]
 
@@ -149,58 +178,57 @@ class ShinyTestGenerator:
         )
 
     def _generate_test_file_path(
-        self, app_file_path: Path, output_dir: Path = None
+        self, app_file_path: Path, output_dir: Optional[Path] = None
     ) -> Path:
         """
         Generate test file path following the test_*.py naming convention.
+        Uses pathlib consistently.
         """
-        if output_dir is None:
-            output_dir = app_file_path.parent
-
-        app_name = app_file_path.stem
-        test_file_name = f"test_{app_name}.py"
-
+        output_dir = output_dir or app_file_path.parent
+        test_file_name = f"test_{app_file_path.stem}.py"
         return output_dir / test_file_name
 
-    def generate_test_for_app(
+    def generate_test(
         self,
-        app_code: str = None,
-        model: str = "claude-sonnet-4-20250514",
-        output_file: str = None,
-        app_file_path: str = None,
-        output_dir: str = None,
-    ) -> tuple[str, Path]:
+        app_code: Optional[str] = None,
+        app_file_path: Optional[str] = None,
+        app_name: str = "app",
+        model: str = Config.DEFAULT_MODEL,
+        output_file: Optional[str] = None,
+        output_dir: Optional[str] = None,
+    ) -> Tuple[str, Path]:
         """
-        Generate test code for a Shiny app.
+        Consolidated method to generate test code for a Shiny app.
+        Handles all scenarios: from file, from code, or auto-detection.
 
         Args:
             app_code: The app code as a string. If None, will be read from app_file_path
+            app_file_path: Path to the app file
+            app_name: Name for the app (used in test file naming when generating from code)
             model: The model to use for generation
             output_file: Explicit output file path (overrides automatic naming)
-            app_file_path: Path to the app file
             output_dir: Directory to save the test file (defaults to app file directory)
 
         Returns:
             tuple: (test_code, test_file_path)
         """
-        model = self.MODEL_ALIASES.get(model, model)
+        model = Config.MODEL_ALIASES.get(model, model)
 
-        # Infer app file path if not provided
-        inferred_app_path = self._infer_app_file_path(app_code, app_file_path)
+        if app_code and not app_file_path:
+            inferred_app_path = Path(f"{app_name}.py")
+        else:
+            inferred_app_path = self._infer_app_file_path(app_code, app_file_path)
 
-        # Read app code if not provided
         if app_code is None:
             if not inferred_app_path.exists():
                 raise FileNotFoundError(f"App file not found: {inferred_app_path}")
-            app_code = inferred_app_path.read_text()
+            app_code = inferred_app_path.read_text(encoding='utf-8')
 
-        # Generate test code
-        system_prompt = self.read_system_prompt()
         user_prompt = self._create_test_prompt(app_code)
-        response = self.get_llm_response(user_prompt, system_prompt, model)
+        response = self.get_llm_response(user_prompt, model)
         test_code = self.extract_test(response)
 
-        # Determine output file path
+        # Determine output file path using pathlib
         if output_file:
             test_file_path = Path(output_file)
         else:
@@ -211,31 +239,19 @@ class ShinyTestGenerator:
 
         # Write test file
         test_file_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(test_file_path, "w") as f:
-            f.write(test_code)
+        test_file_path.write_text(test_code, encoding='utf-8')
 
         return test_code, test_file_path
 
     def generate_test_from_file(
         self,
         app_file_path: str,
-        model: str = "claude-sonnet-4-20250514",
-        output_file: str = None,
-        output_dir: str = None,
-    ) -> tuple[str, Path]:
-        """
-        Generate test code from an app file.
-
-        Args:
-            app_file_path: Path to the app file
-            model: The model to use for generation
-            output_file: Explicit output file path (overrides automatic naming)
-            output_dir: Directory to save the test file (defaults to app file directory)
-
-        Returns:
-            tuple: (test_code, test_file_path)
-        """
-        return self.generate_test_for_app(
+        model: str = Config.DEFAULT_MODEL,
+        output_file: Optional[str] = None,
+        output_dir: Optional[str] = None,
+    ) -> Tuple[str, Path]:
+        """Generate test code from an app file."""
+        return self.generate_test(
             app_file_path=app_file_path,
             model=model,
             output_file=output_file,
@@ -246,29 +262,14 @@ class ShinyTestGenerator:
         self,
         app_code: str,
         app_name: str = "app",
-        model: str = "claude-sonnet-4-20250514",
-        output_file: str = None,
-        output_dir: str = None,
-    ) -> tuple[str, Path]:
-        """
-        Generate test code from app code string.
-
-        Args:
-            app_code: The app code as a string
-            app_name: Name for the app (used in test file naming)
-            model: The model to use for generation
-            output_file: Explicit output file path (overrides automatic naming)
-            output_dir: Directory to save the test file (defaults to current directory)
-
-        Returns:
-            tuple: (test_code, test_file_path)
-        """
-        # Create a virtual app path for naming purposes
-        virtual_app_path = Path(f"{app_name}.py")
-
-        return self.generate_test_for_app(
+        model: str = Config.DEFAULT_MODEL,
+        output_file: Optional[str] = None,
+        output_dir: Optional[str] = None,
+    ) -> Tuple[str, Path]:
+        """Generate test code from app code string."""
+        return self.generate_test(
             app_code=app_code,
-            app_file_path=str(virtual_app_path),
+            app_name=app_name,
             model=model,
             output_file=output_file,
             output_dir=output_dir,
@@ -276,6 +277,7 @@ class ShinyTestGenerator:
 
 
 def cli():
+    """Command line interface"""
     if len(sys.argv) < 2:
         print(
             "Usage: shiny-test-generator <path_to_app_file> [--output-dir <dir>]"
@@ -302,5 +304,3 @@ def cli():
         str(app_file_path),
         output_dir=output_dir,
     )
-
-    # print(f"Test file generated: {test_file_path}")
