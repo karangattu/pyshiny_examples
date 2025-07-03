@@ -139,14 +139,16 @@ class ShinyTestGenerator:
         match = self.CODE_PATTERN.search(response)
         return match.group(1).strip() if match else ""
 
-    def _create_test_prompt(self, app_text: str) -> str:
-        """Create test generation prompt"""
+    def _create_test_prompt(self, app_text: str, app_file_name: str) -> str:
+        """Create test generation prompt with app file name"""
         return (
-            f"Given this Shiny for Python app code:\n{app_text}\n"
+            f"Given this Shiny for Python app code from file '{app_file_name}':\n{app_text}\n"
             "Please only add controllers for components that already have an ID in the shiny app.\n"
             "Do not add tests for ones that do not have an existing ids since controllers need IDs to locate elements.\n"
             "and server functionality of this app. Include appropriate assertions \n"
             "and test cases to verify the app's behavior.\n"
+            f"IMPORTANT: Use the exact app file name '{app_file_name}' in the create_app_fixture call like this:\n"
+            f"app = create_app_fixture([\"{app_file_name}\"])\n"
             "IMPORTANT: Only output the Python test code in a single code block. Do not include any explanation, justification, or extra text."
         )
 
@@ -224,7 +226,8 @@ class ShinyTestGenerator:
                 raise FileNotFoundError(f"App file not found: {inferred_app_path}")
             app_code = inferred_app_path.read_text(encoding='utf-8')
 
-        user_prompt = self._create_test_prompt(app_code)
+        # Pass the app file name to the prompt
+        user_prompt = self._create_test_prompt(app_code, inferred_app_path.name)
         response = self.get_llm_response(user_prompt, model)
         test_code = self.extract_test(response)
 
