@@ -32,7 +32,7 @@ with open("path/to/your/app.py", "r") as f:
     app_code = f.read()
 
 # Generate the test
-test_code = generator.generate_test_for_app(app_code)
+test_code = generator.generate_test_for_app(app_code, output_file=test_file_path)
 
 # Print the generated test
 print(test_code)
