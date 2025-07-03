@@ -153,7 +153,7 @@ class ShinyTestGenerator:
     def generate_test_for_app(
         self,
         app_code: str,
-        model: str = "claude-3-5-haiku-20241022",
+        model: str = "claude-sonnet-4-20250514",
     ) -> str:
         """
         Generate a test for a Shiny app.
