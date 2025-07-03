@@ -119,6 +119,7 @@ class ShinyTestGenerator:
         model: str = "claude-sonnet-4-20250514",
         output_file: str = None,
         show_token_usage: bool = False,
+        app_file_path: str = None,
     ) -> str:
         model = self.MODEL_ALIASES.get(model, model)
 
@@ -128,6 +129,11 @@ class ShinyTestGenerator:
 
         test_code = self.extract_test(response)
 
+        # Infer output file name if not provided
+        if not output_file and app_file_path:
+            app_path = Path(app_file_path)
+            output_file = app_path.with_name(f"test_{app_path.stem}.py")
+
         if output_file:
             with open(output_file, "w") as f:
                 f.write(test_code)
@@ -135,6 +141,8 @@ class ShinyTestGenerator:
         if show_token_usage:
             usage = token_usage()
             print(f"Token usage: {usage}")
+
+        return test_code
 
     def get_token_usage(self):
         return token_usage()
@@ -154,11 +162,12 @@ def cli():
 
     app_code = app_file_path.read_text()
 
-    test_file_path = app_file_path.with_name(f"test_{app_file_path.name}")
-
+    # Remove explicit test_file_path, let generate_test_for_app infer it
     generator = ShinyTestGenerator()
-    generator.generate_test_for_app(
-        app_code, output_file=test_file_path, show_token_usage=show_tokens
+    test_code = generator.generate_test_for_app(
+        app_code, show_token_usage=show_tokens, app_file_path=str(app_file_path)
     )
 
-    print(f"Test file generated: {test_file_path}")
+    # Print the inferred test file path
+    inferred_test_file = app_file_path.with_name(f"test_{app_file_path.stem}.py")
+    print(f"Test file generated: {inferred_test_file}")

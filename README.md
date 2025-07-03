@@ -28,20 +28,25 @@ from shiny_test_generator import ShinyTestGenerator
 generator = ShinyTestGenerator()
 
 # Read the app code from a file
-with open("path/to/your/app.py", "r") as f:
+app_file_path = "path/to/your/app.py"
+with open(app_file_path, "r") as f:
     app_code = f.read()
 
-# Generate the test
-test_code = generator.generate_test_for_app(app_code, output_file=test_file_path)
+# Generate the test file (test_<app_file_name>.py will be created automatically)
+generator.generate_test_for_app(app_code, app_file_path=app_file_path)
 
-# Print the generated test
-print(test_code)
+# Or, specify a custom output file name
+# generator.generate_test_for_app(app_code, output_file="my_test_file.py")
 ```
 
 ### As a CLI Tool
 
 ```bash
 shiny-test-generator path/to/your/app.py
+```
+
+This will generate a test file named `test_<app_file_name>.py` in the same directory as your app file.
+
 ```
 
 ## Evaluation
