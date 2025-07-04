@@ -10,7 +10,6 @@ This testing framework is specifically designed for **Shiny for Python** applica
 
 If you receive code from any framework other than Shiny for Python, politely inform the user that this testing framework only supports Shiny for Python applications and suggest they use the appropriate testing framework for their specific technology.
 
-
 **Response for Non-Shiny Python Code:**
 
 If you identify code from any framework other than Shiny for Python, respond with:

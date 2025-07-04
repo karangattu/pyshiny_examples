@@ -30,7 +30,6 @@ class Config:
 
 
 class ShinyTestGenerator:
-    # Pre-compiled regex pattern for better performance
     CODE_PATTERN = re.compile(r"```python(.*?)```", re.DOTALL)
 
     def __init__(
@@ -39,7 +38,6 @@ class ShinyTestGenerator:
         log_file: str = Config.LOG_FILE,
         setup_logging: bool = True,
     ):
-        # Lazy loading - initialize expensive resources only when needed
         self._client = None
         self._documentation = None
         self._system_prompt = None
@@ -118,7 +116,6 @@ class ShinyTestGenerator:
     def get_llm_response(self, prompt: str, model: str) -> str:
         """Get response from LLM - reuses client instance instead of creating new one"""
         try:
-            # Reuse existing client instead of creating new ChatAnthropic instance
             chat = ChatAnthropic(
                 model=model,
                 system_prompt=self.system_prompt,
@@ -174,7 +171,6 @@ class ShinyTestGenerator:
         if found_files:
             return found_files[0]
 
-        # If we have app_code but no file path, create a temporary name
         if app_code:
             return Path("inferred_app.py")
 
@@ -229,12 +225,10 @@ class ShinyTestGenerator:
                 raise FileNotFoundError(f"App file not found: {inferred_app_path}")
             app_code = inferred_app_path.read_text(encoding="utf-8")
 
-        # Pass the app file name to the prompt
         user_prompt = self._create_test_prompt(app_code, inferred_app_path.name)
         response = self.get_llm_response(user_prompt, model)
         test_code = self.extract_test(response)
 
-        # Determine output file path using pathlib
         if output_file:
             test_file_path = Path(output_file)
         else:
@@ -243,7 +237,6 @@ class ShinyTestGenerator:
                 inferred_app_path, output_dir_path
             )
 
-        # Write test file
         test_file_path.parent.mkdir(parents=True, exist_ok=True)
         test_file_path.write_text(test_code, encoding="utf-8")
 
@@ -293,7 +286,6 @@ def cli():
         print(f"Error: File not found at {app_file_path}")
         sys.exit(1)
 
-    # Parse output directory if provided
     output_dir = None
     if "--output-dir" in sys.argv:
         try:
