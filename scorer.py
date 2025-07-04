@@ -18,7 +18,6 @@ class PytestScorer(Scorer):
             temp_file_path = Path(temp_file.name)
 
         try:
-            # Install playwright browsers
             subprocess.run(["playwright", "install"], check=True, capture_output=True, text=True)
             result = subprocess.run(
                 ["pytest", str(temp_file_path)],
