@@ -17,6 +17,7 @@ dependencies = [
     "python-dotenv",
     "requests",
     "chatlas[anthropic]",
+    "inspect-ai",
 ]
 
 [tool.setuptools]

@@ -54,16 +54,20 @@ if __name__ == "__main__":
     print(f"\nGenerated {len(test_data)} test(s)")
     print("Available tests:", list(test_data.keys()))
 
-    output_dir = Path("generated_tests")
-    output_dir.mkdir(exist_ok=True)
+    metadata_file = Path(__file__).parent / "test_metadata.json"
 
-    for test_name, data in test_data.items():
-        test_file = output_dir / f"{test_name}.py"
-        test_file.write_text(data["test_code"], encoding="utf-8")
-        print(f"Saved test to: {test_file}")
+    def convert_paths(obj):
+        if isinstance(obj, dict):
+            return {k: convert_paths(v) for k, v in obj.items()}
+        elif isinstance(obj, Path):
+            return str(obj)
+        elif isinstance(obj, list):
+            return [convert_paths(i) for i in obj]
+        else:
+            return obj
 
-    metadata_file = output_dir / "test_metadata.json"
+    serializable_test_data = convert_paths(test_data)
     with open(metadata_file, "w") as f:
-        json.dump(test_data, f, indent=2)
+        json.dump(serializable_test_data, f, indent=2)
 
     print(f"Saved test metadata to: {metadata_file}")
