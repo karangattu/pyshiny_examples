@@ -162,3 +162,4 @@ cython_debug/
 #.idea/
 /evaluation_apps
 /logs
+evals/test_metadata.json

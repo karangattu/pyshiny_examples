@@ -1,9 +1,11 @@
-from inspect_ai import Task, task
-from inspect_ai.dataset import Sample
-from inspect_ai.scorer import model_graded_qa
-from inspect_ai.solver import generate
 import json
 from pathlib import Path
+
+from inspect_ai import Task, task
+from inspect_ai.dataset import Sample
+from inspect_ai.model import get_model
+from inspect_ai.scorer import model_graded_qa
+from inspect_ai.solver import generate
 
 
 def get_app_specific_instructions(app_name: str) -> str:
@@ -144,13 +146,10 @@ Test Code to Evaluate:
 {data['test_code']}
 ```"""
 
-        # For non-Shiny apps, expect empty test code
-        if data["app_name"] in ["app_06_R_shiny", "app_05_streamlit"]:
-            target_answer = "CORRECT: The test code should be empty since this is not a Shiny for Python app."
-        elif app_specific_guidance:
-            target_answer = f"CORRECT: A comprehensive test that meets all specified criteria.\n{app_specific_guidance.strip()}"
+        if app_specific_guidance:
+            target_answer = f"CORRECT: A test that meets all specified criteria.\n{app_specific_guidance.strip()}"
         else:
-            target_answer = "CORRECT: A comprehensive test that meets all specified criteria."
+            target_answer = "CORRECT: A test that meets all specified criteria."
 
         sample = Sample(
             input=question,
@@ -181,7 +180,6 @@ def shiny_test_evaluation() -> Task:
 
     samples = create_inspect_ai_samples(test_data)
 
-    # Use the default template but with custom instructions and grade pattern
     scorer = model_graded_qa(
         instructions="""
         You are an expert in Shiny application testing. Evaluate the test code quality based on the provided criteria.
@@ -198,11 +196,12 @@ def shiny_test_evaluation() -> Task:
         Explanation: [Brief explanation of the grade]
         """,
         grade_pattern=r"GRADE:\s*([CPI])",
-        model="openai/gpt-4.1-nano-2025-04-14",  # Specify the model to use
+        model=get_model("openai/gpt-4.1-nano-2025-04-14"),
     )
 
     return Task(
         dataset=samples,
-        solver=[generate()],
+        # solver=[generate()],
         scorer=scorer,
+        model=get_model("openai/gpt-4.1-nano-2025-04-14"),
     )

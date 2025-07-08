@@ -1,7 +1,8 @@
-from shiny_test_generator import ShinyTestGenerator
-from pathlib import Path
-from itertools import islice
 import json
+from itertools import islice
+from pathlib import Path
+
+from shiny_test_generator import ShinyTestGenerator
 
 
 def generate_shiny_test_metadata(
