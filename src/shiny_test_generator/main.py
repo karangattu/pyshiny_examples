@@ -4,8 +4,8 @@ import logging
 import re
 import sys
 from dataclasses import dataclass
-from typing import Optional, Tuple
-from chatlas import ChatAnthropic
+from typing import Optional, Tuple, Literal, Union
+from chatlas import ChatAnthropic, ChatOpenAI
 from dotenv import load_dotenv
 
 
@@ -18,14 +18,26 @@ __all__ = [
 class Config:
     """Configuration class for ShinyTestGenerator"""
 
+    # Model aliases for both providers
     MODEL_ALIASES = {
+        # Anthropic models
         "haiku3": "claude-3-haiku-20240307",
         "haiku3.5": "claude-3-5-haiku-20241022",
         "sonnet": "claude-sonnet-4-20250514",
+        # OpenAI models
+        "gpt-4.1": "gpt-4.1-2025-04-14",
+        "o3-mini": "o3-mini-2025-01-31",
+        "o4-mini": "o4-mini-2025-04-16",
+        "gpt-4.1-nano": "gpt-4.1-nano-2025-04-14",
     }
-    DEFAULT_MODEL = "claude-sonnet-4-20250514"
+
+    # Default models for each provider
+    DEFAULT_ANTHROPIC_MODEL = "claude-sonnet-4-20250514"
+    DEFAULT_OPENAI_MODEL = "gpt-4.1-nano"
+    DEFAULT_PROVIDER = "anthropic"
+
     MAX_TOKENS = 64000
-    LOG_FILE = "anthropic.log"
+    LOG_FILE = "llm_test_generator.log"
     COMMON_APP_PATTERNS = ["app.py", "app_*.py"]
 
 
@@ -34,10 +46,21 @@ class ShinyTestGenerator:
 
     def __init__(
         self,
+        provider: Literal["anthropic", "openai"] = Config.DEFAULT_PROVIDER,
         api_key: Optional[str] = None,
         log_file: str = Config.LOG_FILE,
         setup_logging: bool = True,
     ):
+        """
+        Initialize the ShinyTestGenerator.
+
+        Args:
+            provider: LLM provider to use ("anthropic" or "openai")
+            api_key: API key for the provider (optional, can use env vars)
+            log_file: Path to log file
+            setup_logging: Whether to setup logging
+        """
+        self.provider = provider
         self._client = None
         self._documentation = None
         self._system_prompt = None
@@ -48,12 +71,21 @@ class ShinyTestGenerator:
             self.setup_logging()
 
     @property
-    def client(self) -> ChatAnthropic:
-        """Lazy-loaded ChatAnthropic client"""
+    def client(self) -> Union[ChatAnthropic, ChatOpenAI]:
+        """Lazy-loaded chat client based on provider"""
         if self._client is None:
-            self._client = (
-                ChatAnthropic(api_key=self.api_key) if self.api_key else ChatAnthropic()
-            )
+            if self.provider == "anthropic":
+                self._client = (
+                    ChatAnthropic(api_key=self.api_key)
+                    if self.api_key
+                    else ChatAnthropic()
+                )
+            elif self.provider == "openai":
+                self._client = (
+                    ChatOpenAI(api_key=self.api_key) if self.api_key else ChatOpenAI()
+                )
+            else:
+                raise ValueError(f"Unsupported provider: {self.provider}")
         return self._client
 
     @property
@@ -69,6 +101,16 @@ class ShinyTestGenerator:
         if self._system_prompt is None:
             self._system_prompt = self._read_system_prompt()
         return self._system_prompt
+
+    @property
+    def default_model(self) -> str:
+        """Get default model for current provider"""
+        if self.provider == "anthropic":
+            return Config.DEFAULT_ANTHROPIC_MODEL
+        elif self.provider == "openai":
+            return Config.DEFAULT_OPENAI_MODEL
+        else:
+            raise ValueError(f"Unsupported provider: {self.provider}")
 
     @staticmethod
     def setup_logging():
@@ -113,14 +155,54 @@ class ShinyTestGenerator:
 
         return f"{system_prompt_file}\n\nHere is the function reference documentation for Shiny for Python: {self.documentation}"
 
-    def get_llm_response(self, prompt: str, model: str) -> str:
-        """Get response from LLM - reuses client instance instead of creating new one"""
+    def _resolve_model(self, model: str) -> str:
+        """Resolve model alias to actual model name"""
+        return Config.MODEL_ALIASES.get(model, model)
+
+    def _validate_model_for_provider(self, model: str) -> str:
+        """Validate that the model is compatible with the current provider"""
+        resolved_model = self._resolve_model(model)
+
+        # Check if model is appropriate for provider
+        if self.provider == "anthropic":
+            if resolved_model.startswith("gpt-") or resolved_model.startswith("o1-"):
+                raise ValueError(
+                    f"Model '{model}' is an OpenAI model but provider is set to 'anthropic'. "
+                    f"Either use an Anthropic model or switch provider to 'openai'."
+                )
+        elif self.provider == "openai":
+            if resolved_model.startswith("claude-"):
+                raise ValueError(
+                    f"Model '{model}' is an Anthropic model but provider is set to 'openai'. "
+                    f"Either use an OpenAI model or switch provider to 'anthropic'."
+                )
+
+        return resolved_model
+
+    def get_llm_response(self, prompt: str, model: Optional[str] = None) -> str:
+        """Get response from LLM using the configured provider"""
+        if model is None:
+            model = self.default_model
+        else:
+            model = self._validate_model_for_provider(model)
+
         try:
-            chat = ChatAnthropic(
-                model=model,
-                system_prompt=self.system_prompt,
-                max_tokens=Config.MAX_TOKENS,
-            )
+            # Create chat client with the specified model
+            if self.provider == "anthropic":
+                chat = ChatAnthropic(
+                    model=model,
+                    system_prompt=self.system_prompt,
+                    max_tokens=Config.MAX_TOKENS,
+                    api_key=self.api_key,
+                )
+            elif self.provider == "openai":
+                chat = ChatOpenAI(
+                    model=model,
+                    system_prompt=self.system_prompt,
+                    api_key=self.api_key,
+                )
+            else:
+                raise ValueError(f"Unsupported provider: {self.provider}")
 
             response = chat.chat(prompt)
 
@@ -131,7 +213,7 @@ class ShinyTestGenerator:
             else:
                 return str(response)
         except Exception as e:
-            logging.error(f"Error getting LLM response: {e}")
+            logging.error(f"Error getting LLM response from {self.provider}: {e}")
             raise
 
     def extract_test(self, response: str) -> str:
@@ -194,7 +276,7 @@ class ShinyTestGenerator:
         app_code: Optional[str] = None,
         app_file_path: Optional[str] = None,
         app_name: str = "app",
-        model: str = Config.DEFAULT_MODEL,
+        model: Optional[str] = None,
         output_file: Optional[str] = None,
         output_dir: Optional[str] = None,
     ) -> Tuple[str, Path]:
@@ -206,15 +288,13 @@ class ShinyTestGenerator:
             app_code: The app code as a string. If None, will be read from app_file_path
             app_file_path: Path to the app file
             app_name: Name for the app (used in test file naming when generating from code)
-            model: The model to use for generation
+            model: The model to use for generation (uses default if None)
             output_file: Explicit output file path (overrides automatic naming)
             output_dir: Directory to save the test file (defaults to app file directory)
 
         Returns:
             tuple: (test_code, test_file_path)
         """
-        model = Config.MODEL_ALIASES.get(model, model)
-
         if app_code and not app_file_path:
             inferred_app_path = Path(f"{app_name}.py")
         else:
@@ -245,7 +325,7 @@ class ShinyTestGenerator:
     def generate_test_from_file(
         self,
         app_file_path: str,
-        model: str = Config.DEFAULT_MODEL,
+        model: Optional[str] = None,
         output_file: Optional[str] = None,
         output_dir: Optional[str] = None,
     ) -> Tuple[str, Path]:
@@ -261,7 +341,7 @@ class ShinyTestGenerator:
         self,
         app_code: str,
         app_name: str = "app",
-        model: str = Config.DEFAULT_MODEL,
+        model: Optional[str] = None,
         output_file: Optional[str] = None,
         output_dir: Optional[str] = None,
     ) -> Tuple[str, Path]:
@@ -274,29 +354,94 @@ class ShinyTestGenerator:
             output_dir=output_dir,
         )
 
+    def switch_provider(
+        self, provider: Literal["anthropic", "openai"], api_key: Optional[str] = None
+    ):
+        """
+        Switch to a different provider and reset the client.
+
+        Args:
+            provider: New provider to use
+            api_key: Optional API key for the new provider
+        """
+        self.provider = provider
+        if api_key:
+            self.api_key = api_key
+        self._client = None  # Reset client to force recreation with new provider
+
+    @classmethod
+    def create_anthropic_generator(
+        cls, api_key: Optional[str] = None, **kwargs
+    ) -> "ShinyTestGenerator":
+        """Factory method to create an Anthropic-based generator"""
+        return cls(provider="anthropic", api_key=api_key, **kwargs)
+
+    @classmethod
+    def create_openai_generator(
+        cls, api_key: Optional[str] = None, **kwargs
+    ) -> "ShinyTestGenerator":
+        """Factory method to create an OpenAI-based generator"""
+        return cls(provider="openai", api_key=api_key, **kwargs)
+
+    def get_available_models(self) -> list[str]:
+        """Get list of available models for the current provider"""
+        if self.provider == "anthropic":
+            return [
+                model
+                for model in Config.MODEL_ALIASES.keys()
+                if not (model.startswith("gpt-") or model.startswith("o1-"))
+            ]
+        elif self.provider == "openai":
+            return [
+                model
+                for model in Config.MODEL_ALIASES.keys()
+                if (model.startswith("gpt-") or model.startswith("o1-"))
+            ]
+        else:
+            return []
+
 
 def cli():
-    """Command line interface"""
-    if len(sys.argv) < 2:
-        print("Usage: shiny-test-generator <path_to_app_file> [--output-dir <dir>]")
-        sys.exit(1)
+    """Command line interface with provider support"""
+    import argparse
 
-    app_file_path = Path(sys.argv[1])
+    parser = argparse.ArgumentParser(description="Generate Shiny tests using LLM")
+    parser.add_argument("app_file", help="Path to the Shiny app file")
+    parser.add_argument(
+        "--provider",
+        choices=["anthropic", "openai"],
+        default=Config.DEFAULT_PROVIDER,
+        help="LLM provider to use",
+    )
+    parser.add_argument("--model", help="Model to use (optional)")
+    parser.add_argument("--output-dir", help="Output directory for test files")
+    parser.add_argument("--api-key", help="API key (optional, can use env vars)")
+
+    args = parser.parse_args()
+
+    app_file_path = Path(args.app_file)
     if not app_file_path.is_file():
         print(f"Error: File not found at {app_file_path}")
         sys.exit(1)
 
-    output_dir = None
-    if "--output-dir" in sys.argv:
-        try:
-            output_dir_index = sys.argv.index("--output-dir")
-            output_dir = sys.argv[output_dir_index + 1]
-        except (IndexError, ValueError):
-            print("Error: --output-dir requires a directory path")
-            sys.exit(1)
+    try:
+        generator = ShinyTestGenerator(provider=args.provider, api_key=args.api_key)
 
-    generator = ShinyTestGenerator()
-    test_code, test_file_path = generator.generate_test_from_file(
-        str(app_file_path),
-        output_dir=output_dir,
-    )
+        test_code, test_file_path = generator.generate_test_from_file(
+            str(app_file_path),
+            model=args.model,
+            output_dir=args.output_dir,
+        )
+
+        print(f"✅ Test file generated successfully: {test_file_path}")
+        print(f"📝 Used provider: {args.provider}")
+        if args.model:
+            print(f"🤖 Used model: {args.model}")
+
+    except Exception as e:
+        print(f"❌ Error: {e}")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    cli()

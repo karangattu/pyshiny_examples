@@ -1,152 +1,59 @@
 # Shiny Test Generator
 
-This repository contains a Python package, `shiny-test-generator`, that automates the creation of `pytest` tests for [Shiny for Python](https://shiny.posit.co/py/) applications. Leveraging the power of Large Language Models (LLMs), this tool reads the source code of a Shiny app and generates a corresponding test file, helping to streamline the development workflow and improve test coverage.
+`shiny-test-generator` is a Python tool that uses LLMs (Anthropic Claude or OpenAI GPT) to automatically generate `pytest` tests for [Shiny for Python](https://shiny.posit.co/py/) apps. It supports both CLI and library usage, and includes a quality evaluation suite with [`inspect-ai`](https://rstudio.github.io/inspect-ai/).
 
-A key feature of this project is its focus on reliability. It includes a comprehensive evaluation suite built with [`inspect-ai`](https://rstudio.github.io/inspect-ai/) that continuously measures the quality and correctness of the generated tests against a diverse set of sample applications.
-
-## Key Features
-
-*   **Automated Test Generation**: Provide your Shiny app's source code and receive a complete `pytest` test file that uses `playwright` for browser interaction.
-*   **Reusable Python Package**: Easily install the tool via `pip` and use the `ShinyTestGenerator` class programmatically in your own scripts and workflows.
-*   **Simple Command-Line Interface**: Generate tests on the fly directly from your terminal.
-*   **Built-in Quality Evaluation**: A robust evaluation pipeline using `inspect-ai` and GitHub Actions allows for ongoing, data-driven assessment of the test generation quality.
+## Features
+- **Automated Test Generation**: Create `pytest`+`playwright` tests from your Shiny app code or file.
+- **Multi-Provider LLMs**: Use Anthropic (Claude) or OpenAI (GPT) models.
+- **Flexible Usage**: Use as a CLI or Python library.
+- **Customizable Output**: Choose output directory and filename.
+- **Built-in Quality Checks**: Evaluate test quality with `inspect-ai`.
 
 ## Installation
 
-### Prerequisites
-
-You'll need an Anthropic API key to use this tool. Set it as an environment variable:
+Set your API keys as environment variables or in a `.env` file:
 
 ```bash
-export ANTHROPIC_API_KEY="your_api_key_here"
+export ANTHROPIC_API_KEY=your_anthropic_api_key
+export OPENAI_API_KEY=your_openai_api_key
 ```
 
-Or create a `.env` file in your project directory:
-
+Or in `.env`:
 ```
-ANTHROPIC_API_KEY=your_api_key_here
+ANTHROPIC_API_KEY=your_anthropic_api_key
+OPENAI_API_KEY=your_openai_api_key
 ```
 
-### Install the Package
-
+Install the package:
 ```bash
 pip install -e .
 ```
 
 ## Usage
 
-### As a Library
+### CLI
+```bash
+shiny-test-generator path/to/app.py
+shiny-test-generator path/to/app.py --provider openai --model gpt-4.1
+shiny-test-generator path/to/app.py --output-dir tests/ --model sonnet
+```
 
+### Library
 ```python
 from shiny_test_generator import ShinyTestGenerator
 
-# Initialize the generator
-generator = ShinyTestGenerator()
-
-# Method 1: Generate test from an app file
-test_code, test_file_path = generator.generate_test_from_file(
-    app_file_path="path/to/your/app.py",
-)
-
-# Method 2: Generate test from app code string
-app_code = """
-from shiny import App, ui, render
-
-app_ui = ui.page_fluid(
-    ui.input_text("name", "Enter your name:", ""),
-    ui.output_text("greeting")
-)
-
-def server(input, output, session):
-    @render.text
-    def greeting():
-        return f"Hello, {input.name()}!"
-
-app = App(app_ui, server)
-"""
-
-test_code, test_file_path = generator.generate_test_from_code(
-    app_code=app_code,
-    app_name="my_app",
-    output_dir="tests/"  # Optional: specify output directory
-)
-
-# Method 3: Flexible generate_test_for_app method
-test_code, test_file_path = generator.generate_test_for_app(
-    app_code=app_code,  # Can pass code directly
-    app_file_path="path/to/your/app.py",  # Or specify file path
-    model="sonnet",  # Options: "haiku3", "haiku3.5", "sonnet"
-    output_file="custom_test_name.py",  # Optional: custom output filename
-)
-
-print(f"Test file generated: {test_file_path}")
-print(f"Test code:\n{test_code}")
+gen = ShinyTestGenerator(provider="openai")
+test_code, test_path = gen.generate_test_from_file("app.py", model="gpt-4.1")
 ```
 
-### As a CLI Tool
+## Model Aliases
+- **Anthropic**: `haiku3`, `haiku3.5`, `sonnet`
+- **OpenAI**: `gpt-4.1`, `o3-mini`, `o4-mini`, `gpt-4.1-nano`
 
-```bash
-# Basic usage - generates test_<app_name>.py in the same directory
-shiny-test-generator path/to/your/app.py
-
-# Specify output directory
-shiny-test-generator path/to/your/app.py --output-dir tests/
-```
-
-### Model Options
-
-The tool supports several Claude models via aliases:
-
-- `"haiku3"` - Claude 3 Haiku (fastest, most economical)
-- `"haiku3.5"` - Claude 3.5 Haiku (balanced performance)
-- `"sonnet"` - Claude Sonnet 4 (highest quality, default)
-
-You can also specify the full model name directly (e.g., `"claude-sonnet-4-20250514"`).
-
-### File Organization
-
-The tool automatically generates test files following Python testing conventions:
-
-- If your app is `app.py`, the test file will be `test_app.py`
-- If your app is `my_dashboard.py`, the test file will be `test_my_dashboard.py`
-- Tests are saved in the same directory as the app file by default, or in a custom directory if specified
+## File Output
+- `app.py` → `test_app.py` (same dir by default, or custom dir)
 
 ## Configuration
+- API keys via env vars, `.env`, or as `api_key` argument to `ShinyTestGenerator`.
 
-### API Key Setup
-
-The tool uses the Anthropic API and requires an API key. You can provide it in several ways:
-
-1. **Environment variable** (recommended):
-   ```bash
-   export ANTHROPIC_API_KEY="your_api_key_here"
-   ```
-
-2. **`.env` file** in your project directory:
-   ```
-   ANTHROPIC_API_KEY=your_api_key_here
-   ```
-
-3. **Programmatically** when initializing the generator:
-   ```python
-   generator = ShinyTestGenerator(api_key="your_api_key_here")
-   ```
-
-### Logging
-
-The tool automatically sets up logging to `anthropic.log` in your current directory. You can disable this by setting `setup_logging=False` when initializing the generator.
-
-## Evaluation
-
-This repository includes an evaluation suite built with `inspect-ai` to measure the quality of the generated tests. The evaluation is defined in `eval.yml` and can be run using the following command:
-
-```bash
-python ./evals/create_test_metadata.py
-inspect eval evals/evaluation.py@shiny_test_evaluation --model openai/gpt-4.1-nano-2025-04-14
-```
-
-The evaluation runs against a set of sample applications located in the `evaluation_apps` directory. The results of the evaluation are scored using the `scorer.py` script, which runs `pytest` on the generated tests and checks for passing or failing tests.
-
-### GitHub Action
-
-A GitHub Action is configured to run the evaluation automatically. You can trigger it manually from the "Actions" tab in the repository. The results of the evaluation are uploaded as an artifact.
+For more, see docstrings and CLI `--help`.
