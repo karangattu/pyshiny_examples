@@ -13,12 +13,28 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "anthropic",
     "python-dotenv",
     "requests",
     "chatlas[anthropic]",
     "inspect-ai",
+    "chatlas[openai]",
 ]
+license = {text = "MIT"}
+authors = [
+    {name = "Karan Gathani", email = "karan.gathani@posit.co"}
+]
+
+[project.optional-dependencies]
+test = [
+    "matplotlib>=3.0.0",
+    "pandas>=1.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/karangathani/pyshiny_examples"
+Documentation = "https://github.com/karangathani/pyshiny_examples#readme"
+Source = "https://github.com/karangathani/pyshiny_examples"
+Issues = "https://github.com/karangathani/pyshiny_examples/issues"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
@@ -28,3 +44,7 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 "shiny_test_generator" = ["data/prompts/*.md", "data/docs/*.json"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+testpaths = ["tests"]
