@@ -25,10 +25,8 @@ def generate_shiny_test_metadata(
     test_data = {}
 
     for app_path in app_files:
-        print(f"Generating test for: {app_path}")
         try:
             test_code, test_file_path = generator.generate_test_from_file(str(app_path))
-            print(f"Test code generated at: {test_file_path}")
 
             test_name = f"test_{app_path.parent.name}_{app_path.stem}"
             app_code = app_path.read_text(encoding="utf-8")
@@ -50,9 +48,6 @@ def generate_shiny_test_metadata(
 
 if __name__ == "__main__":
     test_data = generate_shiny_test_metadata()
-
-    print(f"\nGenerated {len(test_data)} test(s)")
-    print("Available tests:", list(test_data.keys()))
 
     metadata_file = Path(__file__).parent / "test_metadata.json"
 

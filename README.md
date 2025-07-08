@@ -141,7 +141,8 @@ The tool automatically sets up logging to `anthropic.log` in your current direct
 This repository includes an evaluation suite built with `inspect-ai` to measure the quality of the generated tests. The evaluation is defined in `eval.yml` and can be run using the following command:
 
 ```bash
-inspect eval eval.yml
+python ./evals/create_test_metadata.py
+inspect eval evals/evaluation.py@shiny_test_evaluation --model openai/gpt-4.1-nano-2025-04-14
 ```
 
 The evaluation runs against a set of sample applications located in the `evaluation_apps` directory. The results of the evaluation are scored using the `scorer.py` script, which runs `pytest` on the generated tests and checks for passing or failing tests.

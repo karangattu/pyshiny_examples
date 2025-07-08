@@ -198,6 +198,7 @@ def shiny_test_evaluation() -> Task:
         Explanation: [Brief explanation of the grade]
         """,
         grade_pattern=r"GRADE:\s*([CPI])",
+        model="openai/gpt-4.1-nano-2025-04-14",  # Specify the model to use
     )
 
     return Task(
