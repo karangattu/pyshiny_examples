@@ -32,9 +32,42 @@ jobs:
           python ./evals/create_test_metadata.py
           inspect eval evals/evaluation.py@shiny_test_evaluation --log-dir results/ --log-format json
 
+      - name: Process Results
+        run: |
+          python scripts/process_results.py results/
+
+      - name: Check Quality Gate
+        run: |
+          python scripts/quality_gate.py results/
+
       - name: Upload Results
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: inspect-ai-results
           path: results/
+
+      - name: Comment PR Results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const results = JSON.parse(fs.readFileSync('results/summary.json', 'utf8'));
+            
+            const comment = `## Inspect AI Evaluation Results
+            
+            - **Overall Score**: ${results.score}
+            - **Tests Passed**: ${results.passed}/${results.total}
+            - **Quality Gate**: ${results.quality_gate_passed ? '✅ PASSED' : '❌ FAILED'}
+            
+            ### Details
+            ${results.details}
+            `;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
