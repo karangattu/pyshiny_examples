@@ -163,3 +163,4 @@ cython_debug/
 /evaluation_apps
 /logs
 evals/test_metadata.json
+/results

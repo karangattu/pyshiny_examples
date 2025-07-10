@@ -34,7 +34,7 @@ jobs:
 
       - name: Process Results
         run: |
-          python scripts/process_results.py results/
+          python scripts/process_results.py results/*json
 
       - name: Check Quality Gate
         run: |
