@@ -90,7 +90,6 @@ def get_app_specific_instructions(app_name: str) -> str:
         - Ensure that the test checks the navigation between tabs and verifies the active state of each tab
         - Ensure that the test verifies the content of each tab, including input components and output displays
         - Ensure that the test checks the functionality of input components in each tab, such as text inputs, sliders, and action buttons
-        - 
         """,
         "app_04_custom_app_name": """
         For this app, focus on:
@@ -182,18 +181,29 @@ def shiny_test_evaluation() -> Task:
 
     scorer = model_graded_qa(
         instructions="""
-        You are an expert in Shiny application testing. Evaluate the test code quality based on the provided criteria.
+        You are an expert evaluator for Shiny application testing. Your task is to evaluate test code quality based STRICTLY on the provided criteria.
 
-        For non-Shiny frameworks (R Shiny, Streamlit, etc.), the test code should be empty.
-        For Shiny for Python apps, use the specific criteria provided in the criterion section.
+        CRITICAL INSTRUCTIONS:
+        1. ONLY evaluate based on the specific criteria listed in the "criterion" section
+        2. DO NOT add your own criteria or suggestions beyond what is explicitly stated
+        3. DO NOT penalize for missing features that are not mentioned in the criteria
+        4. DO NOT suggest improvements unless they directly relate to the specified criteria
+        5. For non-Shiny frameworks (R Shiny, Streamlit, etc.), the test code should be empty - grade as Complete if empty
+
+        EVALUATION PROCESS:
+        - Read the specific criteria for this app
+        - Check if the test code implements EXACTLY what is specified
+        - Ignore any additional features or missing features not mentioned in the criteria
+        - Base your grade solely on whether the specified requirements are met
+
+        GRADING SCALE:
+        - C (Complete): ALL specified criteria are met
+        - P (Partial): MOST specified criteria are met, minor gaps in the specified requirements
+        - I (Incomplete): MAJOR specified criteria are missing or incorrectly implemented
 
         Provide your evaluation in the following format:
         GRADE: [C/P/I]
-        - C: Complete/Correct - All or nearly all criteria met comprehensively
-        - P: Partial - Most criteria met, some minor gaps  
-        - I: Incomplete - Major criteria missing or significant issues
-
-        Explanation: [Brief explanation of the grade]
+        Explanation: [Brief explanation focusing ONLY on how well the specified criteria were met]
         """,
         grade_pattern=r"GRADE:\s*([CPI])",
         model=get_model("openai/gpt-4.1-nano-2025-04-14"),
@@ -201,7 +211,7 @@ def shiny_test_evaluation() -> Task:
 
     return Task(
         dataset=samples,
-        # solver=[generate()],
+        solver=generate(),
         scorer=scorer,
         model=get_model("openai/gpt-4.1-nano-2025-04-14"),
     )
