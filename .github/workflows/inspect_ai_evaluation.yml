@@ -57,7 +57,6 @@ jobs:
             
             const comment = `## Inspect AI Evaluation Results
             
-            - **Overall Score**: ${results.score}
             - **Tests Passed**: ${results.passed}/${results.total}
             - **Quality Gate**: ${results.quality_gate_passed ? '✅ PASSED' : '❌ FAILED'}
             
