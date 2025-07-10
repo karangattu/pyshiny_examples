@@ -2,6 +2,10 @@ name: Inspect AI Evaluation
 
 on:
   workflow_dispatch:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   evaluate:
@@ -14,18 +18,23 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Install dependencies
         run: |
-          pip install -e .
-          pip install inspect-ai shiny pytest playwright
+          pip install -e ".[test]"
 
       - name: Run Inspect AI evaluation
-        run: inspect eval eval.yml --log-file eval_results.jsonl
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python ./evals/create_test_metadata.py
+          inspect eval evals/evaluation.py@shiny_test_evaluation --log-dir results/ --log-format json
 
-      - name: Upload evaluation results
+      - name: Upload Results
         uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: evaluation-results
-          path: eval_results.jsonl
+          name: inspect-ai-results
+          path: results/

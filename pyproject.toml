@@ -26,8 +26,10 @@ authors = [
 
 [project.optional-dependencies]
 test = [
-    "matplotlib>=3.0.0",
-    "pandas>=1.0.0"
+    "matplotlib",
+    "pandas",
+    "pytest-playwright",
+    "playwright",
 ]
 
 [project.urls]
