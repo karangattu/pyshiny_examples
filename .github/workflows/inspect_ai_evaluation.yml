@@ -3,13 +3,19 @@ name: Inspect AI Evaluation
 on:
   workflow_dispatch:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main ]
+    branches: [main]
+
+# Cancel in-progress workflows for the same PR/branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   evaluate:
     runs-on: ubuntu-latest
+    timeout-minutes: 30 # Prevent stuck workflows
 
     steps:
       - name: Checkout repository
@@ -18,30 +24,49 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
+          cache: "pip" # Cache pip dependencies
+          cache-dependency-path: |
+            setup.py
+            requirements*.txt
+            pyproject.toml
 
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
           pip install -e ".[test]"
 
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}
+
       - name: Install Playwright browsers
-        run: |
-          playwright install
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: playwright install
+
+      - name: Create test metadata
+        run: python ./evals/create_test_metadata.py
 
       - name: Run Inspect AI evaluation
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          python ./evals/create_test_metadata.py
-          inspect eval evals/evaluation.py@shiny_test_evaluation --log-dir results/ --log-format json
+          inspect eval evals/evaluation.py@shiny_test_evaluation \
+            --log-dir results/ \
+            --log-format json
 
-          
       - name: Run Tests
+        id: tests
         run: |
+          # Run tests with better error handling
+          set +e  # Don't exit on error
           # Run tests once with JUnit XML output to capture results
           pytest --tb=short --disable-warnings -n auto --maxfail=2 --junit-xml=test-results.xml || test_exit_code=$?
-          
+
           # Count failures from XML output if tests failed
           if [ "${test_exit_code:-0}" -ne 0 ]; then
             failure_count=$(grep -o 'failures="[0-9]*"' test-results.xml | grep -o '[0-9]*' || echo "0")
@@ -79,16 +104,16 @@ jobs:
           script: |
             const fs = require('fs');
             const results = JSON.parse(fs.readFileSync('results/summary.json', 'utf8'));
-            
+
             const comment = `## Inspect AI Evaluation Results
-            
+
             - **Tests Passed**: ${results.passed}/${results.total}
             - **Quality Gate**: ${results.quality_gate_passed ? '✅ PASSED' : '❌ FAILED'}
-            
+
             ### Details
             ${results.details}
             `;
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
