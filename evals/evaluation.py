@@ -38,9 +38,6 @@ def get_app_specific_instructions(app_name: str) -> str:
         - Whether the test creates an instance of the InputSlider controller with id "slider1"
         - Ensure that the slider component is verified for its label, min, max, and value attributes.
         - Ensure that the test checks by moving the slider to different values and verify the slider values accordingly.
-        - Whether the test creates an instance of the InputSliderRange controller with id "slider3"
-        - Ensure that the range slider component is verified for its label, min, max, and initial range values.
-        - Ensure that the test checks by moving the range slider to different values and verify the range values accordingly.
         
         """,
         "app_06_R_shiny": """
