@@ -32,6 +32,11 @@ jobs:
           python ./evals/create_test_metadata.py
           inspect eval evals/evaluation.py@shiny_test_evaluation --log-dir results/ --log-format json
 
+          
+      - name: Run Tests
+        run: |
+          pytest --tb=short --disable-warnings --maxfail=1
+
       - name: Process Results
         run: |
           python scripts/process_results.py results/*json
