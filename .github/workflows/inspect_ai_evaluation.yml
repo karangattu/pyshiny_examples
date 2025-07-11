@@ -48,6 +48,9 @@ jobs:
         run: playwright install
 
       - name: Create test metadata
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python ./evals/create_test_metadata.py
 
       - name: Run Inspect AI evaluation
