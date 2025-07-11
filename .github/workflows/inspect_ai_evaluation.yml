@@ -65,12 +65,12 @@ jobs:
         run: |
           python scripts/quality_gate.py results/
 
-      - name: Upload Results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: inspect-ai-results
-          path: results/
+      # - name: Upload Results
+      #   uses: actions/upload-artifact@v4
+      #   if: always()
+      #   with:
+      #     name: inspect-ai-results
+      #     path: results/
 
       - name: Comment PR Results
         if: github.event_name == 'pull_request'
