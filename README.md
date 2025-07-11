@@ -57,3 +57,14 @@ test_code, test_path = gen.generate_test_from_file("app.py", model="gpt-4.1")
 - API keys via env vars, `.env`, or as `api_key` argument to `ShinyTestGenerator`.
 
 For more, see docstrings and CLI `--help`.
+
+## Running inspect-ai evaluations
+
+To run the quality evaluation suite using `inspect-ai`, you can use the provided GitHub Actions workflow or run it locally:
+
+```bash
+# generate test metadata
+python evals/create_test_metadata.py
+# run the evaluation
+inspect eval evals/evaluation.py@shiny_test_evaluation --log-dir results/ --log-format json
+```

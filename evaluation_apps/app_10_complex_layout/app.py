@@ -57,19 +57,9 @@ def server(input, output, session):
         data = {
             "Input": [
                 "Action Button",
-                "Checkbox",
-                "Date Selector",
-                "Numeric Input",
-                "Radio Buttons",
-                "Switch",
             ],
             "Value": [
                 input.action_button(),
-                input.checkbox(),
-                input.date_selector(),
-                input.numeric_input(),
-                input.radio_buttons(),
-                input.switch(),
             ],
         }
         df = pd.DataFrame(data)
