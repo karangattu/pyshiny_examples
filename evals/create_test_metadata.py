@@ -27,7 +27,7 @@ def generate_shiny_test_metadata(
 
     for app_path in app_files:
         try:
-            test_code, test_file_path = generator.generate_test_from_file(str(app_path))
+            test_code, test_file_path = generator.generate_test_from_file(str(app_path), model="o4-mini")
 
             test_name = f"test_{app_path.parent.name}_{app_path.stem}"
             app_code = app_path.read_text(encoding="utf-8")
