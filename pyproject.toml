@@ -30,7 +30,8 @@ test = [
     "pandas",
     "pytest-playwright",
     "playwright",
-    "shiny"
+    "shiny",
+    "pytest-xdist",
 ]
 
 [project.urls]
