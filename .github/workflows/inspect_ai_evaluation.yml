@@ -24,6 +24,10 @@ jobs:
         run: |
           pip install -e ".[test]"
 
+      - name: Install Playwright browsers
+        run: |
+          playwright install
+
       - name: Run Inspect AI evaluation
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
