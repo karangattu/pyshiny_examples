@@ -31,16 +31,6 @@ pip install -e ".[test]"
 
 ## Usage
 
-### CLI
-
-```bash
-shiny-test-generator path/to/app.py
-shiny-test-generator path/to/app.py --provider openai --model gpt-4.1
-shiny-test-generator path/to/app.py --output-dir tests/ --model sonnet
-```
-
-> [!TIP]
-> For optimal performance, we recommend using the Anthropic `sonnet` model—it consistently outperforms OpenAI’s models for generating tests.
 
 ### Library
 
@@ -59,6 +49,9 @@ from shiny_test_generator import ShinyTestGenerator
 gen = ShinyTestGenerator(provider="anthropic")
 test_code, test_path = gen.generate_test_from_file("app.py", model="sonnet")
 ```
+
+> [!TIP]
+> For optimal performance, we recommend using the Anthropic `sonnet` model—it consistently outperforms OpenAI’s models for generating tests.
 
 ## Model Aliases
 
