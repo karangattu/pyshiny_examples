@@ -13,7 +13,7 @@ concurrency:
 jobs:
   evaluate:
     runs-on: ubuntu-latest
-    timeout-minutes: 30 # Prevent stuck workflows
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
@@ -90,13 +90,6 @@ jobs:
       - name: Check Quality Gate
         run: |
           python scripts/quality_gate.py results/
-
-      # - name: Upload Results
-      #   uses: actions/upload-artifact@v4
-      #   if: always()
-      #   with:
-      #     name: inspect-ai-results
-      #     path: results/
 
       - name: Comment PR Results
         if: github.event_name == 'pull_request'
