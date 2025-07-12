@@ -19,12 +19,14 @@ export OPENAI_API_KEY=your_openai_api_key
 ```
 
 Or in `.env`:
-```
+
+```bash
 ANTHROPIC_API_KEY=your_anthropic_api_key
 OPENAI_API_KEY=your_openai_api_key
 ```
 
 Install the package:
+
 ```bash
 pip install -e .
 ```
@@ -32,6 +34,7 @@ pip install -e .
 ## Usage
 
 ### CLI
+
 ```bash
 shiny-test-generator path/to/app.py
 shiny-test-generator path/to/app.py --provider openai --model gpt-4.1
@@ -39,9 +42,10 @@ shiny-test-generator path/to/app.py --output-dir tests/ --model sonnet
 ```
 
 > [!TIP]
-> For optimal performance, we recommend using the Anthropic `sonnet` model—it consistently outperforms OpenAI’s models while generating tests.
+> For optimal performance, we recommend using the Anthropic `sonnet` model—it consistently outperforms OpenAI’s models for generating tests.
 
 ### Library
+
 ```python
 from shiny_test_generator import ShinyTestGenerator
 
@@ -50,13 +54,16 @@ test_code, test_path = gen.generate_test_from_file("app.py", model="gpt-4.1")
 ```
 
 ## Model Aliases
+
 - **Anthropic**: `haiku3`, `haiku3.5`, `sonnet`
 - **OpenAI**: `gpt-4.1`, `o3-mini`, `o4-mini`, `gpt-4.1-nano`
 
 ## File Output
+
 - `app.py` → `test_app.py` (same dir by default, or custom dir)
 
 ## Configuration
+
 - API keys via env vars, `.env`, or as `api_key` argument to `ShinyTestGenerator`.
 
 For more, see docstrings and CLI `--help`.
