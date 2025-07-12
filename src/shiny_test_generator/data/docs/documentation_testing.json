@@ -1615,51 +1615,6 @@
     ]
   },
   {
-    "controller_name": "playwright.controller.OutputPlot",
-    "methods": [
-      {
-        "name": "expect_container_tag",
-        "description": "Asserts that the output has the expected container tag.",
-        "parameters": "value (Literal['span', 'div'] | str), timeout (Timeout)"
-      },
-      {
-        "name": "expect_height",
-        "description": "Asserts that the image has the expected height.",
-        "parameters": "value (StyleValue), timeout (Timeout)"
-      },
-      {
-        "name": "expect_img_alt",
-        "description": "Asserts that the image has the expected alt text.",
-        "parameters": "value (AttrValue), timeout (Timeout)"
-      },
-      {
-        "name": "expect_img_height",
-        "description": "Asserts that the image has the expected height.",
-        "parameters": "value (AttrValue), timeout (Timeout)"
-      },
-      {
-        "name": "expect_img_src",
-        "description": "Asserts that the image has the expected src.",
-        "parameters": "value (AttrValue), timeout (Timeout)"
-      },
-      {
-        "name": "expect_img_width",
-        "description": "Asserts that the image has the expected width.",
-        "parameters": "value (AttrValue), timeout (Timeout)"
-      },
-      {
-        "name": "expect_inline",
-        "description": "Asserts that the output is inline.",
-        "parameters": "value (bool), timeout (Timeout)"
-      },
-      {
-        "name": "expect_width",
-        "description": "Asserts that the image has the expected width.",
-        "parameters": "value (StyleValue), timeout (Timeout)"
-      }
-    ]
-  },
-  {
     "controller_name": "playwright.controller.OutputTable",
     "methods": [
       {
