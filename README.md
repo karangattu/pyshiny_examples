@@ -6,7 +6,6 @@
 
 - **Automated Test Generation**: Create `pytest`+`playwright` tests from your Shiny app code or file.
 - **Multi-Provider LLMs**: Use Anthropic (Claude) or OpenAI (GPT) models.
-- **Built-in Quality Checks**: Evaluate test quality with `inspect-ai`.
 
 ## Installation
 
@@ -69,12 +68,6 @@ test_code, test_path = gen.generate_test_from_file("app.py", model="sonnet")
 ## File Output
 
 - `app.py` → `test_app.py` (same dir by default, or custom dir)
-
-## Configuration
-
-- API keys via env vars, `.env`, or as `api_key` argument to `ShinyTestGenerator`.
-
-For more, see docstrings and CLI `--help`.
 
 ## Running inspect-ai evaluations
 
