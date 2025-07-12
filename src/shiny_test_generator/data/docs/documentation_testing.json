@@ -1,7 +1,6 @@
 [
   {
     "controller_name": "playwright.controller.Accordion",
-    "attributes": "loc_container (Playwright Locator for the accordion container)",
     "methods": [
       {
         "name": "accordion_panel",
@@ -42,7 +41,6 @@
   },
   {
     "controller_name": "playwright.controller.AccordionPanel",
-    "attributes": "loc_body, loc_header, loc_icon, loc_label (Playwright Locators for parts of the accordion panel)",
     "methods": [
       {
         "name": "expect_body",
@@ -78,7 +76,6 @@
   },
   {
     "controller_name": "playwright.controller.Card",
-    "attributes": "loc_body, loc_footer, loc_title (Playwright Locators for card body, footer, and title)",
     "methods": [
       {
         "name": "expect_body",
@@ -134,7 +131,6 @@
   },
   {
     "controller_name": "playwright.controller.Chat",
-    "attributes": "loc_input, loc_input_button, loc_input_container, loc_latest_message, loc_messages (Playwright Locators for chat components)",
     "methods": [
       {
         "name": "expect_latest_message",
@@ -165,7 +161,6 @@
   },
   {
     "controller_name": "playwright.controller.DownloadButton",
-    "attributes": null,
     "methods": [
       {
         "name": "click",
@@ -186,7 +181,6 @@
   },
   {
     "controller_name": "playwright.controller.DownloadLink",
-    "attributes": null,
     "methods": [
       {
         "name": "click",
@@ -202,7 +196,6 @@
   },
   {
     "controller_name": "playwright.controller.InputActionLink",
-    "attributes": null,
     "methods": [
       {
         "name": "click",
@@ -218,7 +211,6 @@
   },
   {
     "controller_name": "playwright.controller.InputCheckbox",
-    "attributes": "loc_label (Playwright Locator for the label of the UI element)",
     "methods": [
       {
         "name": "expect_checked",
@@ -244,7 +236,6 @@
   },
   {
     "controller_name": "playwright.controller.InputCheckboxGroup",
-    "attributes": "loc_label (Playwright Locator for the label of the UI element)",
     "methods": [
       {
         "name": "expect_choice_labels",
@@ -285,7 +276,6 @@
   },
   {
     "controller_name": "playwright.controller.InputDarkMode",
-    "attributes": null,
     "methods": [
       {
         "name": "click",
@@ -311,7 +301,6 @@
   },
   {
     "controller_name": "playwright.controller.InputDate",
-    "attributes": "loc_label (Playwright Locator for the label of the UI element)",
     "methods": [
       {
         "name": "expect_autoclose",
@@ -382,7 +371,6 @@
   },
   {
     "controller_name": "playwright.controller.InputDateRange",
-    "attributes": "date_end (The end date input element), date_start (The start date input element), loc_end, loc_separator, loc_start, loc_label (Playwright Locators for date range components)",
     "methods": [
       {
         "name": "expect_autoclose",
@@ -448,7 +436,6 @@
   },
   {
     "controller_name": "playwright.controller.InputFile",
-    "attributes": "loc_button, loc_file_display, loc_progress, loc_label (Playwright Locators for file input components)",
     "methods": [
       {
         "name": "expect_accept",
@@ -494,7 +481,6 @@
   },
   {
     "controller_name": "playwright.controller.InputNumeric",
-    "attributes": "loc_label (Playwright Locator for the label of the UI element)",
     "methods": [
       {
         "name": "expect_label",
@@ -535,7 +521,6 @@
   },
   {
     "controller_name": "playwright.controller.InputPassword",
-    "attributes": "loc_label (Playwright Locator for the label of the UI element)",
     "methods": [
       {
         "name": "expect_label",
@@ -566,7 +551,6 @@
   },
   {
     "controller_name": "playwright.controller.InputRadioButtons",
-    "attributes": "loc_choice_labels, loc_choices, loc_selected, loc_label (Playwright Locators for radio button components)",
     "methods": [
       {
         "name": "expect_choice_labels",
@@ -607,7 +591,6 @@
   },
   {
     "controller_name": "playwright.controller.InputSelect",
-    "attributes": "loc_label (Playwright Locator for the label of the UI element)",
     "methods": [
       {
         "name": "expect_choice_groups",
@@ -658,7 +641,6 @@
   },
   {
     "controller_name": "playwright.controller.InputSelectize",
-    "attributes": "loc_label (Playwright Locator for the label of the UI element)",
     "methods": [
       {
         "name": "expect_choice_groups",
@@ -704,7 +686,6 @@
   },
   {
     "controller_name": "playwright.controller.InputSlider",
-    "attributes": "loc_irs, loc_irs_label, loc_irs_ticks, loc_label, loc_play_pause (Playwright Locators for slider components)",
     "methods": [
       {
         "name": "click_pause",
@@ -800,7 +781,6 @@
   },
   {
     "controller_name": "playwright.controller.InputSliderRange",
-    "attributes": "loc_irs, loc_irs_label_from, loc_irs_label_to, loc_irs_ticks, loc_label, loc_play_pause (Playwright Locators for slider range components)",
     "methods": [
       {
         "name": "click_pause",
@@ -896,7 +876,6 @@
   },
   {
     "controller_name": "playwright.controller.InputSwitch",
-    "attributes": "loc_label (Playwright Locator for the label of the UI element)",
     "methods": [
       {
         "name": "expect_checked",
@@ -922,7 +901,6 @@
   },
   {
     "controller_name": "playwright.controller.InputTaskButton",
-    "attributes": null,
     "methods": [
       {
         "name": "click",
@@ -968,7 +946,6 @@
   },
   {
     "controller_name": "playwright.controller.InputText",
-    "attributes": "loc_label (Playwright Locator for the label of the UI element)",
     "methods": [
       {
         "name": "expect_autocomplete",
@@ -1009,7 +986,6 @@
   },
   {
     "controller_name": "playwright.controller.InputTextArea",
-    "attributes": "loc_label (Playwright Locator for the label of the UI element)",
     "methods": [
       {
         "name": "expect_autocomplete",
@@ -1075,7 +1051,6 @@
   },
   {
     "controller_name": "playwright.controller.NavItem",
-    "attributes": "loc_content (Returns the locator for the content of the nav item)",
     "methods": [
       {
         "name": "click",
@@ -1091,7 +1066,6 @@
   },
   {
     "controller_name": "playwright.controller.NavPanel",
-    "attributes": "loc_content (Returns the locator for the content of the nav panel), panel_value (The `data-value` attribute)",
     "methods": [
       {
         "name": "click",
@@ -1107,7 +1081,6 @@
   },
   {
     "controller_name": "playwright.controller.NavsetBar",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_bg",
@@ -1178,7 +1151,6 @@
   },
   {
     "controller_name": "playwright.controller.NavsetCardPill",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_nav_titles",
@@ -1229,7 +1201,6 @@
   },
   {
     "controller_name": "playwright.controller.NavsetCardTab",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_nav_titles",
@@ -1275,7 +1246,6 @@
   },
   {
     "controller_name": "playwright.controller.NavsetCardUnderline",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_nav_titles",
@@ -1326,7 +1296,6 @@
   },
   {
     "controller_name": "playwright.controller.NavsetHidden",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_nav_titles",
@@ -1362,7 +1331,6 @@
   },
   {
     "controller_name": "playwright.controller.NavsetPill",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_nav_titles",
@@ -1398,7 +1366,6 @@
   },
   {
     "controller_name": "playwright.controller.NavsetPillList",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_nav_titles",
@@ -1444,7 +1411,6 @@
   },
   {
     "controller_name": "playwright.controller.NavsetTab",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_nav_titles",
@@ -1480,7 +1446,6 @@
   },
   {
     "controller_name": "playwright.controller.NavsetUnderline",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_nav_titles",
@@ -1516,7 +1481,6 @@
   },
   {
     "controller_name": "playwright.controller.OutputCode",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_has_placeholder",
@@ -1532,7 +1496,6 @@
   },
   {
     "controller_name": "playwright.controller.OutputDataFrame",
-    "attributes": "loc_body, loc_head (Playwright Locators for data frame body and head)",
     "methods": [
       {
         "name": "cell_locator",
@@ -1608,7 +1571,6 @@
   },
   {
     "controller_name": "playwright.controller.OutputImage",
-    "attributes": "loc_img (Playwright Locator of the image)",
     "methods": [
       {
         "name": "expect_container_tag",
@@ -1654,7 +1616,6 @@
   },
   {
     "controller_name": "playwright.controller.OutputPlot",
-    "attributes": "loc_img (Playwright Locator of the image)",
     "methods": [
       {
         "name": "expect_container_tag",
@@ -1700,7 +1661,6 @@
   },
   {
     "controller_name": "playwright.controller.OutputTable",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_cell",
@@ -1731,7 +1691,6 @@
   },
   {
     "controller_name": "playwright.controller.OutputText",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_container_tag",
@@ -1757,7 +1716,6 @@
   },
   {
     "controller_name": "playwright.controller.OutputTextVerbatim",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_has_placeholder",
@@ -1773,7 +1731,6 @@
   },
   {
     "controller_name": "playwright.controller.OutputUi",
-    "attributes": null,
     "methods": [
       {
         "name": "expect_container_tag",
@@ -1794,7 +1751,6 @@
   },
   {
     "controller_name": "playwright.controller.Popover",
-    "attributes": "loc_overlay_body, loc_overlay_container, loc_trigger (Playwright Locators for popover components)",
     "methods": [
       {
         "name": "expect_active",
@@ -1830,7 +1786,6 @@
   },
   {
     "controller_name": "playwright.controller.Sidebar",
-    "attributes": "loc_content, loc_handle, loc_position, loc_title (Playwright Locators for sidebar components)",
     "methods": [
       {
         "name": "expect_bg_color",
@@ -1906,7 +1861,6 @@
   },
   {
     "controller_name": "playwright.controller.Tooltip",
-    "attributes": "loc_overlay_body, loc_overlay_container, loc_trigger (Playwright Locators for tooltip components)",
     "methods": [
       {
         "name": "expect_active",
@@ -1937,7 +1891,6 @@
   },
   {
     "controller_name": "playwright.controller.ValueBox",
-    "attributes": "loc_body, loc_showcase, loc_title (Playwright Locators for value box components)",
     "methods": [
       {
         "name": "expect_body",
@@ -1983,7 +1936,6 @@
   },
   {
     "controller_name": "run.ShinyAppProc",
-    "attributes": "file (The path to the Shiny app file), port (The port), proc (The subprocess object), stderr (Standard error stream), stdout (Standard output stream), url (The URL)",
     "methods": [
       {
         "name": "close",
