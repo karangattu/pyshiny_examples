@@ -1,6 +1,6 @@
 # Shiny Test Generator
 
-`shiny-test-generator` is a Python tool that uses LLMs (Anthropic Claude or OpenAI GPT) to automatically generate `pytest` tests for [Shiny for Python](https://shiny.posit.co/py/) apps. It supports both CLI and library usage, and includes a quality evaluation suite with [`inspect-ai`](https://rstudio.github.io/inspect-ai/).
+`shiny-test-generator` is a Python tool that uses LLMs (Anthropic Claude or OpenAI GPT) to automatically generate `pytest` tests for [Shiny for Python](https://shiny.posit.co/py/) apps. It supports both CLI and library usage, and includes a quality evaluation suite with [`inspect-ai`](https://inspect.aisi.org.uk/).
 
 ## Features
 - **Automated Test Generation**: Create `pytest`+`playwright` tests from your Shiny app code or file.
@@ -47,10 +47,19 @@ shiny-test-generator path/to/app.py --output-dir tests/ --model sonnet
 ### Library
 
 ```python
+# using openai models
 from shiny_test_generator import ShinyTestGenerator
 
 gen = ShinyTestGenerator(provider="openai")
 test_code, test_path = gen.generate_test_from_file("app.py", model="gpt-4.1")
+```
+
+```python
+# using anthropic models
+from shiny_test_generator import ShinyTestGenerator
+
+gen = ShinyTestGenerator(provider="anthropic")
+test_code, test_path = gen.generate_test_from_file("app.py", model="sonnet")
 ```
 
 ## Model Aliases
