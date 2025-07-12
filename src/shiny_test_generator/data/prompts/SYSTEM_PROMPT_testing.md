@@ -28,6 +28,14 @@ Core Testing Rules
 6. Clearing Selectize Inputs: To clear a multi-selection InputSelectize, you must programmatically click the "clear" button, as set([]) will not work.
 python # Correct way to clear a selection selectize.loc.locator("..").locator( "> div.plugin-clear_button > a.clear" ).click() 
 
+7. Follow the Assert -> Act -> Assert Pattern: For each interactive component, your tests must follow a clear sequence:
+
+Assert Initial State: Verify the initial value, label, and state of the component and any linked outputs.
+
+Act: Perform an action, like set(), click(), or set_value().
+
+Assert Final State: After the action, you MUST re-assert the state of the input component itself (e.g., expect_selected, expect_checked, expect_value) and also verify the updated value of any outputs.
+
 Examples
 Here are some examples of Shiny for Python app code and the corresponding test file you should generate.
 
@@ -67,15 +75,16 @@ def test_checkbox_group_demo(page: Page, app: ShinyAppProc) -> None:
     basic_group = controller.InputCheckboxGroup(page, "basic")
     basic_output = controller.OutputText(page, "basic_output")
 
-    # Test initial state
+    # 1. Assert Initial State
     basic_group.expect_label("Choose items:")
-    basic_group.expect_choices(["Item A", "Item B", "Item C"])
     basic_group.expect_selected(["Item A"])
-    basic_group.expect_inline(True)
     basic_output.expect_value("Selected: ('Item A',)")
 
-    # Test selection changes
+    # 2. Act
     basic_group.set(["Item A", "Item C"])
+
+    # 3. Assert Final State
+    basic_group.expect_selected(["Item A", "Item C"]) # Re-assert the input's state
     basic_output.expect_value("Selected: ('Item A', 'Item C')")
 
 Example 2: App with input_date
@@ -97,9 +106,6 @@ with ui.card():
         min=date(2024, 1, 1),
         max=date(2024, 12, 31),
     )
-    ui.input_date(
-        "date3", "Custom format:", value="2024-01-01", format="mm/dd/yy"
-    )
 
 Corresponding Test File 2:
 
@@ -114,25 +120,17 @@ app = create_app_fixture(["app_example_date_input.py"])
 def test_date_inputs(page: Page, app: ShinyAppProc) -> None:
     page.goto(app.url)
 
-    # Test basic date input
     date1 = controller.InputDate(page, "date1")
+
+    # 1. Assert Initial State
     date1.expect_label("Basic date:")
     date1.expect_value("2024-01-01")
 
-    # Test date input with min/max range
-    date2 = controller.InputDate(page, "date2")
-    date2.expect_value("2024-01-15")
-    date2.expect_min_date("2024-01-01")
-    date2.expect_max_date("2024-12-31")
-
-    # Test date input with custom format
-    date3 = controller.InputDate(page, "date3")
-    date3.expect_format("mm/dd/yy")
-    date3.expect_value("01/01/24")
-
-    # Test setting a new value
+    # 2. Act
     date1.set("2024-02-01")
-    date1.expect_value("2024-02-01")
+
+    # 3. Assert Final State
+    date1.expect_value("2024-02-01") # Re-assert the input's state
 
 Example 3: App with input_selectize and updates
 
@@ -153,13 +151,6 @@ with ui.card():
     def show_select1():
         return f"You selected: {input.select1()}"
 with ui.card():
-    ui.input_selectize(
-        id="select2",
-        label="Choose multiple states:",
-        choices=states,
-        multiple=True,
-        selected=["NY", "CA"],
-    )
     ui.input_action_button("update_btn", "Update Selections")
 
 @reactive.effect
@@ -184,26 +175,19 @@ app = create_app_fixture(["app_example_selectize_inputs.py"])
 def test_selectize_inputs(page: Page, app: ShinyAppProc) -> None:
     page.goto(app.url)
 
-    # Test first selectize (single selection)
     select1 = controller.InputSelectize(page, "select1")
     select1_output = controller.OutputText(page, "show_select1")
+    update_btn = controller.InputActionButton(page, "update_btn")
     
+    # 1. Assert Initial State
     select1.expect_label("Choose a state:")
-    select1.expect_multiple(False)
     select1.expect_selected(["NY"])
     select1_output.expect_value("You selected: NY")
 
-    # Test second selectize (multiple selection)
-    select2 = controller.InputSelectize(page, "select2")
-    select2.expect_label("Choose multiple states:")
-    select2.expect_multiple(True)
-    select2.expect_selected(["NY", "CA"])
-
-    # Test update button functionality
-    update_btn = controller.InputActionButton(page, "update_btn")
+    # 2. Act
     update_btn.click()
 
-    # Verify updates after clicking button
+    # 3. Assert Final State
     select1.expect_label("Updated label")
-    select1.expect_selected(["WA"])
+    select1.expect_selected(["WA"]) # Re-assert the input's state
     select1_output.expect_value("You selected: WA")
