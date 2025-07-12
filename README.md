@@ -3,10 +3,9 @@
 `shiny-test-generator` is a Python tool that uses LLMs (Anthropic Claude or OpenAI GPT) to automatically generate `pytest` tests for [Shiny for Python](https://shiny.posit.co/py/) apps. It supports both CLI and library usage, and includes a quality evaluation suite with [`inspect-ai`](https://inspect.aisi.org.uk/).
 
 ## Features
+
 - **Automated Test Generation**: Create `pytest`+`playwright` tests from your Shiny app code or file.
 - **Multi-Provider LLMs**: Use Anthropic (Claude) or OpenAI (GPT) models.
-- **Flexible Usage**: Use as a CLI or Python library.
-- **Customizable Output**: Choose output directory and filename.
 - **Built-in Quality Checks**: Evaluate test quality with `inspect-ai`.
 
 ## Installation
@@ -28,7 +27,7 @@ OPENAI_API_KEY=your_openai_api_key
 Install the package:
 
 ```bash
-pip install -e .
+pip install -e ".[test]"
 ```
 
 ## Usage

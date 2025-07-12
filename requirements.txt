@@ -1,6 +1,0 @@
-pytest
-inspect-ai
-chatlas[anthropic]
-anthropic
-openai
-shiny
