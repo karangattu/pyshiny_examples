@@ -38,6 +38,9 @@ shiny-test-generator path/to/app.py --provider openai --model gpt-4.1
 shiny-test-generator path/to/app.py --output-dir tests/ --model sonnet
 ```
 
+> [!TIP]
+> For optimal performance, we recommend using the Anthropic `sonnet` model—it consistently outperforms OpenAI’s models while generating tests.
+
 ### Library
 ```python
 from shiny_test_generator import ShinyTestGenerator
