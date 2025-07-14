@@ -31,9 +31,6 @@ pip install -e ".[test]"
 
 ## Usage
 
-
-### Library
-
 ```python
 # using openai models
 from shiny_test_generator import ShinyTestGenerator
@@ -55,7 +52,7 @@ test_code, test_path = gen.generate_test_from_file("app.py", model="sonnet")
 
 ## Model Aliases
 
-- **Anthropic**: `haiku3`, `haiku3.5`, `sonnet`
+- **Anthropic**: `haiku3.5`, `sonnet`
 - **OpenAI**: `gpt-4.1`, `o3-mini`, `o4-mini`, `gpt-4.1-nano`
 
 ## File Output
