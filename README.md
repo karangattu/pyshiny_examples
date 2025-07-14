@@ -72,4 +72,4 @@ inspect eval evals/evaluation.py@shiny_test_evaluation --log-dir results/ --log-
 
 The validation process for ensuring the quality of test generation is not compromised involves running through the following steps:
 
-![](validation_process.png)
+![Validation process diagram](validation_process.png)
